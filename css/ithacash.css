@@ -1,0 +1,85 @@
+html, body { margin: 0; padding: 0; box-sizing: border-box ; }
+
+body {
+	font: 16px/1.2em Raleway;
+}
+
+#container {
+	width: 100%;}
+
+header {
+	color: white;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+header:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+h1 {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	padding: 10px 0;
+	background-color: #9ac760;
+}
+
+h1 img {
+	width: 250px;
+}
+
+#nav-menu {
+	position: absolute;
+	top: 87px;
+	width: 100%;
+	background-color: rgb(46, 45, 47);
+}
+
+#nav-menu ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+	width: 50%;
+}
+
+#nav-menu ul:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+#nav-menu ul li {
+	float: left;
+	width: 33%;
+	min-width: 130px;
+	padding: 15px 0 15px 0;
+	text-align: center;
+}
+
+#nav-menu a {
+	padding-bottom: 5px;
+	color: white;
+	text-decoration: none;
+	border-bottom: 4px solid rgb(46, 45, 47);
+}
+
+#nav-menu a:hover {
+	border-bottom: 4px solid #9ac760;
+}
+
+#login {
+	background-color: rgb(46, 45, 47);
+	position: absolute;
+	bottom: 15px; right: 0;
+	padding: 10px 0 10px 20px;
+	min-width: 15%;
+	border-radius: 4px 0 0 4px;
+}
