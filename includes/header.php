@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,32 +9,26 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/ithacash.css" media="screen">
 
+		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
+
 	</head>
 	<body>
 
 	<div id ="container">
 		<header>
-			<!-- <div id="login">
-				<button>Login or Sign&ndash;up</button>
-				<div id="input">
-					<input type="email" placeholder="Email">
-					 <button>&rarr;</button>
-				</div>
-			</div> -->
 			<h1><img src="/img/ithacash-logo.png" alt="ithaca$h"></h1>
 
 			<div id="nav-menu">
 				<ul>
-					<li><a href="">? How It Works</a></li>
+					<li><a href="">How It Works</a></li>
 					<li><a href="">Ithaca Business</a></li>
 					<li><a href="">ithacash.org</a></li>
 				</ul>
 				<div id="login">
-					<button>Login or Sign up</button>
-					<div id="input">
-						<input type="email" placeholder="Email">
-						 <button>&rarr;</button>
-					</div>
+					<a href="">Login or Sign up</a>
 				</div>
 			</div>
+			</div>
 		</header>
+
+		<content>
