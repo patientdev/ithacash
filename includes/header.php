@@ -17,16 +17,14 @@
 
 	<div id ="container">
 		<header>
-			<h1><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></h1>
+			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
-			<div id="nav-menu-container">
-				<ul id="nav-menu">
-					<li><a href="">How It Works</a></li>
-					<li><a href="">Ithaca Business</a></li>
-					<li><a href="">Success Stories</a></li>
-					<li><a href="">ithacash.org</a></li>
-				</ul>
-			</div>
+			<ul id="nav-menu">
+				<li><a href="">How It Works</a></li>
+				<li><a href="">Ithaca Business</a></li>
+				<li><a href="">Success Stories</a></li>
+				<li><a href="">ithacash.org</a></li>
+			</ul>
 		</header>
 
 		<content>

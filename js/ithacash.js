@@ -17,6 +17,22 @@ $(function() {
 });
 
 $(window).on('scroll', function() {
-	paralax = $(window).scrollTop()/10;
+
+	var paralax = 0;
+	var windowScroll = $(window).scrollTop();
+
+	if ( $(window).width() > 840 ) {
+
+		if ( windowScroll > 0 ) {
+			paralax = windowScroll/60;
+		}
+
+		else { paralax = 0; }
+	}
+
+	else {
+		paralax = $(window).scrollTop()/30;
+	}
+	
 	$('#branding-pitch').css('background-position', '0% ' + paralax + '%');
 });
