@@ -28,6 +28,7 @@ header {
 	width: 100%;
 	border-radius: 0 0 8px 8px;
 	z-index: 1;
+	margin-bottom: 20px;
 }
 
 #nav-menu-container {
@@ -157,86 +158,4 @@ h2 {
 	display: inline-block;
 	width: 500px; height: 300px;
 	outline: 1px solid black;
-}
-
-@media only screen and (max-device-width: 568px), (max-width: 840px) {
-
-	body {
-		font-size: 2em;
-	}
-
-	header {
-		height: auto;
-		position: relative;
-		padding: 0;
-		text-align: center;
-		margin: 40px 0;
-	}
-
-	h1 {
-		float: none;
-		width: 100%;
-		line-height: 1em;
-		margin-bottom: 20px;
-	}
-
-	h1 img {
-		width: 50%;
-	}
-
-	#nav-menu-container {
-		float: none;
-		width: 100%;
-		height: auto;
-	}
-
-	#nav-menu {
-		padding: 0;
-		float: none;
-		width: 100%;
-		line-height: 1em;
-	}
-
-	#nav-menu li {
-		float: none;
-		display: block;
-	}
-
-	#nav-menu li a {
-		display: block;
-		padding: 60px;
-		font-size: 1.8em;
-	}
-
-	content {
-		position: relative;
-		top: 0;
-		height: 2000px;
-	}
-
-	#branding-pitch {
-		padding: 40px 0;
-		color: white;
-		position: relative;
-		background-position: center bottom;
-		background-size: auto;
-	}
-
-	.statement-container {
-		width: 100%;
-		float: none;
-		padding: 40px 0;
-	}
-
-	h2 {
-		text-align: center;
-		line-height: 1.4em;
-	}
-
-	.statement {
-		padding: 0 60px;
-		line-height: 1.6em;
-		text-align: center;
-		font-weight: 100;
-	}
 }

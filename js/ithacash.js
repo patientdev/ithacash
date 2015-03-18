@@ -21,18 +21,9 @@ $(window).on('scroll', function() {
 	var paralax = 0;
 	var windowScroll = $(window).scrollTop();
 
-	if ( $(window).width() > 840 ) {
+	if ( $(window).width() > 840 ) { paralax = windowScroll/60; }
 
-		if ( windowScroll > 0 ) {
-			paralax = windowScroll/60;
-		}
-
-		else { paralax = 0; }
-	}
-
-	else {
-		paralax = $(window).scrollTop()/30;
-	}
+	else { paralax = $(window).scrollTop()/30; }
 	
-	$('#branding-pitch').css('background-position', '0% ' + paralax + '%');
+	$('#branding-pitch').css('background-position', '0% ' + (paralax + 10) + '%');
 });

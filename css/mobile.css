@@ -1,0 +1,113 @@
+html, body { width: 100%; }
+
+body {
+}
+
+header {
+	position: relative;
+	text-align: center;
+	padding: 20px 0;
+	height: auto;
+	margin: 0;
+}
+
+h1 {
+	float: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	line-height: 1em;
+
+}
+
+h1 img {
+	width: 50%;
+}
+
+#container {
+	-webkit-transition: left .2s linear;
+	position: absolute;
+}
+
+#nav-menu {
+	display: none;
+	padding: 0;
+	float: none;
+	width: 75%;
+	line-height: 1em;
+	font-size: 1em;
+	background-color: white;
+}
+
+#nav-menu li {
+	float: none;
+	display: block;
+}
+
+#nav-menu li a {
+	display: block;
+	padding: 60px;
+}
+
+content {
+	position: relative;
+	top: auto;
+	width: 100%;
+}
+
+content:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: hidden;}
+
+#branding-pitch {
+	padding: 70px 10px;
+	color: white;
+	position: relative;
+	background-position: center bottom;
+	background-size: auto;
+	font-size: .7em;
+}
+
+#branding-pitch h2 {
+	margin-top: 0;
+}
+
+#top-angle {
+	width: 30%;
+	height: 27px;
+}
+
+#angle-1 {
+	height: 40px;
+	right: -25px;
+}
+
+#bottom-angle {
+	width: 30%;
+	height: 27px;
+}
+
+#angle-2 {
+	height: 40px;
+	top: 30px; left: -29px;
+}
+
+.statement-container {
+	width: 100%;
+	float: none;
+	padding: 0;
+}
+
+h2 {
+	text-align: center;
+	line-height: 1.4em;
+}
+
+.statement {
+	padding: 0;
+	line-height: 1.6em;
+	text-align: center;
+	font-weight: 100;
+}
