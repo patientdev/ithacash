@@ -9,6 +9,11 @@ body {
 	box-sizing: border-box;
 }
 
+#container {
+	position: absolute;
+	top: 0;
+}
+
 h1 {
 	width: 30%;
 	float: left;
@@ -28,7 +33,6 @@ header {
 	width: 100%;
 	border-radius: 0 0 8px 8px;
 	z-index: 1;
-	margin-bottom: 20px;
 }
 
 #nav-menu-container {
@@ -66,13 +70,12 @@ header {
 }
 
 content {
-	position: absolute;
-	top: 140px;
-	height: 2000px;
+	position: relative;
+	top: 120px;
 }
 
 #branding-pitch {
-	padding: 120px 0;
+	padding: 180px 0;
 	background-image: url(/img/Commons-5.14.jpg);
 	background-position: 0% 50%;
 	background-size: fill;
@@ -127,12 +130,34 @@ content {
 
 .row {
 	width: 100%;
+	margin-bottom: 60px;
+	padding: 0 80px;
+}
+
+.branding-image {
+	width: 45%;
+	height: 400px;
+	width: 500px;
+	border: 1px solid black;
+}
+
+.even .branding-image, .odd .statement-container {
+	float: right;
+}
+
+.odd .branding-image, .even .statement-container {
+	float: left;
 }
 
 .statement-container {
 	width: 50%;
 	float: left;
-	padding-top: 40px;
+	vertical-align: middle;
+	padding-top: 100px;
+}
+
+#branding-pitch .statement-container {
+	padding-top: 0;
 }
 
 h2 {
