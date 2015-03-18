@@ -21,9 +21,14 @@ $(window).on('scroll', function() {
 	var paralax = 0;
 	var windowScroll = $(window).scrollTop();
 
-	if ( $(window).width() > 840 ) { paralax = windowScroll/60; }
+	if ( $(window).width() > 840 ) { 
+
+		if ( windowScroll <= 0 ) { parallax = 0; }
+		else { paralax = windowScroll/60; }
+		
+	}
 
 	else { paralax = $(window).scrollTop()/30; }
 	
-	$('#branding-pitch').css('background-position', '0% ' + (paralax + 10) + '%');
+	$('#branding-pitch').css('background-position', '0% ' + paralax + '%');
 });
