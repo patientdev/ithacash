@@ -31,4 +31,6 @@ $(window).on('scroll', function() {
 	else { paralax = $(window).scrollTop()/30; }
 	
 	$('#branding-pitch').css('background-position', '0% ' + paralax + '%');
+
+	if ( windowScroll === 0 ) { $('header').css('box-shadow', 'none'); } else { $('header').css('box-shadow', '0 2px 3px -1px rgba(0, 0, 0, 0.1'); }
 });
