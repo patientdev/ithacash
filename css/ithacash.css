@@ -9,6 +9,30 @@ body {
 	box-sizing: border-box;
 }
 
+.i-dollar {
+	color: #89af3e;
+	font-weight: bold;
+	font-size: 1.3em;
+	line-height: 1em;
+}
+
+li a#join-us{
+	border: 1px solid #89af3e;
+	padding: 5px 8px;
+	color: white;
+	background-color: #89af3e;
+	border-radius: 4px;
+	-webkit-transition: background-color .1s ease-out, border-color .1s ease-out, color .1s ease-out;
+}
+
+li a#join-us:hover {
+	border: 1px solid #89af3e;
+	padding: 5px 8px;
+	color: #89af3e;
+	border-radius: 4px;
+	background-color: transparent;
+}
+
 #container {
 	position: absolute;
 	top: 0;
@@ -63,6 +87,7 @@ header {
 	font-weight: 400;
 	letter-spacing: .5px;
 	padding-bottom: 5px;
+	line-height: 1em;
 }
 
 #nav-menu a:hover {

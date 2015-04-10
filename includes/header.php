@@ -7,7 +7,7 @@
 		<title>ithacash &mdash; Made for Main St.</title>
 		
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/ithacash.css" media="screen">
 		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width: 568px), (max-width: 840px)">
@@ -23,9 +23,10 @@
 			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
 			<ul id="nav-menu">
+				<li class="sell"><a href="">Buy <span class="i-dollar">i$</span></a></li>
 				<li><a href="">How It Works</a></li>
-				<li><a href="">Ithaca Business</a></li>
-				<li><a href="">Success Stories</a></li>
+				<li><a href="">Services Platform</a></li>
+				<li><a href="" id="join-us">Join Us!</a></li>
 				<li><a href="">ithacash.org</a></li>
 			</ul>
 		</header>
