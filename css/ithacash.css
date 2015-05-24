@@ -15,6 +15,21 @@ h1, h2 {
 	color: black;
 }
 
+h2, h3 {
+	font-family: "Gotham Rounded";
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 2.4em;
+	text-align: center;
+	font-weight: 400;
+}
+
+section {
+	margin: 60px 0;
+}
+
 .green-button {
 	background-color: rgb(136, 177, 71);
 	padding: 11px 35px;
@@ -154,4 +169,59 @@ h1 img {
 	padding: 5px 8px;
 	color: black;
 	width: 100%;
+}
+
+#carousel {
+	border-top: 14px solid rgb(76, 118, 38);
+	border-bottom: 14px solid rgb(76, 118, 38);
+}
+
+.step {
+	height: 300px;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+}
+
+.step:after {
+	content: "";
+	clear: both;
+	display: block;
+	overflow: hidden;
+}
+
+.step h3 {
+	font-size: 2.8em;
+	color: rgb(55, 108, 0);
+	font-weight: lighter;
+	text-transform: uppercase;
+}
+
+.step:nth-child(odd) {
+	background-color: rgb(235, 235, 235);
+}
+
+.left, .right {
+	width: 50%;
+	height: 100%;
+}
+
+.left {
+	border-right: 3px solid rgb(196, 216, 163);
+	float: left;
+	padding-right: 40px;
+}
+
+.right {
+	border-left: 3px solid rgb(196, 216, 163);
+	float: right;
+	padding-left: 40px;
+}
+
+.left p, .left h3 {
+	text-align: right;
+}
+
+.right p, .right h3 {
+	text-align: left;
 }

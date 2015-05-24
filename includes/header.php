@@ -23,13 +23,13 @@
 			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
 			<ul id="nav-menu">
-				<li><a href="">How It Works</a></li>
-				<li><a href="">Core Services</a></li>
-				<li><a href="">Accounts</a></li>
-				<li><a href="">Legacy</a></li>
-				<li><a href="">About</a></li>
-				<li><a href="">Contact</a></li>
-				<li><a href="">FAQ</a></li>
+				<li><a href="#how-it-works">How It Works</a></li>
+				<li><a href="#core-services">Core Services</a></li>
+				<li><a href="#accounts">Accounts</a></li>
+				<li><a href="#legacy">Legacy</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li><a href="#faq">FAQ</a></li>
 				<li><button class="green-button">Sign Up</button></li>
 			</ul>
 		</header>
