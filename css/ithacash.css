@@ -1,7 +1,9 @@
 html, body { padding: 0; margin: 0; }
 
-body {
-	font: 14px/1.4em Raleway, Helvetica, Arial, sans-serif;
+body, button, input {
+	font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
+	color: #999;
+	letter-spacing: .5px;
 }
 
 * {
@@ -9,14 +11,39 @@ body {
 	box-sizing: border-box;
 }
 
-.i-dollar {
-	color: #89af3e;
-	font-weight: bold;
-	font-size: 1.3em;
+h1, h2 {
+	color: black;
+}
+
+.green-button {
+	background-color: rgb(136, 177, 71);
+	padding: 11px 35px;
+	border: none;
+	border-radius: 8px;
+	color: white;
 	line-height: 1em;
 }
 
-li a#join-us{
+button:hover {
+	cursor: pointer;
+}
+
+input:focus {
+	outline: 1px solid rgb(136, 177, 71);
+}
+
+header {
+	position: fixed; 
+	padding: 20px 50px;
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	-webkit-transition: box-shadow .2s linear;
+	z-index: 1;
+	white-space: nowrap;
+	font-size: 1.2em;
+}
+
+li a#sign-up{
 	border: 1px solid #89af3e;
 	padding: 5px 8px;
 	color: white;
@@ -25,38 +52,25 @@ li a#join-us{
 	-webkit-transition: background-color .1s ease-out, border-color .1s ease-out, color .1s ease-out;
 }
 
-li a#join-us:hover {
-	border: 1px solid #89af3e;
-	padding: 5px 8px;
-	color: #89af3e;
-	border-radius: 4px;
-	background-color: transparent;
+li a#sign-up:hover {
+	border: 1px solid none;
 }
 
 #container {
 	position: absolute;
 	top: 0;
+	width: 100%;
+	max-width: 1500px;
 }
 
 h1 {
-	width: 30%;
-	float: left;
+	display: inline-block;
+	vertical-align: middle;;
 	margin: 0;
-	line-height: 100px;
 }
 
 h1 img {
 	width: 200px;
-}
-
-header {
-	height: 120px;
-	position: fixed; 
-	padding: 20px 80px;
-	background-color: rgba(255, 255, 255, 1);
-	width: 100%;
-	-webkit-transition: box-shadow .2s linear;
-	z-index: 1;
 }
 
 #nav-menu-container {
@@ -69,11 +83,11 @@ header {
 	margin: 0;
 	list-style-type: none;
 	float: right;
-	line-height: 100px;
+	line-height: 53px;
 }
 
 #nav-menu li {
-	padding: 0 10px;
+	padding: 0 15px;
 	margin: 0;
 	display: inline-block;
 	float: left;
@@ -85,7 +99,7 @@ header {
 	text-align: center;
 	font-size: 1em;
 	font-weight: 400;
-	letter-spacing: .5px;
+	letter-spacing: 1px;
 	padding-bottom: 5px;
 	line-height: 1em;
 }
@@ -95,117 +109,49 @@ header {
 }
 
 #content {
-	position: relative;
-	top: 120px;
-}
-
-#branding-pitch {
-	padding: 180px 0;
-	background-image: url(/img/Commons-5.14.jpg);
-	background-position: 0% 50%;
-	background-size: fill;
-	color: white;
-	position: relative;
-}
-
-#top-angle {
-	position: absolute;
-	width: 40%; height: 45px;
-	background-color: white;
-	top: -2px; left: 0;
-}
-
-#angle-1 {
-	position: absolute;
-	height: 62px; width: 70px;
-	top: -32px; right: -33px;
-	background-color: white;
-	-webkit-transform: rotateZ(45deg);
-	   -moz-transform: rotateZ(45deg);
-	    -ms-transform: rotateZ(45deg);
-	     -o-transform: rotateZ(45deg);
-	        transform: rotateZ(45deg);
-}
-
-#bottom-angle {
-	position: absolute;
-	width: 40%; height: 45px;
-	background-color: white;
-	bottom: -2px; right: 0;
-}
-
-#angle-2 {
-	position: absolute;
-	height: 61px; width: 100px;
-	top: 26px; left: -36px;
-	background-color: white;
-	-webkit-transform: rotateZ(45deg);
-	   -moz-transform: rotateZ(45deg);
-	    -ms-transform: rotateZ(45deg);
-	     -o-transform: rotateZ(45deg);
-	        transform: rotateZ(45deg);
-}
-
-.clear:after {
-	content: "";
-	display: block;
-	overflow: hidden;
-	clear: both;
-}
-
-.row {
 	width: 100%;
-	margin-bottom: 60px;
-	padding: 0 80px;
+	padding-top: 93px;
 }
 
-.branding-image {
-	width: 45%;
-	height: 400px;
-	width: 500px;
-	border: 1px solid black;
+#intro {
+	background-image: url(/img/owner-cling.jpg);
+	background-size: cover;
+	width: 100%;
+	height: calc(100vh - 93px);
+	position: relative;
 }
 
-.even .branding-image, .odd .statement-container {
-	float: right;
+#email-list-box {
+	position: absolute;
+	width: 337px; height: 327px;
+	top: 50%; left: 15%;
+	margin-top: -164px; 
+	background-color: white;
+	border-radius: 8px;
+	padding: 40px;
 }
 
-.odd .branding-image, .even .statement-container {
-	float: left;
-}
-
-.statement-container {
-	width: 50%;
-	float: left;
-	vertical-align: middle;
-	padding-top: 100px;
-}
-
-#branding-pitch .statement-container {
-	padding-top: 0;
-}
-
-h2 {
-	font-size: 2em;
+#email-list-box h2 {
+	text-transform: uppercase;
+	font-size: 1.2em;
+	margin: 0;
+	letter-spacing: 1px;
 	text-align: center;
 }
 
-.statement {
-	padding: 0 60px;
-	line-height: 1.6em;
-	text-align: center;
-	font-size: 1.4em;
-	font-weight: 300;
-}
-
-.branding-img {
-	width: 50%;
-	float: right;
+#email-list-box form {
+	line-height: 3em;
 	text-align: center;
 }
 
-.stand-in-img {
-	display: inline-block;
-	width: 500px; height: 300px;
-	outline: 1px solid black;
+#email-list-box button {
+	margin-top: 20px;
+}
+
+#join-email-list input {
+	border: 1px solid rgb(199, 199, 199);
+	background-color: rgb(235, 235, 235);
+	padding: 5px 8px;
+	color: black;
+	width: 100%;
 }

@@ -23,11 +23,14 @@
 			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
 			<ul id="nav-menu">
-				<li class="sell"><a href="">Buy <span class="i-dollar">i$</span></a></li>
 				<li><a href="">How It Works</a></li>
-				<li><a href="">Services Platform</a></li>
-				<li><a href="" id="join-us">Join Us!</a></li>
-				<li><a href="">ithacash.org</a></li>
+				<li><a href="">Core Services</a></li>
+				<li><a href="">Accounts</a></li>
+				<li><a href="">Legacy</a></li>
+				<li><a href="">About</a></li>
+				<li><a href="">Contact</a></li>
+				<li><a href="">FAQ</a></li>
+				<li><button class="green-button">Sign Up</button></li>
 			</ul>
 		</header>
 

@@ -4,50 +4,16 @@
 $styles = "";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
-
-<div class="row even clear" id="branding-pitch">
-	<div id="top-angle">
-		<div id="angle-1"></div>
-	</div>
-	<div id="bottom-angle">
-		<div id="angle-2"></div>
-	</div>
-	<div class="statement-container">
-		<h2>Made for Main St.</h2>
-		<div class="statement">
-			Aesthetic hashtag quinoa, kogi narwhal chillwave sustainable Williamsburg pork belly. Thundercats listicle Shoreditch post-ironic hoodie twee, Banksy scenester VHS High Life umami vegan kogi retro.
-		</div>
-	</div>
-</div>
-
-<div class="row odd clear">
-	<div class="statement-container">
-		<div class="statement">
-			Aesthetic hashtag quinoa, kogi narwhal chillwave sustainable Williamsburg pork belly. Thundercats listicle Shoreditch post-ironic hoodie twee, Banksy scenester VHS High Life umami vegan kogi retro.
-		</div>
-		<h2>Made for Main St.</h2>
-	</div>
-	<div class="branding-image"></div>
-</div>
-
-<div class="row even clear">
-	<div class="statement-container">
-		<div class="statement">
-			Aesthetic hashtag quinoa, kogi narwhal chillwave sustainable Williamsburg pork belly. Thundercats listicle Shoreditch post-ironic hoodie twee, Banksy scenester VHS High Life umami vegan kogi retro.
-		</div>
-		<h2>Made for Main St.</h2>
-	</div>
-	<div class="branding-image"></div>
-</div>
-
-<div class="row odd clear">
-	<div class="statement-container">
-		<div class="statement">
-			Aesthetic hashtag quinoa, kogi narwhal chillwave sustainable Williamsburg pork belly. Thundercats listicle Shoreditch post-ironic hoodie twee, Banksy scenester VHS High Life umami vegan kogi retro.
-		</div>
-		<h2>Made for Main St.</h2>
-	</div>
-	<div class="branding-image"></div>
+<div id="intro">
+ <div id="email-list-box">
+ 	<h2>Money Made for Main St.</h2>
+ 	<p>Ithacash is a new way for you to turn the things you&rsquo;ve got into the things you want.</p>
+ 	<form id="join-email-list">
+ 		<input type="text" name="name" placeholder="Name"><br>
+ 		<input type"email" name="email" placeholder="Email"><br>
+ 		<button class="green-button">Join the Email List</button>
+ 	</form>
+ </div>
 </div>
 
 <?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
