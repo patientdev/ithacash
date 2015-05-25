@@ -16,7 +16,7 @@ h1, h2 {
 }
 
 h2, h3 {
-	font-family: "Gotham Rounded";
+	font-family: "Varela Round";
 	text-transform: uppercase;
 	line-height: 1em;
 }
@@ -56,7 +56,7 @@ header {
 	background-color: rgba(255, 255, 255, 1);
 	width: 100%;
 	-webkit-transition: box-shadow .2s linear;
-	z-index: 1;
+	z-index: 100;
 	white-space: nowrap;
 	font-size: 1.2em;
 }
@@ -179,11 +179,16 @@ h1 img {
 	border-bottom: 14px solid rgb(76, 118, 38);
 }
 
+#how-to-get-started img {
+	width: 150px;
+}
+
 .step {
 	height: 300px;
 	white-space: nowrap;
-	overflow: hidden;
 	width: 100%;
+	display: table;
+	position: relative;
 }
 
 .step:after {
@@ -200,33 +205,71 @@ h1 img {
 	text-transform: uppercase;
 }
 
+.step svg {
+	clear: both;
+}
+
 .step:nth-child(odd) {
 	background-color: rgb(235, 235, 235);
+}
+
+.hex {
+	position: absolute;
+	left: 50%;
+	margin-left: -35px;
+	top: -30px;
+	z-index: 10;
+	width: 70px;
+	height: 60px;
+}
+
+.hex polygon {
+	fill: rgb(85, 123, 62);
+}
+
+.hex text {
+	font-size: 35px;
+	fill: white;
+	font-weight: normal;
 }
 
 #path .left, #path .right {
 	width: 50%;
 	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #path .left {
 	border-right: 3px solid rgb(196, 216, 163);
-	float: left;
-	padding-right: 40px;
+	padding-right: 100px;
+	text-align: right;
 }
 
 #path .right {
 	border-left: 3px solid rgb(196, 216, 163);
-	float: right;
-	padding-left: 40px;
+	padding-left: 100px;
+	text-align: left;
+}
+
+#path .step:last-of-type > div {
+	border: none;
+}
+
+#path {
+	text-align: center;
+}
+
+#path p {
+	white-space: normal;
+	width: 200px;
+	display: inline-block;
 }
 
 #path .left p, #path .left h3 {
-	text-align: right;
 }
 
 #path .right p, #path .right h3 {
-	text-align: left;
 }
 
 #the-network h3 {

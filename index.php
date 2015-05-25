@@ -26,32 +26,59 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <section id="how-to-get-started">
 	<h2>How To Get Started</h2>
-
 	<div id="path">
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="15" y="43">#1</text>
+			</svg>
+
 			<div class="left">
 				<h3>Sign Up</h3>
 				<p>It&rsquo;s Simple! Fill out an application on our <a href="">Sign Up Page</a></p>
 			</div>
-			<div class="right"></div>
+			<div class="right">
+				<img src="/img/howtogetstarted-sign-up.png">
+			</div>
 		</div>
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="42">#2</text>
+			</svg>
 			<div class="left">
+				<img src="/img/howtogetstarted-phone.png">
 			</div>
 			<div class="right">
-				<h3>Link You Phone</h3>
+				<h3>Link Your Phone</h3>
 				<p>ANY kind of cell phone can take and make payments via TXT2PAY</p>
 			</div>
 		</div>
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="43">#3</text>
+			</svg>
 			<div class="left">
 				<h3>Earn Income</h3>
 				<p>List the things and skills you&rsquo;d like to offer for i$.</p>
 			</div>
-			<div class="right"></div>
+			<div class="right">
+				<img src="/img/howtogetstarted-wallet.png">
+			</div>
 		</div>
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="43">#4</text>
+			</svg>
+
 			<div class="left">
+				<img src="/img/howtogetstarted-local.png">
 			</div>
 			<div class="right">
 				<h3>Shop Local</h3>
@@ -59,14 +86,29 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</div>
 		</div>
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="43">#5</text>
+			</svg>
+
 			<div class="left">
 				<h3>Save Cash</h3>
 				<p>Use the i$ to get things and keep US Dollars for things only they can buy</p>
 			</div>
-			<div class="right"></div>
+			<div class="right">
+				<img src="/img/howtogetstarted-piggy.png">
+			</div>
 		</div>
 		<div class="step">
+
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="43">#6</text>
+			</svg>
+
 			<div class="left">
+				<img src="/img/howtogetstarted-network.png">
 			</div>
 			<div class="right">
 				<h3>Invite Friends</h3>
