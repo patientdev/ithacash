@@ -290,7 +290,7 @@ h1 img {
 #services {
 	width: 50%;
 	margin: auto;
-	height: 400px;
+	height: 500px;
 }
 
 #services:after {
@@ -335,11 +335,34 @@ h1 img {
 	padding: 20px;
 }
 
-#ithaca-dollars { background-color: white; }
-#ithacash-online { background-color: rgb(220, 221, 223); }
-#txt2pay { background-color: rgb(230, 231, 233); }
+.image {
+	width: 30%; 
+	vertical-align: middle;
+	float: left;
+	text-align: center;
+}
+
+#ithaca-dollars { background-color: white; line-height: 74px; }
+#ithaca-dollars img { width: 75px; }
+#ithacash-online { background-color: rgb(220, 221, 223); line-height: 74px;}
+#ithacash-online img { width: 75px; }
+#txt2pay { background-color: rgb(230, 231, 233); line-height: 79px; }
+#txt2pay img { width: 50px; }
 #network-of-trust { background-color: rgb(235, 235, 235); }
+#network-of-trust p:first-of-type { text-align: center; margin-bottom: 20px; }
+#network-of-trust img { width: 100px; }
 #payitfwd { background-color: rgb(210, 211, 213); }
+#payitfwd p:first-of-type { text-align: center; margin-bottom: 20px; }
+#payitfwd img { width: 100px; }
+
+.caption {
+	line-height: 1em;
+	vertical-align: middle;
+	display: inline-block;
+	width: 60%;
+	margin-left: 10px;
+	text-align: left;
+}
 
 #accounts {
 	white-space: nowrap;

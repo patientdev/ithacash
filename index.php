@@ -131,28 +131,39 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div id="services">
 		<div class="left">
 			<div id="ithaca-dollars">
-				<h3>Ithaca Dollars</h3>
-				<p>A full, modern, easy&ndash;to&ndash;use currency.</p>
+				<p class="image"><img src="/img/monitor.png"></p>
+				<div class="caption">
+					<h3>Ithaca Dollars</h3>
+					<p>A full, modern, easy&ndash;to&ndash;use currency.</p>
+				</div>
 			</div>
 
 			<div id="ithacash-online">
-				<h3>Ithacash Online</h3>
-				<p>Secure online accounts.</p>
+				<p class="image"><img src="/img/monitor.png"></p>
+				<div class="caption">
+					<h3>Ithacash Online</h3>
+					<p>Secure online accounts.</p>
+				</div>
 			</div>
 
 			<div id="txt2pay">
-				<h3>TXT2PAY</h3>
-				<p>Connect any phone and pay with a text message.</p>
+				<p class="image"><img src="/img/howtogetstarted-phone.png"></p>
+				<div class="caption">
+					<h3>TXT2PAY</h3>
+					<p>Connect any phone and pay with a text message.</p>
+				</div>
 			</div>
 		</div>
 
 		<div class="right">
 			<div id="network-of-trust">
+				<p><img src="/img/trust-network.png"></p>
 				<h3>A Network of Trust</h3>
 				<p>Universally afforable memberships ensure everyone has access</p>
 			</div>
 
 			<div id="payitfwd">
+				<p><img src="/img/pay-it-forward.png"></p>
 				<h3>PAYITFWD Community Credit</h3>
 				<p>Accessible credit for everyone.</p>
 		</div>
