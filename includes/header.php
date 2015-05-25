@@ -7,13 +7,12 @@
 		<title>ithacash &mdash; Made for Main St.</title>
 		
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+
 		<link rel="stylesheet" href="/css/ithacash.css" media="screen">
-		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width: 568px), (max-width: 840px)">
+
 		<link rel="icon" type="image/x-icon" href="/img/IthaCash_icon_2color.png">
 
-		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
+		<?php if (isset($head)) { echo $head; } ?>
 
 	</head>
 	<body>

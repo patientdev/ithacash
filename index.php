@@ -79,16 +79,61 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <section id="the-network">
 	<h2>The Network</h2>
+	<h3>Coming soon with over 100 businesses</h3>
 
 </section>
 
 <section id="core-services">
 	<h2>Core Services</h2>
 
+	<div id="services">
+		<div class="left">
+			<div id="ithaca-dollars">
+				<h3>Ithaca Dollars</h3>
+				<p>A full, modern, easy&ndash;to&ndash;use currency.</p>
+			</div>
+
+			<div id="ithacash-online">
+				<h3>Ithacash Online</h3>
+				<p>Secure online accounts.</p>
+			</div>
+
+			<div id="txt2pay">
+				<h3>TXT2PAY</h3>
+				<p>Connect any phone and pay with a text message.</p>
+			</div>
+		</div>
+
+		<div class="right">
+			<div id="network-of-trust">
+				<h3>A Network of Trust</h3>
+				<p>Universally afforable memberships ensure everyone has access</p>
+			</div>
+
+			<div id="payitfwd">
+				<h3>PAYITFWD Community Credit</h3>
+				<p>Accessible credit for everyone.</p>
+		</div>
+	</div>
+
 </section>
 
 <section id="accounts">
 	<h2>Accounts</h2>
+
+	<ul>
+		<li id="individual"><h3>Individuals</h3></li>
+		<li id="freelance"><h3>Freelancers</h3></li>
+		<li id="business"><h3>Businesses</h3></li>
+		<li id="nonprofit"><h3>Non Profits</h3></li>
+	</ul>
+
+	<div id="account-info">
+		<div id="individual-info">Individuals</div>
+		<div id="freelance-info">Freelancers</div>
+		<div id="business-info">Businesses</div>
+		<div id="nonprofit-info">Non Profits</div>
+	</div>
 
 </section>
 

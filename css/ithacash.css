@@ -18,16 +18,19 @@ h1, h2 {
 h2, h3 {
 	font-family: "Gotham Rounded";
 	text-transform: uppercase;
+	line-height: 1em;
 }
 
 h2 {
 	font-size: 2.4em;
 	text-align: center;
 	font-weight: 400;
+	margin-top: 0;
+	margin-bottom: 60px;
 }
 
 section {
-	margin: 60px 0;
+	padding: 60px 0;
 }
 
 .green-button {
@@ -201,27 +204,156 @@ h1 img {
 	background-color: rgb(235, 235, 235);
 }
 
-.left, .right {
+#path .left, #path .right {
 	width: 50%;
 	height: 100%;
 }
 
-.left {
+#path .left {
 	border-right: 3px solid rgb(196, 216, 163);
 	float: left;
 	padding-right: 40px;
 }
 
-.right {
+#path .right {
 	border-left: 3px solid rgb(196, 216, 163);
 	float: right;
 	padding-left: 40px;
 }
 
-.left p, .left h3 {
+#path .left p, #path .left h3 {
 	text-align: right;
 }
 
-.right p, .right h3 {
+#path .right p, #path .right h3 {
 	text-align: left;
 }
+
+#the-network h3 {
+	text-transform: uppercase;
+	font-size: 2.6em;
+	color: rgb(88, 125, 69);
+	background-color: white;
+	width: 450px; margin: 0 auto;
+	text-align: center;
+	line-height: 1.2em;
+	font-weight: 500;
+}
+
+#core-services {
+	background-color: rgb(196, 216, 163);
+}
+
+#services {
+	width: 50%;
+	margin: auto;
+	height: 400px;
+}
+
+#services:after {
+	content : "";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+#services h3 { 
+	margin-top: 0; 
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	color: rgb(82, 123, 61);
+	font-weight: 200;
+}
+
+#services p { 
+	margin: 0; 
+	font-weight: 100;
+}
+
+#core-services .left {
+	width: 60%;
+	float: left;
+	height: 100%;
+}
+
+#core-services .left > div {
+	height: 33%;
+	padding: 40px;
+}
+
+#core-services .right {
+	width: 40%;
+	float: right;
+	height: 100%;
+}
+
+#core-services .right > div {
+	height: 50%;
+	padding: 20px;
+}
+
+#ithaca-dollars { background-color: white; }
+#ithacash-online { background-color: rgb(220, 221, 223); }
+#txt2pay { background-color: rgb(230, 231, 233); }
+#network-of-trust { background-color: rgb(235, 235, 235); }
+#payitfwd { background-color: rgb(210, 211, 213); }
+
+#accounts {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#accounts ul {
+	margin: 0; padding: 0;
+	text-transform: uppercase;
+	list-style-type: none;
+	color: rgb(82, 123, 61);
+	width: 33%;
+	text-align: right;
+	float: left;
+	height: 400px;
+}
+
+#accounts li {
+	height: 25%;
+	background-color: rgb(225, 225, 225);
+}
+
+#accounts li:hover {
+	cursor: pointer;
+}
+
+#accounts li.selected::after {
+	content: "";
+	display: inline-block;
+	width: 0; 
+	height: 0; 
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent; 
+	
+	border-right: 25px solid rgb(235, 235, 235);
+
+	position: relative;
+	bottom: 76px;
+}
+
+#accounts h3 {
+	font-weight: 200;
+	border-bottom: 2px solid white;
+	padding: 40px 0;
+	margin: 0 40px;
+}
+
+#accounts li:last-of-type h3 {
+	border: none;
+}
+
+#account-info {
+	width: 67%;
+	height: 400px;
+	float: right;
+	background-color: rgb(235, 235, 235);
+}
+
+#account-info > div { display: none; }
+#account-info > div#individual-info { display: block; }

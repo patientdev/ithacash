@@ -1,36 +1,21 @@
-$('#login a').click(function() {
-	$(this, '#login input, #login button').css('transform', 'translate(0)');
-});
+$('#accounts li').hover(function() {
+	$(this).toggleClass('selected');
+})
 
-// $(window).on('scroll', function() {
-// 	console.log($(window).scrollTop());
-// 	if ($(window).scrollTop() > 39 ) {
-// 		$('header').css('border-bottom', '1px solid black')
-// 	}
-// 	else {
-// 		$('header').css('border-bottom', 'none')
-// 	}
-// });
+$('#accounts li').blur(function() {
+	$(this).toggleClass('selected');
+})
 
-$(function() {
-	$('#branding-pitch').css('background-position', '0% 0%');
-});
+$('#accounts li').click(function() {
+	selection = $(this).attr('id');
 
-$(window).on('scroll', function() {
+	$('#' + selection + '-info').toggle();
 
-	var paralax = 0;
-	var windowScroll = $(window).scrollTop();
+	$('#accounts > div > div').each(function() {
+		if ( $(this).attr('id') != (selection + '-info') ) {
+			$(this).css('display', 'none');
+		}
 
-	if ( $(window).width() > 840 ) { 
-
-		if ( windowScroll <= 0 ) { parallax = 0; }
-		else { paralax = windowScroll/60; }
-		
-	}
-
-	else { paralax = $(window).scrollTop()/30; }
-	
-	$('#branding-pitch').css('background-position', '0% ' + paralax + '%');
-
-	if ( windowScroll === 0 ) { $('header').css('box-shadow', 'none'); } else { $('header').css('box-shadow', '0 2px 3px -1px rgba(0, 0, 0, 0.1'); }
-});
+		else { $(this).css('display', 'block'); }
+	})
+})
