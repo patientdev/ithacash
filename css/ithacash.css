@@ -22,7 +22,7 @@ h2, h3 {
 }
 
 h2 {
-	font-size: 2.4em;
+	font-size: 3em;
 	text-align: center;
 	font-weight: 400;
 	margin-top: 0;
@@ -139,11 +139,20 @@ h1 img {
 	position: relative;
 }
 
+#intro p.caption {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	display: inline-block;
+	margin: 0;
+}
+
 #email-list-box {
 	position: absolute;
-	width: 351px; height: 327px;
+	width: 351px; height: 396px;
 	top: 50%; left: 15%;
-	margin-top: -164px; 
+	margin-top: -198px; 
 	background-color: white;
 	border-radius: 8px;
 	padding: 40px;
@@ -262,11 +271,11 @@ h1 img {
 
 #path p {
 	white-space: normal;
-	width: 200px;
-	display: inline-block;
+	width: 210px;
 }
 
 #path .left p, #path .left h3 {
+	text-align: right;
 }
 
 #path .right p, #path .right h3 {
@@ -355,7 +364,7 @@ h1 img {
 #payitfwd p:first-of-type { text-align: center; margin-bottom: 20px; }
 #payitfwd img { width: 100px; }
 
-.caption {
+#services div.caption {
 	line-height: 1em;
 	vertical-align: middle;
 	display: inline-block;

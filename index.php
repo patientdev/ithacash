@@ -7,13 +7,15 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div id="intro">
  <div id="email-list-box">
  	<h2>Money Made for Main St.</h2>
- 	<p>Ithacash is a new way for you to turn the things you&rsquo;ve got into the things you want.</p>
+ 	<p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, the Ithaca Dollar (i$) works alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
  	<form id="join-email-list">
  		<input type="text" name="name" placeholder="Name"><br>
  		<input type"email" name="email" placeholder="Email"><br>
  		<button class="green-button">Join the Email List</button>
  	</form>
  </div>
+
+	<p class="caption">Brett Bossard. Owner, Cinemapolis</p>
 </div>
 
 <section id="how-it-works">
@@ -36,7 +38,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<div class="left">
 				<h3>Sign Up</h3>
-				<p>It&rsquo;s Simple! Fill out an application on our <a href="">Sign Up Page</a></p>
+				<p>It&rsquo;s Simple! Fill out an application on our Sign Up Page</p>
+				<p><button class="green-button">Apply Now</button></p>
 			</div>
 			<div class="right">
 				<img src="/img/howtogetstarted-sign-up.png">
@@ -53,7 +56,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</div>
 			<div class="right">
 				<h3>Link Your Phone</h3>
-				<p>ANY kind of cell phone can take and make payments via TXT2PAY</p>
+				<p>Any mobile phone can make &amp; take i$ payments via text message. (TXT2PAY)</p>
 			</div>
 		</div>
 		<div class="step">
@@ -64,7 +67,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</svg>
 			<div class="left">
 				<h3>Earn Income</h3>
-				<p>List the things and skills you&rsquo;d like to offer for i$.</p>
+				<p>List your goods &amp; skills and start selling in i$. Gain new customers, move more stock, and bill more hours.</p>
 			</div>
 			<div class="right">
 				<img src="/img/howtogetstarted-wallet.png">
@@ -82,7 +85,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</div>
 			<div class="right">
 				<h3>Shop Local</h3>
-				<p>What do you want? i$ pack a bit more puch in your wallet</p>
+				<p>What it is you want? i$ pack a bit more punch in your wallet. No i$? No worries! You can use our 0% interest lines of &ldquo;PayItFwd&rdquo; credit.</p>
 			</div>
 		</div>
 		<div class="step">
@@ -94,7 +97,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<div class="left">
 				<h3>Save Cash</h3>
-				<p>Use the i$ to get things and keep US Dollars for things only they can buy</p>
+				<p>Spend your i$ first, and save your other hard&ndash;earned money for things only it can buy.</p>
 			</div>
 			<div class="right">
 				<img src="/img/howtogetstarted-piggy.png">
@@ -164,7 +167,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<div id="payitfwd">
 				<p><img src="/img/pay-it-forward.png"></p>
-				<h3>PAYITFWD Community Credit</h3>
+				<h3>PAYITFWD Credit</h3>
 				<p>Accessible credit for everyone.</p>
 		</div>
 	</div>
@@ -178,14 +181,14 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<li id="individual"><h3>Individuals</h3></li>
 		<li id="freelance"><h3>Freelancers</h3></li>
 		<li id="business"><h3>Businesses</h3></li>
-		<li id="nonprofit"><h3>Non Profits</h3></li>
+		<li id="nonprofit"><h3>Nonprofits</h3></li>
 	</ul>
 
 	<div id="account-info">
 		<div id="individual-info">Individuals</div>
 		<div id="freelance-info">Freelancers</div>
 		<div id="business-info">Businesses</div>
-		<div id="nonprofit-info">Non Profits</div>
+		<div id="nonprofit-info">Nonprofits</div>
 	</div>
 
 </section>
