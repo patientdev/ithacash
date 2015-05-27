@@ -252,8 +252,32 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 </section>
 
-<section id="contact">
+<section id="contact" class="clear">
 	<h2>Say Hello</h2>
+	
+	<div>
+		<div id="logos">
+		<p>A MEMBER OF <br><img src="/img/rev.png"></p>
+		</div>
+
+		<div id="contact-form">
+			<form>
+				<input type="email" name="email" placeholder="Your Email">
+				<textarea name="message" placeholder="Your Message"></textarea>
+			</form>
+		</div>
+
+		<div id="contact-info">
+			<p>Ithacash Benefit Corporation<br>
+			101 E. State St., #202<br>
+			Ithaca, NY 14850</p>
+
+			<p><a href="mailto:join@ithacash.com">join@ithacash.com</a><br>
+			<a href="tel:6076540807">607.654.0807</p>
+
+			<p><a href=""><img src="/img/facebook.png"></a> <a href=""><img src="/img/twitter.png"></a> <a href=""><img src="/img/email.png"></a></p>
+		</div>
+	</div>
 
 </section>
 
