@@ -4,13 +4,15 @@
 $styles = "";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
+<div id="content">
+
 <div id="intro">
  <div id="email-list-box">
  	<h2>Money Made for Main St.</h2>
  	<p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, the Ithaca Dollar (i$) works alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
  	<form id="join-email-list">
  		<input type="text" name="name" placeholder="Name"><br>
- 		<input type"email" name="email" placeholder="Email"><br>
+ 		<input type="email" name="email" placeholder="Email"><br>
  		<button class="green-button">Join the Email List</button>
  	</form>
  </div>
@@ -29,7 +31,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <section id="how-to-get-started">
 	<h2>How To Get Started</h2>
 	<div id="path">
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -45,7 +47,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<img src="/img/howtogetstarted-sign-up.png">
 			</div>
 		</div>
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -59,7 +61,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p>Any mobile phone can make &amp; take i$ payments via text message. (TXT2PAY)</p>
 			</div>
 		</div>
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -73,7 +75,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<img src="/img/howtogetstarted-wallet.png">
 			</div>
 		</div>
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -88,7 +90,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p>What it is you want? i$ pack a bit more punch in your wallet. No i$? No worries! You can use our 0% interest lines of &ldquo;PayItFwd&rdquo; credit.</p>
 			</div>
 		</div>
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -103,7 +105,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<img src="/img/howtogetstarted-piggy.png">
 			</div>
 		</div>
-		<div class="step">
+		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
@@ -169,6 +171,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p><img src="/img/pay-it-forward.png"></p>
 				<h3>PAYITFWD Credit</h3>
 				<p>Accessible credit for everyone.</p>
+			</div>
 		</div>
 	</div>
 
@@ -196,11 +199,64 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <section id="legacy">
 	<h2>Growing the Family and Legacy</h2>
 
+	<div id="team">
+		<div id="core-team">
+			<h3>The Core Team</h3>
+
+			<ul id="core-team">
+				<li>
+					<p><img src="/img/team/scott.jpg"></p>
+					<h4>Scott Morris</h4>
+					<p class="bio"></p>
+				</li>
+				<li>
+					<p><img src="/img/team/talia.jpg"></p>
+					<h4>Talia Watson</h4>
+					<p class="bio"></p>
+				</li>
+				<li>
+					<p><img src="/img/team/chris.jpg"></p>
+					<h4>Chris Dietrich</h4>
+					<p class="bio"></p>
+				</li>
+				<li>
+					<p><img src="/img/team/carl.jpg"></p>
+					<h4>Carl Steinbrenner</h4>
+					<p class="bio"></p>
+				</li>
+			</ul>
+		</div>
+
+		<div id="support-team">
+			<h3>The Support Team</h3>
+
+			<ul>
+				<li>
+					<h4>Niki Lesniak</h4>
+					<p>Graphic Design</p>
+				</li>
+				<li>
+					<h4>Shane Cavanaugh</h4>
+					<p>Web Development</p>
+				</li>
+				<li>
+					<h4>Niki Lesniak</h4>
+					<p>Graphic Design</p>
+				</li>
+				<li>
+					<h4>Shane Cavanaugh</h4>
+					<p>Web Development</p>
+				</li>
+			</ul>
+	</div>
+
 </section>
 
 <section id="contact">
 	<h2>Say Hello</h2>
 
 </section>
+
+</div>
 
 <?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

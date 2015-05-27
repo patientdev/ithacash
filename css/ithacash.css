@@ -1,4 +1,4 @@
-html, body { padding: 0; margin: 0; }
+html, body { padding: 0; margin: 0; width: 100%; }
 
 body, button, input {
 	font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
@@ -7,18 +7,29 @@ body, button, input {
 }
 
 * {
+	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: hidden;
 }
 
 h1, h2 {
 	color: black;
 }
 
-h2, h3 {
+h2, h3, h4 {
 	font-family: "Varela Round";
 	text-transform: uppercase;
 	line-height: 1em;
+	letter-spacing: 2px;
 }
 
 h2 {
@@ -31,6 +42,7 @@ h2 {
 
 section {
 	padding: 60px 0;
+	width: 100%;
 }
 
 .green-button {
@@ -78,7 +90,6 @@ li a#sign-up:hover {
 	position: absolute;
 	top: 0;
 	width: 100%;
-	max-width: 1500px;
 }
 
 h1 {
@@ -146,6 +157,9 @@ h1 img {
 	background-color: white;
 	display: inline-block;
 	margin: 0;
+	padding: 10px;
+	border-radius: 8px 0 0 0;
+	line-height: 1em;
 }
 
 #email-list-box {
@@ -156,6 +170,7 @@ h1 img {
 	background-color: white;
 	border-radius: 8px;
 	padding: 40px;
+	text-align: justify;
 }
 
 #email-list-box h2 {
@@ -198,13 +213,6 @@ h1 img {
 	width: 100%;
 	display: table;
 	position: relative;
-}
-
-.step:after {
-	content: "";
-	clear: both;
-	display: block;
-	overflow: hidden;
 }
 
 .step h3 {
@@ -432,3 +440,76 @@ h1 img {
 
 #account-info > div { display: none; }
 #account-info > div#individual-info { display: block; }
+
+#legacy {
+	background-color: rgb(196, 216, 163);
+	text-align: center;
+}
+
+#team {
+	background-color: rgb(230, 231, 233);
+	display: inline-block;
+	text-align: left;
+	color: black;
+}
+
+#team h3 {
+	color: black;
+	padding-left: 20px;
+}
+
+#team ul {
+	margin: 0; padding: 0;
+}
+
+#team img {
+	width: 200px;
+}
+
+#core-team li {
+	display: inline-block;
+	margin: 0 5px;
+	background-color: white;
+}
+
+#core-team h4 {
+	padding: 0 10px;
+}
+
+#core-team p { margin: 0; }
+
+#core-team p.bio {
+	padding: 0 10px;
+}
+
+#core-team li:first-of-type { margin-left: 0; }
+#core-team li:last-of-type { margin-right: 0; }
+
+#support-team li {
+	display: inline;
+	text-align: center;
+	background-color: white;
+	width: 25%;
+	padding: 15px 0;
+	float: left;
+	border-right: 5px solid rgb(230, 231, 233);
+}
+#support-team h3 { margin-top: 30px; }
+
+#support-team h4 { margin: 0; }
+
+#support-team p { 
+	margin-top: 10px; 
+	margin-bottom: 0; 
+	line-height: 1em; 
+	text-transform: lowercase;
+	font-weight: 500;
+	font-size: 0.9em;
+}
+
+#support-team li:nth-of-type(odd) p { color: rgb(82, 123, 61); }
+#support-team li:last-of-type { border: none; }
+
+@media only screen and (max-width: 840px) {
+	header { display: none; }
+}

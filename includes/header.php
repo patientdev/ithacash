@@ -8,7 +8,7 @@
 		
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="/css/ithacash.css" media="screen">
+		<link rel="stylesheet" href="/css/ithacash.css">
 		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
@@ -17,9 +17,9 @@
 		<?php if (isset($head)) { echo $head; } ?>
 
 	</head>
-	<body>
+	<body class="clear">
 	
-	<div id ="container">
+	<div id="container" class="clear">
 		<header>
 			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
@@ -34,5 +34,3 @@
 				<li><button class="green-button">Sign Up</button></li>
 			</ul>
 		</header>
-
-		<div id="content">
