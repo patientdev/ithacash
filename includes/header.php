@@ -12,6 +12,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 		<link rel="stylesheet" href="/css/ithacash.css">
+		<link rel="stylesheet" href="/js/slick/slick.css">
 		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width:800px)"/>
 
 		<link rel="icon" type="image/x-icon" href="/img/IthaCash_icon_2color.png">

@@ -25,6 +25,160 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 	<div id="carousel">
 
+		<div id="left-arrow">
+			<button>
+				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<polygon points="15,0 15,20 0,10"></polygon>
+				</svg>
+			</button>
+		</div>
+
+		<div id="ithacash-arrow"><img src="/img/carousel/money-arrow.png"></div>
+
+		<div id="panels">
+			<div class="panel" id="ind-to-ind-1">
+				<div class="left">
+					<img src="/img/carousel/gardener.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/mom.png">
+				</div>
+
+				<div class="center">
+					<h3>Individual to Individual</h3>
+					<p>Andre pays his friend&rsquo;s daughter Sarah in Ithaca Dollars for a few hours of babysitting...</p>
+				</div>
+			</div>
+
+			<div class="panel" id="ind-to-biz">
+				<div class="left">
+					<img src="/img/carousel/mom.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/business.png">
+				</div>
+
+				<div class="center">
+					<h3>Individual to Business</h3>
+					<p>Sarah users her Ithaca Dollars to buy a beverage and small treat at a local cafe...</p>
+				</div>
+			</div>
+
+			<div class="panel" id="biz-to-biz-1">
+				<div class="left">
+					<img src="/img/carousel/business.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/photographer.png">
+				</div>
+
+				<div class="center">
+					<h3>Business to Business</h3>
+					<p>The cafe&rsquo;s owners John and Dan hire Tom, a local photographer, to take photos for their new menu...</p>
+				</div>
+			</div>
+
+			<div class="panel" id="biz-to-biz-2">
+				<div class="left">
+					<img src="/img/carousel/photographer.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/mechanic.png">
+				</div>
+
+				<div class="center">
+					<h3>Business to Business</h3>
+					<p>Tom uses his Ithaca Dollars to pay Al for some work on his car...</p>
+				</div>
+			</div>
+
+			<div class="panel" id="biz-to-np">
+				<div class="left">
+					<img src="/img/carousel/photographer.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/dog.png">
+				</div>
+
+				<div class="center">
+					<h3>Business to Nonprofit</h3>
+					<p>Al might be a gruff guy, but he&rsquo;s got a big heart for the local animal shelter. His donation of Ithaca Dollars is tax deductible, as usual.</p>
+				</div>
+			</div>
+
+			<div class="panel" id="np-to-np-1">
+				<div class="left">
+					<img src="/img/carousel/dog.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/workshop.png">
+				</div>
+
+				<div class="center">
+					<h3>Nonprofit to Nonprofit</h3>
+					<p>The shelter&rsquo;s staff use Ithaca Dollars to take a course on modern fundraising strategies offered by Leslie.</p>
+				</div>
+			</div>
+
+			<div class="panel" id="np-to-np-2">
+				<div class="left">
+					<img src="/img/carousel/workshop.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/veggies.png">
+				</div>
+
+				<div class="center">
+					<h3>Nonprofit to Nonprofit</h3>
+					<p>Leslie buys her team a share of a local Community Supported Agriculture (CSA) to share in the office from Aaron. </p>
+				</div>
+			</div>
+
+			<div class="panel" id="np-to-ind">
+				<div class="left">
+					<img src="/img/carousel/veggies.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/painter.png">
+				</div>
+
+				<div class="center">
+					<h3>Nonprofit to Individual</h3>
+					<p>Aaron has been saving up to buy a new a piece of art. Luckily Ryan, his favorite local artist, accepts Ithaca Dollars for his work. </p>
+				</div>
+			</div>
+
+			<div class="panel" id="ind-to-ind-2">
+				<div class="left">
+					<img src="/img/carousel/painter.png">
+				</div>
+
+				<div class="right">
+					<img src="/img/carousel/gardener.png">
+				</div>
+
+				<div class="center">
+					<h3>Individual to Individual</h3>
+					<p>Ryan loves to travel, so he pays his friend Andre some Ithaca Dollars to take care of his garden while he’s away.</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="right-arrow">
+			<button>
+				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<polygon points="0,0 15,10 0,20 "></polygon>
+				</svg>
+			</button>
+		</div>
 	</div>
 </section>
 
