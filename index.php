@@ -199,6 +199,10 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <section id="legacy">
 	<h2>Growing the Family and Legacy</h2>
 
+	<div id="history">
+		
+	</div>
+
 	<div id="team">
 		<div id="core-team">
 			<h3>The Core Team</h3>
@@ -257,13 +261,15 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	
 	<div>
 		<div id="logos">
-		<p>A MEMBER OF <br><img src="/img/rev.png"></p>
+		<p id="ithacash-transform"><img src="/img/ithacash_transform.jpg"></p>
+		<p id="rev-logo">A MEMBER OF <br><img src="/img/rev.png"></p>
 		</div>
 
 		<div id="contact-form">
 			<form>
 				<input type="email" name="email" placeholder="Your Email">
 				<textarea name="message" placeholder="Your Message"></textarea>
+				<button class="green-button">Send</button>
 			</form>
 		</div>
 

@@ -8,9 +8,11 @@
 		
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="/css/ithacash.css">
 		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="/css/ithacash.css">
+		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width:800px)"/>
 
 		<link rel="icon" type="image/x-icon" href="/img/IthaCash_icon_2color.png">
 
@@ -31,6 +33,6 @@
 				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li><a href="#faq">FAQ</a></li>
-				<li><button class="green-button">Sign Up</button></li>
+				<li id="sign-up"><a href="/sign-up/" class="green-button">Sign Up</a></li>
 			</ul>
 		</header>

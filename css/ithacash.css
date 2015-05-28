@@ -52,6 +52,7 @@ section {
 	border-radius: 8px;
 	color: white;
 	line-height: 1em;
+	letter-spacing: 1px;
 }
 
 button:hover {
@@ -78,17 +79,11 @@ header {
 	font-size: 1.2em;
 }
 
-li a#sign-up{
-	border: 1px solid #89af3e;
-	padding: 5px 8px;
+li#sign-up a{
 	color: white;
-	background-color: #89af3e;
-	border-radius: 4px;
-	-webkit-transition: background-color .1s ease-out, border-color .1s ease-out, color .1s ease-out;
-}
-
-li a#sign-up:hover {
-	border: 1px solid none;
+	line-height: 1em;
+	padding-bottom: 11px;
+	font-size: .8em;
 }
 
 #container {
@@ -209,7 +204,7 @@ h1 img {
 }
 
 #how-to-get-started img {
-	width: 150px;
+	width: 125px;
 }
 
 .step {
@@ -284,14 +279,15 @@ h1 img {
 
 #path p {
 	white-space: normal;
-	width: 210px;
 }
 
 #path .left p, #path .left h3 {
 	text-align: right;
+	padding-left: 100px;
 }
 
 #path .right p, #path .right h3 {
+	padding-right: 100px;
 }
 
 #the-network h3 {
@@ -389,6 +385,7 @@ h1 img {
 #accounts {
 	white-space: nowrap;
 	overflow: hidden;
+	padding-bottom: 0;
 }
 
 #accounts ul {
@@ -531,13 +528,32 @@ h1 img {
 	text-align: left;
 }
 
-#logos {
+#logos p {
 	font-size: 1.4em;
+	line-height: 1em;
+	margin-top: 0;
 }
 
-#logos img {
-	width: 250px;
+#ithacash-transform { 
+	text-align: center; 
+	margin-bottom: 30px;
+}
+
+#ithacash-transform img {
+	width: 200px;
+}
+
+#rev-logo {
+	padding: 0 40px;
+}
+
+#rev-logo img {
+	width: 200px;
 	float: right;
+}
+
+#contact > div > div#contact-form {
+	text-align: right;
 }
 
 #contact-form input, #contact-form textarea {
@@ -554,16 +570,13 @@ h1 img {
 }
 
 #contact-form textarea {
-	height: 10em;
+	height: 11.8em;
 	font-family: "Maven Pro", Helvetica, Arial, sans-serif;
 }
 
 #contact-info p {
 	margin-top: 0;
+	margin-bottom: 30px;
 }
 
 #contact-info img { width: 50px; }
-
-@media only screen and (max-width: 840px) {
-	header { display: none; }
-}
