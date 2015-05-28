@@ -196,66 +196,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 </section>
 
-<section id="legacy">
-	<h2>Growing the Family and Legacy</h2>
-
-	<div id="history">
-		
-	</div>
-
-	<div id="team">
-		<div id="core-team">
-			<h3>The Core Team</h3>
-
-			<ul id="core-team">
-				<li>
-					<p><img src="/img/team/scott.jpg"></p>
-					<h4>Scott Morris</h4>
-					<p class="bio"></p>
-				</li>
-				<li>
-					<p><img src="/img/team/talia.jpg"></p>
-					<h4>Talia Watson</h4>
-					<p class="bio"></p>
-				</li>
-				<li>
-					<p><img src="/img/team/chris.jpg"></p>
-					<h4>Chris Dietrich</h4>
-					<p class="bio"></p>
-				</li>
-				<li>
-					<p><img src="/img/team/carl.jpg"></p>
-					<h4>Carl Steinbrenner</h4>
-					<p class="bio"></p>
-				</li>
-			</ul>
-		</div>
-
-		<div id="support-team">
-			<h3>The Support Team</h3>
-
-			<ul>
-				<li>
-					<h4>Niki Lesniak</h4>
-					<p>Graphic Design</p>
-				</li>
-				<li>
-					<h4>Shane Cavanaugh</h4>
-					<p>Web Development</p>
-				</li>
-				<li>
-					<h4>Niki Lesniak</h4>
-					<p>Graphic Design</p>
-				</li>
-				<li>
-					<h4>Shane Cavanaugh</h4>
-					<p>Web Development</p>
-				</li>
-			</ul>
-	</div>
-
-</section>
-
 <section id="contact" class="clear">
 	<h2>Say Hello</h2>
 	
