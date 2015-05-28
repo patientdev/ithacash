@@ -139,7 +139,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p class="image"><img src="/img/monitor.png"></p>
 				<div class="caption">
 					<h3>Ithaca Dollars</h3>
-					<p>A full, modern, easy&ndash;to&ndash;use currency.</p>
+					<p>A fully modern, easy&ndash;to&ndash; use local currency. Arriving this Summer!</p>
 				</div>
 			</div>
 
@@ -147,7 +147,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p class="image"><img src="/img/monitor.png"></p>
 				<div class="caption">
 					<h3>Ithacash Online</h3>
-					<p>Secure online accounts.</p>
+					<p>Secure online accounts and an online marketplace.</p>
 				</div>
 			</div>
 
@@ -155,7 +155,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<p class="image"><img src="/img/howtogetstarted-phone.png"></p>
 				<div class="caption">
 					<h3>TXT2PAY</h3>
-					<p>Connect any phone and pay with a text message.</p>
+					<p>Any mobile phone can make &amp; take i$ payments via text message.</p>
 				</div>
 			</div>
 		</div>
@@ -164,34 +164,72 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div id="network-of-trust">
 				<p><img src="/img/trust-network.png"></p>
 				<h3>A Network of Trust</h3>
-				<p>Universally afforable memberships ensure everyone has access</p>
+				<p>Universally afforable memberships ensure everyone can participate.</p>
 			</div>
 
 			<div id="payitfwd">
 				<p><img src="/img/pay-it-forward.png"></p>
 				<h3>PAYITFWD Credit</h3>
-				<p>Accessible credit for everyone.</p>
+				<p>Accessible lines of credit at 0% interest.</p>
 			</div>
 		</div>
 	</div>
 
 </section>
 
-<section id="accounts">
+<section id="accounts" class="clear">
 	<h2>Accounts</h2>
 
 	<ul>
-		<li id="individual"><h3>Individuals</h3></li>
-		<li id="freelance"><h3>Freelancers</h3></li>
-		<li id="business"><h3>Businesses</h3></li>
-		<li id="nonprofit"><h3>Nonprofits</h3></li>
+		<li id="individual" class="clear"><p><img src="/img/individual.png"><span>Individuals</span></p></li>
+		<li id="freelance"class="clear"><p><img src="/img/freelancer.png"><span>Freelancers</span></p></li>
+		<li id="business"class="clear"><p><img src="/img/business.png"><span>Businesses</span></p></li>
+		<li id="nonprofit"class="clear"><p><img src="/img/nonprofit.png"><span>Nonprofits</span></p></li>
 	</ul>
 
 	<div id="account-info">
-		<div id="individual-info">Individuals</div>
-		<div id="freelance-info">Freelancers</div>
-		<div id="business-info">Businesses</div>
-		<div id="nonprofit-info">Nonprofits</div>
+		<div id="individual-info">
+			<p>Anyone can join the circuit as an individual. These accounts may view the directory and advertisements of those making offers of goods &amp; services for i$.</p>
+
+			<h4>How They Get i$</h4>
+			<ul>
+				<li>Winning them from promotional campaigns</li>
+				<li>By purchasing i$ and getting the &ldquo;Buy-In Bonus&rdquo;</li>
+				<li>Through PAYITFWD lines of credit</li>
+				<li>By accepting them for goods, services, or as a portion of wages.</li>
+			</ul></div>
+		<div id="freelance-info">
+			<p>For one&ndash;person businesses without a <em>place</em> of business. Freelancers may list advertisements and be promoted in the circuit as a preferred local provider.</p>
+
+			<h4>How They Get i$</h4>
+			<ul>
+				<li>Sales of goods &amp; services.</li>
+				<li>PAYITFWD lines of credit.</li>
+				<li>Bonuses + Grants</li>
+				<li>Purchases of i$</li>
+			</ul></div>
+		<div id="business-info">
+			<p><img src="/img/business.jpg">Local businesses may choose between <strong>regular</strong> and <strong>premium</strong> accounts. In addition to listing advertisements and enjoying general promotion as a business member, premium businesses get added visibility and priority access when it comes to new offerings.</p>
+
+			<h4>How They Get i$</h4>
+			<ul>
+				<li>Sales of goods &amp; services.</li>
+				<li>PAYITFWD lines of credit.</li>
+				<li>Bonuses + Grants</li>
+				<li>Purchases of i$</li>
+			</ul></div>
+		<div id="nonprofit-info">
+			<p>Local 501(c)3&rsquo;s, non&ndash;exempt organizations, and other community associations can join the circuit and receive even more support from those who see the value of the work they do in the community. Nonprofits can post advertisements in the marketplace just like business accounts.</p>
+
+			<h4>How They Get i$</h4>
+			<ul>
+				<li>Sales of goods &amp; services.</li>
+				<li>PAYITFWD lines of credit.</li>
+				<li>Bonuses + Grants</li>
+				<li>Purchases of i$</li>
+				<li>Donations of i$</li>
+			</ul>
+		</div>
 	</div>
 
 </section>

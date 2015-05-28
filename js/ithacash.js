@@ -10,15 +10,10 @@ $(function() {
 		$('html, body').animate({ scrollTop: scrollTo + 'px' });
 	});
 
-	$('#accounts li').hover(function() {
-		$(this).toggleClass('selected');
-	})
+	$('#accounts > ul > li').hover(function() {
+		$('#accounts li').each(function() { $(this).removeClass('selected'); })
+		$(this).addClass('selected');
 
-	$('#accounts li').blur(function() {
-		$(this).toggleClass('selected');
-	})
-
-	$('#accounts li').click(function() {
 		selection = $(this).attr('id');
 
 		$('#' + selection + '-info').toggle();
@@ -28,7 +23,7 @@ $(function() {
 				$(this).css('display', 'none');
 			}
 
-			else { $(this).css('display', 'block'); }
+			else { $(this).css('display', 'table-cell'); }
 		})
 	})
 
@@ -53,7 +48,3 @@ $(function() {
 	});
 
 });
-
-function JSONinify( inputArray ) {
-
-}

@@ -382,33 +382,28 @@ h1 img {
 	text-align: left;
 }
 
-#accounts {
-	white-space: nowrap;
-	overflow: hidden;
-	padding-bottom: 0;
-}
-
-#accounts ul {
+#accounts > ul {
 	margin: 0; padding: 0;
 	text-transform: uppercase;
 	list-style-type: none;
 	color: rgb(82, 123, 61);
-	width: 33%;
+	width: 30%;
 	text-align: right;
 	float: left;
-	height: 400px;
+	font-family: "Varela Round";
+	height: 474px;
 }
 
-#accounts li {
+#accounts > ul > li {
 	height: 25%;
 	background-color: rgb(225, 225, 225);
 }
 
-#accounts li:hover {
+#accounts > ul > li:hover {
 	cursor: pointer;
 }
 
-#accounts li.selected::after {
+#accounts > ul > li.selected::after {
 	content: "";
 	display: inline-block;
 	width: 0; 
@@ -419,29 +414,58 @@ h1 img {
 	border-right: 25px solid rgb(235, 235, 235);
 
 	position: relative;
-	bottom: 76px;
+	bottom: 87px;
 }
 
-#accounts h3 {
+#accounts > ul > li p {
+	display: block;
+	font-size: 1.2em;
 	font-weight: 200;
 	border-bottom: 2px solid white;
-	padding: 40px 0;
+	padding: 20px 0;
 	margin: 0 40px;
+	letter-spacing: 2px;
+	line-height: 1em;
+	vertical-align: middle;
+}
+ 
+#accounts > ul > li p span {
+	width: 200px;
+	display: inline-block;
 }
 
-#accounts li:last-of-type h3 {
+#accounts > ul > li:last-of-type p {
 	border: none;
 }
 
-#account-info {
-	width: 67%;
-	height: 400px;
-	float: right;
-	background-color: rgb(235, 235, 235);
+#accounts > ul img {
+	width: 70px;
+	vertical-align: middle;
 }
 
-#account-info > div { display: none; }
-#account-info > div#individual-info { display: block; }
+#account-info {
+	width: 70%;
+	height: 474px;
+	float: right;
+	background-color: rgb(235, 235, 235);
+	padding: 0 40px;
+	display: table;
+}
+
+#account-info > div { display: none;  vertical-align: middle; }
+#account-info > div#individual-info { display: table-cell; }
+
+#account-info img {
+	float: left;
+	border-radius: 50%;
+	width: 300px;
+	margin-right: 40px;
+	vertical-align: middle;
+}
+
+#account-info ul {
+	padding-left: 40px;
+}
 
 #legacy {
 	background-color: rgb(196, 216, 163);
