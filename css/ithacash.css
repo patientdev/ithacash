@@ -371,13 +371,13 @@ h1 img {
 
 #path .left {
 	border-right: 3px solid rgb(196, 216, 163);
-	padding-right: 100px;
+	padding-right: 5%;
 	text-align: right;
 }
 
 #path .right {
 	border-left: 3px solid rgb(196, 216, 163);
-	padding-left: 100px;
+	padding-left: 5%;
 	text-align: left;
 }
 
@@ -395,11 +395,11 @@ h1 img {
 
 #path .left p, #path .left h3 {
 	text-align: right;
-	padding-left: 100px;
+	padding-left: 5%;
 }
 
 #path .right p, #path .right h3 {
-	padding-right: 100px;
+	padding-right: 5%;
 }
 
 .social img { width: 50px; }
@@ -409,7 +409,7 @@ h1 img {
 	font-size: 2.6em;
 	color: rgb(88, 125, 69);
 	background-color: white;
-	width: 450px; margin: 0 auto;
+	width: 40%; margin: 0 auto;
 	text-align: center;
 	line-height: 1.2em;
 	font-weight: 500;

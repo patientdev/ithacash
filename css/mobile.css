@@ -1,39 +1,28 @@
-#nav-menu, #intro p.caption { display: none; }
+header { position: relative; text-align: center; padding: 40px 0;}
+#nav-menu { display: none; }
+
+h1 img {
+	width: 400px;
+}
 
 #intro {
-	background-image: none;
-	height: 100vh;
-	padding: 0;
-	background-color: rgb(195, 214, 161);
-}
-
-header {
-	padding: 0;
-	background-color: transparent;
-	background-color: rgb(195, 214, 161);
-	position: relative;
-}
-
-h1 {
-	display: block;
-	width: 80%;
-	margin: auto;
-	text-align: center;
-	background-color: white;
-	border-radius: 8px 8px 0 0;
-	position: absolute;
-	top: 50%; margin-top: -26px;
+	height: 50vh;
 }
 
 #content {
 	padding: 0;
 }
 
-#email-list-box {
-	width: 80%;
-	margin: 0 auto;
-	position: relative;
-	left: 0; top: 0;
-	border-radius: 0 0 8px 8px;
+#accounts > ul > li p {
+	margin: 0 40px 0 0;
 }
 
+#account-info img {
+	width: 200px;
+}
+
+#accounts > ul > li p span {
+	width: 150px;
+}
+
+#panels { width: 75%; }
