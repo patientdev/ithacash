@@ -28,12 +28,10 @@
 
 			<ul id="nav-menu">
 				<li><a href="#how-it-works">How It Works</a></li>
+				<li><a href="#how-to-get-started">Get Started</a></li>
 				<li><a href="#core-services">Core Services</a></li>
 				<li><a href="#accounts">Accounts</a></li>
-				<li><a href="#legacy">Legacy</a></li>
-				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
-				<li><a href="#faq">FAQ</a></li>
 				<li id="sign-up"><a href="/sign-up/" class="green-button">Sign Up</a></li>
 			</ul>
 		</header>

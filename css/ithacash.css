@@ -198,6 +198,10 @@ h1 img {
 	width: 100%;
 }
 
+#how-it-works h2, #accounts h2 {
+	margin-bottom: 20px;
+}
+
 #carousel {
 	border-top: 14px solid rgb(76, 118, 38);
 	border-bottom: 14px solid rgb(76, 118, 38);
