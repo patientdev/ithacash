@@ -405,12 +405,13 @@ h1 img {
 .social img { width: 50px; }
 
 #shop-local {
-	padding-bottom: 40px;
+	color: black;
+	font-size: 1.1em;
 }
 
 #shop-local .sub-step {
-	width: 50%;
-	margin: auto; margin-top: -16px;
+	width: 60%;
+	margin: auto; margin-top: -15px; margin-bottom: -6px;
 	border-top: 6px solid rgb(196, 216, 163); 
 	border-bottom: 6px solid rgb(196, 216, 163); 
 }
@@ -447,8 +448,16 @@ h1 img {
 	display: block;
 	float: left;
 	white-space: normal;
-	height: 450px;
+	height: 520px;
 	padding-top: 40px;
+	text-align: left;
+}
+
+#shop-local .left h3, #shop-local .left p {
+	text-align: left;
+	padding-left: 50px;
+	padding-right: 0;
+	line-height: 1.2em;
 }
 
 #shop-local .right {
@@ -458,13 +467,21 @@ h1 img {
 	display: block;
 	float: right;
 	white-space: normal;
-	height: 450px;
+	height: 520px;
 	padding-top: 40px;
+	text-align: right;
+}
+
+#shop-local .right h3, #shop-local .right p {
+	text-align: right;
+	padding-right: 50px;
+	padding-left: 0;
+	line-height: 1.2em;
 }
 
 #shop-local .left svg {
 	left: 0; 
-	top: -12px;
+	top: 10px;
 	margin-left: -38px;
 }
 
@@ -472,7 +489,7 @@ h1 img {
 	left: auto;
 	right: 0; 
 	margin-right: -38px;
-	top: -12px;
+	top: 10px;
 }
 
 #shop-local .top { 

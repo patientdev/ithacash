@@ -237,15 +237,14 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</svg>
 
 			<svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-				<line x1="0" y1="40" x2="60" y2="0" />
-				<line x1="60" y1="0" x2="120" y2="40" />
-				<polygon points="11.5,36 109,36, 118.75,42, 3,42" style="fill: white;">
-				<!-- <rect x="12" y="38" width="85" height="10" style="fill: white;"> -->
+				<line x1="0" y1="40" x2="60" y2="0"></line>
+				<line x1="60" y1="0" x2="120" y2="40"></line>
+				<polygon points="11.5,36 109,36, 118.75,42, 3,42" style="fill: white;"></polygon>
 			</svg>
 
 			<div class="sub-step clear">
 
-			<h3>Enter the Marketplace</h3>
+				<h3>Enter the Marketplace</h3>
 
 				<div class="left">
 					<div class="top">
@@ -254,7 +253,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			  				<text x="13" y="43">4a</text>
 						</svg>
 
-						<h3>Shop Local</h3>
+						<h3>Shop<br> Local</h3>
 
 						<p>What is it you want? i$ pack a bit more punch in your wallet. No i$? No worries! You can use our 0% interest lines of PayItFWD credit.</p>
 					</div>
@@ -264,7 +263,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			  				<text x="13" y="43">4b</text>
 						</svg>
 
-						<h3>Save Cash</h3>
+						<h3>Save<br> Cash</h3>
 
 						<p>Spend your i$ first, and save your other hard&ndash;earned money for things only it can buy.</p>
 					</div>
@@ -277,7 +276,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			  				<text x="13" y="43">4c</text>
 						</svg>
 
-						<h3>Earn Income</h3>
+						<h3>Earn<br> Income</h3>
 
 						<p>List your goods &amp; skills and start selling in i$. Gain new customers, move more stock, and bill more hours.</p>
 					</div>
@@ -287,12 +286,18 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			  				<text x="13" y="43">4d</text>
 						</svg>
 
-						<h3>Save Up</h3>
+						<h3>Save<br> Up</h3>
 
 						<p>Looking to make a bigger purchase? Use i$ creatively to help you save.</p>
 					</div>
 				</div>
 			</div>
+
+			<svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<line x1="0" y1="0" x2="60" y2="40"></line>
+				<line x1="60" y1="40" x2="120" y2="0"></line>
+				<polygon points="3,0, 115,0 106,6 14,6" style="fill: white;"></polygon>
+			</svg>
 		</div>
 		<div class="step clear">
 
