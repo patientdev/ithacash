@@ -86,6 +86,10 @@ li#sign-up a{
 	font-size: .8em;
 }
 
+li#sign-up a:hover {
+	border: none;
+}
+
 #container {
 	position: absolute;
 	top: 0;
@@ -312,7 +316,7 @@ h1 img {
 #ind-to-ind-1.panel { display: inline-block; }
 
 #how-to-get-started img {
-	width: 125px;
+	max-height: 200px;
 }
 
 .step {
@@ -397,6 +401,8 @@ h1 img {
 #path .right p, #path .right h3 {
 	padding-right: 100px;
 }
+
+.social img { width: 50px; }
 
 #the-network h3 {
 	text-transform: uppercase;
@@ -564,11 +570,20 @@ h1 img {
 #account-info > div#individual-info { display: table-cell; }
 
 #account-info img {
-	float: left;
 	border-radius: 50%;
 	width: 300px;
-	margin-right: 40px;
+}
+
+#account-info .img {
+	display: inline-block;
 	vertical-align: middle;
+	margin-right: 40px;
+}
+
+#account-info .copy {
+	width: 50%;
+	display: inline-block;
+	vertical-align: middle;;
 }
 
 #account-info ul {
@@ -647,6 +662,11 @@ h1 img {
 #contact {
 	text-align: center;
 	padding-top: 0;
+}
+
+#contact a {
+	color: #999;
+	text-decoration: none;
 }
 
 #contact h2 {

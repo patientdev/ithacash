@@ -33,7 +33,7 @@ $(function() {
 		data = $(this).serialize();
 
 		$.post('/php/form-submit.php', data, function( success ) {
-			console.log(success);
+			$('#contact-form form button').replaceWith('<p>Thanks for the message!</p>');
 		});
 	});
 
@@ -43,7 +43,7 @@ $(function() {
 		data = $(this).serialize();
 
 		$.post('/php/form-submit.php', data, function( success ) {
-			console.log(success);
+			$('#join-email-list button').replaceWith('<p>Thanks for signing up!</p>');
 		});
 	});
 

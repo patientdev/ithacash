@@ -272,6 +272,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="right">
 				<h3>Invite Friends</h3>
 				<p>The network works better when you&rsquo;re friends are in it too!</p>
+
+				<p class="social"><a href="http://facebook.com/ithacash" target="_blank"><img src="/img/facebook.png"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="/img/twitter.png"></a> <a href="mailto:join@ithacash.com" target="_blank"><img src="/img/email.png"></a></p>
 			</div>
 		</div>
 	</div>
@@ -343,46 +345,66 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 	<div id="account-info">
 		<div id="individual-info">
-			<p>Anyone can join the circuit as an individual. These accounts may view the directory and advertisements of those making offers of goods &amp; services for i$.</p>
+			<div class="img"><img src="/img/individual.jpg"></div>
 
-			<h4>How They Get i$</h4>
-			<ul>
-				<li>Winning them from promotional campaigns</li>
-				<li>By purchasing i$ and getting the &ldquo;Buy-In Bonus&rdquo;</li>
-				<li>Through PAYITFWD lines of credit</li>
-				<li>By accepting them for goods, services, or as a portion of wages.</li>
-			</ul></div>
+			<div class="copy">
+				<p>Anyone can join the circuit as an individual. These accounts may view the directory and advertisements of those making offers of goods &amp; services for i$.</p>
+
+				<h4>How They Get i$</h4>
+				<ul>
+					<li>Winning them from promotional campaigns</li>
+					<li>By purchasing i$ and getting the &ldquo;Buy-In Bonus&rdquo;</li>
+					<li>Through PAYITFWD lines of credit</li>
+					<li>By accepting them for goods, services, or as a portion of wages.</li>
+				</ul>
+			</div>
+		</div>
 		<div id="freelance-info">
-			<p>For one&ndash;person businesses without a <em>place</em> of business. Freelancers may list advertisements and be promoted in the circuit as a preferred local provider.</p>
+			<div class="img"><img src="/img/freelancer.jpg"></div>
 
-			<h4>How They Get i$</h4>
-			<ul>
-				<li>Sales of goods &amp; services.</li>
-				<li>PAYITFWD lines of credit.</li>
-				<li>Bonuses + Grants</li>
-				<li>Purchases of i$</li>
-			</ul></div>
+			<div class="copy">
+				<p>For one&ndash;person businesses without a <em>place</em> of business. Freelancers may list advertisements and be promoted in the circuit as a preferred local provider.</p>
+
+				<h4>How They Get i$</h4>
+				<ul>
+					<li>Sales of goods &amp; services.</li>
+					<li>PAYITFWD lines of credit.</li>
+					<li>Bonuses + Grants</li>
+					<li>Purchases of i$</li>
+				</ul>
+			</div>
+		</div>
 		<div id="business-info">
-			<p><img src="/img/business.jpg">Local businesses may choose between <strong>regular</strong> and <strong>premium</strong> accounts. In addition to listing advertisements and enjoying general promotion as a business member, premium businesses get added visibility and priority access when it comes to new offerings.</p>
+			<div class="img"><img src="/img/business.jpg"></div>
 
-			<h4>How They Get i$</h4>
-			<ul>
-				<li>Sales of goods &amp; services.</li>
-				<li>PAYITFWD lines of credit.</li>
-				<li>Bonuses + Grants</li>
-				<li>Purchases of i$</li>
-			</ul></div>
+			<div class="copy">
+				<p>Local businesses may choose between <strong>regular</strong> and <strong>premium</strong> accounts. In addition to listing advertisements and enjoying general promotion as a business member, premium businesses get added visibility and priority access when it comes to new offerings.</p>
+
+				<h4>How They Get i$</h4>
+				<ul>
+					<li>Sales of goods &amp; services.</li>
+					<li>PAYITFWD lines of credit.</li>
+					<li>Bonuses + Grants</li>
+					<li>Purchases of i$</li>
+				</ul>
+			</div>
+		</div>
 		<div id="nonprofit-info">
-			<p>Local 501(c)3&rsquo;s, non&ndash;exempt organizations, and other community associations can join the circuit and receive even more support from those who see the value of the work they do in the community. Nonprofits can post advertisements in the marketplace just like business accounts.</p>
+			
+			<div class="img"><img src="/img/nonprofit.jpg"></div>
 
-			<h4>How They Get i$</h4>
-			<ul>
-				<li>Sales of goods &amp; services.</li>
-				<li>PAYITFWD lines of credit.</li>
-				<li>Bonuses + Grants</li>
-				<li>Purchases of i$</li>
-				<li>Donations of i$</li>
-			</ul>
+			<div class="copy">
+				<p>Local 501(c)3&rsquo;s, non&ndash;exempt organizations, and other community associations can join the circuit and receive even more support from those who see the value of the work they do in the community. Nonprofits can post advertisements in the marketplace just like business accounts.</p>
+
+				<h4>How They Get i$</h4>
+				<ul>
+					<li>Sales of goods &amp; services.</li>
+					<li>PAYITFWD lines of credit.</li>
+					<li>Bonuses + Grants</li>
+					<li>Purchases of i$</li>
+					<li>Donations of i$</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
@@ -413,7 +435,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<p><a href="mailto:join@ithacash.com">join@ithacash.com</a><br>
 			<a href="tel:6076540807">607.654.0807</p>
 
-			<p><a href=""><img src="/img/facebook.png"></a> <a href=""><img src="/img/twitter.png"></a> <a href=""><img src="/img/email.png"></a></p>
+			<p><a href="http://facebook.com/ithacash" target="_blank"><img src="/img/facebook.png"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="/img/twitter.png"></a> <a href="mailto:join@ithacash.com" target="_blank"><img src="/img/email.png"></a></p>
 		</div>
 	</div>
 
