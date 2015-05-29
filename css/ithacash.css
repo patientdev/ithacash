@@ -320,7 +320,7 @@ h1 img {
 }
 
 .step {
-	height: 300px;
+	min-height: 250px;
 	white-space: nowrap;
 	width: 100%;
 	display: table;
@@ -402,7 +402,7 @@ h1 img {
 	padding-right: 5%;
 }
 
-.social img { width: 50px; }
+.social img { width: 100px; }
 
 #shop-local {
 	color: black;
@@ -410,7 +410,7 @@ h1 img {
 }
 
 #shop-local .sub-step {
-	width: 60%;
+	width: 55%;
 	margin: auto; margin-top: -15px; margin-bottom: -6px;
 	border-top: 6px solid rgb(196, 216, 163); 
 	border-bottom: 6px solid rgb(196, 216, 163); 

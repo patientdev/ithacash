@@ -307,11 +307,11 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</svg>
 
 			<div class="left">
-				<h3>Save Cash</h3>
-				<p>Spend your i$ first, and save your other hard&ndash;earned money for things only it can buy.</p>
+				<img src="/img/howtogetstarted-drum.png">
 			</div>
 			<div class="right">
-				<img src="/img/howtogetstarted-piggy.png">
+				<h3>Find Your Rhythm</h3>
+				<p>Get the most from your account by buying and selling at a pace that works best for you.</p>
 			</div>
 		</div>
 		<div class="step clear">
@@ -322,13 +322,26 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</svg>
 
 			<div class="left">
-				<img src="/img/howtogetstarted-network.png">
+				<h3>Make a Wishlist</h3>
+				<p>By getting clear about what you want you&rsquo;ll help all of us know what&rsquo;s in demand.</p>
 			</div>
 			<div class="right">
-				<h3>Invite Friends</h3>
-				<p>The network works better when you&rsquo;re friends are in it too!</p>
+				<img src="/img/howtogetstarted-wand.png">
+			</div>
+		</div>
+		<div class="step clear">
 
+			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
+  				<text x="13" y="43">#6</text>
+			</svg>
+
+			<div class="left">
 				<p class="social"><a href="http://facebook.com/ithacash" target="_blank"><img src="/img/facebook.png"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="/img/twitter.png"></a> <a href="mailto:join@ithacash.com" target="_blank"><img src="/img/email.png"></a></p>
+			</div>
+			<div class="right">
+				<h3>Share the Wealth</h3>
+				<p>The network works best when you share it with your friends!</p>
 			</div>
 		</div>
 	</div>
