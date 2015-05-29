@@ -404,6 +404,89 @@ h1 img {
 
 .social img { width: 50px; }
 
+#shop-local {
+	padding-bottom: 40px;
+}
+
+#shop-local .sub-step {
+	width: 50%;
+	margin: auto; margin-top: -16px;
+	border-top: 6px solid rgb(196, 216, 163); 
+	border-bottom: 6px solid rgb(196, 216, 163); 
+}
+
+#shop-local h3 {
+	margin: 0;
+	font-weight: 100;
+}
+
+.angle {
+	width: 120px;
+	height: 46px;
+	position: relative;
+	z-index: 5;
+}
+
+.angle line {
+	stroke: rgb(196, 216, 163);
+	stroke-width: 6px;
+	fill: none;
+}
+
+.sub-step > h3 {
+	border-right: 6px solid rgb(196, 216, 163); 
+	border-left: 6px solid rgb(196, 216, 163); 
+	padding-bottom: 20px;
+	padding-top: 40px;
+}
+
+#shop-local .left {
+	border-left: 6px solid rgb(196, 216, 163); 
+	border-right: none;
+	width: 50%;
+	display: block;
+	float: left;
+	white-space: normal;
+	height: 450px;
+	padding-top: 40px;
+}
+
+#shop-local .right {
+	border-right: 6px solid rgb(196, 216, 163); 
+	border-left: none;
+	width: 50%;
+	display: block;
+	float: right;
+	white-space: normal;
+	height: 450px;
+	padding-top: 40px;
+}
+
+#shop-local .left svg {
+	left: 0; 
+	top: -12px;
+	margin-left: -38px;
+}
+
+#shop-local .right svg {
+	left: auto;
+	right: 0; 
+	margin-right: -38px;
+	top: -12px;
+}
+
+#shop-local .top { 
+	position: relative; 
+	height: 50%; 
+	width: 100%; 
+}
+
+#shop-local .bottom { 
+	position: relative; 
+	height: 50%; 
+	width: 100%; 
+}
+
 #the-network h3 {
 	text-transform: uppercase;
 	font-size: 2.6em;
