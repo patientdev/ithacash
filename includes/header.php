@@ -31,6 +31,6 @@
 				<li><a href="#core-services">Core Services</a></li>
 				<li><a href="#accounts">Accounts</a></li>
 				<li><a href="#contact">Contact</a></li>
-				<li id="sign-up"><a href="/sign-up/" class="green-button">Sign Up</a></li>
+				<li id="sign-up" class="apply"><a href="/sign-up/" class="green-button">Sign Up</a></li>
 			</ul>
 		</header>
