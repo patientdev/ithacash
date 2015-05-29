@@ -236,6 +236,7 @@ h1 img {
 	position: absolute;
 	left: 50%; margin-left: -100px;
 	top: 40px;
+	z-index: 10;
 }
 
 #panels {
@@ -259,7 +260,14 @@ h1 img {
 
 .panel img {
 	height: 150px;
-	vertical-align: bottom;
+}
+
+.panel .left img {
+	float: right;
+}
+
+.panel .right img {
+	float: left;
 }
 
 .panel .left {

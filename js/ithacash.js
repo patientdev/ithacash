@@ -47,16 +47,12 @@ $(function() {
 		});
 	});
 
-	$('#right-arrow button').click(function() {
-		right = parseInt($('.panel').css('right'));
-
-		console.log(right);
-
-		$('.panel').css('right', right + 100 + '%');
-	})
-
-	$('#left-arrow button').click(function() {
-		$('.panel').css('right', '-50%');
-	})
+	$('#panels').slick({
+		  infinite: true,
+		  autoplay: true,
+		  autplaySpeed: 3000,
+		  prevArrow: $('#left-arrow button'),
+		  nextArrow: $('#right-arrow button')
+	});
 
 });

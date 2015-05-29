@@ -26,7 +26,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div id="carousel">
 
 		<div id="left-arrow">
-			<button>
+			<button class="carousel-button">
 				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<polygon points="15,0 15,20 0,10"></polygon>
 				</svg>
@@ -98,7 +98,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<div class="panel" id="biz-to-np">
 				<div class="left">
-					<img src="/img/carousel/photographer.png">
+					<img src="/img/carousel/mechanic.png">
 				</div>
 
 				<div class="right">
@@ -173,7 +173,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 
 		<div id="right-arrow">
-			<button>
+			<button class="carousel-button">
 				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<polygon points="0,0 15,10 0,20 "></polygon>
 				</svg>
