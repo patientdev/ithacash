@@ -487,7 +487,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div>
 		<div id="logos">
 		<p id="ithacash-transform"><img src="/img/ithacash_transform.jpg"></p>
-		<p id="rev-logo">A MEMBER OF <br><img src="/img/rev.png"></p>
+		<p id="rev-logo">A MEMBER OF <br><a href="http://revithaca.com"><img src="/img/rev.png"></a></p>
 		</div>
 
 		<div id="contact-form">
