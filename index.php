@@ -195,7 +195,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="left">
 				<h3>Sign Up</h3>
 				<p>It&rsquo;s Simple! Fill out an application on our Sign Up Page</p>
-				<p><button class="green-button">Apply Now</button></p>
+				<p><a href="/apply/" class="green-button">Apply Now</a></p>
 			</div>
 			<div class="right">
 				<img src="/img/howtogetstarted-sign-up.png">
@@ -351,7 +351,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <section id="the-network">
 	<h2>The Network</h2>
 	<h3>Coming soon with over 100 businesses</h3>
-
 </section>
 
 <section id="core-services">
@@ -425,6 +424,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li>Through PAYITFWD lines of credit</li>
 					<li>By accepting them for goods, services, or as a portion of wages.</li>
 				</ul>
+				<p><a href="" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="freelance-info">
@@ -440,6 +440,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
+				<p><a href="" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="business-info">
@@ -455,6 +456,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
+				<p><a href="" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="nonprofit-info">
@@ -472,6 +474,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li>Purchases of i$</li>
 					<li>Donations of i$</li>
 				</ul>
+				<p><a href="" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 	</div>

@@ -27,6 +27,7 @@
 			<ul id="nav-menu">
 				<li><a href="#how-it-works">How It Works</a></li>
 				<li><a href="#how-to-get-started">Get Started</a></li>
+				<li><a href="#the-network">The Network</a></li>
 				<li><a href="#core-services">Core Services</a></li>
 				<li><a href="#accounts">Accounts</a></li>
 				<li><a href="#contact">Contact</a></li>

@@ -41,18 +41,19 @@ h2 {
 }
 
 section {
-	padding: 60px 0;
+	padding: 40px 0;
 	width: 100%;
 }
 
 .green-button {
 	background-color: rgb(136, 177, 71);
-	padding: 11px 35px;
+	padding: 11px 25px;
 	border: none;
 	border-radius: 8px;
 	color: white;
 	line-height: 1em;
 	letter-spacing: 1px;
+	text-decoration: none;
 }
 
 button:hover {
@@ -315,6 +316,8 @@ h1 img {
 
 #ind-to-ind-1.panel { display: inline-block; }
 
+#how-to-get-started { padding: 0;}
+
 #how-to-get-started img {
 	max-height: 200px;
 }
@@ -504,6 +507,14 @@ h1 img {
 	width: 100%; 
 }
 
+#the-network {
+	background-image: url(/img/map.jpg);
+	background-size: cover;
+	background-position: 0 50%;
+	height: calc(100vh - 93px);
+
+}
+
 #the-network h3 {
 	text-transform: uppercase;
 	font-size: 2.6em;
@@ -513,6 +524,7 @@ h1 img {
 	text-align: center;
 	line-height: 1.2em;
 	font-weight: 500;
+	padding: 20px;
 }
 
 #core-services {
