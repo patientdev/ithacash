@@ -50,7 +50,7 @@ $(function() {
 	$('#panels').slick({
 		  infinite: true,
 		  autoplay: true,
-		  autplaySpeed: 5000,
+		  autplaySpeed: 10000,
 		  prevArrow: $('#left-arrow button'),
 		  nextArrow: $('#right-arrow button')
 	});

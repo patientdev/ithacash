@@ -171,7 +171,7 @@ h1 img {
 
 #email-list-box {
 	position: absolute;
-	width: 351px; height: 396px;
+	width: 360px; height: 396px;
 	top: 50%; left: 15%;
 	margin-top: -198px; 
 	background-color: white;
@@ -267,6 +267,7 @@ h1 img {
 	right: 0;
 	-webkit-transition: right .75s ease-out, left .75s ease-out;
 	transition: right .75s ease-out, left .75s ease-out;
+	padding: 0 20px;
 }
 
 .panel img {

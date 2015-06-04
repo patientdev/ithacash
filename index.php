@@ -107,7 +107,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 				<div class="center">
 					<h3>Business to Nonprofit</h3>
-					<p>Al might be a gruff guy, but he&rsquo;s got a big heart for the local animal shelter. His donation of Ithaca Dollars is tax deductible, as usual.</p>
+					<p>Al has a big heart for the local animal shelter. His donation of Ithaca Dollars is tax deductible, as usual.</p>
 				</div>
 			</div>
 
@@ -223,7 +223,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			</svg>
 			<div class="left">
 				<h3>Earn Income</h3>
-				<p>List your goods &amp; skills and start selling in i$. Gain new customers, move more stock, and bill more hours.</p>
+				<p>List your goods &amp; skills and start selling in i$.</p>
+				<p>Gain new customers, move more stock, and bill more hours.</p>
 			</div>
 			<div class="right">
 				<img src="/img/howtogetstarted-wallet.png">
