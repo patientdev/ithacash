@@ -6,7 +6,7 @@ if ( isset($_POST["message"]) ) {
 
 	$to = "shane@shanecav.net";
 	$from = $email;
-	$subject = "Message";
+	$subject = "Ithacash.com Message";
 
 	$header = "From: $from\r\n"; 
 	$header.= "MIME-Version: 1.0\r\n"; 
@@ -25,7 +25,7 @@ else if ( isset($_POST["name"]) ) {
 
 	$to = "shane@shanecav.net";
 	$from = $name . " <" . $email . ">";
-	$subject = "Email sign-up";
+	$subject = "Ithacash.com email sign-up";
 
 	$header = "From: $from\r\n"; 
 	$header.= "MIME-Version: 1.0\r\n"; 
