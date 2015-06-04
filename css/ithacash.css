@@ -593,7 +593,7 @@ h1 img {
 }
 
 #ithaca-dollars { background-color: white; line-height: 74px; }
-#ithaca-dollars img { width: 75px; }
+#ithaca-dollars img { width: 75px; vertical-align: middle; }
 #ithacash-online { background-color: rgb(220, 221, 223); line-height: 74px;}
 #ithacash-online img { width: 75px; }
 #txt2pay { background-color: rgb(230, 231, 233); line-height: 79px; }
