@@ -362,7 +362,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div id="services">
 		<div class="left">
 			<div id="ithaca-dollars">
-				<p class="image"><img src="/img/monitor.png"></p>
+				<p class="image"><img src="/img/i-dollar.png"></p>
 				<div class="caption">
 					<h3>Ithaca Dollars</h3>
 					<p>A fully modern, easy&ndash;to&ndash; use local currency. Arriving this Summer!</p>
