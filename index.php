@@ -194,7 +194,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<div class="left">
 				<h3>Sign Up</h3>
-				<p>It&rsquo;s Simple! Fill out an application on our Sign Up Page</p>
+				<p>It&rsquo;s Simple!</p>
+				<p>Fill out an application on our Sign Up Page</p>
 				<p><a href="/apply/" class="green-button apply">Apply Now</a></p>
 			</div>
 			<div class="right">
@@ -213,6 +214,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="right">
 				<h3>Link Your Phone</h3>
 				<p>Any mobile phone can make &amp; take i$ payments via text message. (TXT2PAY)</p>
+				<p>(No sensitive financial infomation is stored on your phone.)</p>
 			</div>
 		</div>
 		<div class="step clear">
@@ -351,7 +353,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <section id="the-network">
 	<h2>The Network</h2>
-	<h3>Coming soon with over 100 businesses</h3>
+	<h3>Coming soon with over 100 locations</h3>
 </section>
 
 <section id="core-services">

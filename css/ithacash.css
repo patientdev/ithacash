@@ -35,7 +35,7 @@ h2, h3, h4 {
 }
 
 h2 {
-	font-size: 3em;
+	font-size: 50px;
 	text-align: center;
 	font-weight: 400;
 	margin-top: 0;
@@ -356,6 +356,7 @@ h1 img {
 	z-index: 10;
 	width: 70px;
 	height: 60px;
+	-webkit-transform: scale(1.2);
 }
 
 .hex polygon {
@@ -397,15 +398,17 @@ h1 img {
 
 #path p {
 	white-space: normal;
+	font-size: 1.1em;
+	color: #333;
+	text-align: justify;
 }
+
+#path .left p { padding-left: 50%; }
+#path .right p { padding-right: 50%; }
+#path .left p.social { padding: 0; }
 
 #path .left p, #path .left h3 {
 	text-align: right;
-	padding-left: 5%;
-}
-
-#path .right p, #path .right h3 {
-	padding-right: 5%;
 }
 
 .social img { width: 100px; }
