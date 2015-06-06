@@ -4,7 +4,7 @@ if ( isset($_POST["message"]) ) {
 	$email = $_POST["email"];
 	$message = $_POST["message"];
 
-	$to = "shane@shanecav.net";
+	$to = "support@ithacash.com";
 	$from = $email;
 	$subject = "Ithacash.com Message";
 
@@ -23,7 +23,7 @@ else if ( isset($_POST["name"]) ) {
 	$name = $_POST["name"];
 	$message = "$name\n$email";
 
-	$to = "shane@shanecav.net";
+	$to = "support@ithacash.com";
 	$from = $name . " <" . $email . ">";
 	$subject = "Ithacash.com email sign-up";
 
