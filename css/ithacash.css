@@ -590,7 +590,8 @@ h1 img {
 	text-align: center;
 }
 
-#ithaca-dollars { background-color: white; line-height: 74px; }
+#ithaca-dollars { background-color: white; line-height: 74px; position: relative;}
+#ithaca-dollars .green-button { position: absolute; bottom: 10px; }
 #ithaca-dollars img { width: 75px; vertical-align: middle; }
 #ithacash-online { background-color: rgb(220, 221, 223); line-height: 74px;}
 #ithacash-online img { width: 75px; }
