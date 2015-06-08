@@ -81,9 +81,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 
 		<p>To get you started, go ahead and purchase some i$.</p>
 
-		<p><a href="https://squareup.com/market/ithacash/merchant-membership-sign-up-fee" target="_blank" class="green-button">Buy i$</a></p>
+		<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button">Buy i$</a></p>
 
-		<p><a href="https://squareup.com/market/ithacash/merchant-membership-sign-up-fee" class="sq-embed-item"> online</a></p>
+		<p><<a href="https://squareup.com/market/ithacash/ithaca-dollars" class="sq-embed-item"> online</a></p>
 		<script src="https://cdn.sq-api.com/market/embed.js" charset="utf-8"></script>
 	</div>
 
