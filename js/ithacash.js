@@ -53,6 +53,26 @@ $(function() {
 		});
 	});
 
+	$('#apply').submit(function( event ) {
+		event.preventDefault();
+		
+		$('input, textarea', this).css('outline', 'none');
+		$('#status').html('');
+
+		isNotABot = notABot($('#robotProof input').val(), answer);
+		formIsCompleted = formCompleted($('#apply'));
+		passwordsMatch = passwordMatch($(':password'));
+
+		if ( isNotABot && formIsCompleted && passwordsMatch ) { 
+			data = $(this).serialize();
+
+			$.post('/php/form-submit.php', data, function( success ) {
+				$('#join-email-list button').replaceWith('<p>Thanks for signing up!</p>');
+				console.log(success);
+			}); 
+		}
+	});
+
 	$('#panels').slick({
 		  infinite: true,
 		  autoplay: true,
@@ -62,3 +82,48 @@ $(function() {
 	});
 
 });
+
+function passwordMatch(passwords) {
+
+	password = $(passwords[0]).val();
+	confirm = $(passwords[1]).val();
+
+	if ( password === confirm ) { return true; }
+	else {
+		$(passwords).each(function() {
+			$(this).css('outline', '1px solid red');
+		});
+
+		$('#status').append('<p>Your passwords don&rsquo;t match.</p>');
+		
+		return false;
+	}
+}
+
+function notABot(value, answer) {
+		if ( ( parseInt(value) === answer ) || ( value === nums[answer] ) ) { return true; }
+		else { 
+			$('#status').append('<p>Your math is off.</p>');
+			return false; 
+		}
+}
+
+function formCompleted(form) {
+	blank = [];
+
+	$('[required]', form).each(function() {
+		if ( $(this).val() == '' ) { blank.push($(this)); }
+	})
+
+	if ( blank.length > 0 ) {
+		$(blank).each(function() {
+			$(this).css('outline', '1px solid red');
+		})
+		
+		$('#status').append('<p>Please fill out all required fields.</p>');
+
+		return false;
+	}
+
+	else { return true; }
+}

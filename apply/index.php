@@ -113,65 +113,7 @@ $foot = <<<'JAVASCRIPT'
 		answer = num1 + num2;
 
 		$('#robotProof').append('<p>What is ' + nums[num1] + ' + ' + nums[num2] + '? <br><input type="text" required></p>');
-
-		$('#apply').submit(function( event ) {
-
-			$('input, textarea', this).css('outline', 'none');
-			$('#status').html('');
-
-			isNotABot = notABot($('#robotProof input').val(), answer);
-			formIsCompleted = formCompleted($('#apply'));
-			passwordsMatch = passwordMatch($(':password'));
-
-			if ( isNotABot && formIsCompleted && passwordsMatch ) { return true; }
-			else { event.preventDefault(); }
-		});
 	});
-
-	function passwordMatch(passwords) {
-
-		password = $(passwords[0]).val();
-		confirm = $(passwords[1]).val();
-
-		if ( password === confirm ) { return true; }
-		else {
-			$(passwords).each(function() {
-				$(this).css('outline', '1px solid red');
-			});
-
-			$('#status').append('<p>Your passwords don&rsquo;t match.</p>');
-			
-			return false;
-		}
-	}
-
-	function notABot(value, answer) {
-			if ( ( parseInt(value) === answer ) || ( value === nums[answer] ) ) { return true; }
-			else { 
-				$('#status').append('<p>Your math is off.</p>');
-				return false; 
-			}
-	}
-
-	function formCompleted(form) {
-		blank = [];
-
-		$('[required]', form).each(function() {
-			if ( $(this).val() == '' ) { blank.push($(this)); }
-		})
-
-		if ( blank.length > 0 ) {
-			$(blank).each(function() {
-				$(this).css('outline', '1px solid red');
-			})
-			
-			$('#status').append('<p>Please fill out all required fields.</p>');
-
-			return false;
-		}
-
-		else { return true; }
-	}
 </script>
 
 JAVASCRIPT;

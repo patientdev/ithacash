@@ -3,7 +3,7 @@
 if ( isset($_POST) ) {
 	$which = $_POST["which"];
 
-	$to = "shane@shanecav.net";
+	$to = "support@ithacash.com";
 	$email = $_POST["email"];
 	$name = $_POST["name"];
 	$from = $_POST["name"] . " <" . $email . ">";
@@ -12,7 +12,7 @@ if ( isset($_POST) ) {
 	$body = "<!doctype html><html><head><title>$subject</title></head><body><table>";
 	foreach ( $_POST as $key => $value ) {
 		if ( $key != "which" ) {		
-			$body .= "<tr><td style=\"text-align: right\"><strong>". ucwords($key) . ":</strong></td><td>$value</td></tr>";
+			$body .= "<tr><td style=\"text-align: right;\"><strong>". ucwords($key) . ":</strong></td><td>$value</td></tr>";
 		}
 	}
 	$body .="</table></body></html>";
