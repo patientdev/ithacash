@@ -82,11 +82,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 		<label for="city">City: </label><input type="text" placeholder="City" name="city" required><br>
 		<label for="State">State: </label><input type="text" placeholder="State" name="state" required><br>
 		<label for="zip">Zip Code: </label><input type="text" placeholder="Zip Code" name="zip" required><br>
-		<label for="ssn">EIN/SSN: </label> <span>Please call us to securely provide this information over the phone</span><br>
+		<label for="ssn">EIN/SSN: </label> <span>Required for tax purposes. We will contact you to welcome you and collect this information securely before opening your account.</span><br>
 		<label for="website">Website: </label><input type="text" placeholder="Website" name="website"><br>
 		<label for="contact">Contact Person: </label><input type="text" placeholder="Contact Person" name="contact" required><br>
 		<label for="referer">Referer: </label><input type="text" placeholder="Who referrred you to us?" name="referrer"><br>
-		<label for="about">Address: </label><textarea placeholder="Tell us about you or your business" name="about"></textarea>
+		<label for="about">About: </label><textarea placeholder="Tell us about you or your business" name="about"></textarea>
 
 		<div id="robotProof">
 			<p>Please prove that you aren&rsquo;t a bot:</p>

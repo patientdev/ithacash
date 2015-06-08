@@ -192,7 +192,7 @@
 			<div class="left">
 				<h3>Sign Up</h3>
 				<p>It&rsquo;s Simple!</p>
-				<p>Fill out an application on our Sign Up Page</p>
+				<p>Fill out an application<br> on our Sign Up Page</p>
 				<p><a href="/apply/" class="green-button">Apply Now</a></p>
 			</div>
 			<div class="right">
@@ -214,32 +214,17 @@
 				<p>(No sensitive financial infomation is stored on your phone.)</p>
 			</div>
 		</div>
-		<div class="step clear">
+		<div class="step clear" id="shop-local">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
   				<text x="13" y="43">#3</text>
 			</svg>
-			<div class="left">
-				<h3>Earn Income</h3>
-				<p>List your goods &amp; skills and start selling in i$.</p>
-				<p>Gain new customers, move more stock, and bill more hours.</p>
-			</div>
-			<div class="right">
-				<img src="/img/howtogetstarted-wallet.png">
-			</div>
-		</div>
-		<div class="step clear" id="shop-local">
-
-			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-  				<text x="13" y="43">#4</text>
-			</svg>
 
 			<svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 				<line x1="0" y1="40" x2="60" y2="0"></line>
 				<line x1="60" y1="0" x2="120" y2="40"></line>
-				<polygon points="11.5,36 109,36, 118.75,42, 3,42" style="fill: white;"></polygon>
+				<polygon points="11.5,36 109,36, 118.75,42, 3,42" style="fill: rgb(235, 235, 235);"></polygon>
 			</svg>
 
 			<div class="sub-step clear">
@@ -250,7 +235,7 @@
 					<div class="top">
 						<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 			  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-			  				<text x="13" y="43">4a</text>
+			  				<text x="13" y="43">3a</text>
 						</svg>
 
 						<h3>Shop<br> Local</h3>
@@ -260,7 +245,7 @@
 					<div class="bottom">
 						<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 			  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-			  				<text x="13" y="43">4b</text>
+			  				<text x="13" y="43">3b</text>
 						</svg>
 
 						<h3>Save<br> Cash</h3>
@@ -273,7 +258,7 @@
 					<div class="top">
 						<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 			  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-			  				<text x="13" y="43">4c</text>
+			  				<text x="13" y="43">3c</text>
 						</svg>
 
 						<h3>Earn<br> Income</h3>
@@ -283,7 +268,7 @@
 					<div class="bottom">
 						<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 			  				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-			  				<text x="13" y="43">4d</text>
+			  				<text x="13" y="43">3d</text>
 						</svg>
 
 						<h3>Save<br> Up</h3>
@@ -296,14 +281,14 @@
 			<svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 				<line x1="0" y1="0" x2="60" y2="40"></line>
 				<line x1="60" y1="40" x2="120" y2="0"></line>
-				<polygon points="3,0, 115,0 106,6 14,6" style="fill: white;"></polygon>
+				<polygon points="3,0, 115,0 106,6 14,6" style="fill: rgb(235, 235, 235);"></polygon>
 			</svg>
 		</div>
 		<div class="step clear">
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-  				<text x="13" y="43">#5</text>
+  				<text x="13" y="43">#4</text>
 			</svg>
 
 			<div class="left">
@@ -318,7 +303,7 @@
 
 			<svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
   				<polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-  				<text x="13" y="43">#6</text>
+  				<text x="13" y="43">#5</text>
 			</svg>
 
 			<div class="left">
@@ -424,7 +409,7 @@
 					<li>Through PAYITFWD lines of credit</li>
 					<li>By accepting them for goods, services, or as a portion of wages.</li>
 				</ul>
-				<p><a href="" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="freelance-info">
@@ -440,7 +425,7 @@
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
-				<p><a href="" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="business-info">
@@ -456,7 +441,7 @@
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
-				<p><a href="" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 		<div id="nonprofit-info">
@@ -474,7 +459,7 @@
 					<li>Purchases of i$</li>
 					<li>Donations of i$</li>
 				</ul>
-				<p><a href="" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
 			</div>
 		</div>
 	</div>
