@@ -38,6 +38,7 @@ $(function() {
 
 		$.post('/php/form-submit.php', data, function( success ) {
 			$('#contact-form form button').replaceWith('<p>Thanks for the message!</p>');
+			console.log(success);
 		});
 	});
 
@@ -48,6 +49,7 @@ $(function() {
 
 		$.post('/php/form-submit.php', data, function( success ) {
 			$('#join-email-list button').replaceWith('<p>Thanks for signing up!</p>');
+			console.log(success);
 		});
 	});
 
