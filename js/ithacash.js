@@ -67,8 +67,11 @@ $(function() {
 			data = $(this).serialize();
 
 			$.post('/php/form-submit.php', data, function( success ) {
-				$('#join-email-list button').replaceWith('<p>Thanks for signing up!</p>');
-				console.log(success);
+				$('#apply').slideUp();
+				setTimeout(function() {
+					$('#buy').slideDown();
+				}, 401);
+				
 			}); 
 		}
 	});
