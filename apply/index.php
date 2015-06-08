@@ -77,9 +77,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 <div id="content">
 
 	<div id="buy">
-		<p>Thank you for your application! We will be in touch with you shortly.</p>
+		<p>Thank you for submitting an application! We&rsquo;ll be in touch with you shortly to gather remaining information and welcome you to the Circuit.</p>
 
-		<p>To get you started, go ahead and purchase some i$.</p>
+		<p>In the meantime, why not go ahead and preload your account by purchasing some i$.</p>
 
 		<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button">Buy i$</a></p>
 
