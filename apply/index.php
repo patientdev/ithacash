@@ -69,6 +69,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 	<h2>Apply</h2>
 
 	<form id="apply" method="POST" action="" novalidate>
+		<input type="hidden" name="which" value="apply">
 		<label for="name">Name: </label><input type="text" placeholder="Name" name="name" required><br>
 		<label for="login">Login Name: </label><input type="text" placeholder="Login name" name="login" required><br>
 		<label for="password">Password: </label><input type="password" placeholder="Password" name="password" required><br>

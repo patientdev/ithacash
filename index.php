@@ -7,6 +7,7 @@
  	<h2>Money Made for Main St.</h2>
  	<p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, the Ithaca Dollar (i$) works alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
  	<form id="join-email-list">
+		<input type="hidden" name="which" value="email">
  		<input type="text" name="name" placeholder="Name"><br>
  		<input type="email" name="email" placeholder="Email"><br>
  		<button class="green-button">Join the Email List</button>
@@ -491,6 +492,7 @@
 
 		<div id="contact-form">
 			<form>
+				<input type="hidden" name="which" value="message">
 				<input type="email" name="email" placeholder="Your Email">
 				<textarea name="message" placeholder="Your Message"></textarea>
 				<button class="green-button">Send</button>

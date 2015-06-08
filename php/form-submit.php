@@ -1,39 +1,43 @@
 <?php
 
-if ( isset($_POST["message"]) ) {
-	$email = $_POST["email"];
-	$message = $_POST["message"];
+if ( isset($_POST) ) {
+	$which = $_POST["which"];
 
-	$to = "support@ithacash.com";
-	$from = $email;
-	$subject = "Ithacash.com Message";
-
-	$header = "From: $from\r\n"; 
-	$header.= "MIME-Version: 1.0\r\n"; 
-	$header.= "Content-Type: text/plain; charset=utf-8\r\n"; 
-	$header.= "X-Priority: 1\r\n";
-
-	if ( !mail($to, $subject, $message, $header) ) { echo "fail"; }
-	else { echo "Message sent"; }
-}
-
-else if ( isset($_POST["name"]) ) {
-
-	$email = $_POST["email"];
+	$to = "shane@shanecav.net";
+	$email = $_POST["email"]
 	$name = $_POST["name"];
-	$message = "$name\n$email";
+	$from = $_POST["name"] . " <" . $email . ">";
+	$subject = "";
 
-	$to = "support@ithacash.com";
-	$from = $name . " <" . $email . ">";
-	$subject = "Ithacash.com email sign-up";
+	$body = "<!doctype html><html><head><title>$subject</title></head><body><table>"
+	for ( $_POST as $key => $value ) {
+			$body .= "<tr><td style=\"text-align: right\"><strong>$key:</strong></td><td>$value</td></tr>"
+	}
+	$body .="</table></body></html>"
+
+	$body 
+
+	switch($which)
+
+	case "email":
+		$subject = "Ithacash email sign-up";
+		break;
+
+	case "message":
+		$subject = "Ithacash message";
+		break;
+
+	case "apply":
+		$subject = "Ithacash Application";
+		break;
 
 	$header = "From: $from\r\n"; 
 	$header.= "MIME-Version: 1.0\r\n"; 
-	$header.= "Content-Type: text/plain; charset=utf-8\r\n"; 
+	$header.= "Content-Type: text/html; charset=utf-8\r\n"; 
 	$header.= "X-Priority: 1\r\n";
 
 	if ( !mail($to, $subject, $message, $header) ) { echo "fail"; }
-	else { echo "Sign-up sent"; }
+	else { echo "Received!"; }
 }
 
 ?>
