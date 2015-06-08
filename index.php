@@ -348,7 +348,7 @@
 				<div class="caption">
 					<h3>Ithaca Dollars</h3>
 					<p>A fully modern, easy&ndash;to&ndash; use local currency. Arriving this Summer!</p>
-					<p><a href="https://squareup.com/market/ithacash/merchant-membership-sign-up-fee" class="green-button" target="_blank">Buy i$</a></p>
+					<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="green-button" target="_blank">Buy i$</a></p>
 				</div>
 			</div>
 
