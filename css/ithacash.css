@@ -1,8 +1,6 @@
-.apply { display: none !important; }
-
 html, body { padding: 0; margin: 0; width: 100%; }
 
-body, button, input {
+body, button, input, textarea {
 	font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
 	color: #999;
 	letter-spacing: .5px;
@@ -101,7 +99,7 @@ li#sign-up a:hover {
 
 h1 {
 	display: inline-block;
-	vertical-align: middle;;
+	vertical-align: middle;
 	margin: 0;
 }
 
@@ -701,7 +699,7 @@ h1 img {
 #account-info .copy {
 	width: 50%;
 	display: inline-block;
-	vertical-align: middle;;
+	vertical-align: middle;
 }
 
 #account-info ul {

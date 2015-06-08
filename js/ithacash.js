@@ -1,13 +1,17 @@
 $(function() {
 
 	$('#nav-menu a').click(function( event ) {
-		event.preventDefault();
 		section = $(this).attr('href');
-		sectionOffset = $(section).offset().top;
 
-		scrollTo = sectionOffset - parseInt($('header').css('height'));
+		if ( section.match('#') ) {
+			sectionOffset = $(section.replace('/', '')).offset().top;
+			scrollTo = sectionOffset - parseInt($('header').css('height'));
+			$('html, body').animate({ scrollTop: scrollTo + 'px' });
+			return false;
+		}
 
-		$('html, body').animate({ scrollTop: scrollTo + 'px' });
+		else { return true; }
+
 	});
 
 	$('#accounts > ul > li').hover(function() {
