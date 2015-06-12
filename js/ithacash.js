@@ -82,6 +82,9 @@ $(function() {
 		  autoplaySpeed: 7000,
 		  prevArrow: $('#left-arrow button'),
 		  nextArrow: $('#right-arrow button')
+	}).on('afterChange', function() {
+		var currentSlide = $(this).slick('slickCurrentSlide');
+		if ( currentSlide === 0 ) { $(this).slick('slickPlay'); } 
 	});
 
 });

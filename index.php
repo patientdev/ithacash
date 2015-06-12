@@ -5,7 +5,7 @@
 <div id="intro">
  <div id="email-list-box">
  	<h2>Money Made for Main St.</h2>
- 	<p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, the Ithaca Dollar (i$) works alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
+ 	<p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, Ithaca Dollars (i$), work alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
  	<form id="join-email-list">
 		<input type="hidden" name="which" value="email">
  		<input type="text" name="name" placeholder="Name"><br>
@@ -326,15 +326,15 @@
 			</div>
 			<div class="right">
 				<h3>Share the Wealth</h3>
-				<p>The network works best when you share it with your friends!</p>
+				<p>The circuit works best when you share it with your friends!</p>
 			</div>
 		</div>
 	</div>
 
 </section>
 
-<section id="the-network">
-	<h2>The Network</h2>
+<section id="the-circuit">
+	<h2>The Circuit</h2>
 	<h3>Coming soon with over 100 locations</h3>
 </section>
 
@@ -410,7 +410,7 @@
 					<li>Through PAYITFWD lines of credit</li>
 					<li>By accepting them for goods, services, or as a portion of wages.</li>
 				</ul>
-				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit</a></p>
 			</div>
 		</div>
 		<div id="freelance-info">
@@ -426,7 +426,7 @@
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
-				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit</a></p>
 			</div>
 		</div>
 		<div id="business-info">
@@ -460,7 +460,7 @@
 					<li>Purchases of i$</li>
 					<li>Donations of i$</li>
 				</ul>
-				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit</a></p>
 			</div>
 		</div>
 	</div>
@@ -472,8 +472,8 @@
 	
 	<div>
 		<div id="logos">
-		<p id="ithacash-transform"><img src="/img/ithacash_transform.jpg"></p>
-		<p id="rev-logo">A MEMBER OF <br><a href="http://revithaca.com"><img src="/img/rev.png"></a></p>
+			<h3>A Member of</h3>
+		<p><a href="http://revithaca.com"><img src="/img/rev.png"></a> <a href="http://revithaca.com"><img src="/img/local-first-ithaca.jpg"></a> <a href="http://revithaca.com"><img src="/img/man-logo-sun-blue.jpg"></a> <a href="http://revithaca.com"><img src="/img/IRTAmemberlogo.jpg"></a></p>
 		</div>
 
 		<div id="contact-form">
