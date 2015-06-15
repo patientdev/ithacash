@@ -3,7 +3,8 @@
 if ( isset($_POST) ) {
 	$which = $_POST["which"];
 
-	$to = "support@ithacash.com";
+	$to = "shane@shanecav.net";
+	// $to = "support@ithacash.com";
 	$email = $_POST["email"];
 	$name = $_POST["name"];
 	$from = $_POST["name"] . " <" . $email . ">";

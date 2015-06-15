@@ -100,11 +100,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 		<input type="hidden" name="which" value="apply">
 		<label for="type">Account Type: </label>
 		<select name="type" required>
-			<option value="" disabled selected>Who are you?</option>
-			<option>Individual</option>
-			<option>Freelancer</option>
-			<option>Business</option>
-			<option>Nonprofit</option></select><br>
+			<option value="">Who are you?</option>
+			<option value="Individual">Individual</option>
+			<option value="Freelancer">Freelancer</option>
+			<option value="Business">Business</option>
+			<option value="Nonprofit">Nonprofit</option></select><br>
 		<label for="name">Company Name: </label><input type="text" placeholder="Company Name" name="name" required><br>
 		<label for="contact">Contact Person: </label><input type="text" placeholder="Contact Person" name="contact" required><br>
 		<label for="login">Login Name: </label><input type="text" placeholder="Login name" name="login" required><br>
