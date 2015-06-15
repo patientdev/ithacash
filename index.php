@@ -348,7 +348,7 @@
 				<div class="caption">
 					<h3>Ithaca Dollars</h3>
 					<p>A fully modern, easy&ndash;to&ndash; use local currency. Arriving this Summer!</p>
-					<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="green-button" target="_blank">Buy i$</a></p>
+					<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="green-button dark-green-button" target="_blank">Buy i$</a></p>
 				</div>
 			</div>
 
@@ -442,7 +442,7 @@
 					<li>Bonuses + Grants</li>
 					<li>Purchases of i$</li>
 				</ul>
-				<p><a href="/apply" class="green-button">Join the Circuit!</a></p>
+				<p><a href="/apply" class="green-button">Join the Circuit</a></p>
 			</div>
 		</div>
 		<div id="nonprofit-info">
@@ -473,7 +473,7 @@
 	<div>
 		<div id="logos">
 			<h3>A Member of</h3>
-		<p><a href="http://revithaca.com"><img src="/img/rev.png"></a> <a href="http://revithaca.com"><img src="/img/local-first-ithaca.jpg"></a> <a href="http://revithaca.com"><img src="/img/man-logo-sun-blue.jpg"></a> <a href="http://revithaca.com"><img src="/img/IRTAmemberlogo.jpg"></a></p>
+		<p><a href="http://revithaca.com" target="_blank"><img src="/img/rev.png"></a> <a href="http://www.localfirstithaca.org" target="_blank"><img src="/img/local-first-ithaca.jpg"></a> <a href="http://www.mutualaidnetwork.org" target="_blank"><img src="/img/man-logo-sun-blue.jpg"></a> <a href="http://www.irta.com" target="_blank"><img src="/img/IRTAmemberlogo.jpg"></a> <a href="http://www.tompkinschamber.org" target="_blank"><img src="/img/chamber-of-commerce.gif"></a></p>
 		</div>
 
 		<div id="contact-form">

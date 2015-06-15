@@ -38,10 +38,10 @@ $head = <<<'CSS'
 	}
 
 	#apply select {
-	padding: 0;
-	margin-top: 15px;
-	margin-bottom: 10px;
-}
+		padding: 0;
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
 
 	textarea {
 		height: 10em;

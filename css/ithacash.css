@@ -818,7 +818,7 @@ h1 img {
 
 #logos h3 {
 	font-weight: 200;
-	margin-top: 0; margin-bottom: 20px;
+	margin: 0;
 	font-size: 1.8em;
 	text-align: center;
 
@@ -826,15 +826,15 @@ h1 img {
 
 #logos p {
 	font-size: 1.4em;
-	line-height: 1em;
+	line-height: 0;
 	margin-top: 0;
 	text-align: center;
 }
 
 #logos img {
-	max-width: 150px;
+	max-width: 125px;
 	vertical-align: middle;
-	margin: 0 5px;
+	margin: 0 5px 5px 5px;
 }
 
 #ithacash-transform { 
