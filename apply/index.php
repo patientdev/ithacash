@@ -18,6 +18,7 @@ $head = <<<'CSS'
 		display: inline-block;
 		text-align: left;
 	}
+
 	#apply label {
 		width: 200px;
 		float: left;
@@ -25,15 +26,22 @@ $head = <<<'CSS'
 		margin-right: 10px;
 		margin-top: 10px;
 		padding: 5px;
+		vertical-align: middle;
 	}
 
-	#apply input, #apply span, #apply textarea {
+	#apply input, #apply span, #apply textarea, #apply select {
 		margin-top: 10px; 
 		width: 400px;
 		display: inline-block;
 		padding: 5px;
 		line-height: 1em;
 	}
+
+	#apply select {
+	padding: 0;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
 
 	textarea {
 		height: 10em;
@@ -90,6 +98,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
 	<form id="apply" method="POST" action="" novalidate>
 		<h2>Apply</h2>
 		<input type="hidden" name="which" value="apply">
+		<label for="type">Account Type: </label>
+		<select name="type" required>
+			<option value="" disabled selected>Who are you?</option>
+			<option>Individual</option>
+			<option>Freelancer</option>
+			<option>Business</option>
+			<option>Nonprofit</option></select><br>
 		<label for="name">Company Name: </label><input type="text" placeholder="Company Name" name="name" required><br>
 		<label for="contact">Contact Person: </label><input type="text" placeholder="Contact Person" name="contact" required><br>
 		<label for="login">Login Name: </label><input type="text" placeholder="Login name" name="login" required><br>

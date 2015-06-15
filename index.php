@@ -273,7 +273,7 @@
 
 						<h3>Save<br> Up</h3>
 
-						<p>Looking to make a bigger purchase? Use i$ creatively to help you save.</p>
+						<p>Looking to make a bigger purchase? <br>Use i$ creatively to help you save.</p>
 					</div>
 				</div>
 			</div>
@@ -322,7 +322,7 @@
 			</svg>
 
 			<div class="left">
-				<p class="social"><a href="http://facebook.com/ithacash" target="_blank"><img src="/img/facebook.png"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="/img/twitter.png"></a> <a href="mailto:join@ithacash.com" target="_blank"><img src="/img/email.png"></a></p>
+				<p class="social"><a href="http://facebook.com/ithacash" target="_blank"><img src="/img/facebook.png"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="/img/twitter.png"></a> <a href="mailto:join@ithacash.com?subject=Check%20out%20ithacash" target="_blank"><img src="/img/email.png"></a></p>
 			</div>
 			<div class="right">
 				<h3>Share the Wealth</h3>
