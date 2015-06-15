@@ -25,4 +25,4 @@ h1 img {
 	width: 150px;
 }
 
-#panels { width: 75%; }
+#panels, #shop-local .sub-step { width: 75%; }
