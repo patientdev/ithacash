@@ -147,7 +147,7 @@ $foot = <<<'JAVASCRIPT'
 		num2 = Math.floor(Math.random() * 10);
 		answer = num1 + num2;
 
-		$('#robotProof').append('<p>What is ' + nums[num1] + ' + ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
+		$('#robotProof').append('<p>What is ' + nums[num1] + ' plus ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
 	});
 </script>
 
