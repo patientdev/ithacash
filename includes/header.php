@@ -15,7 +15,7 @@
 
 		<link rel="icon" type="image/x-icon" href="/img/IthaCash_icon_2color.png">
 
-		<?php if (isset($head)) { echo $head; } ?>
+		<?php if (isset($head)) { echo $head; } include_once $_SERVER["DOCUMENT_ROOT"] . "js/analytics.js"; ?>
 
 	</head>
 	<body class="clear">
