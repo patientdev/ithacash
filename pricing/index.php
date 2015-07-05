@@ -141,7 +141,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				</div>
 			</div>
 			<div id="freelancer">
-				<div class="icon"><img src="/img/individual.png"></div>
+				<div class="icon"><img src="/img/freelancer.png"></div>
 				<div class="plan">
 					<h3>Freelancer</h3>
 					<h4><strong>$10</strong>/mo</h4>
