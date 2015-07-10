@@ -30,6 +30,23 @@ $head = <<<'CSS'
 			display: inline-block;	
 		}
 
+		#plan-info > div { 
+			display: none; 
+			width: 40%;
+			position: absolute;
+			top: 10%; right: 10%;
+			color: white;
+			font-size: 1.2em;
+		}
+
+		#plan-info img {
+			float: left;
+			vertical-align: middle;
+			width: 100px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+		}
+
 		h6 {
 			font-size: 1.3em;
 			text-align: center;
@@ -39,11 +56,10 @@ $head = <<<'CSS'
 		}
 
 		#scheme {
-			width: 90%; height: 100%;
+			width: 1200px; height: 600px;
 			margin: auto;
-			position: absolute;
-			top: 40%;
-			left: 50%; margin-left: -45%;
+			position: relative;
+			top: 10%;
 		}
 
 		.icon {
@@ -116,7 +132,7 @@ $head = <<<'CSS'
 			border-top: 1px solid rgb(79, 115, 60);
 		}
 
-		#plans h3, #plans h4 {
+		#plans h3, #plans h4, #faq h3 {
 			text-align: center;
 			color: black;
 			font-size: 1.4em;
@@ -134,11 +150,17 @@ $head = <<<'CSS'
 			letter-spacing: -1px;
 			line-height: 1.4em;
 			text-transform: lowercase;
+			margin-top: 0;
+			height: 80px;
 		}
 
 		#plans h4 strong {
 			font-size: 2.8em;
 			font-weight: 400;
+		}
+
+		#plans h4 span {
+			line-height: 1em;
 		}
 
 		#plans h5 {
@@ -181,13 +203,32 @@ $head = <<<'CSS'
 			outline: none;
 		}
 
-		#under {
-			width: 92%; height: 1000px;
-			background-color: rgb(238, 237, 235);
+		#faq {
 			position: absolute;
-			top: 100%; left: 50%;
-			margin-left: -46%;
+			width: 1250px; margin: auto;
+			padding: 450px 50px 100px 50px;
+			top: 600px;
+			left: 50%; margin-left: -625px;
+			margin-top: 40px;
+			background-color: rgb(238, 237, 235);
 			z-index: -1;
+		}
+
+		#faq > div {
+			width: 33%;
+			float: left;
+			padding: 0 30px;
+		}
+
+		#faq h3 {
+			text-align: left;
+			font-size: 1.8em;
+		}
+
+		#faq > div > p {
+			font-size: 1.2em;
+			color: black;
+			line-height: 1.2em;
 		}
 	</style>
 
@@ -200,13 +241,21 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <section id="intro">
 	<h2>Pricing Guide</h2>
 
+	<div id="plan-info">
+		<div id="individual-info"><p><img src="/img/individual.png">Anyone can join the circuit as an individual. These accounts may view the directory and advertisements of those making offers of goods &amp; services for i$.</p></div>
+		<div id="freelancer-info"><p><img src="/img/freelancer.png">For one&ndash;person businesses without a place of business. Freelancers may list advertisements and be promoted in the circuit as a preferred local provider.</p></div>
+		<div id="regular-info"><p><img src="/img/business.png">Local businesses may choose between regular and premium accounts. In addition to listing advertisements and enjoying general promotion as a business member, premium businesses get added visibility and priority access when it comes to new offerings.</p></div>
+		<div id="premier-info"><p><img src="/img/business.png">Local businesses may choose between regular and premium accounts. In addition to listing advertisements and enjoying general promotion as a business member, premium businesses get added visibility and priority access when it comes to new offerings.</p></div>
+		<div id="non-profit-info"><p><img src="/img/nonprofit.png">Local 501(c)3&rsquo;s, non–exempt organizations, and other community associations can join the circuit and receive even more support from those who see the value of the work they do in the community. Nonprofits can post advertisements in the marketplace just like business accounts.</p></div>
+	</div>
+
 	<div id="scheme" class="clear">
 		<div id="plans" class="clear">
 			<div id="individual">
 				<div class="icon"><img src="/img/individual.png"></div>
 				<div class="plan">
 					<h3>Individual</h3>
-					<h4><strong>Free</strong><br>&nbsp;</h4>
+					<h4><strong><span>Free</span></strong></h4>
 					<h5>&nbsp;</h5>
 					<h6>No annual fees</h6>
 
@@ -217,7 +266,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					</ul>
 				</div>
 				<div class="billing-cycle">
-					<button>&nbsp;<br>&nbsp;</button>
+					<button>&nbsp;</button>
 				</div>
 			</div>
 			<div id="freelancer">
@@ -245,7 +294,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<div class="icon"><img src="/img/business.png"></div>
 				<div class="plan">
 					<h3>Regular</h3>
-					<h4><strong>$<span class="odometer">31</span></strong><br>+i$15/mo</h4>
+					<h4><strong>$<span class="odometer">30</span></strong><br>+i$15/mo</h4>
 					<h5>Billed Every 6 Months</h5>
 					<h6>Annual fee of $50</h6>
 
@@ -291,7 +340,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<div class="icon"><img src="/img/nonprofit.png"></div>
 				<div class="plan">
 					<h3>Non&ndash;profit</h3>
-					<h4><strong>$<span class="odometer">31</span></strong><br>+i$15/mo</h4>
+					<h4><strong>$<span class="odometer">30</span></strong><br>+i$15/mo</h4>
 					<h5>Billed Every 6 Months</h5>
 					<h6>Annual fee of $50</h6>
 
@@ -313,7 +362,32 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 	</div>
 
-	<div id="under">
+
+	<div id="faq" class="clear">
+	<hr>
+		<div>
+			<h3>Who is a member?</h3>
+			<p>Anyone who wants to contribute to making the local Ithaca economy can be a member. We offer different types of memberships to suit your needs at your level of participation in the community economy. Everyone can browse content on our online marketplace, but when somebody wants to either sell or buy something, they need to register and become a member. Individuals can join for free!</p>
+		</div>
+
+		<div>
+			<h3>What are the fees?</h3>
+
+			<p><strong>Processing Fee</strong> which is a flat $0.25 per transaction (individuals) or 2% of sales (all other accounts) occuring through the electronic platform and any associated payment methids will be due in USD.</p>
+
+			<p><strong>PayItFWD Fee</strong> which is a flat rate of 2.5% assessed in i$ <strong>on each use of PayItFWD</strong>.</p>
+
+			<p><strong>Late Fee</strong> which occurs if there is a balance due in USD that is greater than $10 or 5% on accounts that are over 30 days late.</p>
+
+			<p><strong>Inactivity Fee</strong> happens when an account has remained inactive (no buying or selling) for six months. The greater of i$10, or 1% of the account will be assessed on a monthly basis until the Member becmomse active again.</p>
+
+			<p><strong>Invalid Payment Fee</strong> of $30 on all returned checks and/ or invalid credit/debit cards.</p>
+		</div>
+
+		<div>
+			<h3>Closing an account</h3>
+			<p>If you&rsquo;re not satisfied with Ithacash services, you&rsquo;re free to leave at any point. No hard feelings! However, if you do decide to go, we will no longer be able to help you promote your business or include you on our directory.</p>
+		</div>
 
 	</div>
 
@@ -327,25 +401,41 @@ $foot = <<<JAVASCRIPT
 <script src="/js/odometer.min.js"></script>
 
 <script>
+
+	$('#plans > div').hover(function() {
+		plan = $(this).attr('id');
+
+		$('#' + plan + '-info').fadeToggle('fast');
+
+	});
+
 	$('.billing-cycle button').click(function() {
 		plans = $('.odometer').parent().parent().parent().parent();
 
 		plans.each(function() {
 			plan = $(this).attr('id');
 			odometer = $(this).find('.odometer');
+			cost = odometer.text().replace('\\n', '');
 			button = $(this).find('.billing-cycle button');
-			button.text('Save by switching to semiannual billing');
-			if ( plan === 'freelancer' ) { 
-				console.log(odometer.text());
-				odometer.text(function(n, o) {
-					return 'blah';
-					if ( o == '12' ) { return 'blah'; }
-					else if ( o == '10' ) { return 'blah'; }
-				}); 
+			
+			if ( button.text() === 'Switch to monthly billing' ) {
+				button.text('Switch to semiannual billing');
 			}
-			else if ( plan === 'regular' ) { odometer.text(35); }
-			else if ( plan === 'premier' ) { odometer.text(60); }
-			else if ( plan === 'non-profit' ) { odometer.text(35); }
+
+			else button.text('Switch to monthly billing');
+
+			if ( plan === 'freelancer' ) {
+				if (cost == 10) { odometer.text(12); }
+				else odometer.text(10);
+			}
+			else if ( plan === 'regular' || plan === 'non-profit' ) {
+				if (cost == 30) { odometer.text(35); }
+				else odometer.text(30);
+			}
+			else if ( plan === 'premier' ) {
+				if (cost == 50) { odometer.text(60); }
+				else odometer.text(50);
+			}
 		})
 
 	})
