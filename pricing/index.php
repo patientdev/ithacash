@@ -17,6 +17,7 @@ $head = <<<'CSS'
 		#nav-menu { display: none; }
 
 		#intro {
+			min-width: 100%;
 			background-image: none;
 			background-color: rgb(88, 122, 70);
 		}
@@ -32,9 +33,9 @@ $head = <<<'CSS'
 
 		#plan-info > div { 
 			display: none; 
-			width: 40%;
+			width: 400px;
 			position: absolute;
-			top: 10%; right: 10%;
+			top: 10%; right: 50px;
 			color: white;
 			font-size: 1.2em;
 		}
@@ -57,6 +58,7 @@ $head = <<<'CSS'
 
 		#scheme {
 			width: 1200px; height: 600px;
+			max-width: 90%;
 			margin: auto;
 			position: relative;
 			top: 10%;
@@ -204,11 +206,11 @@ $head = <<<'CSS'
 		}
 
 		#faq {
-			position: absolute;
-			width: 1250px; margin: auto;
-			padding: 450px 50px 100px 50px;
-			top: 600px;
-			left: 50%; margin-left: -625px;
+			position: relative;
+			width: 1300px; margin: auto;
+			max-width: 92%;
+			padding: 575px 50px 100px 50px;
+			top: -300px;
 			margin-top: 40px;
 			background-color: rgb(238, 237, 235);
 			z-index: -1;
@@ -417,6 +419,13 @@ $foot = <<<JAVASCRIPT
 			odometer = $(this).find('.odometer');
 			cost = odometer.text().replace('\\n', '');
 			button = $(this).find('.billing-cycle button');
+			period = $('h5', this);
+
+			if ( period.text() === 'Billed Every 6 Months') {
+				period.text('Billed Annually');
+			}
+
+			else period.text('Billed Every 6 Months');
 			
 			if ( button.text() === 'Switch to monthly billing' ) {
 				button.text('Switch to semiannual billing');
