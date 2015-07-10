@@ -134,12 +134,18 @@ $head = <<<'CSS'
 			letter-spacing: -1px;
 			line-height: 1.4em;
 			text-transform: lowercase;
+			margin-top: 0;
+			height: 80px;
 		}
 
 		#plans h4 strong {
 			font-size: 2.8em;
 			font-weight: 400;
 		}
+
+		#plans h4 span {
+		line-height: 1em;
+	}
 
 		#plans h5 {
 			font-size: 1.2em;
@@ -206,7 +212,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<div class="icon"><img src="/img/individual.png"></div>
 				<div class="plan">
 					<h3>Individual</h3>
-					<h4><strong>Free</strong><br>&nbsp;</h4>
+					<h4><strong><span>Free</span></strong></h4>
 					<h5>&nbsp;</h5>
 					<h6>No annual fees</h6>
 
@@ -217,7 +223,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					</ul>
 				</div>
 				<div class="billing-cycle">
-					<button>&nbsp;<br>&nbsp;</button>
+					<button>&nbsp;</button>
 				</div>
 			</div>
 			<div id="freelancer">
@@ -245,7 +251,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<div class="icon"><img src="/img/business.png"></div>
 				<div class="plan">
 					<h3>Regular</h3>
-					<h4><strong>$<span class="odometer">31</span></strong><br>+i$15/mo</h4>
+					<h4><strong>$<span class="odometer">30</span></strong><br>+i$15/mo</h4>
 					<h5>Billed Every 6 Months</h5>
 					<h6>Annual fee of $50</h6>
 
@@ -291,7 +297,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				<div class="icon"><img src="/img/nonprofit.png"></div>
 				<div class="plan">
 					<h3>Non&ndash;profit</h3>
-					<h4><strong>$<span class="odometer">31</span></strong><br>+i$15/mo</h4>
+					<h4><strong>$<span class="odometer">30</span></strong><br>+i$15/mo</h4>
 					<h5>Billed Every 6 Months</h5>
 					<h6>Annual fee of $50</h6>
 
@@ -333,19 +339,27 @@ $foot = <<<JAVASCRIPT
 		plans.each(function() {
 			plan = $(this).attr('id');
 			odometer = $(this).find('.odometer');
+			cost = odometer.text().replace('\\n', '');
 			button = $(this).find('.billing-cycle button');
-			button.text('Save by switching to semiannual billing');
-			if ( plan === 'freelancer' ) { 
-				console.log(odometer.text());
-				odometer.text(function(n, o) {
-					return 'blah';
-					if ( o == '12' ) { return 'blah'; }
-					else if ( o == '10' ) { return 'blah'; }
-				}); 
+			
+			if ( button.text() === 'Switch to monthly billing' ) {
+				button.text('Switch to semiannual billing');
 			}
-			else if ( plan === 'regular' ) { odometer.text(35); }
-			else if ( plan === 'premier' ) { odometer.text(60); }
-			else if ( plan === 'non-profit' ) { odometer.text(35); }
+
+			else button.text('Switch to monthly billing');
+
+			if ( plan === 'freelancer' ) {
+				if (cost == 10) { odometer.text(12); }
+				else odometer.text(10);
+			}
+			else if ( plan === 'regular' || plan === 'non-profit' ) {
+				if (cost == 30) { odometer.text(35); }
+				else odometer.text(30);
+			}
+			else if ( plan === 'premier' ) {
+				if (cost == 50) { odometer.text(60); }
+				else odometer.text(50);
+			}
 		})
 
 	})
