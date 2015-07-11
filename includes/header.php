@@ -35,3 +35,4 @@
 				<li id="sign-up"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Buy i$</a></li>
 			</ul>
 		</header>
+		
