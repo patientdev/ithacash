@@ -417,7 +417,14 @@ $foot = <<<JAVASCRIPT
 			odometer = $(this).find('.odometer');
 			cost = odometer.text().replace('\\n', '');
 			button = $(this).find('.billing-cycle button');
-			
+			period = $('h5', this);
+
+			if ( period.text() === 'Billed Every 6 Months') {
+				period.text('Billed Annually');
+			}
+
+			else period.text('Billed Every 6 Months');
+
 			if ( button.text() === 'Switch to monthly billing' ) {
 				button.text('Switch to semiannual billing');
 			}
