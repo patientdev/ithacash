@@ -32,9 +32,9 @@ $head = <<<'CSS'
 
 		#plan-info > div { 
 			display: none; 
-			width: 40%;
+			width: 500px;
 			position: absolute;
-			top: 10%; right: 10%;
+			top: 50px; right: 100px;
 			color: white;
 			font-size: 1.2em;
 		}
