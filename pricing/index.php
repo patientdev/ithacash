@@ -422,7 +422,7 @@ $foot = <<<JAVASCRIPT
 			period = $('h5', this);
 
 			if ( period.text() === 'Billed Every 6 Months') {
-				period.text('Billed Annually');
+				period.text('Billed Monthly');
 			}
 
 			else period.text('Billed Every 6 Months');
