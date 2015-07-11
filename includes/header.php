@@ -22,7 +22,7 @@
 	
 	<div id="container" class="clear">
 		<header>
-			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
+			<h1>test<a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
 
 			<ul id="nav-menu">
 				<li><a href="/#how-it-works">How It Works</a></li>
@@ -34,5 +34,5 @@
 				<li id="buy-i-dollars"><a href="/apply/" class="green-button">Sign Up</a></li>
 				<li id="sign-up"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Buy i$</a></li>
 			</ul>
-			
+
 		</header>
