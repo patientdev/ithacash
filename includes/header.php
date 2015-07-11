@@ -6,8 +6,8 @@
 		
 		<title>ithacash &mdash; Money Made for Main St.</title>
 
-		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 		<link rel="stylesheet" href="/css/ithacash.css">
 		<link rel="stylesheet" href="/js/slick/slick.css">
