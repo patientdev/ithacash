@@ -80,7 +80,7 @@ $head = <<<'CSS'
 </style>
 CSS;
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "includes/header.php"; ?>
+include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="content">
 
@@ -153,4 +153,4 @@ $foot = <<<'JAVASCRIPT'
 
 JAVASCRIPT;
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "includes/footer.php"; ?>
+include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
