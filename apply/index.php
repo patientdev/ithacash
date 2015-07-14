@@ -90,9 +90,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<p>In the meantime, why not go ahead and preload your account by purchasing some i$.</p>
 
 		<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button">Buy i$</a></p>
-
-		<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="sq-embed-item"> online</a></p>
-		<script src="https://cdn.sq-api.com/market/embed.js" charset="utf-8"></script>
 	</div>
 
 	<form id="apply" method="POST" action="" novalidate>
