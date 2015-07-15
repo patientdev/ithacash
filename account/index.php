@@ -31,34 +31,41 @@ $head = <<<'CSS'
 	}
 
 	.row {
-		padding: 40px;
+		padding: 0 40px;
 		color: rgb(88, 122, 70);
 		font-size: 1.8em;
 		line-height: 1.2em;
-		margin: 60px 0;
+		margin: 20px 0;
 	}
 
 	.image {
-		width: 45%
+		width: 45%;
+		display: inline-block;
 	}
 
-	.image:nth-of-type(odd) {
+	.image {
+		max-width: 100%;
+	}
+
+	.row:nth-of-type(odd) .image {
 		float: right;
 	}
 
-	.image:nth-of-type(even) {
+	.row:nth-of-type(even) .image {
 		float: left;
 	}
 
 	.copy {
 		width: 50%;
+		display: inline-block;
+		vertical-align: middle;
 	}
 
-	.copy:nth-of-type(odd) {
+	.row:nth-of-type(odd) .copy {
 		float: left;
 	}
 
-	.copy:nth-of-type(even) {
+	.row:nth-of-type(even) .copy {
 		float: right;
 	}
 </style>
@@ -73,9 +80,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 </div>
 
 <div id="rows">
-	<div class="row">
+	<div class="row clear">
 		<div class="image">
-
+			<img src="/account/img/WriteIcon.png">
 		</div>
 
 		<div class="copy">
@@ -83,9 +90,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row clear">
 		<div class="image">
-
+			<img src="/account/img/WalkingIcon.png">
 		</div>
 
 		<div class="copy">
@@ -93,9 +100,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row clear">
 		<div class="image">
-
+			<img src="/account/img/CashIcon.png">
 		</div>
 
 		<div class="copy">
@@ -103,9 +110,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row clear">
 		<div class="image">
-
+			<img src="/account/img/PhoneIcon.png">
 		</div>
 
 		<div class="copy">
@@ -113,9 +120,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row clear">
 		<div class="image">
-
+			<img src="/account/img/CompIcon.png">
 		</div>
 
 		<div class="copy">
