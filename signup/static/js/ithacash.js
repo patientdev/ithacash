@@ -53,28 +53,28 @@ $(function() {
 		});
 	});
 
-	$('#apply').submit(function( event ) {
-		event.preventDefault();
+	// $('#apply').submit(function( event ) {
+	// 	event.preventDefault();
 		
-		$('input, textarea', this).css('outline', 'none');
-		$('#status').html('');
+	// 	$('input, textarea', this).css('outline', 'none');
+	// 	$('#status').html('');
 
-		isNotABot = notABot($('#robotProof input').val(), answer);
-		formIsCompleted = formCompleted($('#apply'));
-		passwordsMatch = passwordMatch($(':password'));
+	// 	isNotABot = notABot($('#robotProof input').val(), answer);
+	// 	formIsCompleted = formCompleted($('#apply'));
+	// 	passwordsMatch = passwordMatch($(':password'));
 
-		if ( isNotABot && formIsCompleted && passwordsMatch ) { 
-			data = $(this).serialize();
+	// 	if ( isNotABot && formIsCompleted && passwordsMatch ) { 
+	// 		data = $(this).serialize();
 
-			$.post('/php/form-submit.php', data, function( success ) {
-				$('#apply').slideUp();
-				setTimeout(function() {
-					$('#buy').slideDown();
-				}, 401);
+	// 		$.post('/php/form-submit.php', data, function( success ) {
+	// 			$('#apply').slideUp();
+	// 			setTimeout(function() {
+	// 				$('#buy').slideDown();
+	// 			}, 401);
 				
-			}); 
-		}
-	});
+	// 		}); 
+	// 	}
+	// });
 
 	$('#panels').slick({
 		  infinite: true,
