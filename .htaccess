@@ -4,4 +4,5 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.ithacash.com [NC]
 RewriteRule ^(.*)$ http://ithacash.com/$1 [L,R=301]
 
-Header set Access-Control-Allow-Origin "*"
+# Redirect login to Cyclos
+Redirect /login http://www.communities.cyclos.org/Ithacash#login
