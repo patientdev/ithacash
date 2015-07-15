@@ -1,0 +1,448 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"list-sty",
+				"list-style-type"
+			],
+			[
+				"webk",
+				"webkit-transition-delay"
+			],
+			[
+				"webkit-tran",
+				"webkit-transition-duration"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"php",
+				"php"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"cat",
+				"catalog_request"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"background-",
+				"background-position"
+			],
+			[
+				"s",
+				"spin2"
+			],
+			[
+				"cu",
+				"curtain1"
+			],
+			[
+				"cut",
+				"curtainGo"
+			],
+			[
+				"cur",
+				"curtainCome"
+			],
+			[
+				"sp",
+				"spread"
+			],
+			[
+				"set",
+				"setAttribute"
+			],
+			[
+				"bac",
+				"backgroundImage"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 367.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: if … else"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/shanecav/Sites/fawn/search/index.php",
+		"/Users/shanecav/Sites/ithacash/index.php",
+		"/Users/shanecav/Sites/ithacash/includes/header.php",
+		"/Users/shanecav/Sites/ithacash/css/ithacash.css",
+		"/Users/shaane/Sites/shanecavnet/bpd/index.html",
+		"/Users/shaane/Sites/shanecavnet/bpd/page2.html",
+		"/Users/shaane/Sites/shanecavnet/js/jquery.php",
+		"/Users/shaane/Sites/shanecavnet/css/shanecav.css",
+		"/Users/shaane/Sites/shanecavnet/index.php",
+		"/Users/shaane/Desktop/bpd/index.html",
+		"/Users/shaane/Sites/shanecavnet/portfolio/cart/css/cart.css",
+		"/Users/shaane/Sites/shanecavnet/portfolio/cart/index.php",
+		"/Users/shaane/Sites/shanecavnet/portfolio/cart/js/cart.js",
+		"/Users/shaane/Sites/shanecavnet/portfolio/index.php",
+		"/Users/shaane/Sites/shanecavnet/portfolio/cart/js/cart.objects.js",
+		"/Users/shaane/Sites/mitegen/includes/header.php",
+		"/Users/shaane/Sites/mitegen/micromounts/index.php",
+		"/Users/shaane/Sites/shanecavnet/js/shanecav.js",
+		"/Users/shaane/Sites/shanecavnet/☸/css/☸.css",
+		"/Users/shaane/Sites/shanecavnet/☸/js/☸.js",
+		"/Users/shaane/Sites/shanecavnet/☸/index.php",
+		"/Users/shaane/Sites/mitegen/includes/jquery.js",
+		"/Users/shaane/Sites/mitegen/css/mitegen.css",
+		"/Users/shaane/Sites/mitegen/js/mitegen.js",
+		"/Users/shaane/Sites/mitegen/js/mitegen.test.js",
+		"/Users/shaane/Sites/mitegen/js/mitegen-test-jquery.js",
+		"/Users/shaane/Sites/shanecavnet/+/anim/duh.html",
+		"/Users/shaane/Sites/shanecavnet/+/index.php",
+		"/Users/shaane/Sites/shanecavnet/+++/anim/heart.html",
+		"/Users/shaane/Sites/shanecavnet/+++/anim/babies.html",
+		"/Users/shaane/Sites/shanecavnet/+++/index.php",
+		"/Users/shaane/Sites/shanecavnet/.htaccess",
+		"/Users/shaane/Sites/shanecavnet/js/jquery-1.11.1.js",
+		"/Users/shaane/Sites/shanecavnet/+++/anim/babies.png",
+		"/Users/shaane/Sites/shanecavnet/manifest.json",
+		"/Users/shaane/Sites/shanecavnet/sftp-config.json",
+		"/Users/shaane/Sites/shanecavnet/+++/issue0/js/issue0.js",
+		"/Users/shaane/Sites/shanecavnet/+++/issue0/index.php",
+		"/Users/shaane/Sites/shanecavnet/+++/issue0/css/issue0.css",
+		"/Users/shaane/Documents/Sublime Projects/shanecav.sublime-project",
+		"/Users/shaane/bin/date_countdownv1.py",
+		"/Users/shaane/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/py/$$$.py",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/py/$$$-new.py",
+		"/Users/shaane/Documents/sites/jme/elements/header.php",
+		"/Users/shaane/Documents/sites/shanecavnet/get@me/index.php",
+		"/Users/shaane/Documents/sites/shanecavnet/index.php",
+		"/Users/shaane/Documents/sites/jme/officehours/app/controller/officehours.php",
+		"/Users/shaane/Documents/sites/jme/officehours/index.php",
+		"/Users/shaane/Documents/sites/jme/css/jme.css",
+		"/Users/shaane/Documents/sites/jme/cv/index.php",
+		"/Users/shaane/Documents/sites/jme/index.php",
+		"/Users/shaane/Documents/sites/shanecavnet/get@me/css/get@me.css",
+		"/Users/shaane/Documents/sites/shanecavnet/get@me/js/get@me.js",
+		"/Users/shaane/Documents/sites/shanecavnet/email.php",
+		"/Users/shaane/Documents/sites/shanecavnet/css/shanecav.css",
+		"/Users/shaane/Documents/sites/shanecavnet/js/shanecav.js",
+		"/Users/shaane/Documents/sites/old/shanecavnet20140807/index.php",
+		"/Users/shaane/Desktop/productmenu_all.html",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/index.php",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/anim/duh.html",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/anim/bloomp.html",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/anim/21stcentury.html",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/anim/babies.html",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/css/$$$.css",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/js/$$$.js",
+		"/Users/shaane/Documents/sites/shanecavnet/loan.py",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/js/loans.js",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/$$$/loans.js",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/peugeot/r/css/peugeot.css",
+		"/Users/shaane/Documents/sites/shanecavnet/css/peugeot.css",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/peugeot/r/css/mobile.css",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/peugeot/r/index.php",
+		"/Users/shaane/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/peugeot/index.php",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/peugeot/css/peugeot.css",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/shrthnd/index.php",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/shrthnd/js/shrthnd.js",
+		"/Users/shaane/Documents/sites/shanecavnet/+++/shrthnd/css/shrthnd.css",
+		"/Users/shaane/Desktop/app.compiled",
+		"/Users/shaane/Documents/sites/shanecavnet/._./peugeot/index.php",
+		"/Users/shaane/Documents/sites/testes/peugeot/index.html",
+		"/Users/shaane/Documents/sites/shanecavnet/css/mobile.css",
+		"/Users/shaane/Documents/sites/shanecavnet/js/shanecav-old.js",
+		"/Users/shaane/Documents/sites/shanecavnet/js/jquery-plug-ins.js",
+		"/Users/shaane/Documents/sites/shanecavnet/css/animations.css",
+		"/Users/shaane/Documents/sites/n.html",
+		"/Users/shaane/Documents/sites/wu.html",
+		"/Users/shaane/Downloads/smooth-scroll-master/index.html",
+		"/Users/shaane/Documents/sites/jme/js/smooth-scroll.js",
+		"/Users/shaane/Documents/sites/jme/js/jme.js",
+		"/Users/shaane/Documents/sites/bar.html",
+		"/Users/shaane/Documents/sites/jme/js/bind-polyfill.js",
+		"/Users/shaane/Documents/sites/jme/elements/footer.php",
+		"/Users/shaane/Documents/sites/shanecavnet/404.php",
+		"/Users/shaane/Documents/sites/jme/officehours/app/controller/schedule.php",
+		"/Users/shaane/Documents/sites/jme/officehours/app/controller/students.php",
+		"/Users/shaane/Documents/sites/shanecavnet/analyticstracking.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"green-",
+			"wheel",
+			"contain",
+			"align",
+			"position",
+			"contactinfo",
+			"contact",
+			"<img",
+			"logo",
+			"wheel",
+			"span",
+			"roate",
+			"#plus",
+			"css",
+			".css",
+			"css",
+			"id=\"arrow\"",
+			"gold",
+			"balance",
+			"php",
+			"1px",
+			"51pxpx",
+			"0",
+			"0.96",
+			"bottomleft",
+			".peugeot ",
+			"peugeot_",
+			"background",
+			"100px",
+			"height: 200%",
+			"file",
+			"name",
+			"tab",
+			"2000px",
+			"300%",
+			"width: 2000px; ",
+			"#yellow",
+			"#222",
+			"#333",
+			"#111",
+			"black",
+			"0px",
+			"#333",
+			"white",
+			"2000",
+			"100%",
+			"200px",
+			"0% { background-color: white; }\n	100% { background-color: transparent; }\n}",
+			"0% { background-color: white; }\n	100% { background-color: transparent; }\n}\n\n@-moz-keyframes curtain {\n	0% { background-color: white; }\n	100% { background-color: transparent; }\n}\n\n@-ms-keyframes curtain {\n	0% { background-color: white; }\n	100% { background-color: transparent; }\n}\n\n@-o-keyframes curtain {\n	0% { background-color: white; }\n	100% { background-color: transparent; }\n}\n\n@-keyframes curtain {\n	0% { background-color: white; }\n	100% { background-color: transparent; }\n}",
+			"0% { opacity: 1; }\n  100% { opacity: 0; }",
+			"url",
+			"0% { background-color: white; }\n	100% { background-color: transparent; }",
+			"alert",
+			"0.5",
+			"spin",
+			"75",
+			"$img",
+			"1em",
+			"0.1em",
+			"text-shadow:",
+			"shadow",
+			"this)",
+			"'",
+			"\"",
+			"cayuga",
+			"toggleClass",
+			"360deg",
+			"important",
+			"this",
+			" onclick=\"bgSelect(this)\"",
+			"spin-2",
+			"spin-1",
+			"2",
+			"spin",
+			"spin-2",
+			"spin",
+			"2",
+			"alert",
+			"throw",
+			"alert",
+			"maroon",
+			"out",
+			"75",
+			"45",
+			"freq",
+			"spin",
+			"this",
+			"this.name, ",
+			"getElementById(\"all\")"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"class=\"arrow\"",
+			"0",
+			"getElementById(\"curtain\")"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/shaane/Documents/Sublime Projects/get@me.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}

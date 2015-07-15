@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" class="clear">
 	<head>
@@ -9,11 +11,11 @@
 		<link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" href="/css/ithacash.css">
-		<link rel="stylesheet" href="/js/slick/slick.css">
-		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width:800px)"/>
+		<link rel="stylesheet" href="{% static '/css/ithacash.css' %}">
+		<link rel="stylesheet" href="{% static '/js/slick/slick.css' %}">
+		<link rel="stylesheet" href="{% static '/css/mobile.css' %}" media="only screen and (max-device-width:800px)"/>
 
-		<link rel="icon" type="image/x-icon" href="/img/IthaCash_icon_2color.png">
+		<link rel="icon" type="image/x-icon" href="{% static '/img/IthaCash_icon_2color.png' %}">
 
 		{% block head %}
 		{% endblock %}
@@ -23,7 +25,7 @@
 	
 	<div id="container" class="clear">
 		<header>
-			<h1><a href="/"><img src="/img/ithacash_logo_rgb_325x124.png" alt="ithacash"></a></h1>
+			<h1><a href="/"><img src="{% static '/img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
 
 			<ul id="nav-menu">
 				<li><a href="/#how-it-works">How It Works</a></li>
@@ -45,10 +47,10 @@
 	<footer>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>if (!window.jQuery) { document.write('<script src="/js/jquery-1.11.3.min.js"><\/script>'); }</script>
+	<script>if (!window.jQuery) { document.write('<script src="{% static '/js/jquery-1.11.3.min.js' %}"><\/script>'); }</script>
 	
-	<script src="/js/ithacash.js"></script>
-	<script src="/js/slick/slick.min.js"></script>
+	<script src="{% static '/js/ithacash.js' %}"></script>
+	<script src="{% static '/js/slick/slick.min.js' %}"></script>
 
 	{% block foot %}
 	{% endblock %}
