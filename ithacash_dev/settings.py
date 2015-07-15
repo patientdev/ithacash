@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ithacash_dev.apps.signup',
+    'signup',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,10 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = (
-    'ithacash_dev.urls',
-    'ithacash_dev.apps.signup.urls'
-    )
+ROOT_URLCONF = 'ithacash_dev.urls'
 
 TEMPLATES = [
     {

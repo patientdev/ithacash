@@ -1,8 +1,0 @@
-RewriteEngine On
-
-# Redirect www to non-www:
-RewriteCond %{HTTP_HOST} ^www.ithacash.com [NC]
-RewriteRule ^(.*)$ http://ithacash.com/$1 [L,R=301]
-
-# Redirect login to Cyclos
-Redirect /login http://www.communities.cyclos.org/Ithacash#login
