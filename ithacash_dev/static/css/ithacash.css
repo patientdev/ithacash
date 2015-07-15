@@ -1,4 +1,3 @@
-{% load staticfiles %}
 html, body { padding: 0; margin: 0; width: 100%; }
 
 body, button, input, textarea {
@@ -153,7 +152,7 @@ h1 img {
 }
 
 #intro {
-	background-image: url({% static '/img/owner-cling.jpg' %});
+	background-image: url(../img/owner-cling.jpg);
 	background-size: cover;
 	width: 100%;
 	height: calc(100vh - 93px);
