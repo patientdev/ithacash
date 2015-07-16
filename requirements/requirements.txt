@@ -1,1 +1,2 @@
 Django==1.8.3
+https://github.com/SlashRoot/hendrix/archive/code-reorg.zip
