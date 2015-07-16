@@ -527,7 +527,7 @@ h1 img {
 }
 
 #the-circuit {
-	background-image: url(/img/map.jpg);
+	background-image: url(../img/map.jpg);
 	background-size: cover;
 	background-position: 0 50%;
 	height: calc(100vh - 93px);
