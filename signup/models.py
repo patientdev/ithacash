@@ -24,7 +24,7 @@ class SignUp(models.Model):
 	state = models.CharField(max_length=255, blank=True)
 	zip_code = models.CharField(max_length=255, blank=True)
 	tin_last4 = models.IntegerField()
-	tin = EncryptedCharField(max_length=100)
+	tin = EncryptedCharField(max_length=255)
 	website = models.URLField(max_length=255, blank=True)
 	referrer = models.CharField(max_length=255, blank=True)
 	about = models.TextField(max_length=255, blank=True)
