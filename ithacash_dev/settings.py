@@ -98,6 +98,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https:/docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = ''
+STATIC_ROOT = 'ithacash_dev/static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( BASE_DIR, 'ithacash_dev/static' )
+
+HENDRIX_CHILD_RESOURCES = (
+  'hendrix.contrib.resources.static.DefaultDjangoStaticResource',
+  # uncomment if you would like to serve the django admin static files
+  #'hendrix.contrib.resources.static.DjangoAdminStaticResource',
+  )
