@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from signup.models import *
 from django.core.mail import send_mail
-import csv
+import csv, os
 
 def front(request):
 	return render(request, 'front.html')
@@ -13,17 +13,32 @@ def apply(request):
 		if form.is_valid():
 			# Email and kick to /thanks/
 
+			post = request.POST.copy()
+
 			message = ''
+			fieldnames = []
 
-			for key, value in request.POST.iteritems():
-				if value:
-					key = key.upper()
-					message+=key + ": " + value + "\n"
+			for key, value in post.iteritems():
+				fieldnames.append(key)
 
-			# for row in cvs.reader
-			# 	csv.reader()
+			csvfile = 'signup/data/applications.csv';
 
-			print message
+			if not os.path.isfile(csvfile):
+				f = open(csvfile, 'a')
+				writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+				writer.writeheader()
+
+			else:
+				f = open(csvfile, 'a')
+				writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+			rows = {}
+			rows.update(post.iteritems())
+
+			writer.writerow(rows)
+
+			# print message
 
 		# else:
 		# 	print form.error()
