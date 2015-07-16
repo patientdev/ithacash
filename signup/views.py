@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from signup.models import *
 from django.core.mail import send_mail
-import csv, os
+import csv, os, random, string
 from django.http import HttpResponseRedirect, JsonResponse
 from signup.utils import CSVify
 
@@ -13,11 +13,21 @@ def apply(request):
 		form = SignUpForm(request.POST)
 
 		if form.is_valid():
-			# Append plain text data to CSV then kick to /thanks/
+			# Append plain text data to CSV for Cyclos import
+			# Then generate a temp pasword for them to replace in Cyclos
+			# Then kick to /thanks/
 
-			CSVify(request.POST.copy(), 'signup/data/applications.csv')
+			# We're not showing the tin_last4 field on the application form
+			# Let's auto-gen tin_last4 from incoming tin
+			obj = form.save(commit=False)
+			obj.tin_last4 = request.POST['tin'][-4:]
+			obj.save()
 
-			return(HttpResponseRedirect('/thanks'))
+			temp_password = ''.join(str(v) for v in random.sample(range(0, 9), 5))
+
+			CSVify(request.POST.copy(), 'signup/data/cyclos.csv')
+
+
 
 		else:
 			return (JsonResponse({ 'errors': form.errors.as_json() }))
