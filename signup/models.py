@@ -29,6 +29,9 @@ class SignUp(models.Model):
 
 class SignUpForm(ModelForm):
 
+	error_css_class = 'error'
+	required_css_class = 'required'
+
 	def __init__(self, *args, **kwargs):
 		super(SignUpForm, self).__init__(*args, **kwargs)
 
@@ -37,6 +40,7 @@ class SignUpForm(ModelForm):
 		self.fields['contact_name'].widget.attrs['required'] = True
 		self.fields['login_name'].widget.attrs['required'] = True
 		self.fields['email'].widget.attrs['required'] = True
+
 		self.fields['tin'].widget.attrs['disabled'] = True
 
 		self.fields['city'].widget.attrs['value'] = 'Ithaca'

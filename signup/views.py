@@ -23,10 +23,10 @@ def apply(request):
 			# for row in cvs.reader
 			# 	csv.reader()
 
-			# print message
+			print message
 
-		else:
-			print form.error()
+		# else:
+		# 	print form.error()
 
 		# send_mail('Ithacash Application', message, request.POST['email'], ['shane@patientdev.com'])
 
