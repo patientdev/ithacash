@@ -39,12 +39,14 @@
 		display: inline-block;
 		padding: 5px;
 		line-height: 1em;
+		border: 1px solid #ccc;
 	}
 
 	#apply select {
 		padding: 0;
 		margin-top: 15px;
 		margin-bottom: 10px;
+		font-size: 1em;
 	}
 
 	textarea {
@@ -147,6 +149,16 @@
 		answer = num1 + num2;
 
 		$('#robotProof').append('<p>What is ' + nums[num1] + ' plus ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
+
+		$('#apply').submit(function( event ) {
+			event.preventDefault();
+
+			data = $(this).serialize();
+
+			$.post('/apply/', data, function( response ) {
+				if ( response.errors != '' ) { console.log(response.errors[1]); }
+			});
+		})
 	});
 </script>
 {% endblock %}
