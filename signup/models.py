@@ -4,24 +4,25 @@ from django.forms import ModelForm
 class SignUp(models.Model):
 	ACCOUNT_TYPE_CHOICES = (
 		(None, 'Who are you?'),
-		('individual', 'Individual'),
-		('freelancer', 'Freelancer'),
-		('business', 'Business'),
-		('nonprofit', 'Nonprofit'),
+		('Individual', 'Individual'),
+		('Freelancer', 'Freelancer'),
+		('Business', 'Business'),
+		('Nonprofit', 'Nonprofit'),
 	)
 
 	account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
-	name_company = models.CharField(max_length=255)
-	name_contact = models.CharField(max_length=255)
-	name_login = models.CharField(max_length=255)
+	company_name = models.CharField(max_length=255)
+	contact_name = models.CharField(max_length=255)
+	login_name = models.CharField(max_length=255)
 	email = models.EmailField(max_length=255)
-	phone_mobile = models.CharField(max_length=255, blank=True)
-	phone_landline = models.CharField(max_length=255, blank=True)
+	mobile_phone = models.CharField(max_length=255, blank=True)
+	landline_phone = models.CharField(max_length=255, blank=True)
 	address_1 = models.CharField(max_length=255, blank=True)
 	address_2 = models.CharField(max_length=255, blank=True)
-	address_city =models.CharField(max_length=255, blank=True)
-	address_state = models.CharField(max_length=255, blank=True)
-	address_zip = models.CharField(max_length=255, blank=True)
+	city =models.CharField(max_length=255, blank=True)
+	state = models.CharField(max_length=255, blank=True)
+	zip_code = models.CharField(max_length=255, blank=True)
+	tin = models.CharField(max_length=1, blank=True)
 	website = models.URLField(max_length=255, blank=True)
 	referrer =models.CharField(max_length=255, blank=True)
 	about =models.TextField(max_length=255, blank=True)
@@ -32,16 +33,19 @@ class SignUpForm(ModelForm):
 		super(SignUpForm, self).__init__(*args, **kwargs)
 
 		self.fields['account_type'].widget.attrs['required'] = True
-		self.fields['name_company'].widget.attrs['required'] = True
-		self.fields['name_contact'].widget.attrs['required'] = True
-		self.fields['name_login'].widget.attrs['required'] = True
+		self.fields['company_name'].widget.attrs['required'] = True
+		self.fields['contact_name'].widget.attrs['required'] = True
+		self.fields['login_name'].widget.attrs['required'] = True
 		self.fields['email'].widget.attrs['required'] = True
+		self.fields['tin'].widget.attrs['disabled'] = True
 
-		self.fields['address_city'].widget.attrs['value'] = 'Ithaca'
-		self.fields['address_state'].widget.attrs['value'] = 'NY'
-		self.fields['address_zip'].widget.attrs['value'] = 14850
+		self.fields['city'].widget.attrs['value'] = 'Ithaca'
+		self.fields['state'].widget.attrs['value'] = 'NY'
+		self.fields['zip_code'].widget.attrs['value'] = 14850
+
+		self.fields['tin'].label = "EIN/SSN"
 
 	class Meta:
 		model = SignUp
 
-		fields = ['account_type', 'name_company', 'name_contact', 'name_login', 'email', 'phone_mobile', 'phone_landline', 'address_1', 'address_2', 'address_city', 'address_state', 'address_zip', 'website', 'referrer', 'about',]
+		fields = '__all__'
