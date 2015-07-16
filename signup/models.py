@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from encrypted_fields import EncryptedCharField
 
 class SignUp(models.Model):
 	ACCOUNT_TYPE_CHOICES = (
@@ -22,10 +23,11 @@ class SignUp(models.Model):
 	city =models.CharField(max_length=255, blank=True)
 	state = models.CharField(max_length=255, blank=True)
 	zip_code = models.CharField(max_length=255, blank=True)
-	tin = models.CharField(max_length=1, blank=True)
+	tin_last4 = models.IntegerField()
+	tin = EncryptedCharField(max_length=100)
 	website = models.URLField(max_length=255, blank=True)
-	referrer =models.CharField(max_length=255, blank=True)
-	about =models.TextField(max_length=255, blank=True)
+	referrer = models.CharField(max_length=255, blank=True)
+	about = models.TextField(max_length=255, blank=True)
 
 class SignUpForm(ModelForm):
 
@@ -41,8 +43,6 @@ class SignUpForm(ModelForm):
 		self.fields['login_name'].widget.attrs['required'] = True
 		self.fields['email'].widget.attrs['required'] = True
 
-		self.fields['tin'].widget.attrs['disabled'] = True
-
 		self.fields['city'].widget.attrs['value'] = 'Ithaca'
 		self.fields['state'].widget.attrs['value'] = 'NY'
 		self.fields['zip_code'].widget.attrs['value'] = 14850
@@ -52,4 +52,4 @@ class SignUpForm(ModelForm):
 	class Meta:
 		model = SignUp
 
-		fields = '__all__'
+		exclude = ['tin_last4']

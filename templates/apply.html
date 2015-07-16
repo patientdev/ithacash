@@ -34,7 +34,7 @@
 	}
 
 	#apply input, #apply span, #apply textarea, #apply select {
-		margin-top: 10px; 
+		margin-top: 10px;
 		width: 400px;
 		display: inline-block;
 		padding: 5px;
@@ -53,8 +53,8 @@
 		height: 10em;
 	}
 
-	#robotProof { 
-		margin-top: 20px; 
+	#robotProof {
+		margin-top: 20px;
 		line-height: 1.2em;
 		text-align: center;
 	}
@@ -63,6 +63,12 @@
 		margin: 0;
 		width: 8em;
 		text-align: center;
+	}
+
+	form p:after {
+		content: "";
+		display: block;
+		clear: both;
 	}
 
 	form p:last-of-type {
@@ -150,15 +156,23 @@
 
 		$('#robotProof').append('<p>What is ' + nums[num1] + ' plus ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
 
-		$('#apply').submit(function( event ) {
-			event.preventDefault();
-
-			data = $(this).serialize();
-
-			$.post('/apply/', data, function( response ) {
-				if ( response.errors != '' ) { console.log(response.errors[1]); }
-			});
-		})
+		// $('#apply').submit(function( event ) {
+		// 	event.preventDefault();
+		//
+		// 	data = $(this).serialize();
+		//
+		// 	$.post('/apply/', data, function( response ) {
+		// 		console.log(response);
+		// 		if ( response.errors != '' ) {
+		// 			errors = $.parseJSON(response.errors);
+		// 			$.each(errors, function(index, item) {
+		// 				if ( $(this)[0].code == 'required') {
+		// 					$('#id_' + index).parent().addClass('error');
+		// 				}
+		// 			})
+		// 		}
+		// 	});
+		// })
 	});
 </script>
 {% endblock %}
