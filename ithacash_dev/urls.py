@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'signup.views.front'),
     url(r'^apply/', 'signup.views.apply'),
+    url(r'^account/', 'signup.views.account'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
