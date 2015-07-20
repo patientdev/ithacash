@@ -156,23 +156,26 @@
 
 		$('#robotProof').append('<p>What is ' + nums[num1] + ' plus ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
 
-		// $('#apply').submit(function( event ) {
-		// 	event.preventDefault();
-		//
-		// 	data = $(this).serialize();
-		//
-		// 	$.post('/apply/', data, function( response ) {
-		// 		console.log(response);
-		// 		if ( response.errors != '' ) {
-		// 			errors = $.parseJSON(response.errors);
-		// 			$.each(errors, function(index, item) {
-		// 				if ( $(this)[0].code == 'required') {
-		// 					$('#id_' + index).parent().addClass('error');
-		// 				}
-		// 			})
-		// 		}
-		// 	});
-		// })
+		$('#apply').submit(function( event ) {
+			event.preventDefault();
+
+			data = $(this).serialize();
+
+			$.post('/apply/', data, function( response ) {
+				if ( typeof response.errors !== 'undefined' ) {
+					errors = $.parseJSON(response.errors);
+					$.each(errors, function(index, item) {
+						if ( $(this)[0].code == 'required') {
+							$('#id_' + index).parent().addClass('error');
+						}
+					})
+				}
+
+				else if ( typeof response.success !== 'undefined' ) {
+					window.location.href = '/thanks';
+				}
+			});
+		})
 	});
 </script>
 {% endblock %}
