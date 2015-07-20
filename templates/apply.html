@@ -1,0 +1,162 @@
+{% extends 'head-foot.html' %}
+
+{% block head %}
+<style>
+
+	#content { text-align: center; }
+
+	h2 {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	h3 {
+		margin: 20px 0;
+	}
+
+	#apply {
+		display: inline-block;
+		text-align: left;
+	}
+
+	#apply p {
+		margin: 0;
+	}
+
+	#apply label {
+		width: 200px;
+		float: left;
+		text-align: right;
+		margin-right: 10px;
+		margin-top: 10px;
+		padding: 5px;
+		vertical-align: middle;
+	}
+
+	#apply input, #apply span, #apply textarea, #apply select {
+		margin-top: 10px;
+		width: 400px;
+		display: inline-block;
+		padding: 5px;
+		line-height: 1em;
+		border: 1px solid #ccc;
+	}
+
+	#apply select {
+		padding: 0;
+		margin-top: 15px;
+		margin-bottom: 10px;
+		font-size: 1em;
+	}
+
+	textarea {
+		height: 10em;
+	}
+
+	#robotProof {
+		margin-top: 20px;
+		line-height: 1.2em;
+		text-align: center;
+	}
+
+	#robotProof input {
+		margin: 0;
+		width: 8em;
+		text-align: center;
+	}
+
+	form p:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	form p:last-of-type {
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	#status p {
+		text-align: center;
+		color: red;
+		margin: 0;
+	}
+
+	#buy {
+		width: 200px;
+		margin: auto;
+		display: none;
+	}
+
+	.errorlist { display: none; }
+
+	.error input, .error select { outline: 1px solid red; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+	<div id="buy">
+		<p>Thank you for submitting an application! We&rsquo;ll be in touch with you shortly to gather remaining information and welcome you to the Circuit.</p>
+
+		<p>In the meantime, why not go ahead and preload your account by purchasing some i$.</p>
+
+		<p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button">Buy i$</a></p>
+
+		<!-- <p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="sq-embed-item"> online</a></p>
+		<script src="https://cdn.sq-api.com/market/embed.js" charset="utf-8"></script> -->
+	</div>
+
+	<form id="apply" method="POST" action="/apply/" novalidate>
+{% csrf_token %}
+		<h2>Apply</h2>
+
+{{ form }}
+
+		<div id="robotProof">
+			<p>Please prove that you aren&rsquo;t a bot:</p>
+		</div>
+
+		<div id="status"></div>
+
+		<p><button type="submit" class="green-button">Apply</button></p>
+	</form>
+
+</div>
+{% endblock %}
+
+{% block foot %}
+<script>
+	$(function() {
+
+		nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+		num1 = Math.floor(Math.random() * 10);
+		num2 = Math.floor(Math.random() * 10);
+		answer = num1 + num2;
+
+		$('#robotProof').append('<p>What is ' + nums[num1] + ' plus ' + nums[num2] + '? <br><input type="text" placeholder="e.g., 1 or one" required></p>');
+
+		$('#apply').submit(function( event ) {
+			event.preventDefault();
+
+			data = $(this).serialize();
+
+			$.post('/apply/', data, function( response ) {
+				if ( typeof response.errors !== 'undefined' ) {
+					errors = $.parseJSON(response.errors);
+					$.each(errors, function(index, item) {
+						if ( $(this)[0].code == 'required') {
+							$('#id_' + index).parent().addClass('error');
+						}
+					})
+				}
+
+				else if ( typeof response.success !== 'undefined' ) {
+					window.location.href = '/thanks';
+				}
+			});
+		})
+	});
+</script>
+{% endblock %}
