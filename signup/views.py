@@ -8,6 +8,11 @@ from signup.utils import CyclosCSV, IthacashCSV
 def front(request):
 	return render(request, 'front.html')
 
+def account(request):
+	form = SignUpForm()
+	context = { 'form': form }
+	return render(request, 'account.html', context)
+
 def apply(request):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
