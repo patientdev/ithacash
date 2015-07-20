@@ -3,7 +3,7 @@ from signup.models import *
 from django.core.mail import send_mail
 import csv, os, random, string
 from django.http import HttpResponseRedirect, JsonResponse
-from signup.utils import CSVify
+from signup.utils import CyclosCSV, IthacashCSV
 
 def front(request):
 	return render(request, 'front.html')
@@ -25,9 +25,10 @@ def apply(request):
 
 			temp_password = ''.join(str(v) for v in random.sample(range(0, 9), 5))
 
-			CSVify(request.POST.copy(), 'signup/data/cyclos.csv')
+			CyclosCSV(request.POST.copy(), 'signup/data/cyclos.csv')
+			IthacashCSV(request.POST.copy(), 'signup/data/ithacash.csv')
 
-
+			return (JsonResponse({ 'success': 'true' }))
 
 		else:
 			return (JsonResponse({ 'errors': form.errors.as_json() }))
