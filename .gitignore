@@ -1,3 +1,1 @@
-*.pyc
-sftp-config.json
-ops/ssl
+*.csv

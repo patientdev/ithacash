@@ -41,6 +41,12 @@ def IthacashCSV(inputs, csvfile):
 
 	fieldnames = []
 
+	# Let's keep the last 4 digits of the TIN in plain text
+	inputs['tin_last_4'] = inputs['tin'][-4:]
+
+	# Don't put the full TIN in at all
+	inputs.pop('tin', None)
+
 	for key in inputs.keys():
 		fieldnames.append(key)
 
