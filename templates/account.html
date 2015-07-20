@@ -4,6 +4,9 @@
 {% block head %}
 <style>
 
+	body, html { height: 100%; }
+
+	#container { height: 100%; }
 	header {
 		position: relative;
     display: none;
@@ -11,6 +14,12 @@
 
 	#content {
 		padding-top: 0;
+		color: white;
+		font-size: 1.2em;
+		width: 100%;
+		height: 100%;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	#nav-menu { display: none; }
@@ -74,11 +83,12 @@
 
 	#forms {
 		width: 200%;
+		height: 100%;
 		white-space: nowrap;
 		overflow: hidden;
 	}
 
-	form {
+	form > div {
 		background-color: rgb(119, 173, 89);
 		padding: 20px 0;
 		text-align: center;
@@ -97,14 +107,14 @@
 		margin-top: 40px;
 	}
 
-	input, input:focus {
+	input[type=text], input[type=email], input[type=text]:focus, input[type=email]:focus {
 		text-align: center;
 		background-color: white;
 		border-radius: 8px;
 		padding: 10px 15px;
 		border: none;
 		width: 20em;
-		font-size: 1.1em;
+		font-size: 1em;
 		outline: none;
 	}
 
@@ -170,30 +180,44 @@
 </div>
 
 <div id="forms">
-	<form id="create-login">
+	<form id="account" class="clear">
 {% csrf_token %}
-		<h2>Create Your Login</h2>
-{{ form.login_name }}
-{{ form.email }}
-{{ form.password }}
-		<p><input type="text" name="username" placeholder="Username"><sup class="asterisk">*</sup></p>
-		<p><input type="email" name="email" placeholder="Email"><sup class="asterisk">*</sup></p>
-		<p><input type="email" name="email-confirm" placeholder="Confirm Email"><sup class="asterisk">*</sup></p>
-		<p><input type="password" name="password" placeholder="Password"><sup class="asterisk">*</sup></p>
-		<p><input type="password" name="password" placeholder="Confirm Password"><sup class="asterisk">*</sup></p>
-		<p><button>Next</button></p>
-	</form>
 
-	<form id="create-info">
+	<div id="login">
+		<h2>Create Your Login</h2>
+
+		<p>{{ form.login_name }}</p>
+		<p>{{ form.email }}</p>
+		<p>{{ form.email_confirm }}</p>
+
+		<p><button type="button" class="next">Next</button></p>
+	</div>
+
+	<div id="info">
+
 		<h2>Your Information</h2>
 
-		<p><input type="text" name="username" placeholder="Username"><sup class="asterisk">*</sup></p>
+		<p>{{ form.business_name }}</p>
+		<p>{{ form.contact_name }}</p>
+		<p>{{ form.tin }}</p>
+		<p>{{ form.address_1 }}</p>
+		<p>{{ form.address_2 }}</p>
+		<p>{{ form.city }} {{ form.zip_code }}</p>
+		<p>{{ form.landline_phone }}</p>
+		<p>{{ form.txt2pay }} Enable TXT2PAY</p>
+		<p>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</p>
+		<p>{{ form.mobile_phone }}</p>
+
+		<p><button type="button" class="next">Next</button></p>
+
+		<!-- <p><input type="text" name="username" placeholder="Username"><sup class="asterisk">*</sup></p>
 		<p><input type="email" name="email" placeholder="Email"><sup class="asterisk">*</sup></p>
 		<p><input type="email" name="email-confirm" placeholder="Confirm Email"><sup class="asterisk">*</sup></p>
 		<p><input type="password" name="password" placeholder="Password"><sup class="asterisk">*</sup></p>
 		<p><input type="password" name="password" placeholder="Confirm Password"><sup class="asterisk">*</sup></p>
-		<p><button>Next</button></p>
+		<p><button>Next</button></p> -->
 	</form>
+</div>
 </div>
 
 </div>
@@ -201,10 +225,9 @@
 
 {% block foot %}
 <script>
-	$('form').submit(function( event ) {
-		event.preventDefault();
+	$('button.next').click(function( event ) {
 
-		$('form').addClass('slide');
+		$('form > div').addClass('slide');
 	})
 </script>
 {% endblock %}
