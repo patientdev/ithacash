@@ -57,15 +57,12 @@ class SignUpForm(ModelForm):
 		self.fields['landline_phone'].widget.attrs['placeholder'] = 'Contact Number'
 		self.fields['mobile_phone'].widget.attrs['placeholder'] = 'Mobile Number'
 
+		# Required attributes
 		self.fields['account_type'].widget.attrs['required'] = True
 		self.fields['company_name'].widget.attrs['required'] = True
 		self.fields['contact_name'].widget.attrs['required'] = True
 		self.fields['login_name'].widget.attrs['required'] = True
 		self.fields['email'].widget.attrs['required'] = True
-
-		self.fields['city'].widget.attrs['value'] = 'Ithaca'
-		self.fields['state'].widget.attrs['value'] = 'NY'
-		self.fields['zip_code'].widget.attrs['value'] = 14850
 
 		self.fields['tin'].label = "EIN/SSN"
 
