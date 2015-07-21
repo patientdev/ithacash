@@ -4,9 +4,9 @@
 {% block head %}
 <style>
 
-	body, html { height: 100%; }
+	body, html { min-height: 100%; }
 
-	#container { height: 100%; }
+	#container { min-height: 100%; }
 	header {
 		position: relative;
     display: none;
@@ -17,7 +17,7 @@
 		color: white;
 		font-size: 1.2em;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
 		white-space: nowrap;
 		overflow: hidden;
 	}
@@ -54,6 +54,7 @@
 		color: rgb(88, 122, 70);
 		font-size: 1em;
 		margin: 0;
+		transition: all 1s ease;
 	}
 
 	.circle {
@@ -65,6 +66,7 @@
 		font-size: 1.2em;
 		line-height: 40px;
 		display: inline-block;
+		transition: all 1s ease;
 	}
 
 	.sign-up-step.selected {
@@ -82,18 +84,21 @@
 	}
 
 	#forms {
-		width: 200%;
-		height: 100%;
+		width: 300%;
+		min-height: 100%;
 		white-space: nowrap;
 		overflow: hidden;
+		background-color: rgb(119, 173, 89);
 	}
 
+	form { min-height: 100%; }
+
 	form > div {
-		background-color: rgb(119, 173, 89);
+		min-height: 100%;
 		padding: 20px 0;
 		text-align: center;
 		transition: all 1s ease;
-		width: 50%;
+		width: 33%;
 		right: 0;
 		position: relative;
 		float: left;
@@ -101,6 +106,7 @@
 
 	form p {
 		margin: 20px auto;
+		width: 20em;
 	}
 
 	form p:last-of-type {
@@ -118,20 +124,33 @@
 		outline: none;
 	}
 
+	input[type=checkbox] {
+		float: left;
+		vertical-align: middle;
+	}
+
+	.two-inputs input {
+		width: 9em;
+	}
+
+	.two-inputs input:first-of-type {
+		margin-right: 25px;
+	}
+
 	::-webkit-input-placeholder {
-	   color: black;
+	   color: #999;
 	}
 
 	:-moz-placeholder { /* Firefox 18- */
-	   color: black;
+	   color: #999;
 	}
 
 	::-moz-placeholder {  /* Firefox 19+ */
-	   color: black;
+	   color: #999;
 	}
 
 	:-ms-input-placeholder {
-	   color: black;
+	   color: #999;
 	}
 
 	.asterisk {
@@ -149,8 +168,58 @@
 		font-size: 1.6em;
 	}
 
-	.slide {
-		right: 50%;
+	#review button {
+		border: none;
+		background-color: transparent;
+		color: white;
+		padding: 0;
+		font-size: 1em;
+	}
+
+	table {
+		background-color: rgb(107, 155, 80);
+		width: 50%;
+		margin: 20px auto;
+		border-collapse: collapse;
+		text-align: left;
+		font-size: 1.2em;
+	}
+
+	th, td {
+		padding: 10px 40px;
+	}
+
+	td {
+		vertical-align: top;
+	}
+
+	thead {
+		background-color: rgb(111, 162, 83);
+	}
+
+	th {
+		font-weight: normal;
+		font-size: 1.2em;
+	}
+
+	thead td { text-align: right; }
+
+	td:nth-of-type(2) { text-align: right; }
+
+	input[type=radio] {
+		background-color: #333;
+	}
+
+	.slide1 {
+		right: 33%;
+	}
+
+	.slide2 {
+		right: 66%;
+	}
+
+	.slide3 {
+		right: 99%;
 	}
 </style>
 {% endblock %}
@@ -202,22 +271,119 @@
 		<p>{{ form.tin }}</p>
 		<p>{{ form.address_1 }}</p>
 		<p>{{ form.address_2 }}</p>
-		<p>{{ form.city }} {{ form.zip_code }}</p>
+		<p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
+		<p>{{ form.state }}</p>
 		<p>{{ form.landline_phone }}</p>
-		<p>{{ form.txt2pay }} Enable TXT2PAY</p>
-		<p>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</p>
+		<p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+		<p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
 		<p>{{ form.mobile_phone }}</p>
+		<p><input type="text" name="sig" placeholder="Electronic Signature"></input></p>
 
 		<p><button type="button" class="next">Next</button></p>
 
-		<!-- <p><input type="text" name="username" placeholder="Username"><sup class="asterisk">*</sup></p>
-		<p><input type="email" name="email" placeholder="Email"><sup class="asterisk">*</sup></p>
-		<p><input type="email" name="email-confirm" placeholder="Confirm Email"><sup class="asterisk">*</sup></p>
-		<p><input type="password" name="password" placeholder="Password"><sup class="asterisk">*</sup></p>
-		<p><input type="password" name="password" placeholder="Confirm Password"><sup class="asterisk">*</sup></p>
-		<p><button>Next</button></p> -->
-	</form>
-</div>
+	</div>
+
+	<div id="review">
+		<h2>Review Your Information</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Account Type: <strong>Business</strong></th>
+					<td><button>edit</button></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Monthly Billing</td>
+					<td><label>$35 + i$15/mo <input type="radio" name="billing-freq" value="monthly" selected></label></td>
+				</tr>
+				<tr>
+					<td>Semi-Annually Billing</td>
+					<td><label>$30 + i$15/mo <input type="radio" name="billing-freq" value="semi-annuual"></label></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Login Information</th>
+					<td><button>edit</button></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Username</td>
+					<td><span id="review-login_name"></span></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><span id="review-email"></span></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><span id="review-password"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Business Information</th>
+					<td><button>edit</button></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Business Name</td>
+					<td><span id="review-business_name"></span></td>
+				</tr>
+				<tr>
+					<td>Contact Name</td>
+					<td><span id="review-contact_name"></span></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><span id="review-address_1"></span><br><span id="review-address_2"></span></td>
+				</tr>
+				<tr>
+					<td>TIN</td>
+					<td><span id="review-tin"></span></td>
+				</tr>
+				<tr>
+					<td>Contact Number</td>
+					<td><span id="review-landline_phone"></span></td>
+				</tr>
+				<tr>
+					<td>Enable TXT2PAY</td>
+					<td><span id="review-txt2pay"></span></td>
+				</tr>
+				<tr>
+					<td>Lease TXT2PAY Phone</td>
+					<td><span id="review-txt2pay_phone"></span></td>
+				</tr>
+				<tr>
+					<td>Mobile Number</td>
+					<td><span id="review-mobile_number"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+				<thead>
+					<tr>
+						<th colspan="2">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Business</td>
+						<td></td>
+					</tr>
+				</tbody>
+		</table>
+		</div>
+	</div>
+</form>
 </div>
 
 </div>
@@ -227,7 +393,48 @@
 <script>
 	$('button.next').click(function( event ) {
 
-		$('form > div').addClass('slide');
+		// Login Info
+		if ( $(this).parents('#login').length > 0 ) {
+			$('form > div').addClass('slide1');
+			$('#sign-up-1').removeClass('selected');
+			$('#sign-up-2').addClass('selected');
+
+			mapInputsToReview($('#login'));
+		}
+
+		// Contact Info
+		else if ( $(this).parents('#info').length > 0 ) {
+			$('form > div').addClass('slide2');
+			$('form > div').removeClass('slide1');
+			$('#sign-up-2').removeClass('selected');
+			$('#sign-up-3').addClass('selected');
+
+			mapInputsToReview($('#info'));
+		}
+
+		// Review Info
+		else if ( $(this).parents('#review').length > 0 ) {
+			$('form > div').addClass('slide3');
+			$('form > div').removeClass('slide2');
+			$('#sign-up-2').removeClass('selected');
+			$('#sign-up-3').addClass('selected');
+		}
 	})
+
+	function mapInputsToReview(div) {
+		inputs = $('input', div);
+
+		$(inputs).each(function() {
+			name = $(this).attr('name');
+			val = $(this).val();
+
+			$('#review-' + name).text(val);
+
+			if ( $(this).attr('type') == 'checkbox') {
+				if ( $(this).is(':checked') ) { $('#review-' + name).html('&#10004;'); }
+				else { $('#review-' + name).html('&#10008;'); }
+			}
+		})
+	}
 </script>
 {% endblock %}
