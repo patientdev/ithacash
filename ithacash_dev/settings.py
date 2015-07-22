@@ -109,3 +109,7 @@ HENDRIX_CHILD_RESOURCES = (
 
 # django-encrypted-fields
 ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'signup/fieldkeys')
+
+# django-phonenumberfield
+PHONENUMBER_DEFAULT_REGION = 'US'
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
