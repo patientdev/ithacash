@@ -10,17 +10,17 @@ def CyclosCSV(inputs, csvfile):
 	cyclos_input.fromkeys(cyclos_fieldnames);
 
 	# Map form input names to required Cyclos headings
-	cyclos_input['name'] = inputs['company_name']
+	cyclos_input['name'] = inputs['name_business']
 	cyclos_input['email'] = inputs['email']
-	cyclos_input['username'] = inputs['login_name']
+	cyclos_input['username'] = inputs['name_login']
 	cyclos_input['creationdate'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
 	cyclos_input['address[identifier].line1'] = inputs['address_1']
 	cyclos_input['address[identifier].line2'] = inputs['address_2']
-	cyclos_input['address[identifier].city'] = inputs['city']
-	cyclos_input['address[identifier].region'] = inputs['state']
-	cyclos_input['address[identifier].zip'] = inputs['zip_code']
-	cyclos_input['mobile[identifier].number'] = inputs['mobile_phone']
-	cyclos_input['landline[identifier].number'] = inputs['landline_phone']
+	cyclos_input['address[identifier].city'] = inputs['address_city']
+	cyclos_input['address[identifier].region'] = inputs['address_state']
+	cyclos_input['address[identifier].zip'] = inputs['address_zip_code']
+	cyclos_input['mobile[identifier].number'] = inputs['phone_mobile']
+	cyclos_input['landline[identifier].number'] = inputs['phone_landline']
 
 	if not os.path.isfile(csvfile):
 		f = open(csvfile, 'a')
@@ -45,10 +45,13 @@ def IthacashCSV(inputs, csvfile):
 	inputs['tin_last_4'] = inputs['tin'][-4:]
 
 	# Don't put the full TIN in at all
-	inputs.pop('tin', None)
+	del inputs['tin']
 
 	for key in inputs.keys():
 		fieldnames.append(key)
+
+	# At least alphabatize headings for human-readibility
+	fieldnames.sort()
 
 	if not os.path.isfile(csvfile):
 		f = open(csvfile, 'a')
