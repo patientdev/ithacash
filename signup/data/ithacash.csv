@@ -1,2 +1,4 @@
-website,city,about,mobile_phone,account_type,referrer,landline_phone,email,state,csrfmiddlewaretoken,company_name,address_2,address_1,contact_name,zip_code,last_4,login_name
-,Ithaca,,,Individual,,,shane@patientdev.com,NY,ctZdI6x7QOzbGs6EqblMdP5FbCVavbfZ,Patient Dev,,,Shane Cavanaugh,14850,2345,patientdev
+address_1,address_2,address_city,address_state,address_zip_code,csrfmiddlewaretoken,electronic_signature,email,email_confirm,name_business,name_contact,name_login,phone_landline,phone_mobile,tin_last_4,txt2pay
+PO Box 523,,Ithaca,NY,14850,ctZdI6x7QOzbGs6EqblMdP5FbCVavbfZ,SC,shane@patientdev.com,shane@patientdev.com,Patient Dev,Shane Cavanaugh,patientdev,6072444349,,2345,on
+PO Box 523,,Ithaca,NY,14850,ctZdI6x7QOzbGs6EqblMdP5FbCVavbfZ,SC,shane@patientdev.com,shane@patientdev.com,Patient Dev,Shane Cavanaugh,patientdev,6072444349,,2345,on
+PO Box 523,,Ithaca,NY,14850,ctZdI6x7QOzbGs6EqblMdP5FbCVavbfZ,SC,shane@patientdev.com,shane@patientdev.com,Patient Dev,Shane Cavanaugh,patientdev,6072444349,,2345,on
