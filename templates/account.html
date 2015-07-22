@@ -4,9 +4,13 @@
 {% block head %}
 <style>
 
-	body, html { min-height: 100%; }
+	body, html {
+		min-height: 100%;
+		width: 100%;
+	}
 
 	#container { min-height: 100%; }
+
 	header {
 		position: relative;
     display: none;
@@ -38,9 +42,20 @@
 	#sign-up-path {
 		text-align: center;
 		border-bottom: 2px solid rgb(88, 122, 70);
-		height: 65px;
-		padding: 20px 0 20px 0;
-		margin-bottom: 60px;
+		background-image: url({% static 'img/hex-pattern.png' %});
+		background-size: cover;
+		padding: 20px 0;
+		position: fixed;
+		width: 100%;
+		height: 110px;
+		z-index: 10;
+	}
+
+	#sign-up-path svg {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 65px;
 	}
 
 	.sign-up-step {
@@ -51,14 +66,14 @@
 	}
 
 	.step-heading {
-		color: rgb(88, 122, 70);
+		color: white;
 		font-size: 1em;
 		margin: 0;
 		transition: all 1s ease;
 	}
 
 	.circle {
-		background-color: rgb(88, 122, 70);
+		background-color: rgb(119, 173, 89);
 		border-radius: 50%;
 		width: 40px; height: 40px;
 		text-align: center;
@@ -84,10 +99,9 @@
 	}
 
 	#forms {
+		margin-top: 100px;
 		width: 300%;
 		min-height: 100%;
-		white-space: nowrap;
-		overflow: hidden;
 		background-color: rgb(119, 173, 89);
 	}
 
@@ -98,7 +112,7 @@
 		padding: 20px 0;
 		text-align: center;
 		transition: all 1s ease;
-		width: 33%;
+		width: calc(100% / 3);
 		right: 0;
 		position: relative;
 		float: left;
@@ -159,13 +173,14 @@
 		margin-left: 10px;
 	}
 
-	button {
+	.next {
 		background-color: white;
 		padding: 5px 40px;
 		border: none;
 		color: black;
 		border-radius: 8px;
 		font-size: 1.6em;
+		text-decoration: none;
 	}
 
 	#review button {
@@ -210,16 +225,8 @@
 		background-color: #333;
 	}
 
-	.slide1 {
-		right: 33%;
-	}
-
-	.slide2 {
-		right: 66%;
-	}
-
-	.slide3 {
-		right: 99%;
+	input.error {
+		outline: 1px solid red;
 	}
 </style>
 {% endblock %}
@@ -230,6 +237,12 @@
 <!-- <div id="head"></div> -->
 
 <div id="sign-up-path" class="clear">
+	<svg>
+		<line x1="0" y1="0"
+          x2="100%" y2="0"
+          stroke="rgb(119, 173, 89)"
+          stroke-width="6px"/>
+	</svg>
 	<div id="sign-up-1" class="selected sign-up-step">
 		<div class="step-heading">Your Login</div>
 		<div class="circle"><span>1</span></div>
@@ -259,7 +272,7 @@
 		<p>{{ form.email }}</p>
 		<p>{{ form.email_confirm }}</p>
 
-		<p><button type="button" class="next">Next</button></p>
+		<p><a href="#info" class="next">Next</a></p>
 	</div>
 
 	<div id="info">
@@ -277,9 +290,9 @@
 		<p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
 		<p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
 		<p>{{ form.mobile_phone }}</p>
-		<p><input type="text" name="sig" placeholder="Electronic Signature"></input></p>
+		<p>{{ form.electronic_signature }}</p>
 
-		<p><button type="button" class="next">Next</button></p>
+		<p><a href="#review" class="next">Next</a></p>
 
 	</div>
 
@@ -297,6 +310,9 @@
 				<tr>
 					<td>Monthly Billing</td>
 					<td><label>$35 + i$15/mo <input type="radio" name="billing-freq" value="monthly" selected></label></td>
+				</tr>
+				<tr>
+					<td colspan="2">&mdash;or switch to&mdash;</td>
 				</tr>
 				<tr>
 					<td>Semi-Annually Billing</td>
@@ -391,35 +407,70 @@
 
 {% block foot %}
 <script>
-	$('button.next').click(function( event ) {
+	$(function() {
 
-		// Login Info
-		if ( $(this).parents('#login').length > 0 ) {
-			$('form > div').addClass('slide1');
-			$('#sign-up-1').removeClass('selected');
-			$('#sign-up-2').addClass('selected');
+		$('.next').click(function( event ) {
 
-			mapInputsToReview($('#login'));
-		}
+			event.preventDefault();
 
-		// Contact Info
-		else if ( $(this).parents('#info').length > 0 ) {
-			$('form > div').addClass('slide2');
-			$('form > div').removeClass('slide1');
-			$('#sign-up-2').removeClass('selected');
-			$('#sign-up-3').addClass('selected');
+			// Login Info
+			if ( $(this).parents('#login').length > 0 ) {
 
-			mapInputsToReview($('#info'));
-		}
+				empties = verifyRequired('#login');
+				console.log(empties);
+				if ( empties.length > 0 ) {
+					$(empties).each(function() {
+						$(this).addClass('error');
+					});
 
-		// Review Info
-		else if ( $(this).parents('#review').length > 0 ) {
-			$('form > div').addClass('slide3');
-			$('form > div').removeClass('slide2');
-			$('#sign-up-2').removeClass('selected');
-			$('#sign-up-3').addClass('selected');
-		}
-	})
+					return false;
+				}
+
+				else {
+					$('#sign-up-1').removeClass('selected');
+					$('#sign-up-2').addClass('selected');
+					mapInputsToReview($('#login'));
+				}
+			}
+
+			// Contact Info
+			else if ( $(this).parents('#info').length > 0 ) {
+
+				empties = verifyRequired('#info');
+				console.log(empties);
+				if ( empties.length > 0 ) {
+					$(empties).each(function() {
+						$(this).addClass('error');
+					})
+
+					return false;
+				}
+
+				else {
+					$('#sign-up-2').removeClass('selected');
+					$('#sign-up-3').addClass('selected');
+					mapInputsToReview($('#info')); }
+			}
+
+			// Review Info
+			else if ( $(this).parents('#review').length > 0 ) {
+				$('#sign-up-2').removeClass('selected');
+				$('#sign-up-3').addClass('selected');
+			}
+
+			// Move it along
+			anchor = $(this);
+			next = $(this).attr('href');
+
+			$('#content').stop().animate({
+					scrollLeft: "+=" + $(next).offset().left,
+				}, {
+					specialEasing: 'ease',
+					duration: 750
+			});
+		})
+
+	});
 
 	function mapInputsToReview(div) {
 		inputs = $('input', div);
@@ -435,6 +486,20 @@
 				else { $('#review-' + name).html('&#10008;'); }
 			}
 		})
+	}
+
+	function verifyRequired(div) {
+		inputs = $('input', div);
+
+		empties = [];
+
+		$(inputs).each(function() {
+			if ( $(this).attr('required') == 'required' && $(this).val() == '') {
+				empties.push($(this));
+			}
+		});
+
+		return empties;
 	}
 </script>
 {% endblock %}
