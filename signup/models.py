@@ -31,6 +31,7 @@ class SignUp(models.Model):
 	about = models.TextField(max_length=255, blank=True)
 	txt2pay = models.BooleanField()
 	txt2pay_phone = models.BooleanField()
+	electronic_signature = models.CharField(max_length=5)
 
 class SignUpForm(ModelForm):
 
@@ -56,6 +57,7 @@ class SignUpForm(ModelForm):
 		self.fields['zip_code'].widget.attrs['placeholder'] = 'Zip Code'
 		self.fields['landline_phone'].widget.attrs['placeholder'] = 'Contact Number'
 		self.fields['mobile_phone'].widget.attrs['placeholder'] = 'Mobile Number'
+		self.fields['electronic_signature'].widget.attrs['placeholder'] = 'Electronic Signature'
 
 		# Required attributes
 		self.fields['account_type'].widget.attrs['required'] = True
@@ -63,6 +65,11 @@ class SignUpForm(ModelForm):
 		self.fields['contact_name'].widget.attrs['required'] = True
 		self.fields['login_name'].widget.attrs['required'] = True
 		self.fields['email'].widget.attrs['required'] = True
+		self.fields['email_confirm'].widget.attrs['required'] = True
+		self.fields['tin'].widget.attrs['required'] = True
+		self.fields['address_1'].widget.attrs['required'] = True
+		self.fields['landline_phone'].widget.attrs['required'] = True
+		self.fields['electronic_signature'].widget.attrs['required'] = True
 
 		self.fields['tin'].label = "EIN/SSN"
 
