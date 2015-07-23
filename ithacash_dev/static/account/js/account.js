@@ -65,6 +65,36 @@ $(function() {
         });
     })
 
+    $('.back').click(function() {
+
+        // Review Info
+        if ( $(this).parents('#review').length > 0 ) {
+            $('#sign-up-3').removeClass('selected');
+            $('#sign-up-2').addClass('selected');
+            setTimeout(function() {
+                $('#review').css('display', 'none');
+            }, 750)
+        }
+
+        else if ( $(this).parents('#info').length > 0 ) {
+            $('#sign-up-2').removeClass('selected');
+            $('#sign-up-1').addClass('selected');
+            setTimeout(function() {
+                $('#info').css('display', 'none');
+            }, 750)
+        }
+        // Move it along
+        anchor = $(this);
+        previous = $(this).attr('href');
+
+        $('#content').stop().animate({
+                scrollLeft: "+=" + $(previous).offset().left,
+            }, {
+                specialEasing: 'ease',
+                duration: 750
+        });
+    });
+
 });
 
 function mapInputsToReview(div) {
