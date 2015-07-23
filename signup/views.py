@@ -3,7 +3,7 @@ from signup.models import *
 from django.core.mail import send_mail
 import csv, os, random, string
 from django.http import HttpResponseRedirect, JsonResponse
-from signup.utils import CyclosCSV, IthacashCSV
+
 
 
 def front(request):

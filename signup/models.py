@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django import forms
 from django.forms import ModelForm
@@ -6,6 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class SignUp(models.Model):
+
     ACCOUNT_TYPE_CHOICES = (
         (None, 'Who are you?'),
         ('Individual', 'Individual'),
@@ -19,21 +21,23 @@ class SignUp(models.Model):
     name_contact = models.CharField(max_length=255)
     name_login = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
-    address_1 = models.CharField(max_length=255, blank=True)
-    address_2 = models.CharField(max_length=255, blank=True)
-    address_city = models.CharField(max_length=255, blank=True, default="Ithaca")
-    address_state = models.CharField(max_length=255, blank=True, default="NY")
-    address_zip_code = models.CharField(max_length=255, blank=True, default="14850")
-    tin_last4 = models.IntegerField()
+    address_1 = models.CharField(max_length=255)
+    address_2 = models.CharField(max_length=255, blank=True, null=True)
+    address_city = models.CharField(max_length=255, default="Ithaca")
+    address_state = models.CharField(max_length=255, default="NY")
+    address_zip_code = models.CharField(max_length=255, default="14850")
     tin = EncryptedCharField(max_length=255)
     phone_landline = PhoneNumberField(max_length=255)
-    phone_mobile = PhoneNumberField(max_length=255, blank=True)
-    website = models.URLField(max_length=255, blank=True)
-    referrer = models.CharField(max_length=255, blank=True)
-    about = models.TextField(max_length=255, blank=True)
+    phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
+    website = models.URLField(max_length=255, blank=True, null=True)
     txt2pay = models.BooleanField()
     txt2pay_phone = models.BooleanField()
-    electronic_signature = models.CharField(max_length=5)
+    electronic_signature = models.CharField(max_length=5)  # ???
+
+    created = models.DateTimeField(default=datetime.now)
+
+    def tin_last4(self):
+        return self.tin[-4:]
 
 
 class SignUpForm(ModelForm):
