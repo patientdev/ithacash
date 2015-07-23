@@ -1,0 +1,127 @@
+{% extends 'head-foot.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<style>
+    header {
+        position: relative;
+    }
+
+    #content {
+        padding-top: 0;
+    }
+
+    #nav-menu { display: none; }
+
+    #head {
+        background-image: url({% static 'img/hex-pattern.png' %});
+        background-size: cover;
+        padding: 100px 0;
+        text-align: center;
+        color: white;
+        margin-bottom: 60px;
+    }
+
+    #head p {
+        text-align: justify;
+        width: 350px;
+        margin: 20px auto 0 auto;
+        font-size: 1.2em;
+        line-height: 1.4em;
+    }
+
+    h2 {
+        color: white;
+        margin: 0;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 2.4em;
+        color: black;
+    }
+
+    #rows {
+        width: 50%;
+        margin: auto;
+        padding: 60px 0;
+    }
+
+    .row {
+        padding: 0 40px;
+        color: rgb(88, 122, 70);
+        font-size: 1.8em;
+        line-height: 1.2em;
+        margin: 40px 0;
+    }
+
+    .row p { vertical-align: middle; }
+
+    .row:nth-of-type(odd) img {
+        float: left;
+        vertical-align: middle;
+    }
+
+    .row:nth-of-type(even) img {
+        float: right;
+        vertical-align: middle;
+    }
+
+    .copy {
+        width: 50%;
+        max-width: 500px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: justify;
+    }
+
+    .row:nth-of-type(odd) .copy {
+        float: left;
+    }
+
+    .row:nth-of-type(even) .copy {
+        float: right;
+    }
+
+    .green-button {
+        padding: 15px 20px;
+        background-color: rgb(119, 172, 92);
+        font-size: 2.4em;
+        color: white;
+        text-decoration: none;
+        width: 200px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    ul {
+        margin: 0;
+        text-align: center;
+    }
+
+    li {
+        margin: 0 20px;
+        display: inline;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+
+<div id="head">
+    <h2>Application</h2>
+    <p>It&rsquo;s free, but it&rsquo;s still your money, so we need your real information to make your account as safe as possible.</p>
+</div>
+
+<h3>Are you joining us as a...</h3>
+
+<ul>
+    <li><a href="/sign-up/business/" class="green-button">Business</a></li>
+    <li><a href="/sign-up/individual/" class="green-button">Individual</a></li>
+</ul>
+
+
+</div>
+{% endblock %}
