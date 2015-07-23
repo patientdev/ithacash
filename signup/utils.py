@@ -1,6 +1,7 @@
 import os
 import csv
 from datetime import datetime
+from django.conf import settings
 
 CYCLOS_FIELDNAMES = ('name', 'username', 'email', 'password', 'creationdate', 'broker', 'images',
                          'address[identifier].name', 'address[identifier].line1', 'address[identifier].line2',
@@ -65,47 +66,10 @@ class CyclosCsvWriter(object):
 
         csvfile_path = csvfile_path or self.csvfile_path
 
-        with open(csvfile_path, 'a') as f:
+        with open(csvfile_path, 'a+') as f:
             writer = csv.DictWriter(f, fieldnames=CYCLOS_FIELDNAMES)
 
             if not os.path.isfile(csvfile_path):
                 writer.writeheader()
 
             writer.writerow(self.cyclos_field_dict)
-
-
-
-
-
-
-
-
-def IthacashCSV(inputs, csvfile):
-    fieldnames = []
-
-    # Let's keep the last 4 digits of the TIN in plain text
-    inputs['tin_last_4'] = inputs['tin'][-4:]
-
-    # Don't put the full TIN in at all
-    del inputs['tin']
-
-    for key in inputs.keys():
-        fieldnames.append(key)
-
-    # At least alphabatize headings for human-readibility
-    fieldnames.sort()
-
-    if not os.path.isfile(csvfile):
-        f = open(csvfile, 'a')
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-        writer.writeheader()
-
-    else:
-        f = open(csvfile, 'a')
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-    rows = {}
-    rows.update(inputs.iteritems())
-
-    writer.writerow(rows)
