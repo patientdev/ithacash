@@ -1,5 +1,0 @@
-name,username,email,password,creationdate,broker,images,address[identifier].name,address[identifier].line1,address[identifier].line2,adress[identifier].neighborhood,address[identifier].pobox,address[identifier].zip,address[identifier].city,address[identifier].region,address[identifier].country,address[identifier].private,mobile[identifier].name,mobile[identifier].number,mobile[identifier].private,landline[identifier].name,landline[identifier].number,landline[identifier].private
-Patient Dev,patientdev,shane@patientdev.com,,2015-07-22 16:29:04,,,,PO Box 523,,,,14850,Ithaca,NY,,,,,,,6072444349,
-Patient Dev,patientdev,shane@patientdev.com,,2015-07-22 16:55:50,,,,PO Box 523,,,,14850,Ithaca,NY,,,,,,,6072444349,
-Patient Dev,patientdev,shane@patientdev.com,,2015-07-22 16:56:00,,,,PO Box 523,,,,14850,Ithaca,NY,,,,,,,6072444349,
-Patient Dev,patientdev,shane@patientdev.com,,2015-07-22 16:59:56,,,,PO Box 523,,,,14850,Ithaca,NY,,,,,,,6072444349,
