@@ -1,0 +1,116 @@
+{% extends 'head-foot.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<style>
+    header {
+        position: relative;
+    }
+
+    #content {
+        padding-top: 0;
+    }
+
+    #nav-menu { display: none; }
+
+    #head {
+        background-image: url({% static 'img/hex-pattern.png' %});
+        background-size: cover;
+        padding: 100px 0;
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        color: white;
+        margin: 0;
+    }
+
+    #rows {
+        width: 50%;
+        margin: auto;
+        padding: 60px 0;
+    }
+
+    .row {
+        padding: 0 40px;
+        color: rgb(88, 122, 70);
+        font-size: 1.8em;
+        line-height: 1.2em;
+        margin: 40px 0;
+    }
+
+    .row p { vertical-align: middle; }
+
+    .row:nth-of-type(odd) img {
+        float: left;
+        vertical-align: middle;
+    }
+
+    .row:nth-of-type(even) img {
+        float: right;
+        vertical-align: middle;
+    }
+
+    .copy {
+        width: 50%;
+        max-width: 500px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: justify;
+    }
+
+    .row:nth-of-type(odd) .copy {
+        float: left;
+    }
+
+    .row:nth-of-type(even) .copy {
+        float: right;
+    }
+
+    .green-button {
+        padding: 15px 20px;
+        background-color: rgb(119, 172, 92);
+        font-size: 2.4em;
+        color: white;
+        text-decoration: none;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+
+<div id="head">
+    <h2>Getting an Account</h2>
+</div>
+
+<div id="rows">
+    <div class="row clear">
+        <p><img src="{% static 'img/WriteIcon.png' %}">Sign up for a free Ithacash account and start buying and selling with digital Ithaca Dollars (i$) anywhere they are accepted. Physical Ithaca Dollars will be available soon.</p>
+    </div>
+
+    <div class="row clear">
+        <p><img src="{% static 'img/WalkingIcon.png' %}">After you create an account, you can load it with Ithaca Dollars and start shopping. You’ll even get more bang for your buck with 125% back in i$ on your US$ purchase.</p>
+    </div>
+
+    <div class="row clear">
+        <p><img src="{% static 'img/CashIcon.png' %}">Using Ithacash is easy! Each Ithaca Dollar is valued 1 to 1 with the US Dollar. Any change due under i$1 can be made with US coins.</p>
+    </div>
+
+    <div class="row clear">
+        <p><img src="{% static 'img/PhoneIcon.png' %}">Link a cell phone number with your account to make and take payments with simple text messages.</p>
+    </div>
+
+    <div class="row clear">
+        <p><img src="{% static 'img/CompIcon.png' %}">All digital transactions are charged a flat rate of 2% to the seller.</p>
+    </div>
+
+<p><a href="/sign-up/" class="green-button">Get Started</a></p>
+</div>
+
+
+</div>
+{% endblock %}
