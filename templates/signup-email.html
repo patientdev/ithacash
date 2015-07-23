@@ -1,0 +1,50 @@
+{% extends 'head-foot.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'account/css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <div id="sign-up-path" class="clear">
+        <svg>
+            <line x1="0" y1="0"
+              x2="100%" y2="0"
+              stroke="rgb(119, 173, 89)"
+              stroke-width="6px"/>
+        </svg>
+        <div id="sign-up-1" class="selected sign-up-step">
+            <div class="step-heading">Your Login</div>
+            <div class="circle"><span>1</span></div>
+        </div>
+        <div id="sign-up-2" class="sign-up-step">
+            <div class="step-heading">Your Info</div>
+            <div class="circle">2</div>
+        </div>
+        <div id="sign-up-3" class="sign-up-step">
+            <div class="step-heading">Review</div>
+            <div class="circle">3</div>
+        </div>
+    </div>
+
+    <div id="forms">
+        <form id="account" method="POST" action="/accounts/signup/" class="clear">
+    {% csrf_token %}
+        <div id="login">
+            <h2>First, your email address.</h2>
+
+            {{form}}
+            <p><button class="white-button">Go</a></p>
+        </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block foot %}
+<script src="{% static 'account/js/account.js' %}"></script>
+{% endblock %}
