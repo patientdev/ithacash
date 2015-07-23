@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^$', 'apps.signup.front'),
     url(r'^apply/', 'apps.signup.apply'),
     url(r'^account/', 'apps.signup.account'),
+    url(r'^getting-an-account/', 'apps.signup.getting'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

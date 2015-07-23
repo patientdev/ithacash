@@ -24,4 +24,10 @@ urlpatterns = [
     url(r'^$', 'signup.views.front'),
     url(r'^apply/', 'signup.views.apply'),
     url(r'^account/', 'signup.views.account'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^getting-an-account/', 'signup.views.getting_an_account'),
+    url(r'^sign-up/$', 'signup.views.sign_up'),
+    url(r'^sign-up/individual/$', 'signup.views.sign_up_individual'),
+    url(r'^sign-up/individual/apply/', 'signup.views.apply_individual'),
+    url(r'^sign-up/freelancer/apply/', 'signup.views.apply_freelancer'),
+    url(r'^sign-up/business/$', 'signup.views.sign_up_business'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
