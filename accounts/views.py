@@ -1,35 +1,31 @@
 from django.http.response import HttpResponseNotFound, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from hendrix.experience import crosstown_traffic
-from accounts.models import Email
+from accounts.models import Email, IthacashUser, IthacashAccount
 from signup.models import SignUpForm
 from django import forms
-
-@require_http_methods(["POST"])
-def confirm_email_address(request):
-    try:
-        email = Email.objects.get(address=request.POST['email_address'])
-    except Email.DoesNotExist:
-        return HttpResponseNotFound()  # TODO: Make this more coherent.
-
-    key = request.POST['key']
-
-    success = email.confirm(key)
-
-    if success:
-        pass
-        # redirect to a good place
-    else:
-        # Tell them they failed.
-        pass
 
 
 class EmailForm(forms.ModelForm):
 
     class Meta:
-        fields = ['address']
+        fields = ['address', 'wants_to_receive_updates']
         model = Email
+
+
+class AccountForm(forms.ModelForm):
+
+    class Meta:
+        model = IthacashAccount
+        exclude = ['owner']
+
+
+class UserSignupForm(forms.ModelForm):
+
+    class Meta:
+        model = IthacashUser
+        fields = ['username', 'full_name']
 
 
 def signup_phase_one(request):
@@ -44,7 +40,18 @@ def signup_phase_one(request):
 
         return HttpResponseRedirect('/accounts/await_confirmation/')
 
-    return render(request, 'signup-email.html', {'form': form})
+    return render(request, 'signup-phase-one.html', {'form': form})
 
 
+def create_account(request, email_key):
+
+    email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
+    email_object.confirm(email_key)
+
+    user_form = UserSignupForm(prefix="user")
+    account_form = AccountForm(prefix="account")
+
+    return render(request, 'signup-phase-two.html', {'account_form': account_form,
+                                                     'user_form': user_form,
+                                                     'email_object': email_object})
 
