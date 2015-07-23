@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'signup',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,6 +111,8 @@ HENDRIX_CHILD_RESOURCES = (
 
 # django-encrypted-fields
 ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'signup/fieldkeys')
+
+AUTH_USER_MODEL = 'accounts.IthacashUser'
 
 # django-phonenumberfield
 # PHONENUMBER_DEFAULT_REGION = 'US'

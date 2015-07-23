@@ -4,3 +4,4 @@ django-encrypted-fields==1.1.1
 django-phonenumber-field
 factory_boy
 mock
+mandrill
