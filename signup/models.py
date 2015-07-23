@@ -27,14 +27,14 @@ class SignUp(models.Model):
     address_state = models.CharField(max_length=255, default="NY")
     address_zip_code = models.CharField(max_length=255, default="14850")
     tin = EncryptedCharField(max_length=255)
-    phone_landline = PhoneNumberField(max_length=255)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
+    phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
     website = models.URLField(max_length=255, blank=True, null=True)
     txt2pay = models.BooleanField()
     txt2pay_phone = models.BooleanField()
     electronic_signature = models.CharField(max_length=5)  # ???
 
-    created = models.DateTimeField(default=datetime.now)
+    created = models.DateTimeField(auto_now_add=True)
 
     def tin_last4(self):
         return self.tin[-4:]
@@ -42,10 +42,8 @@ class SignUp(models.Model):
 
 class SignUpForm(ModelForm):
 
-    email_confirm = forms.EmailField(max_length=255)
-
     error_css_class = 'error'
-    required_css_class = 'required'
+    # required_css_class = 'required'
 
     auto_id = False
 
@@ -67,19 +65,9 @@ class SignUpForm(ModelForm):
         self.fields['phone_mobile'].widget.attrs['placeholder'] = 'Mobile Number'
         self.fields['electronic_signature'].widget.attrs['placeholder'] = 'Electronic Signature'
 
-        # Required attributes
-        self.fields['name_business'].widget.attrs['required'] = True
-        self.fields['name_contact'].widget.attrs['required'] = True
-        self.fields['name_login'].widget.attrs['required'] = True
-        self.fields['email'].widget.attrs['required'] = True
-        self.fields['tin'].widget.attrs['required'] = True
-        self.fields['address_1'].widget.attrs['required'] = True
-        self.fields['phone_landline'].widget.attrs['required'] = True
-        self.fields['electronic_signature'].widget.attrs['required'] = True
-
     class Meta:
         model = SignUp
-        exclude = ('tin_last4', 'account_type')
+        exclude = ('account_type',)
         labels = {
             'name_login': False,
             'email': False,
