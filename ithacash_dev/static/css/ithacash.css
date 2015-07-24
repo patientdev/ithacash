@@ -1,322 +1,321 @@
 html, body { padding: 0; margin: 0; width: 100%; }
 
 body, button, input, textarea {
-	font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
-	color: #999;
-	letter-spacing: .5px;
+    font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
+    color: #999;
+    letter-spacing: .5px;
 }
 
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .clear:after {
-	content: "";
-	display: block;
-	clear: both;
-	overflow: hidden;
+    content: "";
+    display: block;
+    clear: both;
+    overflow: hidden;
 }
 
 h1, h2 {
-	color: black;
+    color: black;
 }
 
 h2, h3, h4 {
-	font-family: "Varela Round";
-	text-transform: uppercase;
-	line-height: 1em;
-	letter-spacing: 2px;
+    font-family: "Varela Round";
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 2px;
 }
 
 h2 {
-	font-size: 50px;
-	text-align: center;
-	font-weight: 400;
-	margin-top: 0;
-	margin-bottom: 60px;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 60px;
 }
 
 section {
-	padding: 40px 0;
-	width: 100%;
+    padding: 40px 0;
+    width: 100%;
 }
 
 .green-button {
-	background-color: rgb(136, 177, 71);
-	padding: 11px 25px;
-	border: none;
-	border-radius: 8px;
-	color: white;
-	line-height: 1em;
-	letter-spacing: 1px;
-	text-decoration: none;
+    background-color: rgb(136, 177, 71);
+    padding: 11px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-decoration: none;
 }
 
 .dark-green-button {
-	background-color: rgb(84, 124, 66);
+    background-color: rgb(84, 124, 66);
 }
 
 button:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 input {
-	line-height: 1em;
-	color: black;
+    color: black;
 }
 
 input:focus, textarea:focus {
-	outline: 2px solid rgb(136, 177, 71);
+    outline: 2px solid rgb(136, 177, 71);
 }
 
 header {
-	position: fixed; 
-	padding: 20px 50px;
-	background-color: rgba(255, 255, 255, 1);
-	width: 100%;
-	-webkit-transition: box-shadow .2s linear;
-	z-index: 100;
-	white-space: nowrap;
-	font-size: 1.2em;
+    position: fixed;
+    padding: 20px 50px;
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    -webkit-transition: box-shadow .2s linear;
+    z-index: 100;
+    white-space: nowrap;
+    font-size: 1.2em;
 }
 
 li#sign-up a, li#buy-i-dollars a {
-	color: white;
-	line-height: 1em;
-	padding-bottom: 11px;
-	font-size: .8em;
+    color: white;
+    line-height: 1em;
+    padding-bottom: 11px;
+    font-size: .8em;
 }
 
 li#sign-up a:hover, li#buy-i-dollars a:hover {
-	border: none;
+    border: none;
 }
 
 #container {
-	position: absolute;
-	top: 0;
-	width: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 h1 {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
 }
 
 h1 img {
-	width: 200px;
+    width: 200px;
 }
 
 #nav-menu-container {
-	width: 70%; height: 100px;
-	float: right;
+    width: 70%; height: 100px;
+    float: right;
 }
 
 #nav-menu {
-	padding-left: 0;
-	margin: 0;
-	list-style-type: none;
-	float: right;
-	line-height: 53px;
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
+    float: right;
+    line-height: 53px;
 }
 
 #nav-menu li {
-	padding: 0 10px;
-	margin: 0;
-	display: inline-block;
-	float: left;
+    padding: 0 10px;
+    margin: 0;
+    display: inline-block;
+    float: left;
 }
 
 #nav-menu a {
-	text-decoration: none;
-	color: black;
-	text-align: center;
-	font-size: 1em;
-	font-weight: 400;
-	letter-spacing: 1px;
-	padding-bottom: 5px;
-	line-height: 1em;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    line-height: 1em;
 }
 
 #nav-menu a:hover {
-	border-bottom: 3px solid #89af3e;
+    border-bottom: 3px solid #89af3e;
 }
 
 #content {
-	width: 100%;
-	padding-top: 93px;
+    width: 100%;
+    padding-top: 93px;
 }
 
 #intro {
-	background-image: url(../img/owner-cling.jpg);
-	background-size: cover;
-	width: 100%;
-	height: calc(100vh - 93px);
-	position: relative;
+    background-image: url(../img/owner-cling.jpg);
+    background-size: cover;
+    width: 100%;
+    height: calc(100vh - 93px);
+    position: relative;
 }
 
 #intro p.caption {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	background-color: white;
-	display: inline-block;
-	margin: 0;
-	padding: 10px;
-	border-radius: 8px 0 0 0;
-	line-height: 1em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px 0 0 0;
+    line-height: 1em;
 }
 
 #email-list-box {
-	position: absolute;
-	width: 360px; height: 396px;
-	top: 50%; left: 15%;
-	margin-top: -198px; 
-	background-color: white;
-	border-radius: 8px;
-	padding: 40px;
-	text-align: justify;
+    position: absolute;
+    width: 360px; height: 396px;
+    top: 50%; left: 15%;
+    margin-top: -198px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: justify;
 }
 
 #email-list-box h2 {
-	text-transform: uppercase;
-	font-size: 1.2em;
-	margin: 0;
-	letter-spacing: 1px;
-	text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    margin: 0;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 #email-list-box form {
-	line-height: 3em;
-	text-align: center;
+    line-height: 3em;
+    text-align: center;
 }
 
 #email-list-box button {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 #join-email-list input {
-	border: 1px solid rgb(199, 199, 199);
-	background-color: rgb(235, 235, 235);
-	padding: 5px 8px;
-	color: black;
-	width: 100%;
+    border: 1px solid rgb(199, 199, 199);
+    background-color: rgb(235, 235, 235);
+    padding: 5px 8px;
+    color: black;
+    width: 100%;
 }
 
 #how-it-works h2, #accounts h2 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #carousel {
-	border-top: 14px solid rgb(76, 118, 38);
-	border-bottom: 14px solid rgb(76, 118, 38);
-	position: relative;
-	text-align: center;
-	padding: 40px 0;
+    border-top: 14px solid rgb(76, 118, 38);
+    border-bottom: 14px solid rgb(76, 118, 38);
+    position: relative;
+    text-align: center;
+    padding: 40px 0;
 }
 
 #carousel svg {
-	width: 15px; height: 20px;
-	display: inline-block;
-	text-align: center;
-	margin: auto;
+    width: 15px; height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
 }
 
 #left-arrow, #right-arrow {
-	width: 10%;
-	display: inline-block;
-	vertical-align: middle;
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #right-arrow svg {
-	float: right;
+    float: right;
 }
 
 #left-arrow svg {
-	float: left;
+    float: left;
 }
 
 .tri {
-	height: 100%;
+    height: 100%;
 }
 
 #ithacash-arrow {
-	width: 200px;
-	position: absolute;
-	left: 50%; margin-left: -100px;
-	top: 40px;
-	z-index: 10;
+    width: 200px;
+    position: absolute;
+    left: 50%; margin-left: -100px;
+    top: 40px;
+    z-index: 10;
 }
 
 #panels {
-	width: 55%; 
-	display: inline-block;
-	vertical-align: middle;
-	padding-top: 25px;
-	overflow: hidden;
-	white-space: nowrap;
+    width: 55%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 25px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.panel { 
-	display: inline-block;
-	width: 100%;
-	white-space: normal;
-	position: relative;
-	right: 0;
-	-webkit-transition: right .75s ease-out, left .75s ease-out;
-	transition: right .75s ease-out, left .75s ease-out;
-	padding: 0 20px;
+.panel {
+    display: inline-block;
+    width: 100%;
+    white-space: normal;
+    position: relative;
+    right: 0;
+    -webkit-transition: right .75s ease-out, left .75s ease-out;
+    transition: right .75s ease-out, left .75s ease-out;
+    padding: 0 20px;
 }
 
 .panel img {
-	height: 150px;
+    height: 150px;
 }
 
 .panel .left img {
-	float: right;
+    float: right;
 }
 
 .panel .right img {
-	float: left;
+    float: left;
 }
 
 .panel .left {
-	width: 30%;
-	float: left;
-	text-align: center;
-	margin-right: 20px;
+    width: 30%;
+    float: left;
+    text-align: center;
+    margin-right: 20px;
 }
 
 .panel .center {
-	width: 30%;
-	margin: auto;
-	padding-top: 75px;
+    width: 30%;
+    margin: auto;
+    padding-top: 75px;
 }
 
 .panel .right {
-	width: 30%;
-	float: right;
-	text-align: center;
-	margin-left: 20px;
+    width: 30%;
+    float: right;
+    text-align: center;
+    margin-left: 20px;
 }
 
 .panel h3 {
-	color: black;
-	text-transform: none;
-	font-size: 1em;
+    color: black;
+    text-transform: none;
+    font-size: 1em;
 }
 
 .panel p {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 #carousel button {
-	background-color: transparent;
-	border: none;
+    background-color: transparent;
+    border: none;
 }
 
 #ind-to-ind-1.panel { display: inline-block; }
@@ -324,86 +323,86 @@ h1 img {
 #how-to-get-started { padding: 0;}
 
 #how-to-get-started img {
-	max-height: 200px;
+    max-height: 200px;
 }
 
 .step {
-	min-height: 250px;
-	white-space: nowrap;
-	width: 100%;
-	display: table;
-	position: relative;
+    min-height: 250px;
+    white-space: nowrap;
+    width: 100%;
+    display: table;
+    position: relative;
 }
 
 .step h3 {
-	font-size: 2.8em;
-	color: rgb(55, 108, 0);
-	font-weight: lighter;
-	text-transform: uppercase;
+    font-size: 2.8em;
+    color: rgb(55, 108, 0);
+    font-weight: lighter;
+    text-transform: uppercase;
 }
 
 .step svg {
-	clear: both;
+    clear: both;
 }
 
 .step:nth-child(odd) {
-	background-color: rgb(235, 235, 235);
+    background-color: rgb(235, 235, 235);
 }
 
 .hex {
-	position: absolute;
-	left: 50%;
-	margin-left: -35px;
-	top: -30px;
-	z-index: 10;
-	width: 70px;
-	height: 60px;
-	-webkit-transform: scale(1.2);
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    top: -30px;
+    z-index: 10;
+    width: 70px;
+    height: 60px;
+    -webkit-transform: scale(1.2);
 }
 
 .hex polygon {
-	fill: rgb(85, 123, 62);
+    fill: rgb(85, 123, 62);
 }
 
 .hex text {
-	font-size: 35px;
-	fill: white;
-	font-weight: normal;
+    font-size: 35px;
+    fill: white;
+    font-weight: normal;
 }
 
 #path .left, #path .right {
-	width: 50%;
-	height: 100%;
-	display: table-cell;
-	vertical-align: middle;
-	padding-top: 40px; padding-bottom: 40px;
+    width: 50%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 40px; padding-bottom: 40px;
 }
 
 #path .left {
-	border-right: 3px solid rgb(196, 216, 163);
-	padding-right: 5%;
-	text-align: right;
+    border-right: 3px solid rgb(196, 216, 163);
+    padding-right: 5%;
+    text-align: right;
 }
 
 #path .right {
-	border-left: 3px solid rgb(196, 216, 163);
-	padding-left: 5%;
-	text-align: left;
+    border-left: 3px solid rgb(196, 216, 163);
+    padding-left: 5%;
+    text-align: left;
 }
 
 #path .step:last-of-type > div {
-	border: none;
+    border: none;
 }
 
 #path {
-	text-align: center;
+    text-align: center;
 }
 
 #path p {
-	white-space: normal;
-	font-size: 1.1em;
-	color: #333;
-	text-align: justify;
+    white-space: normal;
+    font-size: 1.1em;
+    color: #333;
+    text-align: justify;
 }
 
 #path .left p { padding-left: 50%;  }
@@ -411,198 +410,198 @@ h1 img {
 #path .left p.social { padding: 0; }
 
 #path .left p, #path .left h3 {
-	text-align: right;
+    text-align: right;
 }
 
 .social img { width: 100px; }
 
 #shop-local {
-	color: black;
-	font-size: 1.1em;
+    color: black;
+    font-size: 1.1em;
 }
 
 #shop-local .sub-step {
-	width: 55%;
-	margin: auto; margin-top: -15px; margin-bottom: -6px;
-	border-top: 6px solid rgb(196, 216, 163); 
-	border-bottom: 6px solid rgb(196, 216, 163); 
+    width: 55%;
+    margin: auto; margin-top: -15px; margin-bottom: -6px;
+    border-top: 6px solid rgb(196, 216, 163);
+    border-bottom: 6px solid rgb(196, 216, 163);
 }
 
 #shop-local .sub-step .top, #shop-local .sub-step .bottom {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 #shop-local .sub-step .left, #shop-local .sub-step .right {
-	height: 560px;
-	padding: 0;
+    height: 560px;
+    padding: 0;
 }
 
 #shop-local h3 {
-	margin: 0;
-	font-weight: 100;
+    margin: 0;
+    font-weight: 100;
 }
 
 .angle {
-	width: 120px;
-	height: 46px;
-	position: relative;
-	z-index: 5;
+    width: 120px;
+    height: 46px;
+    position: relative;
+    z-index: 5;
 }
 
 .angle line {
-	stroke: rgb(196, 216, 163);
-	stroke-width: 6px;
-	fill: none;
+    stroke: rgb(196, 216, 163);
+    stroke-width: 6px;
+    fill: none;
 }
 
 .sub-step > h3 {
-	border-right: 6px solid rgb(196, 216, 163); 
-	border-left: 6px solid rgb(196, 216, 163); 
-	padding-bottom: 20px;
-	padding-top: 40px;
+    border-right: 6px solid rgb(196, 216, 163);
+    border-left: 6px solid rgb(196, 216, 163);
+    padding-bottom: 20px;
+    padding-top: 40px;
 }
 
 #shop-local .left {
-	border-left: 6px solid rgb(196, 216, 163); 
-	border-right: none;
-	width: 50%;
-	display: block;
-	float: left;
-	white-space: normal;
-	padding-top: 40px;
-	text-align: left;
+    border-left: 6px solid rgb(196, 216, 163);
+    border-right: none;
+    width: 50%;
+    display: block;
+    float: left;
+    white-space: normal;
+    padding-top: 40px;
+    text-align: left;
 }
 
 #shop-local .left h3, #shop-local .left p {
-	text-align: left;
-	padding-left: 50px;
-	padding-right: 100px;
-	line-height: 1.2em;
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 100px;
+    line-height: 1.2em;
 }
 
 #shop-local .right {
-	border-right: 6px solid rgb(196, 216, 163); 
-	border-left: none;
-	width: 50%;
-	display: block;
-	float: right;
-	white-space: normal;
-	padding-top: 40px;
-	text-align: right;
+    border-right: 6px solid rgb(196, 216, 163);
+    border-left: none;
+    width: 50%;
+    display: block;
+    float: right;
+    white-space: normal;
+    padding-top: 40px;
+    text-align: right;
 }
 
 #shop-local .right h3, #shop-local .right p {
-	text-align: right;
-	padding-right: 50px;
-	padding-left: 100px;
-	line-height: 1.2em;
+    text-align: right;
+    padding-right: 50px;
+    padding-left: 100px;
+    line-height: 1.2em;
 }
 
 #shop-local .left svg, #shop-local .right svg  {
-	left: 0; 
-	top: 35px;
+    left: 0;
+    top: 35px;
 }
 
 #shop-local .left svg {
-	left: 0;
-	margin-left: -38px;
+    left: 0;
+    margin-left: -38px;
 }
 
 #shop-local .right svg {
-	left: auto;
-	right: 0; 
-	margin-right: -38px;
+    left: auto;
+    right: 0;
+    margin-right: -38px;
 }
 
-#shop-local .top { 
-	position: relative; 
-	height: 50%; 
-	width: 100%; 
+#shop-local .top {
+    position: relative;
+    height: 50%;
+    width: 100%;
 }
 
-#shop-local .bottom { 
-	position: relative; 
-	height: 50%; 
-	width: 100%; 
+#shop-local .bottom {
+    position: relative;
+    height: 50%;
+    width: 100%;
 }
 
 #the-circuit {
-	background-image: url(../img/map.jpg);
-	background-size: cover;
-	background-position: 0 50%;
-	height: calc(100vh - 93px);
+    background-image: url(../img/map.jpg);
+    background-size: cover;
+    background-position: 0 50%;
+    height: calc(100vh - 93px);
 
 }
 
 #the-circuit h3 {
-	text-transform: uppercase;
-	font-size: 2.6em;
-	color: rgb(88, 125, 69);
-	background-color: white;
-	width: 40%; margin: 0 auto;
-	text-align: center;
-	line-height: 1.2em;
-	font-weight: 500;
-	padding: 20px;
+    text-transform: uppercase;
+    font-size: 2.6em;
+    color: rgb(88, 125, 69);
+    background-color: white;
+    width: 40%; margin: 0 auto;
+    text-align: center;
+    line-height: 1.2em;
+    font-weight: 500;
+    padding: 20px;
 }
 
 #core-services {
-	background-color: rgb(196, 216, 163);
+    background-color: rgb(196, 216, 163);
 }
 
 #services {
-	width: 50%;
-	margin: auto;
-	height: 500px;
+    width: 50%;
+    margin: auto;
+    height: 500px;
 }
 
 #services:after {
-	content : "";
-	display: block;
-	clear: both;
-	overflow: hidden;
+    content : "";
+    display: block;
+    clear: both;
+    overflow: hidden;
 }
 
-#services h3 { 
-	margin-top: 0; 
-	margin-bottom: 10px;
-	text-transform: uppercase;
-	color: rgb(82, 123, 61);
-	font-weight: 200;
+#services h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: rgb(82, 123, 61);
+    font-weight: 200;
 }
 
-#services p { 
-	margin: 0; 
-	font-weight: 100;
+#services p {
+    margin: 0;
+    font-weight: 100;
 }
 
 #core-services .left {
-	width: 60%;
-	float: left;
-	height: 100%;
+    width: 60%;
+    float: left;
+    height: 100%;
 }
 
 #core-services .left > div {
-	height: 33%;
-	padding: 40px;
+    height: 33%;
+    padding: 40px;
 }
 
 #core-services .right {
-	width: 40%;
-	float: right;
-	height: 100%;
+    width: 40%;
+    float: right;
+    height: 100%;
 }
 
 #core-services .right > div {
-	height: 50%;
-	padding: 20px;
+    height: 50%;
+    padding: 20px;
 }
 
 .image {
-	width: 30%; 
-	vertical-align: middle;
-	float: left;
-	text-align: center;
+    width: 30%;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
 }
 
 #ithaca-dollars { background-color: white; line-height: 74px; position: relative;}
@@ -620,257 +619,257 @@ h1 img {
 #payitfwd img { width: 100px; }
 
 #services div.caption {
-	line-height: 1em;
-	vertical-align: middle;
-	display: inline-block;
-	width: 60%;
-	margin-left: 10px;
-	text-align: left;
+    line-height: 1em;
+    vertical-align: middle;
+    display: inline-block;
+    width: 60%;
+    margin-left: 10px;
+    text-align: left;
 }
 
 #accounts > ul {
-	margin: 0; padding: 0;
-	text-transform: uppercase;
-	list-style-type: none;
-	color: rgb(82, 123, 61);
-	width: 30%;
-	text-align: right;
-	float: left;
-	font-family: "Varela Round";
-	height: 474px;
+    margin: 0; padding: 0;
+    text-transform: uppercase;
+    list-style-type: none;
+    color: rgb(82, 123, 61);
+    width: 30%;
+    text-align: right;
+    float: left;
+    font-family: "Varela Round";
+    height: 474px;
 }
 
 #accounts > ul > li {
-	height: 25%;
-	background-color: rgb(225, 225, 225);
+    height: 25%;
+    background-color: rgb(225, 225, 225);
 }
 
 #accounts > ul > li:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #accounts > ul > li.selected::after {
-	content: "";
-	display: inline-block;
-	width: 0; 
-	height: 0; 
-	border-top: 25px solid transparent;
-	border-bottom: 25px solid transparent; 
-	
-	border-right: 25px solid rgb(235, 235, 235);
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
 
-	position: relative;
-	bottom: 87px;
+    border-right: 25px solid rgb(235, 235, 235);
+
+    position: relative;
+    bottom: 87px;
 }
 
 #accounts > ul > li p {
-	display: block;
-	font-size: 1.2em;
-	font-weight: 200;
-	border-bottom: 2px solid white;
-	padding: 20px 0;
-	margin: 0 40px;
-	letter-spacing: 2px;
-	line-height: 1em;
-	vertical-align: middle;
+    display: block;
+    font-size: 1.2em;
+    font-weight: 200;
+    border-bottom: 2px solid white;
+    padding: 20px 0;
+    margin: 0 40px;
+    letter-spacing: 2px;
+    line-height: 1em;
+    vertical-align: middle;
 }
- 
+
 #accounts > ul > li p span {
-	width: 200px;
-	display: inline-block;
+    width: 200px;
+    display: inline-block;
 }
 
 #accounts > ul > li:last-of-type p {
-	border: none;
+    border: none;
 }
 
 #accounts > ul img {
-	width: 70px;
-	vertical-align: middle;
+    width: 70px;
+    vertical-align: middle;
 }
 
 #accounts .copy p:last-of-type {
-	margin-top: 40px;
+    margin-top: 40px;
 }
 
 #account-info {
-	width: 70%;
-	height: 474px;
-	float: right;
-	background-color: rgb(235, 235, 235);
-	padding: 0 40px;
-	display: table;
+    width: 70%;
+    height: 474px;
+    float: right;
+    background-color: rgb(235, 235, 235);
+    padding: 0 40px;
+    display: table;
 }
 
 #account-info > div { display: none;  vertical-align: middle; }
 #account-info > div#individual-info { display: table-cell; }
 
 #account-info img {
-	border-radius: 50%;
-	width: 300px;
+    border-radius: 50%;
+    width: 300px;
 }
 
 #account-info .img {
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 40px;
 }
 
 #account-info .copy {
-	width: 50%;
-	display: inline-block;
-	vertical-align: middle;
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #account-info ul {
-	padding-left: 40px;
+    padding-left: 40px;
 }
 
 #legacy {
-	background-color: rgb(196, 216, 163);
-	text-align: center;
+    background-color: rgb(196, 216, 163);
+    text-align: center;
 }
 
 #team {
-	background-color: rgb(230, 231, 233);
-	display: inline-block;
-	text-align: left;
-	color: black;
+    background-color: rgb(230, 231, 233);
+    display: inline-block;
+    text-align: left;
+    color: black;
 }
 
 #team h3 {
-	color: black;
-	padding-left: 20px;
+    color: black;
+    padding-left: 20px;
 }
 
 #team ul {
-	margin: 0; padding: 0;
+    margin: 0; padding: 0;
 }
 
 #team img {
-	width: 200px;
+    width: 200px;
 }
 
 #core-team li {
-	display: inline-block;
-	margin: 0 5px;
-	background-color: white;
+    display: inline-block;
+    margin: 0 5px;
+    background-color: white;
 }
 
 #core-team h4 {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 #core-team p { margin: 0; }
 
 #core-team p.bio {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 #core-team li:first-of-type { margin-left: 0; }
 #core-team li:last-of-type { margin-right: 0; }
 
 #support-team li {
-	display: inline;
-	text-align: center;
-	background-color: white;
-	width: 25%;
-	padding: 15px 0;
-	float: left;
-	border-right: 5px solid rgb(230, 231, 233);
+    display: inline;
+    text-align: center;
+    background-color: white;
+    width: 25%;
+    padding: 15px 0;
+    float: left;
+    border-right: 5px solid rgb(230, 231, 233);
 }
 #support-team h3 { margin-top: 30px; }
 
 #support-team h4 { margin: 0; }
 
-#support-team p { 
-	margin-top: 10px; 
-	margin-bottom: 0; 
-	line-height: 1em; 
-	text-transform: lowercase;
-	font-weight: 500;
-	font-size: 0.9em;
+#support-team p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 1em;
+    text-transform: lowercase;
+    font-weight: 500;
+    font-size: 0.9em;
 }
 
 #support-team li:nth-of-type(odd) p { color: rgb(82, 123, 61); }
 #support-team li:last-of-type { border: none; }
 
 #contact {
-	text-align: center;
-	padding-top: 0;
+    text-align: center;
+    padding-top: 0;
 }
 
 #contact a {
-	color: #999;
-	text-decoration: none;
+    color: #999;
+    text-decoration: none;
 }
 
 #contact h2 {
-	margin: 30px 0;
+    margin: 30px 0;
 }
 
 #contact > div > div {
-	width: 33%;
-	float: left;
-	padding: 0 40px;
-	text-align: left;
+    width: 33%;
+    float: left;
+    padding: 0 40px;
+    text-align: left;
 }
 
 #logos h3 {
-	font-weight: 200;
-	margin: 0;
-	font-size: 1.8em;
-	text-align: center;
+    font-weight: 200;
+    margin: 0;
+    font-size: 1.8em;
+    text-align: center;
 
 }
 
 #logos p {
-	font-size: 1.4em;
-	line-height: 0;
-	margin-top: 0;
-	text-align: center;
+    font-size: 1.4em;
+    line-height: 0;
+    margin-top: 0;
+    text-align: center;
 }
 
 #logos img {
-	max-width: 125px;
-	vertical-align: middle;
-	margin: 0 5px 5px 5px;
+    max-width: 125px;
+    vertical-align: middle;
+    margin: 0 5px 5px 5px;
 }
 
-#ithacash-transform { 
-	text-align: center; 
-	margin-bottom: 30px;
+#ithacash-transform {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 #ithacash-transform img {
-	width: 200px;
+    width: 200px;
 }
 
 #contact > div > div#contact-form {
-	text-align: right;
+    text-align: right;
 }
 
 #contact-form input, #contact-form textarea {
-	width: 100%;
-	background-color: rgb(230, 231, 233);
-	border: none;
-	font-size: 1em;
-	padding: 5px;
-	letter-spacing: .5px;
+    width: 100%;
+    background-color: rgb(230, 231, 233);
+    border: none;
+    font-size: 1em;
+    padding: 5px;
+    letter-spacing: .5px;
 }
 
 #contact-form input {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #contact-form textarea {
-	height: 11.8em;
-	font-family: "Maven Pro", Helvetica, Arial, sans-serif;
+    height: 11.8em;
+    font-family: "Maven Pro", Helvetica, Arial, sans-serif;
 }
 
 #contact-info p {
-	margin-top: 0;
-	margin-bottom: 30px;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
 #contact-info img { width: 50px; }
