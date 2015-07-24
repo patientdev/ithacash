@@ -21,7 +21,6 @@ $(function() {
                 $('#sign-up-1').removeClass('selected');
                 $('#sign-up-2').addClass('selected');
                 $('#info input').attr('disabled', false);
-                $('html, body').css('overflow', 'visible');
                 $('#info').css('display', 'block');
                 mapInputsToReview($('#login'));
             }
