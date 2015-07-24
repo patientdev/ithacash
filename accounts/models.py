@@ -64,12 +64,11 @@ class IthacashAccount(models.Model):
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
     entity_name = models.CharField(max_length=255)
 
-
     address_1 = models.CharField(max_length=255)
     address_2 = models.CharField(max_length=255, blank=True, null=True)
-    address_city = models.CharField(max_length=255, default="Ithaca")
-    address_state = models.CharField(max_length=255, default="NY")
-    address_zip_code = models.CharField(max_length=255, default="14850")
+    city = models.CharField(max_length=255, default="Ithaca")
+    state = models.CharField(max_length=255, default="NY")
+    zip_code = models.CharField(max_length=255, default="14850")
     tin = EncryptedCharField(max_length=255)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
     phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)

@@ -8,53 +8,45 @@
 {% block content %}
 <div id="content">
 
-<div id="sign-up-path" class="clear">
-    <svg>
-        <line x1="0" y1="0"
-          x2="100%" y2="0"
-          stroke="rgb(119, 173, 89)"
-          stroke-width="6px"/>
-    </svg>
-    <div id="sign-up-1" class="selected sign-up-step">
-        <div class="step-heading">Your Login</div>
-        <div class="circle"><span>1</span></div>
+    <div id="sign-up-path" class="clear">
+        <svg>
+            <line x1="0" y1="0"
+              x2="100%" y2="0"
+              stroke="rgb(119, 173, 89)"
+              stroke-width="6px"/>
+        </svg>
+        <div id="sign-up-1" class="selected sign-up-step">
+            <div class="step-heading">Your Login</div>
+            <div class="circle"><span>1</span></div>
+        </div>
+        <div id="sign-up-2" class="sign-up-step">
+            <div class="step-heading">Your Info</div>
+            <div class="circle">2</div>
+        </div>
+        <div id="sign-up-3" class="sign-up-step">
+            <div class="step-heading">Review</div>
+            <div class="circle">3</div>
+        </div>
     </div>
-    <div id="sign-up-2" class="sign-up-step">
-        <div class="step-heading">Your Info</div>
-        <div class="circle">2</div>
-    </div>
-    <div id="sign-up-3" class="sign-up-step">
-        <div class="step-heading">Review</div>
-        <div class="circle">3</div>
-    </div>
-</div>
 
-<div id="forms">
-    <form id="account" method="POST" action="/account/" class="clear">
-{% csrf_token %}
+    <div id="forms">
+        <form id="account" method="POST" action="" class="clear">
+    {% csrf_token %}
 
-    <div id="info">
+        <div id="info">
 
-        <h2>Your Information</h2>
-        <h3>For email {{email_object.address}}</h3>
-        {{user_form.as_p}}
-        <hr/>
-        {{account_form.as_p}}
-        <!--<p>{{ form.name_business }}</p>-->
-        <!--<p>{{ form.name_contact }}</p>-->
-        <!--<p>{{ form.tin }}</p>-->
-        <!--<p>{{ form.address_1 }}</p>-->
-        <!--<p>{{ form.address_2 }}</p>-->
-        <!--<p class="two-inputs">{{ form.address_city }} {{ form.address_zip_code }}</p>-->
-        <!--<p>{{ form.address_state }}</p>-->
-        <!--<p>{{ form.phone_landline }}</p>-->
-        <!--<p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>-->
-        <!--<p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>-->
-        <!--<p>{{ form.phone_mobile }}</p>-->
-        <!--<p>{{ form.electronic_signature }}</p>-->
+            <h2>Your Information</h2>
+            <h3>For email {{email_object.address}}</h3>
+            {{user_form.as_p}}
+            <hr/>
+            <table>
+            {{account_form.as_table}}
+            </table>
 
-        <p><a href="#review" class="white-button next" tabindex="0">Next</a></p>
+            <p><button class="white-button" tabindex="0">Next</a></p>
 
+        </div>
+        </form>
     </div>
 </div>
 
