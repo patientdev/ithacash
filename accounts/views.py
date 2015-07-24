@@ -48,10 +48,29 @@ def create_account(request, email_key):
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
     email_object.confirm(email_key)
 
-    user_form = UserSignupForm(prefix="user")
-    account_form = AccountForm(prefix="account")
+    user_form = UserSignupForm(request.POST, prefix="user")
+    account_form = AccountForm(request.POST, prefix="account")
+
+    if user_form.is_valid() and account_form.is_valid():
+        user = user_form.save()
+
+        email_object.owner = user
+        email_object.save()
+
+        account_form.instance.owner = user
+        account_form.save()
+
+        # Send "Thank you; we'll review your application" email here?
+
+        return HttpResponseRedirect('/accounts/application_complete/')
 
     return render(request, 'signup-phase-two.html', {'account_form': account_form,
                                                      'user_form': user_form,
                                                      'email_object': email_object})
+
+
+# TODO: PERMISSIONS!
+def list_accounts(request):
+    return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})
+
 
