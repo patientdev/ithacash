@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
+from django import forms
 import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
@@ -78,6 +79,3 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=5)  # ???
 
     created = models.DateTimeField(auto_now_add=True)
-
-
-
