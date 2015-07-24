@@ -2,7 +2,6 @@ body, html {
     min-height: 100%;
     width: 100%;
     background-color: rgb(119, 173, 89);
-    overflow: hidden;
 }
 
 #container { min-height: 100%; }
@@ -80,17 +79,31 @@ h2 {
     -webkit-transform: scale(1);
 }
 
-#forms {
+/*#forms {
     margin-top: 100px;
     width: 300%;
     min-height: 100%;
-}
+}*/
 
 #review { display: none; }
 
-form { min-height: 100%; }
+.errorlist {
+    width: 40%;
+    margin: 0 auto 40px auto;
+    padding: 0;
+    text-align: left;
+}
 
-form > div {
+#info {
+    margin-top: 150px;
+}
+
+form {
+    min-height: 100%;
+    font-size: 1.1em;
+}
+
+/*form > div {
     min-height: 100%;
     padding: 20px 0;
     text-align: center;
@@ -98,7 +111,7 @@ form > div {
     right: 0;
     position: relative;
     float: left;
-}
+}*/
 
 form p {
     margin: 20px auto;
@@ -121,7 +134,6 @@ input[type=text], input[type=email] {
 }
 
 input[type=checkbox] {
-    float: left;
     vertical-align: middle;
 }
 
@@ -209,4 +221,8 @@ input[type=radio] {
 
 input.error {
     outline: 1px solid red;
+}
+
+.error-message {
+    margin-left: 20px;
 }
