@@ -15,11 +15,11 @@
           stroke="rgb(119, 173, 89)"
           stroke-width="6px"/>
     </svg>
-    <div id="sign-up-1" class="selected sign-up-step">
+    <div id="sign-up-1" class="sign-up-step">
         <div class="step-heading">Your Login</div>
         <div class="circle"><span>1</span></div>
     </div>
-    <div id="sign-up-2" class="sign-up-step">
+    <div id="sign-up-2" class="sign-up-step selected">
         <div class="step-heading">Your Info</div>
         <div class="circle">2</div>
     </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div id="forms">
-    <form id="account" method="POST" action="" class="clear">
+    <form id="account" method="POST" action="/accounts/application/" class="clear">
 {% csrf_token %}
 
     <div id="info">
@@ -38,17 +38,20 @@
         <h2>Your Information</h2>
 
         <p>{{ form.account_type }}</p>
-        <p>{{ form.entity_name }}</p>
-        <p>{{ form.tin }}</p>
-        <p>{{ form.address_1 }}</p>
-        <p>{{ form.address_2 }}</p>
-        <p class="two-inputs">{{ form.address_city }} {{ form.address_zip_code }}</p>
-        <p>{{ form.address_state }}</p>
-        <p>{{ form.phone_landline }}</p>
-        <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
-        <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
-        <p>{{ form.phone_mobile }}</p>
-        <p>{{ form.electronic_signature }}</p>
+
+        <div id="account-type-selection">
+            <p>{{ form.entity_name }}</p>
+            <p>{{ form.tin }}</p>
+            <p>{{ form.address_1 }}</p>
+            <p>{{ form.address_2 }}</p>
+            <p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
+            <p>{{ form.state }}</p>
+            <p>{{ form.phone_landline }}</p>
+            <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+            <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
+            <p>{{ form.phone_mobile }}</p>
+            <p>{{ form.electronic_signature }}</p>
+        </div>
 
         <p><button type="submit" class="white-button">Submit</button></p>
 
@@ -167,4 +170,21 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
+<script>
+    $('#id_account_type').change(function() {
+        if ( $(this).val() == 'Individual' || $(this).val() == 'Freelancer' ) {
+            $('#id_entity_name').attr('placeholder', 'Your name');
+        }
+
+        else if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
+            $('#id_entity_name').attr('placeholder', 'Business Name');
+        }
+
+        else {
+            $('#id_entity_name').attr('placeholder', 'Organization Name');
+        }
+
+        $('#account-type-selection').slideDown();
+    })
+</script>
 {% endblock %}
