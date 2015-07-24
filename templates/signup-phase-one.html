@@ -48,30 +48,4 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
-
-<script>
-    $('#account').submit(function( event ) {
-
-        data = $(this).serialize();
-
-        $.post('/accounts/signup/', data, function( response ){
-                if ( typeof response.errors !== 'undefined' ) {
-
-                    errors = $.parseJSON(response.errors);
-
-                    $.each(errors, function(index) {
-                        input = index;
-                        error_message = errors[input][0]['message'];
-
-                        $('#id_' + input).addClass('error').after('<span class="error-message">*' +  error_message + '</span>');
-                    })                    
-
-                    event.preventDefault();
-
-                }
-
-                else return true;
-        })
-    })
-</script>
 {% endblock %}

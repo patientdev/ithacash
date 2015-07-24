@@ -1,98 +1,36 @@
 $(function() {
 
-    $('.next').click(function( event ) {
+    var isValid = false;
+    $('form').submit(function( event ) {
 
-        event.preventDefault();
+        if ( !isValid ) { event.preventDefault(); }
 
-        // Login Info
-        if ( $(this).parents('#login').length > 0 ) {
+        isValid = true;
 
-            empties = verifyRequired('#login');
+        action_url = $(this).attr('action')
+        data = $(this).serialize();
 
-            if ( empties.length > 0 ) {
-                $(empties).each(function() {
-                    $(this).addClass('error');
-                });
 
-                return false;
-            }
+        $.post(action_url, data, function( response ){
 
-            else {
-                $('#sign-up-1').removeClass('selected');
-                $('#sign-up-2').addClass('selected');
-                $('#info input').attr('disabled', false);
-                $('#info').css('display', 'block');
-                mapInputsToReview($('#login'));
-            }
-        }
+                if ( typeof response.errors !== 'undefined' ) {
+                    isValid = false;
+                    errors = $.parseJSON(response.errors);
 
-        // Contact Info
-        else if ( $(this).parents('#info').length > 0 ) {
+                    $.each(errors, function(index) {
+                        input = index;
+                        error_message = errors[input][0]['message'];
 
-            empties = verifyRequired('#info');
-            console.log(empties);
-            if ( empties.length > 0 ) {
-                $(empties).each(function() {
-                    $(this).addClass('error');
-                })
+                        $('#id_' + input).addClass('error').after('<span class="error-message">*' +  error_message + '</span>');
+                    })
 
-                return false;
-            }
+                    event.preventDefault();
+                }
+        })
 
-            else {
-                $('#sign-up-2').removeClass('selected');
-                $('#sign-up-3').addClass('selected');
-                $('#review').css('display', 'block');
-                mapInputsToReview($('#info')); }
-        }
-
-        // Review Info
-        else if ( $(this).parents('#review').length > 0 ) {
-            $('#sign-up-2').removeClass('selected');
-            $('#sign-up-3').addClass('selected');
-        }
-
-        // Move it along
-        anchor = $(this);
-        next = $(this).attr('href');
-
-        $('#content').stop().animate({
-                scrollLeft: "+=" + $(next).offset().left,
-            }, {
-                specialEasing: 'ease',
-                duration: 750
-        });
     })
 
-    $('.back').click(function() {
-
-        // Review Info
-        if ( $(this).parents('#review').length > 0 ) {
-            $('#sign-up-3').removeClass('selected');
-            $('#sign-up-2').addClass('selected');
-            setTimeout(function() {
-                $('#review').css('display', 'none');
-            }, 750)
-        }
-
-        else if ( $(this).parents('#info').length > 0 ) {
-            $('#sign-up-2').removeClass('selected');
-            $('#sign-up-1').addClass('selected');
-            setTimeout(function() {
-                $('#info').css('display', 'none');
-            }, 750)
-        }
-        // Move it along
-        anchor = $(this);
-        previous = $(this).attr('href');
-
-        $('#content').stop().animate({
-                scrollLeft: "+=" + $(previous).offset().left,
-            }, {
-                specialEasing: 'ease',
-                duration: 750
-        });
-    });
+    if ( isValid ) { $(this).submit(); }
 
 });
 
