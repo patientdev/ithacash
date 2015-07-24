@@ -16,7 +16,7 @@
               stroke-width="6px"/>
         </svg>
         <div id="sign-up-1" class="selected sign-up-step">
-            <div class="step-heading">Your Login</div>
+            <div class="step-heading">Your Email</div>
             <div class="circle"><span>1</span></div>
         </div>
         <div id="sign-up-2" class="sign-up-step">
@@ -35,8 +35,9 @@
         <div id="login">
             <h2>First, your email address.</h2>
 
-            {{form}}
-            <p><button class="white-button">Go</a></p>
+            {{form.as_p }}
+
+            <p><button class="white-button">Go</button></p>
         </div>
         </form>
     </div>
@@ -47,4 +48,30 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
+
+<script>
+    $('#account').submit(function( event ) {
+
+        data = $(this).serialize();
+
+        $.post('/accounts/signup/', data, function( response ){
+                if ( typeof response.errors !== 'undefined' ) {
+
+                    errors = $.parseJSON(response.errors);
+
+                    $.each(errors, function(index) {
+                        input = index;
+                        error_message = errors[input][0]['message'];
+
+                        $('#id_' + input).addClass('error').after('<span class="error-message">*' +  error_message + '</span>');
+                    })                    
+
+                    event.preventDefault();
+
+                }
+
+                else return true;
+        })
+    })
+</script>
 {% endblock %}
