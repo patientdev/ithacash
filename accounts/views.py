@@ -31,11 +31,11 @@ class AccountForm(forms.ModelForm):
         exclude = ['owner']
         widgets = {
             'entity_name': forms.TextInput(attrs={'placeholder': 'Name'}),
-            'address_1': forms.TextInput(attrs={'placeholder': 'Address'}),
-            'address_2': forms.TextInput(attrs={'placeholder': 'Address'}),
-            'city':  forms.TextInput(attrs={'placeholder': 'City'}),
-            'state':  forms.TextInput(attrs={'placeholder': 'State'}),
-            'zip_code':  forms.TextInput(attrs={'placeholder': 'Zip code'}),
+            'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
+            'address_2': forms.TextInput(attrs={'placeholder': 'Address 1'}),
+            'city': forms.TextInput(attrs={'placeholder': 'City'}),
+            'state': forms.TextInput(attrs={'placeholder': 'State'}),
+            'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
             'tin': forms.TextInput(attrs={'placeholder': 'TIN'}),
             'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
             'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
@@ -70,6 +70,7 @@ def signup_phase_one(request):
     else:
         return render(request, 'signup-phase-one.html', {'form': form})
 
+
 def signup_phase_two(request):
     form = AccountForm(request.POST or None)
 
@@ -81,13 +82,18 @@ def signup_phase_two(request):
             def send_email_later():
                 email_object.send_confirmation_message()
 
-            return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
+            if form.cleaned_data['account_type'] is not any(('Individual', 'Nonprofit')):
+                return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
+
+            else:
+                return HttpResponseRedirect('/accounts/sign-up-fee/')
 
         else:
             return (JsonResponse({'errors': form.errors.as_json()}))
 
     else:
         return render(request, 'signup-phase-two.html', {'form': form})
+
 
 def await_confirmation(request):
     return render(request, 'await-confirmation.html')
