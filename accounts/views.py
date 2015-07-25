@@ -6,10 +6,6 @@ from django import forms
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
 
-from accounts.models import Email, IthacashUser, IthacashAccount
-from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
-
-
 class EmailForm(forms.ModelForm):
 
     required_css_class = "required"
