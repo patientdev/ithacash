@@ -9,18 +9,16 @@ https:/docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https:/docs.djangoproject.com/en/1.8/ref/settings/
 """
+from secrets import SECRET_KEY, MANDRILL_API_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https:/docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm#5$xli3@vqxr37koe3^u!xyce-rm3qmihyav7g$p2=e@uu^e0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -110,7 +108,7 @@ HENDRIX_CHILD_RESOURCES = (
 )
 
 # django-encrypted-fields
-ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'signup/fieldkeys')
+ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'ithacash_dev/settings/secrets/fieldkeys')
 
 AUTH_USER_MODEL = 'accounts.IthacashUser'
 
