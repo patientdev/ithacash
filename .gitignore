@@ -1,5 +1,7 @@
 *.pyc
 *.csv
 *.sqlite3
-settings/secrets
+ithacash_dev/settings/secrets/*
 ops/ssl
+.idea
+db.sqlite3
