@@ -3,14 +3,13 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.conf import settings
-from django import forms
 import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
 from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT
 from django.template import Context, loader
+from django.conf import settings
 
 
 class IthacashUser(AbstractBaseUser):
@@ -111,3 +110,6 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=5)  # ???
 
     created = models.DateTimeField(auto_now_add=True)
+
+
+

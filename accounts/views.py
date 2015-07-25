@@ -64,9 +64,9 @@ def signup_phase_one(request):
                 email_object.send_confirmation_message()
 
             return HttpResponseRedirect('/accounts/await-confirmation/')
-
         else:
             return (JsonResponse({'errors': form.errors.as_json()}))
+
 
     else:
         return render(request, 'signup-phase-one.html', {'form': form})
@@ -133,3 +133,5 @@ def create_account(request, email_key):
 # TODO: PERMISSIONS!
 def list_accounts(request):
     return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})
+
+
