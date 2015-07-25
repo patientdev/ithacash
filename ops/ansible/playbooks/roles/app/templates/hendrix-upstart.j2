@@ -4,8 +4,8 @@ stop on shutdown
 console log
 respawn
 
-setuid {{user}}
-setgid {{group}}
+setuid {{app_user}}
+setgid {{app_group}}
 
 script
     env PYTHONPATH={{manage_path}}
