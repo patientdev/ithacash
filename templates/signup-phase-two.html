@@ -37,10 +37,14 @@
 
         <h2>Your Information</h2>
 
+        <p>{{ user_form.username }}</p>
+        <p>{{ user_form.username.help_text }}</p>
+
         <p>{{ form.account_type }}</p>
 
         <div id="account-type-selection">
             <p>{{ form.entity_name }}</p>
+            <p>{{ user_form.full_name }}</p>
             <p>{{ form.tin }}</p>
             <p>{{ form.address_1 }}</p>
             <p>{{ form.address_2 }}</p>
@@ -170,18 +174,21 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
-<script>
-    $('#id_account_type').change(function() {
-        if ( $(this).val() == 'Individual' || $(this).val() == 'Freelancer' ) {
-            $('#id_entity_name').attr('placeholder', 'Your name');
-        }
+<script type="text/javascript">
+    $('#id_account-account_type').change(function() {
+        if ( $(this).val()  == 'Individual' || $(this).val() == 'Freelancer' ) {
+            $('#id_account-entity_name').hide();
+            $('#id_user-full_name').attr('placeholder', 'Your Name');
+        } else {
 
-        else if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
-            $('#id_entity_name').attr('placeholder', 'Business Name');
-        }
+            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
+            $('#id_account-entity_name').attr('placeholder', 'Business Name');
+            } else {
+                $('#id_account-entity_name').attr('placeholder', 'Organization Name');
+            }
+            $('#id_user-full_name').attr('placeholder', 'Contact Name');
+            $('#id_account-entity_name').show();
 
-        else {
-            $('#id_entity_name').attr('placeholder', 'Organization Name');
         }
 
         $('#account-type-selection').slideDown();
