@@ -8,50 +8,183 @@
 {% block content %}
 <div id="content">
 
-    <div id="sign-up-path" class="clear">
-        <svg>
-            <line x1="0" y1="0"
-              x2="100%" y2="0"
-              stroke="rgb(119, 173, 89)"
-              stroke-width="6px"/>
-        </svg>
-        <div id="sign-up-1" class="selected sign-up-step">
-            <div class="step-heading">Your Login</div>
-            <div class="circle"><span>1</span></div>
-        </div>
-        <div id="sign-up-2" class="sign-up-step">
-            <div class="step-heading">Your Info</div>
-            <div class="circle">2</div>
-        </div>
-        <div id="sign-up-3" class="sign-up-step">
-            <div class="step-heading">Review</div>
-            <div class="circle">3</div>
-        </div>
+<div id="sign-up-path" class="clear">
+    <svg>
+        <line x1="0" y1="0"
+          x2="100%" y2="0"
+          stroke="rgb(119, 173, 89)"
+          stroke-width="6px"/>
+    </svg>
+    <div id="sign-up-1" class="sign-up-step">
+        <div class="step-heading">Your Login</div>
+        <div class="circle"><span>1</span></div>
     </div>
-
-    <div id="forms">
-        <form id="account" method="POST" action="" class="clear">
-    {% csrf_token %}
-
-        <div id="info">
-
-            <h2>Your Information</h2>
-            <h3>For email {{email_object.address}}</h3>
-            {{user_form.as_p}}
-            <hr/>
-            <table>
-            {{account_form.as_table}}
-            </table>
-
-            <p><button class="white-button" tabindex="0">Next</a></p>
-
-        </div>
-        </form>
+    <div id="sign-up-2" class="sign-up-step selected">
+        <div class="step-heading">Your Info</div>
+        <div class="circle">2</div>
+    </div>
+    <div id="sign-up-3" class="sign-up-step">
+        <div class="step-heading">Review</div>
+        <div class="circle">3</div>
     </div>
 </div>
 
+<div id="forms">
+    <form id="account" method="POST" action="/accounts/application/" class="clear">
+{% csrf_token %}
+
+    <div id="info">
+
+        <h2>Your Information</h2>
+
+        <p>{{ form.account_type }}</p>
+
+        <div id="account-type-selection">
+            <p>{{ form.entity_name }}</p>
+            <p>{{ form.tin }}</p>
+            <p>{{ form.address_1 }}</p>
+            <p>{{ form.address_2 }}</p>
+            <p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
+            <p>{{ form.state }}</p>
+            <p>{{ form.phone_landline }}</p>
+            <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+            <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
+            <p>{{ form.phone_mobile }}</p>
+            <p>{{ form.electronic_signature }}</p>
+        </div>
+
+        <p><button type="submit" class="white-button">Submit</button></p>
+
+    </div>
+
+    <div id="review">
+        <h2>Review Your Information</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Account Type: <strong>Business</strong></th>
+                    <td><button class="edit">edit</button></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly Billing</td>
+                    <td><label>$35 + i$15/mo <input type="radio" name="billing-freq" value="monthly" selected></label></td>
+                </tr>
+                <tr>
+                    <td colspan="2">&mdash;or switch to&mdash;</td>
+                </tr>
+                <tr>
+                    <td>Semi-Annually Billing</td>
+                    <td><label>$30 + i$15/mo <input type="radio" name="billing-freq" value="semi-annuual"></label></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Login Information</th>
+                    <td><button class="edit">edit</button></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td><span id="review-name_login"></span></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><span id="review-email"></span></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><span id="review-password"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Business Information</th>
+                    <td><button class="edit">edit</button></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Business Name</td>
+                    <td><span id="review-name_business"></span></td>
+                </tr>
+                <tr>
+                    <td>Contact Name</td>
+                    <td><span id="review-name_contact"></span></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><span id="review-address_1"></span><br><span id="review-address_2"></span><br><span id="review-address_city"></span>,  <span id="review-address_state"></span> <span id="review-address_zip_code"></span></td>
+                </tr>
+                <tr>
+                    <td>TIN</td>
+                    <td><span id="review-tin"></span></td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td><span id="review-phone_landline"></span></td>
+                </tr>
+                <tr>
+                    <td>Enable TXT2PAY</td>
+                    <td><span id="review-txt2pay"></span></td>
+                </tr>
+                <tr>
+                    <td>Lease TXT2PAY Phone</td>
+                    <td><span id="review-txt2pay_phone"></span></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><span id="review-phone_mobile"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Business</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="white-button">Confirm</button></td>
+                </tbody>
+        </table>
+        </div>
+    </div>
+</form>
+</div>
+
+</div>
 {% endblock %}
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
+<script>
+    $('#id_account_type').change(function() {
+        if ( $(this).val() == 'Individual' || $(this).val() == 'Freelancer' ) {
+            $('#id_entity_name').attr('placeholder', 'Your name');
+        }
+
+        else if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
+            $('#id_entity_name').attr('placeholder', 'Business Name');
+        }
+
+        else {
+            $('#id_entity_name').attr('placeholder', 'Organization Name');
+        }
+
+        $('#account-type-selection').slideDown();
+    })
+</script>
 {% endblock %}
