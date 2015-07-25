@@ -1,14 +1,20 @@
 from datetime import datetime
 from django.contrib.auth.models import AbstractBaseUser
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.conf import settings
+from django import forms
 import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
+from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT
+from django.template import Context, loader
 
 
 class IthacashUser(AbstractBaseUser):
-    username = models.CharField(max_length=120, unique=True, help_text="Other Ithacash users can use this username to pay you.")
+    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION)
     full_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -32,12 +38,39 @@ class Email(models.Model):
 
         return super(Email, self).save(*args, **kwargs)
 
-    def send_confirmation_message(self):
+    def validate_unique(self, exclude=None):
+        try:
+            super(Email, self).validate_unique(exclude)
+        except ValidationError as e:
+            try:
+                if e.args[0].keys() == ['address'] and e.args[0]['address'][0].args[1] == 'unique':
+                    # In this scenario, the email is a repeat on a form.  It's OK.
+                    return
+                else:
+                    raise
+            except:
+                raise
 
-        return
-        ## TODO: Email template
-        # mandrill_client = mandrill.Mandrill('YOUR_API_KEY')
-        # mandrill_client.send(blah blah blah)
+    def application_url(self):
+        return reverse("account_application", kwargs={'email_key': self.most_recent_confirmation_key})
+
+    def send_confirmation_message(self):
+        t = loader.get_template('emails/phase_one.txt')
+        c = Context({
+            'application_url': "https://%s%s" % (DOMAIN, self.application_url()),
+            'form_url': "https://%s%s" % (DOMAIN, reverse("signup_phase_one")),
+            'email_address': self.address,
+        })
+        message = t.render(c)
+
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+        mandrill_client.messages.send(
+            {
+                'to': [{'email': self.address}],
+                'text': message,
+                'from_email': 'support@ithacash.com',
+                'subject': APPLICATION_SUBJECT,
+            })
 
     def confirm(self, key):
         if key == self.most_recent_confirmation_key:
@@ -78,6 +111,3 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=5)  # ???
 
     created = models.DateTimeField(auto_now_add=True)
-
-
-
