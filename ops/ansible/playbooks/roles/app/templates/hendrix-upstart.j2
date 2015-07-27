@@ -1,0 +1,15 @@
+start on static-network-up
+stop on shutdown
+
+console log
+respawn
+
+setuid {{app_user}}
+setgid {{app_group}}
+
+script
+    env PYTHONPATH={{manage_path}}
+    cd {{manage_path}}
+    . {{venv_path}}/bin/activate
+    exec hx start {{hendrix_opts}}
+end script
