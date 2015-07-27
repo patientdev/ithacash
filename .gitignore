@@ -1,2 +1,7 @@
-
-sftp-config.json
+*.pyc
+*.csv
+*.sqlite3
+ithacash_dev/settings/secrets/*
+ops/ssl
+.idea
+db.sqlite3

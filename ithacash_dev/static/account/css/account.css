@@ -1,0 +1,230 @@
+body, html {
+    min-height: 100%;
+    width: 100%;
+    background-color: rgb(119, 173, 89);
+}
+
+#container { min-height: 100%; }
+
+header {
+    position: relative;
+display: none;
+}
+
+#content {
+    padding-top: 0;
+    color: white;
+    font-size: 1.2em;
+    width: 100%;
+    min-height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#nav-menu { display: none; }
+
+h2 {
+    color: white;
+    margin: 60px 0;
+}
+
+#sign-up-path {
+    text-align: center;
+    border-bottom: 2px solid rgb(88, 122, 70);
+    background-image: url(/static/img/hex-pattern.png);
+    background-size: cover;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    height: 130px;
+    z-index: 10;
+}
+
+#sign-up-path svg {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 74px;
+    height: 3px;
+}
+
+.sign-up-step {
+    width: calc(100% / 3);
+    float: left;
+    top: 5px;
+    position: relative;
+    -webkit-transform: scale(.7);
+    transition: all .75s ease-out;
+}
+
+.step-heading {
+    color: white;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.circle {
+    background-color: rgb(119, 173, 89);
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    text-align: center;
+    color: white;
+    font-size: 1.6em;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.sign-up-step.selected {
+    top: 0;
+    -webkit-transform: scale(1);
+}
+
+/*#forms {
+    margin-top: 100px;
+    width: 300%;
+    min-height: 100%;
+}*/
+
+#review { display: none; }
+
+.errorlist {
+    width: 40%;
+    margin: 0 auto 40px auto;
+    padding: 0;
+    text-align: left;
+}
+
+#account-type-selection { display: none; }
+
+#info {
+    margin-top: 150px;
+}
+
+form {
+    min-height: 100%;
+    font-size: 1.1em;
+}
+
+/*form > div {
+    min-height: 100%;
+    padding: 20px 0;
+    text-align: center;
+    width: calc(100% / 3);
+    right: 0;
+    position: relative;
+    float: left;
+}*/
+
+form p {
+    margin: 20px auto;
+    width: 20em;
+}
+
+form p:last-of-type {
+    margin-top: 40px;
+}
+
+input[type=text], input[type=email] {
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    width: 20em;
+    font-size: 1em;
+    outline: none;
+}
+
+input[type=checkbox] {
+    vertical-align: middle;
+}
+
+.two-inputs input {
+    width: 9em;
+}
+
+.two-inputs input:first-of-type {
+    margin-right: 25px;
+}
+
+::-webkit-input-placeholder {
+   color: #999;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #999;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #999;
+}
+
+:-ms-input-placeholder {
+   color: #999;
+}
+
+.asterisk {
+    color: white;
+    font-size: 1.8em;
+    margin-left: 10px;
+}
+
+.white-button {
+    background-color: white;
+    padding: 5px 35px;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    font-size: 1.4em;
+    text-decoration: none;
+}
+
+.edit {
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 0;
+    font-size: 1em;
+}
+
+table {
+    background-color: rgb(107, 155, 80);
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+th, td {
+    padding: 10px 40px;
+}
+
+td {
+    vertical-align: top;
+}
+
+thead {
+    background-color: rgb(111, 162, 83);
+}
+
+th {
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+thead td { text-align: right; }
+
+td:nth-of-type(2) { text-align: right; }
+
+input[type=radio] {
+    background-color: #333;
+}
+
+input.error {
+    outline: 1px solid red;
+}
+
+.error-message {
+    margin-left: 20px;
+}

@@ -1,0 +1,91 @@
+- name: Create appdeployers group
+  group: name="{{ app_group }}"
+
+- name: Create non-root user to own repo and venv.
+  user: name="{{ app_user }}" group="{{ app_group }}" generate_ssh_key=yes
+
+- name: Create /ithacash directory
+  file: path=/ithacash state=directory owner="{{ app_user }}" group="{{ app_group }}"
+
+- name: Add stable nginx PPA
+  apt_repository: repo='ppa:nginx/stable'
+
+- name: Install OS requirements
+  apt: pkg={{item}} update_cache=yes state=latest
+  with_items:
+    - build-essential
+    - libpng12-dev
+    - zlib1g-dev
+    - libjpeg62-dev
+    - python-dev
+    - python-virtualenv
+    - python-httplib2
+    - git-core
+    - python2.7-dev
+    - libffi-dev
+    - libpq-dev
+    - pkg-config
+    - libgraphviz-dev
+    - graphviz
+    - libatlas-base-dev
+    - libfreetype6-dev
+    - postgresql-client
+    - nginx
+    - postgresql-9.3
+
+## SSH key business not working; gitlab API seems whacky about it.
+# - name: slurp public key to use on gitlab
+#  slurp: src="~/.ssh/id_rsa.pub"
+#  register: appserver_ssh_key
+#  sudo_user: "{{ app_user }}"
+
+# - name: Activate SSH key for gitlab 'appserver' user
+#  uri:
+#    url: https://gitlab.ithacash.com/api/v3/user/keys
+#    method: POST
+#    HEADER_PRIVATE-TOKEN: '1WDSfRcYyyg7sHikwFwd'
+#    validate_certs: no
+#    body_format: raw
+#    body: "key={{appserver_ssh_key.content|b64decode}}&title=appserver_key"
+
+- name: Checkout project from gitlab
+  sudo: yes
+  sudo_user: "{{ app_user }}"
+  git:
+    repo: git@gitlab.ithacash.com:ithacash/ithacash.git
+    dest: /ithacash/production
+    accept_hostkey: yes
+    depth: 1
+
+- name: Install Project reqs
+  sudo: yes
+  sudo_user: "{{ app_user }}"
+  pip:
+    requirements: /ithacash/production/requirements/requirements.txt
+    virtualenv: /ithacash/virtualenv
+    state: latest
+
+- name: Apply hendrix upstart template
+  template: src=hendrix-upstart.j2 dest=/etc/init/hendrix.conf mode=0751
+  sudo: yes
+  sudo_user: root
+
+- name: Start hendrix
+  service:
+    name="hendrix"
+    state=restarted
+  sudo: yes
+  sudo_user: root
+
+- name: Copy SSL creds
+  synchronize: src=../../ssl dest=/ithacash
+
+- name: Remove nginx default config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Apply Ithacash nginx config
+  template: src=nginx-production.j2 dest=/etc/nginx/sites-enabled/production
+
+- name: Restart nginx
+  service: name=nginx state=restarted
+  sudo: yes
