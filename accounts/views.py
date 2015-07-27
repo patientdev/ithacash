@@ -1,3 +1,4 @@
+import json
 from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
@@ -89,8 +90,8 @@ def create_account(request, email_key):
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
     email_object.confirm(email_key)
 
-    user_form = UserSignupForm(request.POST, prefix="user")
-    account_form = AccountForm(request.POST, prefix="account")
+    user_form = UserSignupForm(request.POST or None)
+    account_form = AccountForm(request.POST or None)
 
     if not request.POST:
         return render(request, 'signup-phase-two.html', {'form': account_form,
@@ -115,11 +116,14 @@ def create_account(request, email_key):
             return HttpResponseRedirect('/accounts/sign-up-fee/')
 
     else:
-        return (JsonResponse({'errors': account_form.errors.as_json()}))
+        # Combine form erros into one payload
+        account_errors = json.loads(account_form.errors.as_json())
+        user_errors = json.loads(user_form.errors.as_json())
+        forms_errors = dict(account_errors.items() + user_errors.items())
+        print forms_errors
+        return (JsonResponse({'errors': json.dumps(forms_errors)}))
 
 
 # TODO: PERMISSIONS!
 def list_accounts(request):
     return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})
-
-
