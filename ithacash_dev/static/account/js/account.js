@@ -1,65 +1,55 @@
 $(function() {
 
-    var isValid = false;
     $('form').submit(function( event ) {
 
-        if ( !isValid ) { event.preventDefault(); }
-
-        isValid = true;
+        e = event;
+        e.preventDefault();
 
         action_url = $(this).attr('action')
         data = $(this).serialize();
 
-
         $.post(action_url, data, function( response ){
-
-                if ( typeof response.errors !== 'undefined' ) {
-                    isValid = false;
+                if ( typeof response.errors != 'undefined') {
                     errors = $.parseJSON(response.errors);
 
+                    // Which fields have errors
+                    error_indices = []
                     $.each(errors, function(index) {
-                        input = index;
-                        error_message = errors[input][0]['message'];
-
-                        $('#id_' + input).addClass('error').after('<span class="error-message">*' +  error_message + '</span>');
+                        error_indices.push(index);
                     })
 
-                    event.preventDefault();
+                    inputs = $('form :input');
+
+                    //
+                    // Highlight form inputs that have errors
+                    //
+                    $.each(inputs, function() {
+                        input_name = $(this).attr('name');
+
+                        // If the name of the input equals the invalid field index
+                        if ( $.inArray(input_name, error_indices) != -1 ) {
+                            error_message = errors[input_name][0]['message'];
+
+                            // Logic for dealing with repeat errors
+                            if ( $(this).next('.error-message').length > 0 ) {
+                                $(this).next('.error-message').text('* ' + error_message);
+                            }
+
+                            else {
+                                $(this).addClass('error').after('<span class="error-message">* ' + error_message);
+                            }
+                        }
+
+                        // De-highlight iputs that are now valid
+                        else {
+                            $(this).removeClass('error');
+                            $(this).next('.error-message').remove();
+                        }
+                    })
+
                 }
         })
 
     })
 
-    if ( isValid ) { $(this).submit(); }
-
 });
-
-function mapInputsToReview(div) {
-    inputs = $('input', div);
-
-    $(inputs).each(function() {
-        name = $(this).attr('name');
-        val = $(this).val();
-
-        $('#review-' + name).text(val);
-
-        if ( $(this).attr('type') == 'checkbox') {
-            if ( $(this).is(':checked') ) { $('#review-' + name).html('&#10004;'); }
-            else { $('#review-' + name).html('&#10008;'); }
-        }
-    })
-}
-
-function verifyRequired(div) {
-    inputs = $('input', div);
-
-    empties = [];
-
-    $(inputs).each(function() {
-        if ( $(this).attr('required') == 'required' && $(this).val() == '') {
-            empties.push($(this));
-        }
-    });
-
-    return empties;
-}

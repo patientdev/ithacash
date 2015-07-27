@@ -30,7 +30,7 @@
 </div>
 
 <div id="forms">
-    <form id="account" method="POST" action="/accounts/application/" class="clear">
+    <form id="account" method="POST" action="{{ request.path }}" class="clear">
 {% csrf_token %}
 
     <div id="info">
@@ -175,19 +175,19 @@
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
 <script type="text/javascript">
-    $('#id_account-account_type').change(function() {
+    $('#id_account_type').change(function() {
         if ( $(this).val()  == 'Individual' || $(this).val() == 'Freelancer' ) {
-            $('#id_account-entity_name').hide();
-            $('#id_user-full_name').attr('placeholder', 'Your Name');
+            $('#id_entity_name').val('n/a').hide();
+            $('#id_full_name').attr('placeholder', 'Your Name');
         } else {
 
             if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
-            $('#id_account-entity_name').attr('placeholder', 'Business Name');
+            $('#id_entity_name').attr('placeholder', 'Business Name');
             } else {
-                $('#id_account-entity_name').attr('placeholder', 'Organization Name');
+                $('#id_entity_name').attr('placeholder', 'Organization Name');
             }
-            $('#id_user-full_name').attr('placeholder', 'Contact Name');
-            $('#id_account-entity_name').show();
+            $('#id_full_name').attr('placeholder', 'Contact Name');
+            $('#id_entity_name').show();
 
         }
 
