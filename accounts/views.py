@@ -6,6 +6,7 @@ from django import forms
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
 
+
 class EmailForm(forms.ModelForm):
 
     required_css_class = "required"
@@ -28,7 +29,7 @@ class AccountForm(forms.ModelForm):
         model = IthacashAccount
         exclude = ['owner']
         widgets = {
-            'entity_name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
             'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
             'address_2': forms.TextInput(attrs={'placeholder': 'Address 1'}),
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
@@ -47,6 +48,10 @@ class UserSignupForm(forms.ModelForm):
     class Meta:
         model = IthacashUser
         fields = ['username', 'full_name']
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
+            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+        }
 
 
 def signup_phase_one(request):
@@ -67,33 +72,8 @@ def signup_phase_one(request):
         else:
             return (JsonResponse({'errors': form.errors.as_json()}))
 
-
     else:
         return render(request, 'signup-phase-one.html', {'form': form})
-
-
-def signup_phase_two(request):
-    form = AccountForm(request.POST or None)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            email_object = form.save()
-
-            @crosstown_traffic()
-            def send_email_later():
-                email_object.send_confirmation_message()
-
-            if form.cleaned_data['account_type'] is not any(('Individual', 'Nonprofit')):
-                return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
-
-            else:
-                return HttpResponseRedirect('/accounts/sign-up-fee/')
-
-        else:
-            return (JsonResponse({'errors': form.errors.as_json()}))
-
-    else:
-        return render(request, 'signup-phase-two.html', {'form': form})
 
 
 def await_confirmation(request):
@@ -112,6 +92,11 @@ def create_account(request, email_key):
     user_form = UserSignupForm(request.POST, prefix="user")
     account_form = AccountForm(request.POST, prefix="account")
 
+    if not request.POST:
+        return render(request, 'signup-phase-two.html', {'form': account_form,
+                                                     'user_form': user_form,
+                                                     'email_object': email_object})
+
     if user_form.is_valid() and account_form.is_valid():
         user = user_form.save()
 
@@ -123,15 +108,16 @@ def create_account(request, email_key):
 
         # Send "Thank you; we'll review your application" email here?
 
-        return HttpResponseRedirect('/accounts/application_complete/')
+        if account_form.cleaned_data['account_type'] is not any(('Individual', 'Nonprofit')):
+                return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
 
-    return render(request, 'signup-phase-two.html', {'account_form': account_form,
-                                                     'user_form': user_form,
-                                                     'email_object': email_object})
+        else:
+            return HttpResponseRedirect('/accounts/sign-up-fee/')
+
+    else:
+        return (JsonResponse({'errors': account_form.errors.as_json()}))
 
 
 # TODO: PERMISSIONS!
 def list_accounts(request):
     return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})
-
-
