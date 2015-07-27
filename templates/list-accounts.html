@@ -1,0 +1,16 @@
+<style type="text/css">
+    td {
+        border: 2px solid black;
+    }
+</style>
+
+<table>
+{% for account in accounts %}
+    <tr>
+        <td>{{ account.account_type }}</td>
+        <td>{{ account.owner.full_name }}</td>
+        <td>{{ account.owner.username }}</td>
+        {# TODO: the rest of the fields #}
+    </tr>
+{% endfor %}
+</table>
