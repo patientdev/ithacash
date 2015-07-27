@@ -16,7 +16,7 @@
     #head {
         background-image: url({% static 'img/hex-pattern.png' %});
         background-size: cover;
-        padding: 100px 0;
+        padding: 50px 0;
         text-align: center;
         color: white;
         margin-bottom: 40px;
@@ -27,120 +27,48 @@
         margin: 0;
     }
 
-    #rows {
-        width: 50%;
-        margin: auto;
-        padding: 60px 0;
-    }
-
-    .row {
-        padding: 0 40px;
-        color: rgb(88, 122, 70);
-        font-size: 1.8em;
-        line-height: 1.2em;
-        margin: 40px 0;
-    }
-
-    .row p { vertical-align: middle; }
-
-    .row:nth-of-type(odd) img {
-        float: left;
-        vertical-align: middle;
-    }
-
-    .row:nth-of-type(even) img {
-        float: right;
-        vertical-align: middle;
-    }
-
-    .copy {
-        width: 50%;
-        max-width: 500px;
-        display: inline-block;
-        vertical-align: middle;
-        text-align: justify;
-    }
-
-    .row:nth-of-type(odd) .copy {
-        float: left;
-    }
-
-    .row:nth-of-type(even) .copy {
-        float: right;
-    }
-
-    .green-button {
-        padding: 10px 20px;
-        background-color: rgb(119, 172, 92);
-        font-size: 1.2em;
-        color: white;
-        text-decoration: none;
-    }
-
-    #plans {
-        margin: auto;
-        text-align: center;
-    }
-
-    #plans h3, #plans h4 {
-        text-align: center;
-        color: black;
-        font-size: 1.4em;
-        text-transform: none;
-        font-weight: 600;
-    }
-
-    #plans h3 {
-        font-size: 2.6em;
-        margin-bottom: 30px;
-    }
-
-    #plans h4 {
-        font-size: 4em;;
-        font-weight: 200;
-        letter-spacing: -1px;
-        line-height: 1.4em;
-        text-transform: lowercase;
+    h3 {
+        font-size: 2.2em;
+        line-height: normal;
         margin-top: 0;
-        margin-bottom: 20px;
     }
 
-    #plans h5 {
-        text-transform: uppercase;
+    h4 {
         font-size: 1.4em;
-        text-align: center;
+        line-height: normal;
+        margin-top: 0;
     }
 
-    #plans ul {
+    #bonus_offer, #purchase_ithaca_dollars {
+        padding: 40px 20px;
+        color: white;
         font-size: 1.2em;
-        text-align: left;
+        background-color: #78AC54;
     }
 
-    li {
-        margin-bottom: 10px;
+    #bonus_offer {
+        width: 30%;
+        float: left;
+        border-radius: 0 30px 30px 0;
     }
 
-    .plan {
-        width: 300px;
-        height: 550px;
-        background-color: white;
-        border-radius: 30px;
-        color: #333;
-        background-color: rgb(242, 241, 241);
-        -webkit-transition: all .2s ease-out;
-        display: inline-block;
-        text-align: center;
-        margin: 0 20px;
-        position: relative;
-        vertical-align: top;
+    #purchase_ithaca_dollars {
+        border-radius: 30px 0 0 30px;
+        width: 45%;
+        float: right;
     }
 
-    .plan p {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        width: 100%;
-        text-align: center;
+    .paypal {
+        padding: 5px 10px;
+        line-height: 1em;
+        color: #777;
+        font-size: 1.2em;
+        border-radius: 10px;
+        border: none;
+        background-color: #ddd;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
     }
 
 </style>
@@ -151,74 +79,20 @@
 
 <div id="head">
     <h2>Purchasing i$</h2>
+    <p>Start using your local money by converting your US$ into i$ and get 25% Bonus for every dollar you switch.</p>
 </div>
 
-<div id="plans">
+<div id="bonus_offer">
+    <h4>Extra Bonus Offer</h4>
 
-<div class="plan">
-    <h3>Freelancer</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
-
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
-
-    <p><a href="/sign-up/freelancer/apply/" class="green-button">Select Freelancer</a></p>
+    <p>(only available until Month, Day, YR) Convert now and get an added XX% Bonus on your purchase</p>
+    <p><label><input type="checkbox" name="bonus_offer"> Yes, please increase my conversion amount by XX%</label></p>
 </div>
 
-<div class="plan">
-    <h3>Business</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
-
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
-
-    <p><a href="/sign-up/business/apply/" class="green-button">Select Business</a></p>
+<div id="purchase_ithaca_dollars">
+    <h3>Purchase i$</h3>
+    <p>Checkout with <button class="paypal">PayPal</button></p>
 </div>
 
-<div class="plan">
-    <h3>Premier</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
-
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
-
-    <p><a href="/sign-up/premier/apply/" class="green-button">Select Premier</a></p>
-</div>
-
-<div class="plan">
-    <h3>Non&ndash;Profit</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
-
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
-
-    <p><a href="/sign-up/non-profit/apply/" class="green-button">Select Non&ndash;Profit</a></p>
-</div>
-
-</div>
 </div>
 {% endblock %}
