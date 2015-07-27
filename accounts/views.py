@@ -110,7 +110,7 @@ def create_account(request, email_key):
         # Send "Thank you; we'll review your application" email here?
 
         if account_form.cleaned_data['account_type'] is not any(('Individual', 'Nonprofit')):
-                return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
+            return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
 
         else:
             return HttpResponseRedirect('/accounts/sign-up-fee/')
