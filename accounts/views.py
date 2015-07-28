@@ -54,6 +54,9 @@ class UserSignupForm(forms.ModelForm):
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
             }
 
+def getting_an_account(request):
+    return render(request, 'getting-an-account.html')
+
 
 def signup_phase_one(request):
     form = EmailForm(request.POST or None)
