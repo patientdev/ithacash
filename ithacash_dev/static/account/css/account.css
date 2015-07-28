@@ -19,6 +19,7 @@ display: none;
     min-height: 100%;
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
 }
 
 #nav-menu { display: none; }
@@ -97,7 +98,7 @@ h2 {
 #account-type-selection { display: none; }
 
 #info {
-    margin-top: 150px;
+    display: inline-block;
 }
 
 form {
@@ -117,7 +118,7 @@ form {
 
 form p {
     margin: 20px auto;
-    width: 20em;
+    position: relative;
 }
 
 form p:last-of-type {
@@ -125,7 +126,7 @@ form p:last-of-type {
 }
 
 select {
-    width: 100%;
+    width: 10em;
     font-size: 2em;
 }
 
@@ -169,9 +170,47 @@ input[type=checkbox] {
 }
 
 .asterisk {
+    line-height: 1.2em;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 0;
+}
+
+.help::before {
+    visibility: visible;
+    content: "*";
+    font-size: 2em;
     color: white;
-    font-size: 1.8em;
-    margin-left: 10px;
+    background-color: transparent;
+    position: absolute;
+    vertical-align: bottom;
+}
+
+.help-text {
+    display: none;
+}
+
+.help:hover .help-text {
+    display: inline-block;
+    position: absolute;
+    margin-left: 20px;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: .8em;
+    padding: 10px 15px;
+    vertical-align: middle;
+    width: 200px;
+    white-space: normal;
+    text-align: left;
+}
+
+svg, polygon {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
 }
 
 .white-button {
