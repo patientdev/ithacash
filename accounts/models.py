@@ -67,6 +67,7 @@ class Email(models.Model):
             {
                 'to': [{'email': self.address}],
                 'text': message,
+                'from_name': 'Ithacash Support',
                 'from_email': 'support@ithacash.com',
                 'subject': APPLICATION_SUBJECT,
             })
@@ -110,6 +111,3 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=5)  # ???
 
     created = models.DateTimeField(auto_now_add=True)
-
-
-
