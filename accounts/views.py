@@ -52,7 +52,8 @@ class UserSignupForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
-            }
+        }
+
 
 def getting_an_account(request):
     return render(request, 'getting-an-account.html')
@@ -95,6 +96,11 @@ def create_account(request, email_key):
 
     user_form = UserSignupForm(request.POST or None)
     account_form = AccountForm(request.POST or None)
+
+    if not request.POST:
+        return render(request, 'signup-phase-two.html', {'form': account_form,
+                                                     'user_form': user_form,
+                                                     'email_object': email_object})
 
     if not request.POST:
         return render(request, 'signup-phase-two.html', {'form': account_form,
