@@ -7,7 +7,7 @@ You can complete your application here:
 
 Your new friends at Ithacash
 support@ithacash.com
-(607)654-0807
+(607) 654-0807
 
 This email is being sent because the form at {{ form_url }} was submitted with {{ email_address }} as the contact.
 If you have received this email in error, disregard.  (Of course).
