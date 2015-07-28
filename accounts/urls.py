@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 urlpatterns = [
+    url(r'^$', 'accounts.views.getting_an_account'),
     url(r'^signup/', 'accounts.views.signup_phase_one', name="signup_phase_one"),
     url(r'^application/', 'accounts.views.signup_phase_two'),
     url(r'^await-confirmation/', 'accounts.views.await_confirmation'),
