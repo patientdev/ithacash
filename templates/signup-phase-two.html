@@ -37,25 +37,22 @@
 
         <h2>Your Information</h2>
 
-        <p>{{ user_form.username }}</p>
-        <p>{{ user_form.username.help_text }}</p>
+        <h3><strong>Account type:</strong> {{ account_type }} <input type="hidden" name="account_type" value="{{ account_type }}"></h3>
 
-        <p>{{ form.account_type }}</p>
+        <p>{{ user_form.username }}<span class="help-text">{{ user_form.username.help_text }}</span></p>
 
-        <div id="account-type-selection">
-            <p>{{ form.entity_name }}</p>
-            <p>{{ user_form.full_name }}</p>
-            <p>{{ form.tin }}</p>
-            <p>{{ form.address_1 }}</p>
-            <p>{{ form.address_2 }}</p>
-            <p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
-            <p>{{ form.state }}</p>
-            <p>{{ form.phone_landline }}</p>
-            <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
-            <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
-            <p>{{ form.phone_mobile }}</p>
-            <p>{{ form.electronic_signature }}</p>
-        </div>
+        <p>{{ form.entity_name }}</p>
+        <p>{{ user_form.full_name }}</p>
+        <p>{{ form.tin }}</p>
+        <p>{{ form.address_1 }}</p>
+        <p>{{ form.address_2 }}</p>
+        <p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
+        <p>{{ form.state }}</p>
+        <p>{{ form.phone_landline }}</p>
+        <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+        <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
+        <p>{{ form.phone_mobile }}</p>
+        <p>{{ form.electronic_signature }}</p>
 
         <p><button type="submit" class="white-button">Submit</button></p>
 

@@ -35,7 +35,16 @@
         <div id="login">
             <h2>First, your email address.</h2>
 
-            {{form.as_p }}
+            <h3><strong>Account type:</strong> {{ account_type }} <input type="hidden" name="account_type" value="{{ account_type }}"></h3>
+            <p>{% if form.address.errors %}
+                    {% for error in form.address.errors %}
+                        {{ form.address }} <span class="error-message">{{ error|escape }}</span>
+                    {% endfor %}
+                {% else %} 
+                    {{ form.address }}
+                {% endif %}
+            </p>
+            <p><label>{{ form.wants_to_receive_updates }} Receive updates about Ithacash</label></p>
 
             <p><button class="white-button">Go</button></p>
         </div>

@@ -80,6 +80,8 @@
     #plans {
         margin: auto;
         text-align: center;
+        height: 700px;
+        margin-bottom: 20px;
     }
 
     #plans h3, #plans h4 {
@@ -99,7 +101,7 @@
         font-size: 4em;;
         font-weight: 200;
         letter-spacing: -1px;
-        line-height: 1.4em;
+        line-height: 1em;
         text-transform: lowercase;
         margin-top: 0;
         margin-bottom: 20px;
@@ -121,8 +123,8 @@
     }
 
     .plan {
-        width: 300px;
-        height: 550px;
+        width: 20%;
+        height: 100%;
         background-color: white;
         border-radius: 30px;
         color: #333;
@@ -143,6 +145,15 @@
         text-align: center;
     }
 
+    .monthly-fee {
+        font-size: .5em;
+    }
+
+    .green-button {
+        width: 80%;
+        display: inline-block;
+    }
+
 </style>
 {% endblock %}
 
@@ -150,75 +161,81 @@
 <div id="content">
 
 <div id="head">
-    <h2>For Individuals</h2>
+    <h2>For Businesses</h2>
 </div>
 
 <div id="plans">
+<form action="/accounts/business/" method="POST">
+{% csrf_token %}
+    <div class="plan">
+        <h3>Freelancer</h3>
+        <h4><strong><span>$12</span></strong><br><span class="monthly-fee">+i$5/mo</span></h4>
+        <h5>Annual fee of $25</h5>
 
-<div class="plan">
-    <h3>Freelancer</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+            <li>Dedicated Account Manager</li>
+            <li>Directory Listing</li>
+        </ul>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
+        <p><button name="account_type" value="Freelancer" class="green-button">Select Freelancer</button></p>
+    </div>
 
-    <p><a href="/sign-up/freelancer/apply/" class="green-button">Select Freelancer</a></p>
-</div>
+    <div class="plan">
+        <h3>Business</h3>
+        <h4><strong><span>$35</span></strong><br><span class="monthly-fee">+i$5/mo</span></h4>
+        <h5>Annual fee of $50</h5>
 
-<div class="plan">
-    <h3>Business</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+            <li>Dedicated Account Manager</li>
+            <li>Directory Listing</li>
+        </ul>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
+        <p><button name="account_type" value="Standard Business" class="green-button">Select Business</butotn></p>
+    </div>
 
-    <p><a href="/sign-up/business/apply/" class="green-button">Select Business</a></p>
-</div>
+    <div class="plan">
+        <h3>Premier</h3>
+        <h4><strong><span>$60</span></strong><br><span class="monthly-fee">+i$25/mo</span></h4>
+        <h5>Annual fee of $100</h5>
 
-<div class="plan">
-    <h3>Premier</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+            <li>Dedicated Account Manager</li>
+            <li>Directory Listing</li>
+            <li>Enhanced Visibility</li>
+            <li>Priority Access to New Technology</li>
+            <li>Higher PayItFwd Limit</li>
+        </ul>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
+        <p><button name="account_type" value="Premier Business" class="green-button">Select Premier</button></p>
+    </div>
 
-    <p><a href="/sign-up/premier/apply/" class="green-button">Select Premier</a></p>
-</div>
+    <div class="plan">
+        <h3>Non&ndash;Profit</h3>
+        <h4><strong><span>$35</span></strong><br><span class="monthly-fee">+i$5/mo</span></h4>
+        <h5>Annual fee of $50</h5>
 
-<div class="plan">
-    <h3>Non&ndash;Profit</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+            <li>Dedicated Account Manager</li>
+            <li>Directory Listing</li>
+            <li>Visibility</li>
+            <li>Need&ndash;based scholarships available</li>
+        </ul>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
-
-    <p><a href="/sign-up/non-profit/apply/" class="green-button">Select Non&ndash;Profit</a></p>
-</div>
-
+        <p><button name="account_type" value="Non Profit" class="green-button">Select Non&ndash;Profit</button></p>
+    </div>
+</form>
 </div>
 </div>
 {% endblock %}

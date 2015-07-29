@@ -1,4 +1,5 @@
 {% extends 'head-foot.html' %}
+
 {% load staticfiles %}
 
 {% block head %}
@@ -12,14 +13,6 @@
     }
 
     #nav-menu { display: none; }
-
-    #head {
-        background-image: url({% static 'img/hex-pattern.png' %});
-        background-size: cover;
-        padding: 100px 0;
-        text-align: center;
-        color: white;
-    }
 
     h2 {
         color: white;
@@ -81,6 +74,7 @@
     }
 
 </style>
+<link ref="stylesheet" href="{% static 'css/ithacash.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -116,7 +110,7 @@
         <p>All digital transactions are charged a flat rate of 2% to the seller.</p>
     </div>
 
-<p><a href="/sign-up/" class="green-button">Get Started</a></p>
+<p><a href="account-type/" class="green-button">Get Started</a></p>
 </div>
 
 

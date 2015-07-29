@@ -154,37 +154,39 @@
 </div>
 
 <div id="plans">
+<form action="/accounts/individual/" method="POST">
+{% csrf_token %}
 
-<div class="plan">
-    <h3>Individual</h3>
-    <h4><strong><span>$0</span></strong></h4>
-    <h5>No annual fees</h5>
+    <div class="plan">
+        <h3>Individual</h3>
+        <h4><strong><span>$0</span></strong></h4>
+        <h5>No annual fees</h5>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-    </ul>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+        </ul>
 
-    <p><a href="apply/" class="green-button">Select Individual</a></p>
-</div>
+        <p><button name="account_type" value="Individual" class="green-button">Select Individual</p>
+    </div>
 
-<div class="plan">
-    <h3>Freelancer</h3>
-    <h4><strong><span>$12</span></strong></h4>
-    <h5>No annual fees</h5>
+    <div class="plan">
+        <h3>Freelancer</h3>
+        <h4><strong><span>$12</span></strong></h4>
+        <h5>No annual fees</h5>
 
-    <ul>
-        <li>Access to Ithacash Online</li>
-        <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
-        <li>Access to PayItFwd</li>
-        <li>Dedicated Account Manager</li>
-        <li>Directory Listing</li>
-    </ul>
+        <ul>
+            <li>Access to Ithacash Online</li>
+            <li>Connect a mobile phone for &ldquo;TXT2PAY&rdquo;</li>
+            <li>Access to PayItFwd</li>
+            <li>Dedicated Account Manager</li>
+            <li>Directory Listing</li>
+        </ul>
 
-    <p><a href="/sign-up/freelancer/apply/" class="green-button">Select Freelancer</a></p>
-</div>
-
+        <p><button name="account_type" value="Freelancer" class="green-button">Select Freelancer</p>
+    </div>
+</form>
 </div>
 </div>
 {% endblock %}
