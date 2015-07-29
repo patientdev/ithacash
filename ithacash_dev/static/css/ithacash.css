@@ -873,3 +873,14 @@ h1 img {
 }
 
 #contact-info img { width: 50px; }
+
+
+/* Accounts */
+
+#head {
+    padding: 60px 0;
+    background-image: url(/static/img/hex-pattern.png);
+    background-size: cover;
+    text-align: center;
+    color: white;
+}

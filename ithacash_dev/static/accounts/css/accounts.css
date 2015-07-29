@@ -8,7 +8,7 @@ body, html {
 
 header {
     position: relative;
-    display: none;
+display: none;
 }
 
 #content {
@@ -80,9 +80,11 @@ h2 {
     -webkit-transform: scale(1);
 }
 
-#forms {
-    margin-top: 170px;
-}
+/*#forms {
+    margin-top: 100px;
+    width: 300%;
+    min-height: 100%;
+}*/
 
 #review { display: none; }
 
@@ -175,10 +177,34 @@ input[type=checkbox] {
     top: 0;
 }
 
+.help::before {
+    visibility: visible;
+    content: "*";
+    font-size: 2em;
+    color: white;
+    background-color: transparent;
+    position: absolute;
+    vertical-align: bottom;
+}
+
 .help-text {
+    display: none;
+}
+
+.help:hover .help-text {
+    display: inline-block;
+    position: absolute;
+    margin-left: 20px;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
     font-size: .8em;
-    margin-top: 3px;
-    display: block;
+    padding: 10px 15px;
+    vertical-align: middle;
+    width: 200px;
+    white-space: normal;
+    text-align: left;
 }
 
 svg, polygon {
@@ -245,12 +271,4 @@ input.error {
 
 .error-message {
     margin-left: 20px;
-    position: absolute;
-    line-height: 45px;}
-
-.error-message::before {
-    content: "*";
-    margin-right: 5px;
-    font-size: 1.4em;
-    color: lightskyblue;
 }
