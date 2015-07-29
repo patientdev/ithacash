@@ -55,6 +55,30 @@ class UserSignupForm(forms.ModelForm):
         }
 
 
+def account_type(request):
+    return render(request, 'sign-up.html')
+
+
+def sign_up_individual(request):
+
+    if request.method == 'POST':
+        request.session['account_type'] = request.POST['account_type']
+        return HttpResponseRedirect('/accounts/signup/')
+
+    else:
+        return render(request, 'sign-up-individual.html')
+
+
+def sign_up_business(request):
+
+    if request.method == 'POST':
+        request.session['account_type'] = request.POST['account_type']
+        return HttpResponseRedirect('/accounts/signup/')
+
+    else:
+        return render(request, 'sign-up-business.html')
+
+
 def getting_an_account(request):
     return render(request, 'getting-an-account.html')
 
@@ -75,10 +99,10 @@ def signup_phase_one(request):
 
             return HttpResponseRedirect('/accounts/await-confirmation/')
         else:
-            return (JsonResponse({'errors': form.errors.as_json()}))
+            return render(request, 'signup-phase-one.html', {'form': form, 'account_type': request.session['account_type'] })
 
     else:
-        return render(request, 'signup-phase-one.html', {'form': form})
+        return render(request, 'signup-phase-one.html', {'form': form, 'account_type': request.session['account_type'] })
 
 
 def await_confirmation(request):
@@ -100,12 +124,8 @@ def create_account(request, email_key):
     if not request.POST:
         return render(request, 'signup-phase-two.html', {'form': account_form,
                                                      'user_form': user_form,
-                                                     'email_object': email_object})
-
-    if not request.POST:
-        return render(request, 'signup-phase-two.html', {'form': account_form,
-                                                     'user_form': user_form,
-                                                     'email_object': email_object})
+                                                     'email_object': email_object,
+                                                     'account_type': request.session['account_type']})
 
     if user_form.is_valid() and account_form.is_valid():
         user = user_form.save()
