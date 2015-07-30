@@ -3,6 +3,7 @@ from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
+from django.forms.util import ErrorList
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
@@ -90,6 +91,9 @@ def signup_phase_one(request):
         if form.is_valid():
             email_object, created = Email.objects.get_or_create(address=request.POST['address'])
 
+            errors = form._errors.setdefault("address", ErrorList())
+            errors.append(u"Email already in system")
+            
             if email_object.owner:
                 return (JsonResponse({'errors': {'address': EMAIL_ALREADY_IN_SYSTEM}}))
 
@@ -124,17 +128,9 @@ def create_account(request, email_key):
     if not request.POST:
         return render(request, 'signup-phase-two.html', {'form': account_form,
                                                      'user_form': user_form,
-                                                     'email_object': email_object,
-                                                     'account_type': request.session['account_type']})
+                                                     'email_object': email_object})
 
     if user_form.is_valid() and account_form.is_valid():
-        user = user_form.save()
-
-        email_object.owner = user
-        email_object.save()
-
-        account_form.instance.owner = user
-        account_form.save()
 
         # Send "Thank you; we'll review your application" email here?
 
@@ -152,6 +148,22 @@ def create_account(request, email_key):
         print forms_errors
         return (JsonResponse({'errors': json.dumps(forms_errors)}))
 
+
+def review(request):
+
+    user_form = UserSignupForm(request.POST or None)
+    account_form = AccountForm(request.POST or None)
+
+    if request.method == 'POST':
+
+        user = user_form.save()
+
+        account_form.instance.owner = user
+        account = account_form.save()
+
+        return render(request, 'review.html', {'user': user,
+                                             'account': account,
+                                             'email': email})
 
 # TODO: PERMISSIONS!
 def list_accounts(request):
