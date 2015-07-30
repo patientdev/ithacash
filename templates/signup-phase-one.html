@@ -33,18 +33,15 @@
         <form id="account" method="POST" action="/accounts/signup/" class="clear">
     {% csrf_token %}
         <div id="login">
+        
             <h2>First, your email address.</h2>
-
-            <h3><strong>Account type:</strong> {{ account_type }} <input type="hidden" name="account_type" value="{{ account_type }}"></h3>
-            <p>{% if form.address.errors %}
-                    {% for error in form.address.errors %}
-                        {{ form.address }} <span class="error-message">{{ error|escape }}</span>
-                    {% endfor %}
-                {% else %} 
-                    {{ form.address }}
-                {% endif %}
-            </p>
-            <p><label>{{ form.wants_to_receive_updates }} Receive updates about Ithacash</label></p>
+            {% if form.address.errors %}
+                {% for error in form.address.errors %}
+                    <p>{{ form.address }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.address }}</p>
+            {% endif %}
 
             <p><button class="white-button">Go</button></p>
         </div>
