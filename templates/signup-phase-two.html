@@ -30,34 +30,112 @@
 </div>
 
 <div id="forms">
-    <form id="account" method="POST" action="{{ request.path }}" class="clear">
+    <form id="account" method="POST" action="/accounts/review/" class="clear">
 {% csrf_token %}
 
     <div id="info">
 
         <h2>Your Information</h2>
 
-        <p>{{ user_form.username }}</p>
+        {% if user_form.username.errors %}
+            {% for error in user_form.username.errors %}
+                <p>{{ user_form.username }} <span class="error-message">{{ error|escape }}</span></p>
+            {% endfor %}
+        {% else %} 
+            <p>{{ user_form.username }}</p>
+        {% endif %}
         <p>{{ user_form.username.help_text }}</p>
 
         <p>{{ form.account_type }}</p>
 
         <div id="account-type-selection">
-            <p>{{ form.entity_name }}</p>
-            <p>{{ user_form.full_name }}</p>
-            <p>{{ form.tin }}</p>
-            <p>{{ form.address_1 }}</p>
-            <p>{{ form.address_2 }}</p>
-            <p class="two-inputs">{{ form.city }} {{ form.zip_code }}</p>
-            <p>{{ form.state }}</p>
-            <p>{{ form.phone_landline }}</p>
+            {% if form.address.errors %}
+                {% for error in form.entity_name.errors %}
+                    <p>{{ form.entity_name }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.entity_name }}</p>
+            {% endif %}
+
+            {% if user_form.full_name.errors %}
+                {% for error in user_form.full_name.errors %}
+                    <p>{{ user_form.full_name }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ user_form.full_name }}</p>
+            {% endif %}
+
+            {% if form.tin.errors %}
+                {% for error in form.tin.errors %}
+                    <p>{{ form.tin }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.tin }}</p>
+            {% endif %}
+
+            {% if form.address_1.errors %}
+                {% for error in form.address_1.errors %}
+                    <p>{{ form.address_1 }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.address_1 }}</p>
+            {% endif %}
+
+            {% if form.address_2.errors %}
+                {% for error in form.address_2.errors %}
+                    <p>{{ form.address_2 }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.address_2 }}</p>
+            {% endif %}
+
+            <p class="two-inputs">
+                {{ form.city }}
+                {{ form.zip_code }}
+            {% if form.city.errors %}
+                {% for error in form.city.errors %}
+                    {{ form.city }} <span class="error-message">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+            {% if form.zip_code.errors %}
+                {% for error in form.zip_code.errors %}
+                    {{ form.zip_code }} <span class="error-message">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+            </p>
+
+
+            {% if form.state.errors %}
+                {% for error in form.state.errors %}
+                    <p>{{ form.state }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.state }}</p>
+            {% endif %}
+
+            {% if form.phone_landline.errors %}
+                {% for error in form.phone_landline.errors %}
+                    <p>{{ form.phone_landline }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.phone_landline }}</p>
+            {% endif %}
+
             <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
             <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
             <p>{{ form.phone_mobile }}</p>
-            <p>{{ form.electronic_signature }}</p>
+
+            {% if form.electronic_signature.errors %}
+                {% for error in form.electronic_signature.errors %}
+                    <p>{{ form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
+                {% endfor %}
+            {% else %} 
+                <p>{{ form.electronic_signature }}</p>
+            {% endif %}
         </div>
 
-        <p><button type="submit" class="white-button">Submit</button></p>
+        <p><button type="submit" class="white-button next">Next</button></p>
 
     </div>
 
@@ -174,24 +252,4 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
-<script type="text/javascript">
-    $('#id_account_type').change(function() {
-        if ( $(this).val()  == 'Individual' || $(this).val() == 'Freelancer' ) {
-            $('#id_entity_name').val('n/a').hide();
-            $('#id_full_name').attr('placeholder', 'Your Name');
-        } else {
-
-            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
-            $('#id_entity_name').attr('placeholder', 'Business Name');
-            } else {
-                $('#id_entity_name').attr('placeholder', 'Organization Name');
-            }
-            $('#id_full_name').attr('placeholder', 'Contact Name');
-            $('#id_entity_name').show();
-
-        }
-
-        $('#account-type-selection').slideDown();
-    })
-</script>
 {% endblock %}

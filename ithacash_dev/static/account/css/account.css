@@ -271,4 +271,13 @@ input.error {
 
 .error-message {
     margin-left: 20px;
+    position: absolute;
+    line-height: 45px;
+}
+
+.error-message::before {
+    content: "*";
+    color: blue;
+    margin-right: 10px;
+    font-size: 1.4em;
 }
