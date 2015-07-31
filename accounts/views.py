@@ -56,30 +56,6 @@ class UserSignupForm(forms.ModelForm):
         }
 
 
-def account_type(request):
-    return render(request, 'sign-up.html')
-
-
-def sign_up_individual(request):
-
-    if request.method == 'POST':
-        request.session['account_type'] = request.POST['account_type']
-        return HttpResponseRedirect('/accounts/signup/')
-
-    else:
-        return render(request, 'sign-up-individual.html')
-
-
-def sign_up_business(request):
-
-    if request.method == 'POST':
-        request.session['account_type'] = request.POST['account_type']
-        return HttpResponseRedirect('/accounts/signup/')
-
-    else:
-        return render(request, 'sign-up-business.html')
-
-
 def getting_an_account(request):
     return render(request, 'getting-an-account.html')
 
@@ -102,11 +78,12 @@ def signup_phase_one(request):
                 email_object.send_confirmation_message()
 
             return HttpResponseRedirect('/accounts/await-confirmation/')
+
         else:
-            return render(request, 'signup-phase-one.html', {'form': form, 'account_type': request.session['account_type'] })
+            return render(request, 'signup-phase-one.html', {'form': form })
 
     else:
-        return render(request, 'signup-phase-one.html', {'form': form, 'account_type': request.session['account_type'] })
+        return render(request, 'signup-phase-one.html', {'form': form })
 
 
 def await_confirmation(request):
@@ -161,9 +138,13 @@ def review(request):
         account_form.instance.owner = user
         account = account_form.save()
 
+        email_object = Email.objects.get(most_recent_confirmation_key=request.POST['most_recent_confirmation_key'])
+        email_object.owner = user
+        email_object.save()
+
         return render(request, 'review.html', {'user': user,
                                              'account': account,
-                                             'email': email})
+                                             'email_object': email_object})
 
 # TODO: PERMISSIONS!
 def list_accounts(request):
