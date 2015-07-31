@@ -36,6 +36,7 @@
     <div id="info">
 
         <h2>Your Information</h2>
+        <input type="hidden" name="most_recent_confirmation_key" value="{{ email_object.most_recent_confirmation_key }}">
 
         {% if user_form.username.errors %}
             {% for error in user_form.username.errors %}
@@ -139,111 +140,7 @@
 
     </div>
 
-    <div id="review">
-        <h2>Review Your Information</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Account Type: <strong>Business</strong></th>
-                    <td><button class="edit">edit</button></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Monthly Billing</td>
-                    <td><label>$35 + i$15/mo <input type="radio" name="billing-freq" value="monthly" selected></label></td>
-                </tr>
-                <tr>
-                    <td colspan="2">&mdash;or switch to&mdash;</td>
-                </tr>
-                <tr>
-                    <td>Semi-Annually Billing</td>
-                    <td><label>$30 + i$15/mo <input type="radio" name="billing-freq" value="semi-annuual"></label></td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>Login Information</th>
-                    <td><button class="edit">edit</button></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Username</td>
-                    <td><span id="review-name_login"></span></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><span id="review-email"></span></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><span id="review-password"></span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>Business Information</th>
-                    <td><button class="edit">edit</button></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Business Name</td>
-                    <td><span id="review-name_business"></span></td>
-                </tr>
-                <tr>
-                    <td>Contact Name</td>
-                    <td><span id="review-name_contact"></span></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><span id="review-address_1"></span><br><span id="review-address_2"></span><br><span id="review-address_city"></span>,  <span id="review-address_state"></span> <span id="review-address_zip_code"></span></td>
-                </tr>
-                <tr>
-                    <td>TIN</td>
-                    <td><span id="review-tin"></span></td>
-                </tr>
-                <tr>
-                    <td>Contact Number</td>
-                    <td><span id="review-phone_landline"></span></td>
-                </tr>
-                <tr>
-                    <td>Enable TXT2PAY</td>
-                    <td><span id="review-txt2pay"></span></td>
-                </tr>
-                <tr>
-                    <td>Lease TXT2PAY Phone</td>
-                    <td><span id="review-txt2pay_phone"></span></td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td>
-                    <td><span id="review-phone_mobile"></span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Business</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit" class="white-button">Confirm</button></td>
-                </tbody>
-        </table>
-        </div>
-    </div>
+    
 </form>
 </div>
 

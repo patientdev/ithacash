@@ -33,7 +33,7 @@ class Email(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.most_recent_confirmation_key:
-            self.most_recent_confirmation_key = uuid.uuid4().
+            self.most_recent_confirmation_key = uuid.uuid4().hex
 
         return super(Email, self).save(*args, **kwargs)
 
