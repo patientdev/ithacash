@@ -92,16 +92,23 @@ class IthacashAccount(models.Model):
         ('Nonprofit', 'Nonprofit'),
     )
 
+    BILLING_FREQUENCY_CHOICES = (
+        ('Monthly', 'Monthly'),
+        ('Semi-Annual', 'Semi-Annual')
+    )
+
     owner = models.ForeignKey(IthacashUser)
 
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
     entity_name = models.CharField(max_length=255)
 
+    billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
+
     address_1 = models.CharField(max_length=255)
     address_2 = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, default="Ithaca")
-    state = models.CharField(max_length=255, default="NY")
-    zip_code = models.CharField(max_length=255, default="14850")
+    city = models.CharField(max_length=255, default='Ithaca')
+    state = models.CharField(max_length=255, default='NY')
+    zip_code = models.CharField(max_length=255, default='14850')
     tin = EncryptedCharField(max_length=255)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
     phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
