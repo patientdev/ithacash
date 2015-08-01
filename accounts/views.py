@@ -155,7 +155,7 @@ def review(request):
 
         return render(request, 'review.html', {'user': user,
                                              'account': account,
-                                             'email_address': email_object.address,
+                                             'email_object': email_object,
                                              'last_4': last_4})
 
     elif request.POST.get('billing_frequency') is not None:

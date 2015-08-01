@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <th>Account Type: <strong>{{ account.account_type }}</strong></th>
-                    <td><button class="edit">edit</button></td>
+                    <td><a href="/accounts/create_account/{{ email_object.most_recent_confirmation_key}}" class="edit">edit</a></td>
                 </tr>
             </thead>{% if account.account_type != 'Individual' %}
             <tbody>
@@ -74,7 +74,7 @@
             <thead>
                 <tr>
                     <th>Login Information</th>
-                    <td><button class="edit">edit</button></td>
+                    <td><a href="/accounts/create_account/{{ email_object.most_recent_confirmation_key}}" class="edit">edit</a></td>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td>{{ email_address }}</td>
+                    <td>{{ email_object.address }}</td>
                 </tr>
             </tbody>
         </table>
@@ -92,7 +92,7 @@
             <thead>
                 <tr>
                     <th>Business Information</th>
-                    <td><button class="edit">edit</button></td>
+                    <td><a href="/accounts/create_account/{{ email_object.most_recent_confirmation_key}}" class="edit">edit</a></td>
                 </tr>
             </thead>
             <tbody>
