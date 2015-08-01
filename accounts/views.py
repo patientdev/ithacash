@@ -148,9 +148,12 @@ def review(request):
         email_object.owner = user
         email_object.save()
 
+        last_4 = request.POST['tin'][-4:]
+
         return render(request, 'review.html', {'user': user,
                                              'account': account,
-                                             'email_address': email_object.address})
+                                             'email_address': email_object.address,
+                                             'last_4': last_4})
 
     elif request.POST.get('billing_frequency') is not None:
 
