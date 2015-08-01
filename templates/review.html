@@ -30,28 +30,30 @@
     </div>
 
     <h2>Review Your Information</h2>
-
+        <form id="billing_frequency" action="" method="POST">{% csrf_token %}
+        <input type="hidden" name="account_owner" value="{{ account.owner }}">
         <table>
             <thead>
                 <tr>
                     <th>Account Type: <strong>{{ account.account_type }}</strong></th>
                     <td><button class="edit">edit</button></td>
                 </tr>
-            </thead>
+            </thead>{% if account.account_type != 'Individual' %}
             <tbody>
                 <tr>
                     <td>Monthly Billing</td>
-                    <td><label>$35 + i$15/mo <input type="radio" name="billing-freq" value="monthly" selected></label></td>
+                    <td><label>$35 + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label></td>
                 </tr>
                 <tr>
                     <td colspan="2">&mdash;or switch to&mdash;</td>
                 </tr>
                 <tr>
                     <td>Semi-Annually Billing</td>
-                    <td><label>$30 + i$15/mo <input type="radio" name="billing-freq" value="semi-annuual"></label></td>
+                    <td><label>$30 + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label></td>
                 </tr>
-            </tbody>
+            </tbody>{% endif %}
         </table>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -66,7 +68,7 @@
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td>{{ email_object.address }}</td>
+                    <td>{{ email_address }}</td>
                 </tr>
             </tbody>
         </table>
@@ -115,6 +117,30 @@
         <table>
                 <thead>
                     <tr>
+                        <th colspan="2">Due Monthly (Starting next month)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ account.account_type }}</td>
+                    <td>{% if account.account_type == 'Individual' %}
+                            $0<br>Individual accounts are free
+                        {% elif account.account_type == 'Standard Business' %}
+                            $35 + i$15<br>+2% on funds received
+                        {% elif account.account_type == 'Premier Business' %}
+                            $60 + i$25<br>+2% on funds received
+                        {% elif account.account_type == 'Nonprofit' %}
+                            $35 + i$15<br>+2% on funds received
+                        {% elif account.account_type == 'Freelancer' %}
+                            $12 + i$5<br>+2% on funds received
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+        <table>
+                <thead>
+                    <tr>
                         <th colspan="2">Total</th>
                     </tr>
                 </thead>
@@ -124,15 +150,29 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td><a href="#review" class="white-button back" tabindex="0">Back</a> <button type="submit" class="white-button">Confirm</button></td>
+                        <td>{% if account.account_type != 'Individual' %}
+                            <button class="white-button">Checkout with PayPal</button>
+                            {% else %}
+                            <a href="/accounts/purchase-ithaca-dollars/" class="white-button">Confirm</a>
+                        {% endif %}</td>
                 </tbody>
         </table>
         </div>
-
 </div>
 
 {% endblock %}
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
+<script>
+    $('input[name=billing_frequency').change(function() {
+        // billing_frequency = $('input[name=billing_frequency]:checked').val();
+
+        // $.post('/accounts/review/', {'billing_frequency': billing_frequency}, function( response ) {
+        //     console.log(response);
+        // })
+
+        $('#billing_frequency').submit();
+    })
+</script>
 {% endblock %}

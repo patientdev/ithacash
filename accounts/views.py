@@ -1,5 +1,5 @@
-import json
-from django.http.response import HttpResponseRedirect, JsonResponse
+import json, sys
+from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
@@ -29,7 +29,7 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = IthacashAccount
-        exclude = ['owner']
+        exclude = ['owner', 'billing_frequency']
         widgets = {
             'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
             'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
@@ -54,6 +54,13 @@ class UserSignupForm(forms.ModelForm):
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
         }
+
+
+class BillingFrequencyForm(forms.ModelForm):
+
+    class Meta:
+        model = IthacashAccount
+        fields = ['owner', 'billing_frequency']
 
 
 def getting_an_account(request):
@@ -122,16 +129,15 @@ def create_account(request, email_key):
         account_errors = json.loads(account_form.errors.as_json())
         user_errors = json.loads(user_form.errors.as_json())
         forms_errors = dict(account_errors.items() + user_errors.items())
-        print forms_errors
         return (JsonResponse({'errors': json.dumps(forms_errors)}))
 
 
 def review(request):
 
-    user_form = UserSignupForm(request.POST or None)
-    account_form = AccountForm(request.POST or None)
+    if request.method == 'POST' and request.POST.get('billing_frequency') is None:
 
-    if request.method == 'POST':
+        user_form = UserSignupForm(request.POST or None)
+        account_form = AccountForm(request.POST or None)
 
         user = user_form.save()
 
@@ -144,7 +150,25 @@ def review(request):
 
         return render(request, 'review.html', {'user': user,
                                              'account': account,
-                                             'email_object': email_object})
+                                             'email_address': email_object.address})
+
+    elif request.POST.get('billing_frequency') is not None:
+
+        billing_form = BillingFrequencyForm(request.POST or None)
+        
+        ithacash_user = IthacashUser.objects.get(username=request.POST.get('account_owner'))
+        ithacash_user.ithacashaccount_set.update(billing_frequency=request.POST['billing_frequency'])
+
+        # try:
+        #     print billing_form.save()
+        #     return JsonResponse({'success': True})
+        # except (ValueError, RuntimeError, TypeError, NameError):
+        #     return HttpResponse(sys.exc_info())
+
+        return JsonResponse({'success': True})
+
+    else:
+        return HttpResponseRedirect('/accounts/signup/')
 
 # TODO: PERMISSIONS!
 def list_accounts(request):
