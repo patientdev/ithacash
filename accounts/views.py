@@ -106,8 +106,10 @@ def create_account(request, email_key):
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
     email_object.confirm(email_key)
 
-    user_form = UserSignupForm(request.POST or None)
-    account_form = AccountForm(request.POST or None)
+    owner = email_object.owner
+
+    user_form = UserSignupForm(request.POST or None, instance=IthacashUser.objects.get(username=owner))
+    account_form = AccountForm(request.POST or None, instance=IthacashAccount.objects.get(owner=owner))
 
     if not request.POST:
         return render(request, 'signup-phase-two.html', {'form': account_form,
@@ -136,15 +138,16 @@ def review(request):
 
     if request.method == 'POST' and request.POST.get('billing_frequency') is None:
 
-        user_form = UserSignupForm(request.POST or None)
-        account_form = AccountForm(request.POST or None)
+        email_object = Email.objects.get(most_recent_confirmation_key=request.POST['most_recent_confirmation_key'])
+
+        user_form = UserSignupForm(request.POST or None, instance=IthacashUser.objects.get(username=email_object.owner))
+        account_form = AccountForm(request.POST or None, instance=IthacashAccount.objects.get(owner=email_object.owner))
 
         user = user_form.save()
 
         account_form.instance.owner = user
         account = account_form.save()
 
-        email_object = Email.objects.get(most_recent_confirmation_key=request.POST['most_recent_confirmation_key'])
         email_object.owner = user
         email_object.save()
 
