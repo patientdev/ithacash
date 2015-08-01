@@ -199,11 +199,9 @@ svg, polygon {
 }
 
 .edit {
-    border: none;
-    background-color: transparent;
     color: white;
-    padding: 0;
     font-size: 1em;
+    text-decoration: none;
 }
 
 table {
