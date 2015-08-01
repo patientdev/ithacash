@@ -42,14 +42,30 @@
             <tbody>
                 <tr>
                     <td>Monthly Billing</td>
-                    <td><label>$35 + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label></td>
+                    <td>{% if account.account_type == 'Standard Business' %}
+                            <label>$<span class="monthly-usd">35</span> + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                        {% elif account.account_type == 'Premier Business' %}
+                            <label>$<span class="monthly-usd">60</span> + i$25/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                        {% elif account.account_type == 'Nonprofit' %}
+                            <label>$<span class="monthly-usd">35</span> + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                        {% elif account.account_type == 'Freelancer' %}
+                            <label>$<span class="monthly-usd">12</span> + i$5/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                        {% endif %}</td>
                 </tr>
                 <tr>
                     <td colspan="2">&mdash;or switch to&mdash;</td>
                 </tr>
                 <tr>
                     <td>Semi-Annually Billing</td>
-                    <td><label>$30 + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label></td>
+                    <td>{% if account.account_type == 'Standard Business' %}
+                            <label>$<span class="monthly-usd">30</span> + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
+                        {% elif account.account_type == 'Premier Business' %}
+                            <label>$<span class="monthly-usd">50</span> + i$25/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
+                        {% elif account.account_type == 'Nonprofit' %}
+                            <label>$<span class="monthly-usd">30</span> + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
+                        {% elif account.account_type == 'Freelancer' %}
+                            <label>$<span class="monthly-usd">10</span> + i$5/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
+                        {% endif %}</td>
                 </tr>
             </tbody>{% endif %}
         </table>
@@ -114,7 +130,7 @@
                 </tr>
             </tbody>
         </table>
-        <table>
+        {% if account.account_type != 'Individual' %}<table id="due-montly">
                 <thead>
                     <tr>
                         <th colspan="2">Due Monthly (Starting next month)</th>
@@ -123,16 +139,14 @@
                 <tbody>
                 <tr>
                     <td>{{ account.account_type }}</td>
-                    <td>{% if account.account_type == 'Individual' %}
-                            $0<br>Individual accounts are free
-                        {% elif account.account_type == 'Standard Business' %}
-                            $35 + i$15<br>+2% on funds received
+                    <td>{% if account.account_type == 'Standard Business' %}
+                            $<span class="monthly-usd">35</span> + i$15<br>+2% on funds received
                         {% elif account.account_type == 'Premier Business' %}
-                            $60 + i$25<br>+2% on funds received
+                            $<span class="monthly-usd">60</span> + i$25<br>+2% on funds received
                         {% elif account.account_type == 'Nonprofit' %}
-                            $35 + i$15<br>+2% on funds received
+                            $<span class="monthly-usd">35</span> + i$15<br>+2% on funds received
                         {% elif account.account_type == 'Freelancer' %}
-                            $12 + i$5<br>+2% on funds received
+                            $<span class="monthly-usd">12</span> + i$5<br>+2% on funds received
                         {% endif %}
                     </td>
                 </tr>
@@ -141,22 +155,54 @@
         <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Total</th>
+                        <th colspan="2">Total Today</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ account.account_type }}</td>
-                        <td></td>
+                    <tr id="annual_fee">
+                        <td>Annual Fee</td>
+                        <td>{% if account.account_type == 'Standard Business' %}
+                                $<span class="annual-usd">50</span>
+                            {% elif account.account_type == 'Premier Business' %}
+                                $<span class="annual-usd">100</span>
+                            {% elif account.account_type == 'Nonprofit' %}
+                                $<span class="annual-usd">50</span>
+                            {% elif account.account_type == 'Freelancer' %}
+                                $<span class="annual-usd">25</span>
+                            {% endif %}
+                        </td>
                     </tr>
-                    <tr>
-                        <td>{% if account.account_type != 'Individual' %}
-                            <button class="white-button">Checkout with PayPal</button>
-                            {% else %}
-                            <a href="/accounts/purchase-ithaca-dollars/" class="white-button">Confirm</a>
-                        {% endif %}</td>
+                    <tr id="monthly-fee">
+                        <td>Monthly Fee</td>
+                        <td>{% if account.account_type == 'Standard Business' %}
+                                $<span class="monthly-usd">35</span>
+                            {% elif account.account_type == 'Premier Business' %}
+                                $<span class="monthly-usd">60</span>
+                            {% elif account.account_type == 'Nonprofit' %}
+                                $<span class="monthly-usd">35</span>
+                            {% elif account.account_type == 'Freelancer' %}
+                                $<span class="monthly-usd">12</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr id="total">
+                        <td colspan="2">{% if account.account_type == 'Standard Business' %}
+                                $<span class="total-usd">85</span>.00
+                            {% elif account.account_type == 'Premier Business' %}
+                                $<span class="total-usd">160</span>.00
+                            {% elif account.account_type == 'Nonprofit' %}
+                                $<span class="total-usd">85</span>.00
+                            {% elif account.account_type == 'Freelancer' %}
+                                $<span class="total-usd">37</span>.00
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr id="checkout">
+                        <td colspan="2">Checkout with <button class="paypal-button">PayPal</button></td>
                 </tbody>
         </table>
+        {% else %}<p><a href="/accounts/purchase-ithaca-dollars/" class="white-button">Confirm</a></p>
+        {% endif %}
         </div>
 </div>
 
@@ -166,13 +212,22 @@
 <script src="{% static 'account/js/account.js' %}"></script>
 <script>
     $('input[name=billing_frequency').change(function() {
-        // billing_frequency = $('input[name=billing_frequency]:checked').val();
+        
+        monthly_usd = $(this).siblings('.monthly-usd').text();
 
-        // $.post('/accounts/review/', {'billing_frequency': billing_frequency}, function( response ) {
-        //     console.log(response);
-        // })
+        $('#due-montly, #monthly-fee').find('.monthly-usd').text(monthly_usd);
 
-        $('#billing_frequency').submit();
+        annual_fee = parseInt($('.annual-usd').text());
+        monthly_fee = parseInt($('#due-montly .monthly-usd').text());
+        total_due = annual_fee + monthly_fee;
+        $('.total-usd').text(total_due);
+
+        // Update IthacashAccount model with selection
+        data = $('#billing_frequency').serialize();
+
+        $.post('/accounts/review/', data, function(response) {
+            console.log(response);
+        })
     })
 </script>
 {% endblock %}
