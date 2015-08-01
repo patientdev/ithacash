@@ -102,6 +102,7 @@ h2 {
 form {
     min-height: 100%;
     font-size: 1.1em;
+    line-height: 1.2em;
 }
 
 /*form > div {
@@ -254,4 +255,25 @@ input.error {
     color: blue;
     margin-right: 10px;
     font-size: 1.4em;
+}
+
+#total td {
+    background-color: #70A14E;
+    text-align: right;
+    font-size: 1.4em;
+}
+
+#checkout td {
+    vertical-align: middle;
+    text-align: right;
+}
+
+.paypal-button {
+    border: none;
+    background-color: #E4E4E3;
+    color: black;
+    border-radius: 20px;
+    padding: 10px;
+    line-height: 1em;
+    font-size: 1em;
 }
