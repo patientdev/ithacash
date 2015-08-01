@@ -60,7 +60,7 @@ $(function() {
 	            $.each(inputs, function() {
 	                input_name = $(this).attr('name');
 
-	                // If the name of the input equals the invalid field index
+	                // If the name of the input equals the error field index
 	                if ( $.inArray(input_name, error_indices) != -1 ) {
 	                    error_message = errors[input_name][0]['message'];
 
@@ -79,8 +79,12 @@ $(function() {
 	                    $(this).removeClass('error');
 	                    $(this).next('.error-message').remove();
 	                }
-
 	            })
+
+                    $('html, body').animate({
+                    	scrollTop: $('.error-message').first().offset().top - 170
+                    })
+
 
 	            return false;
 	        }
