@@ -118,11 +118,19 @@
                 </tr>
                 <tr>
                     <td>Enable TXT2PAY</td>
-                    <td><span id="review-txt2pay"></span></td>
+                    <td>{% if account.txt2pay == False %}
+                            &#10008;
+                        {% else %}
+                            &#10004;
+                        {% endif %}</td>
                 </tr>
                 <tr>
                     <td>Lease TXT2PAY Phone</td>
-                    <td><span id="review-txt2pay_phone"></span></td>
+                    <td>{% if account.txt2pay_phone == False %}
+                            &#10008;
+                        {% else %}
+                            &#10004;
+                        {% endif %}</td>
                 </tr>
                 <tr>
                     <td>Mobile Number</td>
