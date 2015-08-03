@@ -13,6 +13,7 @@ header {
 
 #content {
     padding-top: 0;
+    padding-bottom: 40px;
     color: white;
     font-size: 1.2em;
     width: 100%;
@@ -80,11 +81,9 @@ h2 {
     -webkit-transform: scale(1);
 }
 
-#forms {
+#forms, #review {
     margin-top: 170px;
 }
-
-#review { display: none; }
 
 .errorlist {
     width: 40%;
@@ -116,7 +115,7 @@ form {
 }*/
 
 form p {
-    margin: 20px auto;
+    margin-bottom: 0;
     position: relative;
 }
 
@@ -127,6 +126,10 @@ form p:last-of-type {
 select {
     width: 10em;
     font-size: 2em;
+}
+
+input {
+    -webkit-transition: all .4s ease;
 }
 
 input[type=text], input[type=email] {
@@ -166,14 +169,6 @@ input[type=checkbox] {
 
 :-ms-input-placeholder {
    color: #999;
-}
-
-.asterisk {
-    line-height: 1.2em;
-    background-color: white;
-    color: black;
-    position: absolute;
-    top: 0;
 }
 
 .help-text {
@@ -238,10 +233,6 @@ input[type=radio] {
     background-color: #333;
 }
 
-input.error {
-    outline: 1px solid red;
-}
-
 .error-message {
     margin-left: 20px;
     position: absolute;
@@ -250,7 +241,7 @@ input.error {
 
 .error-message::before {
     content: "*";
-    color: blue;
+    color: red;
     margin-right: 10px;
     font-size: 1.4em;
 }
