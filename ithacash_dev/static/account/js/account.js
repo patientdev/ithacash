@@ -2,24 +2,29 @@ $(function() {
 	if ( $('#id_account_type').val() != '' ) {
 		$('#account-type-selection').css('display', 'block');
 
-        if ( $('#id_account_type').val()  == 'Individual' || $('#id_account_type').val() == 'Freelancer' ) {
+        if ( $('#id_account_type').val()  == 'Individual' ) {
             $('#id_entity_name').hide();
         }
 	}
 
     $('#id_account_type').change(function() {
-        if ( $(this).val()  == 'Individual' || $(this).val() == 'Freelancer' ) {
+        if ( $(this).val()  == 'Individual') {
             $('#id_entity_name').val('n/a').hide();
             $('#id_full_name').attr('placeholder', 'Your Name');
-        } else {
+        } 
 
-            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' ) {
-            $('#id_entity_name').attr('placeholder', 'Business Name');
-            } else {
+        else {
+
+            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' || $(this).val() == 'Freelancer') {
+           		$('#id_entity_name').attr('placeholder', 'Business Name');
+            } 
+
+            else {
                 $('#id_entity_name').attr('placeholder', 'Organization Name');
             }
+
             $('#id_full_name').attr('placeholder', 'Contact Name');
-            $('#id_entity_name').show();
+            $('#id_entity_name').val('').show();
 
         }
 
@@ -66,11 +71,11 @@ $(function() {
 
 	                    // Logic for dealing with repeat errors
 	                    if ( $(this).next('.error-message').length > 0 ) {
-	                        $(this).next('.error-message').text('* ' + error_message);
+	                        $(this).next('.error-message').text(error_message);
 	                    }
 
 	                    else {
-	                        $(this).addClass('error').after('<span class="error-message">* ' + error_message);
+	                        $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
 	                    }
 	                }
 

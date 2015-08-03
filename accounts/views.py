@@ -106,9 +106,8 @@ def create_account(request, email_key):
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
     email_object.confirm(email_key)
 
-
     if email_object.owner is not None:
-        
+
         user_form = UserSignupForm(request.POST or None, instance=IthacashUser.objects.get(username=email_object.owner))
         account_form = AccountForm(request.POST or None, instance=IthacashAccount.objects.get(owner=email_object.owner))
     else:
@@ -131,7 +130,7 @@ def create_account(request, email_key):
             return HttpResponseRedirect('/accounts/sign-up-fee/')
 
     else:
-        # Combine form erros into one payload
+        # Combine form errors into one payload
         account_errors = json.loads(account_form.errors.as_json())
         user_errors = json.loads(user_form.errors.as_json())
         forms_errors = dict(account_errors.items() + user_errors.items())
@@ -151,20 +150,22 @@ def review(request):
             user_form = UserSignupForm(request.POST or None)
             account_form = AccountForm(request.POST or None)
 
-        user = user_form.save()
+        if user_form.is_valid() and account_form.is_valid():
 
-        account_form.instance.owner = user
-        account = account_form.save()
+            user = user_form.save()
 
-        email_object.owner = user
-        email_object.save()
+            account_form.instance.owner = user
+            account = account_form.save()
 
-        last_4 = request.POST['tin'][-4:]
+            email_object.owner = user
+            email_object.save()
 
-        return render(request, 'review.html', {'user': user,
-                                             'account': account,
-                                             'email_object': email_object,
-                                             'last_4': last_4})
+            last_4 = request.POST['tin'][-4:]
+
+            return render(request, 'review.html', {'user': user,
+                                                 'account': account,
+                                                 'email_object': email_object,
+                                                 'last_4': last_4})
 
     elif request.POST.get('billing_frequency') is not None:
 
