@@ -29,6 +29,8 @@
         </div>
     </div>
 
+<div id="review">
+
     <h2>Review Your Information</h2>
         <form id="billing_frequency" action="" method="POST">{% csrf_token %}
         <input type="hidden" name="account_owner" value="{{ account.owner }}">
@@ -43,28 +45,13 @@
                 <tr>
                     <td>Monthly Billing</td>
                     <td>{% if account.account_type == 'Standard Business' %}
-                            <label>$<span class="monthly-usd">35</span> + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                            $<span class="monthly-usd">35</span> + i$15/mo
                         {% elif account.account_type == 'Premier Business' %}
-                            <label>$<span class="monthly-usd">60</span> + i$25/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                            $<span class="monthly-usd">60</span> + i$25/mo
                         {% elif account.account_type == 'Nonprofit' %}
-                            <label>$<span class="monthly-usd">35</span> + i$15/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
+                            $<span class="monthly-usd">35</span> + i$15/mo
                         {% elif account.account_type == 'Freelancer' %}
-                            <label>$<span class="monthly-usd">12</span> + i$5/mo <input type="radio" name="billing_frequency" value="Monthly" checked></label>
-                        {% endif %}</td>
-                </tr>
-                <tr>
-                    <td colspan="2">&mdash;or switch to&mdash;</td>
-                </tr>
-                <tr>
-                    <td>Semi-Annually Billing</td>
-                    <td>{% if account.account_type == 'Standard Business' %}
-                            <label>$<span class="monthly-usd">30</span> + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
-                        {% elif account.account_type == 'Premier Business' %}
-                            <label>$<span class="monthly-usd">50</span> + i$25/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
-                        {% elif account.account_type == 'Nonprofit' %}
-                            <label>$<span class="monthly-usd">30</span> + i$15/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
-                        {% elif account.account_type == 'Freelancer' %}
-                            <label>$<span class="monthly-usd">10</span> + i$5/mo <input type="radio" name="billing_frequency" value="Semi-Annual"></label>
+                            $<span class="monthly-usd">12</span> + i$5/mo
                         {% endif %}</td>
                 </tr>
             </tbody>{% endif %}
@@ -91,18 +78,18 @@
         <table>
             <thead>
                 <tr>
-                    <th>Business Information</th>
+                    <th>Account Information</th>
                     <td><a href="/accounts/create_account/{{ email_object.most_recent_confirmation_key}}" class="edit">edit</a></td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>{% if account.account_type != 'Individual' %}
                 <tr>
                     <td>Business Name</td>
                     <td>{{ account.entity_name }}</td>
-                </tr>
+                </tr>{% endif %}
                 <tr>
                     <td>Contact Name</td>
-                    <td>{{ account.full_name }}</td>
+                    <td>{{ user.full_name }}</td>
                 </tr>
                 <tr>
                     <td>Address</td>
@@ -206,36 +193,34 @@
                         </td>
                     </tr>
                     <tr id="checkout">
-                        <td colspan="2">Checkout with <button class="paypal-button">PayPal</button></td>
+                        <td colspan="2">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+                                Checkout with <button type="submit" class="paypal-button">PayPal</button>
+
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                            {% if account.account_type == 'Standard Business' %}
+                                <input type="hidden" name="hosted_button_id" value="2GVP4YZDG27ML">
+                                <input type="hidden" name="on0" value="Business Membership">
+                            {% elif account.account_type == 'Premier Business' %}
+                                Checkout with <button class="paypal-button">PayPal</button>
+                            {% elif account.account_type == 'Nonprofit' %}
+                                Checkout with <button class="paypal-button">PayPal</button>
+                            {% elif account.account_type == 'Freelancer' %}
+                                <input type="hidden" name="hosted_button_id" value="5SFX422BMEQJS">
+                                <input type="hidden" name="on0" value="Freelancer">
+                            {% endif %}
+                            </form>
                 </tbody>
         </table>
         {% else %}<p><a href="/accounts/purchase-ithaca-dollars/" class="white-button">Confirm</a></p>
         {% endif %}
         </div>
 </div>
+</div>
 
 {% endblock %}
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
-<script>
-    $('input[name=billing_frequency').change(function() {
-        
-        monthly_usd = $(this).siblings('.monthly-usd').text();
-
-        $('#due-montly, #monthly-fee').find('.monthly-usd').text(monthly_usd);
-
-        annual_fee = parseInt($('.annual-usd').text());
-        monthly_fee = parseInt($('#due-montly .monthly-usd').text());
-        total_due = annual_fee + monthly_fee;
-        $('.total-usd').text(total_due);
-
-        // Update IthacashAccount model with selection
-        data = $('#billing_frequency').serialize();
-
-        $.post('/accounts/review/', data, function(response) {
-            console.log(response);
-        })
-    })
-</script>
 {% endblock %}
