@@ -98,6 +98,12 @@ $(function() {
 
 	    })
 	})
+
+	$('.help').hover(function() {
+		$(this).siblings('.text').css('opacity', '1');
+	}, function() {
+		$(this).siblings('.text').css('opacity', '0');
+	})
 })
 
 function mapInputsToReview(div) {

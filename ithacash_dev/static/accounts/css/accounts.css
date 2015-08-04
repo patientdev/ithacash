@@ -187,24 +187,14 @@ input[type=checkbox] {
     vertical-align: bottom;
 }
 
-.help-text {
-    display: none;
+.help {
+    width: 10px;
+    height: 10px;
+    background-color: white;
 }
 
-.help:hover .help-text {
-    display: inline-block;
-    position: absolute;
-    margin-left: 20px;
-    background-color: white;
-    color: black;
-    padding: 5px;
-    border-radius: 10px;
-    font-size: .8em;
-    padding: 10px 15px;
-    vertical-align: middle;
-    width: 200px;
-    white-space: normal;
-    text-align: left;
+.text {
+    opacity: 0;
 }
 
 svg, polygon {
