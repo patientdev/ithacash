@@ -15,7 +15,7 @@ $(function() {
 
         else {
 
-            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premium Business' || $(this).val() == 'Freelancer') {
+            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premier Business' || $(this).val() == 'Freelancer') {
            		$('#id_entity_name').attr('placeholder', 'Business Name');
             } 
 
