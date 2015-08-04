@@ -45,13 +45,13 @@
                 <tr>
                     <td>Monthly Billing</td>
                     <td>{% if account.account_type == 'Standard Business' %}
-                            $<span class="monthly-usd">35</span> + i$15/mo
+                            $<span class="monthly-usd">20</span> + i$20/mo
                         {% elif account.account_type == 'Premier Business' %}
-                            $<span class="monthly-usd">60</span> + i$25/mo
+                            $<span class="monthly-usd">30</span> + i$30/mo
                         {% elif account.account_type == 'Nonprofit' %}
-                            $<span class="monthly-usd">35</span> + i$15/mo
+                            $<span class="monthly-usd">20</span> + i$20/mo
                         {% elif account.account_type == 'Freelancer' %}
-                            $<span class="monthly-usd">12</span> + i$5/mo
+                            $<span class="monthly-usd">10</span> + i$10/mo
                         {% endif %}</td>
                 </tr>
             </tbody>{% endif %}
@@ -135,60 +135,56 @@
                 <tr>
                     <td>{{ account.account_type }}</td>
                     <td>{% if account.account_type == 'Standard Business' %}
-                            $<span class="monthly-usd">35</span> + i$15<br>+2% on funds received
+                            $<span class="monthly-usd">20</span> + i$20<br>+2% on funds received
                         {% elif account.account_type == 'Premier Business' %}
-                            $<span class="monthly-usd">60</span> + i$25<br>+2% on funds received
+                            $<span class="monthly-usd">30</span> + i$30<br>+2% on funds received
                         {% elif account.account_type == 'Nonprofit' %}
-                            $<span class="monthly-usd">35</span> + i$15<br>+2% on funds received
+                            $<span class="monthly-usd">20</span> + i$20<br>+2% on funds received
                         {% elif account.account_type == 'Freelancer' %}
-                            $<span class="monthly-usd">12</span> + i$5<br>+2% on funds received
+                            $<span class="monthly-usd">10</span> + i$10<br>+2% on funds received
                         {% endif %}
                     </td>
                 </tr>
                 </tbody>
         </table>
         <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Total Today</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr id="annual_fee">
-                        <td>Annual Fee</td>
+                        <td>One&ndash;Time Signup Fee</td>
                         <td>{% if account.account_type == 'Standard Business' %}
-                                $<span class="annual-usd">50</span>
+                                $<span class="annual-usd">240</span>
                             {% elif account.account_type == 'Premier Business' %}
-                                $<span class="annual-usd">100</span>
+                                $<span class="annual-usd">360</span>
                             {% elif account.account_type == 'Nonprofit' %}
-                                $<span class="annual-usd">50</span>
+                                $<span class="annual-usd">240</span>
                             {% elif account.account_type == 'Freelancer' %}
-                                $<span class="annual-usd">25</span>
+                                $<span class="annual-usd">120</span>
                             {% endif %}
                         </td>
                     </tr>
                     <tr id="monthly-fee">
                         <td>Monthly Fee</td>
                         <td>{% if account.account_type == 'Standard Business' %}
-                                $<span class="monthly-usd">35</span>
+                                $<span class="monthly-usd">20</span>
                             {% elif account.account_type == 'Premier Business' %}
-                                $<span class="monthly-usd">60</span>
+                                $<span class="monthly-usd">30</span>
                             {% elif account.account_type == 'Nonprofit' %}
-                                $<span class="monthly-usd">35</span>
+                                $<span class="monthly-usd">20</span>
                             {% elif account.account_type == 'Freelancer' %}
-                                $<span class="monthly-usd">12</span>
+                                $<span class="monthly-usd">10</span>
                             {% endif %}
                         </td>
                     </tr>
                     <tr id="total">
-                        <td colspan="2">{% if account.account_type == 'Standard Business' %}
-                                $<span class="total-usd">85</span>.00
+                        <td>Total Today</td>
+                        <td>{% if account.account_type == 'Standard Business' %}
+                                $<span class="total-usd">260</span>.00
                             {% elif account.account_type == 'Premier Business' %}
-                                $<span class="total-usd">160</span>.00
+                                $<span class="total-usd">390</span>.00
                             {% elif account.account_type == 'Nonprofit' %}
-                                $<span class="total-usd">85</span>.00
+                                $<span class="total-usd">260</span>.00
                             {% elif account.account_type == 'Freelancer' %}
-                                $<span class="total-usd">37</span>.00
+                                $<span class="total-usd">130</span>.00
                             {% endif %}
                         </td>
                     </tr>
@@ -203,7 +199,7 @@
                                 <input type="hidden" name="hosted_button_id" value="2GVP4YZDG27ML">
                                 <input type="hidden" name="on0" value="Business Membership">
                             {% elif account.account_type == 'Premier Business' %}
-                                Checkout with <button class="paypal-button">PayPal</button>
+                                <input type="hidden" name="hosted_button_id" value="4M72KKRAMTXPL">
                             {% elif account.account_type == 'Nonprofit' %}
                                 Checkout with <button class="paypal-button">PayPal</button>
                             {% elif account.account_type == 'Freelancer' %}
