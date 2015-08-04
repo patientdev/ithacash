@@ -38,18 +38,25 @@
         <h2>Your Information</h2>
         <input type="hidden" name="most_recent_confirmation_key" value="{{ email_object.most_recent_confirmation_key }}">
 
-        {% if user_form.username.errors %}
+        <div id="username" class="field">
+            {% if user_form.username.errors %}
             {% for error in user_form.username.errors %}
                 <p>{{ user_form.username }} <span class="error-message">{{ error|escape }}</span></p>
             {% endfor %}
         {% else %} 
             <p>{{ user_form.username }}</p>
         {% endif %}
-        <p class="help-text">{{ user_form.username.help_text }}</p>
+            <div class="help-text">
+                <div class="help">?</div>
+                <div class="text">{{ user_form.username.help_text }}</div>
+            </div>
+        </div>
+
 
         <p>{{ form.account_type }}</p>
 
         <div id="account-type-selection">
+            <div id="entity-name" class="field">
             {% if form.address.errors %}
                 {% for error in form.entity_name.errors %}
                     <p>{{ form.entity_name }} <span class="error-message">{{ error|escape }}</span></p>
@@ -57,7 +64,9 @@
             {% else %} 
                 <p>{{ form.entity_name }}</p>
             {% endif %}
+            </div>
 
+            <div id="full-name" class="field">
             {% if user_form.full_name.errors %}
                 {% for error in user_form.full_name.errors %}
                     <p>{{ user_form.full_name }} <span class="error-message">{{ error|escape }}</span></p>
@@ -65,7 +74,13 @@
             {% else %} 
                 <p>{{ user_form.full_name }}</p>
             {% endif %}
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">As shown on your income tax return</div>
+                </div>
+            </div>
 
+            <div id="tin" class="field">
             {% if form.tin.errors %}
                 {% for error in form.tin.errors %}
                     <p>{{ form.tin }} <span class="error-message">{{ error|escape }}</span></p>
@@ -73,6 +88,11 @@
             {% else %} 
                 <p>{{ form.tin }}</p>
             {% endif %}
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">We will only contact you in case of support needs or problems with your account</div>
+                </div>
+            </div>
 
             {% if form.address_1.errors %}
                 {% for error in form.address_1.errors %}
@@ -115,6 +135,7 @@
                 <p>{{ form.state }}</p>
             {% endif %}
 
+            <div id="phone-landline" class="field">
             {% if form.phone_landline.errors %}
                 {% for error in form.phone_landline.errors %}
                     <p>{{ form.phone_landline }} <span class="error-message">{{ error|escape }}</span></p>
@@ -122,10 +143,38 @@
             {% else %} 
                 <p>{{ form.phone_landline }}</p>
             {% endif %}
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">We will only contact you in case of support needs or problems with your account</div>
+                </div>
+            </div>
 
-            <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
-            <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
-            <p>{{ form.phone_mobile }}</p>
+            <div id="txt2pay" class="field">
+                <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">Enable my mobile phone to send and receive TXT2PAY messages</div>
+                </div>
+            </div>
+
+            <div id="txt2pay-phone" class="field">
+                <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
+                
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">Lease a mobile phone from us for $10/mo to perform TXT2PAY transactions.</div>
+                </div>
+            </div>
+
+            <div id="phone-mobile" class="field">
+                <p>{{ form.phone_mobile }}</p>
+                
+                <div class="help-text">
+                    <div class="help">?</div>
+                    <div class="text">Lease a mobile phone from us for $10/mo to perform TXT2PAY transactions.</div>
+                </div>
+            </div>
 
             {% if form.electronic_signature.errors %}
                 {% for error in form.electronic_signature.errors %}
