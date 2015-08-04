@@ -1,7 +1,9 @@
 *.pyc
 *.csv
 *.sqlite3
+*ithacash_dev/settings/ignore.py
 ithacash_dev/settings/secrets/*
+
 ops/ssl
 .idea
 db.sqlite3
