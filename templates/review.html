@@ -197,14 +197,12 @@
                                 <input type="hidden" name="cmd" value="_s-xclick">
                             {% if account.account_type == 'Standard Business' %}
                                 <input type="hidden" name="hosted_button_id" value="2GVP4YZDG27ML">
-                                <input type="hidden" name="on0" value="Business Membership">
                             {% elif account.account_type == 'Premier Business' %}
                                 <input type="hidden" name="hosted_button_id" value="4M72KKRAMTXPL">
                             {% elif account.account_type == 'Nonprofit' %}
-                                Checkout with <button class="paypal-button">PayPal</button>
+                                <input type="hidden" name="hosted_button_id" value="SKU9BAQ3ZJUVU">
                             {% elif account.account_type == 'Freelancer' %}
                                 <input type="hidden" name="hosted_button_id" value="5SFX422BMEQJS">
-                                <input type="hidden" name="on0" value="Freelancer">
                             {% endif %}
                             </form>
                 </tbody>
