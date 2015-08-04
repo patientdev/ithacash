@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ithacashaccount',
             name='account_type',
-            field=models.CharField(max_length=20, choices=[(None, b'Select Account Type'), (b'Individual', b'Individual'), (b'Freelancer', b'Freelancer'), (b'Standard Business', b'Standard Business'), (b'Premium Business', b'Premium Business'), (b'Nonprofit', b'Nonprofit')]),
+            field=models.CharField(max_length=20, choices=[(None, b'Select Account Type'), (b'Individual', b'Individual'), (b'Freelancer', b'Freelancer'), (b'Standard Business', b'Standard Business'), (b'Premier Business', b'Premier Business'), (b'Nonprofit', b'Nonprofit')]),
         ),
         migrations.AlterField(
             model_name='ithacashuser',

@@ -88,7 +88,7 @@ class IthacashAccount(models.Model):
         ('Individual', 'Individual'),
         ('Freelancer', 'Freelancer'),
         ('Standard Business', 'Standard Business'),
-        ('Premium Business', 'Premium Business'),
+        ('Premier Business', 'Premier Business'),
         ('Nonprofit', 'Nonprofit'),
     )
 
