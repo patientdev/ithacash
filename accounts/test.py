@@ -70,6 +70,10 @@ class CreateAccountTests(TestCase):
      }
 
     def test_create_account_with_invalid_data(self):
+        '''
+        FAILING
+        TODO: #35
+        '''
         email = Email.objects.create(address="nobody@nothing.com")
 
         r = RequestFactory()
