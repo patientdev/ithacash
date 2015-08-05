@@ -7,6 +7,7 @@ from django.forms.util import ErrorList
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
+from ithacash_dev.settings.production import PAYPAL_SETTINGS
 
 
 class EmailForm(forms.ModelForm):
@@ -162,10 +163,16 @@ def review(request):
 
             last_4 = request.POST['tin'][-4:]
 
-            return render(request, 'review.html', {'user': user,
-                                                 'account': account,
-                                                 'email_object': email_object,
-                                                 'last_4': last_4})
+            context = {
+                'user': user,
+                'account': account,
+                'email_object': email_object,
+                'last_4': last_4,
+                'paypal_form': PAYPAL_SETTINGS,
+                'paypal_button_id': PAYPAL_SETTINGS['button_ids'][account.account_type]
+            }
+
+            return render(request, 'review.html', context)
 
     elif request.POST.get('billing_frequency') is not None:
 
