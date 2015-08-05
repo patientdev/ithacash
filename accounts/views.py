@@ -3,11 +3,15 @@ from django.http.response import HttpResponse, HttpResponseRedirect, JsonRespons
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
+<<<<<<< HEAD
 from django.forms.util import ErrorList
 from django.conf import settings
+=======
+>>>>>>> 2bce809a64d896a6275c7d9f04dd2b468442d574
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
+from ithacash_dev.settings.production import PAYPAL_SETTINGS
 
 
 class EmailForm(forms.ModelForm):
@@ -24,6 +28,17 @@ class EmailForm(forms.ModelForm):
         widgets = {
             'address': forms.EmailInput(attrs={'placeholder': 'Your email'}),
         }
+
+    def clean(self):
+        cleaned_data = super(EmailForm, self).clean()
+        address = cleaned_data.get("address")
+
+        try:
+            Email.objects.get(address=address)
+            self.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
+        except:
+            pass
+
 
 
 class AccountForm(forms.ModelForm):
@@ -72,15 +87,10 @@ def signup_phase_one(request):
     form = EmailForm(request.POST or None)
 
     if request.method == 'POST':
+
         if form.is_valid():
             email_object, created = Email.objects.get_or_create(address=request.POST['address'])
-
-            errors = form._errors.setdefault("address", ErrorList())
-            errors.append(u"Email already in system")
             
-            if email_object.owner:
-                return (JsonResponse({'errors': {'address': EMAIL_ALREADY_IN_SYSTEM}}))
-
             @crosstown_traffic()
             def send_email_later():
                 email_object.send_confirmation_message()
@@ -88,7 +98,7 @@ def signup_phase_one(request):
             return HttpResponseRedirect('/accounts/await-confirmation/')
 
         else:
-            return render(request, 'signup-phase-one.html', {'form': form })
+            return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
         return render(request, 'signup-phase-one.html', {'form': form })
@@ -132,10 +142,10 @@ def create_account(request, email_key):
 
     else:
         # Combine form errors into one payload
-        account_errors = json.loads(account_form.errors.as_json())
-        user_errors = json.loads(user_form.errors.as_json())
-        forms_errors = dict(account_errors.items() + user_errors.items())
-        return (JsonResponse({'errors': json.dumps(forms_errors)}))
+        errors = {}
+        errors.update(account_form.errors)
+        errors.update(user_form.errors)
+        return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
 
 def review(request):
@@ -163,11 +173,16 @@ def review(request):
 
             last_4 = request.POST['tin'][-4:]
 
-            return render(request, 'review.html', {'user': user,
-                                                 'account': account,
-                                                 'email_object': email_object,
-                                                 'last_4': last_4,
-                                                 'paypal': settings.PAYPAL_SETTINGS})
+            context = {
+                'user': user,
+                'account': account,
+                'email_object': email_object,
+                'last_4': last_4,
+                'paypal_form': PAYPAL_SETTINGS,
+                'paypal_button_id': PAYPAL_SETTINGS['button_ids'][account.account_type]
+            }
+
+            return render(request, 'review.html', context)
 
     elif request.POST.get('billing_frequency') is not None:
 
@@ -175,12 +190,6 @@ def review(request):
         
         ithacash_user = IthacashUser.objects.get(username=request.POST.get('account_owner'))
         ithacash_user.ithacashaccount_set.update(billing_frequency=request.POST['billing_frequency'])
-
-        # try:
-        #     print billing_form.save()
-        #     return JsonResponse({'success': True})
-        # except (ValueError, RuntimeError, TypeError, NameError):
-        #     return HttpResponse(sys.exc_info())
 
         return JsonResponse({'success': True})
 
