@@ -148,6 +148,11 @@
                 </tbody>
         </table>
         <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Total Today</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr id="annual_fee">
                         <td>One&ndash;Time Signup Fee</td>
@@ -176,7 +181,7 @@
                         </td>
                     </tr>
                     <tr id="total">
-                        <td>Total Today</td>
+                        <td>Total</td>
                         <td>{% if account.account_type == 'Standard Business' %}
                                 $<span class="total-usd">260</span>.00
                             {% elif account.account_type == 'Premier Business' %}
@@ -190,20 +195,11 @@
                     </tr>
                     <tr id="checkout">
                         <td colspan="2">
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 
-                                Checkout with <button type="submit" class="paypal-button">PayPal</button>
-
+                            <form action="{{ paypal_form.url }}" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick">
-                            {% if account.account_type == 'Standard Business' %}
-                                <input type="hidden" name="hosted_button_id" value="2GVP4YZDG27ML">
-                            {% elif account.account_type == 'Premier Business' %}
-                                <input type="hidden" name="hosted_button_id" value="4M72KKRAMTXPL">
-                            {% elif account.account_type == 'Nonprofit' %}
-                                <input type="hidden" name="hosted_button_id" value="SKU9BAQ3ZJUVU">
-                            {% elif account.account_type == 'Freelancer' %}
-                                <input type="hidden" name="hosted_button_id" value="5SFX422BMEQJS">
-                            {% endif %}
+
+                                Checkout with <button type="submit" name="hosted_button_id" value="{{ paypal_button_id }}" class="paypal-button">PayPal</button>
                             </form>
                 </tbody>
         </table>
