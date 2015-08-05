@@ -7,6 +7,12 @@ DATABASES = {
     }
 }
 
+PAYPAL_SETTINGS = {
+    'url': 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+    'button_ids': {
+        'StandardBusiness': "KT959QR33959U",
+    }
+}
 
 try:
     from ignore import *
