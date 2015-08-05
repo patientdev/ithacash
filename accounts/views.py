@@ -3,11 +3,6 @@ from django.http.response import HttpResponse, HttpResponseRedirect, JsonRespons
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
-<<<<<<< HEAD
-from django.forms.util import ErrorList
-from django.conf import settings
-=======
->>>>>>> 2bce809a64d896a6275c7d9f04dd2b468442d574
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
@@ -125,7 +120,7 @@ def create_account(request, email_key):
         user_form = UserSignupForm(request.POST or None)
         account_form = AccountForm(request.POST or None)
 
-    if not request.POST:
+    if request.method != 'POST':
         return render(request, 'signup-phase-two.html', {'form': account_form,
                                                      'user_form': user_form,
                                                      'email_object': email_object})

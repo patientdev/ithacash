@@ -31,7 +31,7 @@ $(function() {
         $('#account-type-selection').slideDown();
     })
 
-    $('form').submit(function( event ) {
+    $('form#account').submit(function( event ) {
 
     	event.preventDefault();
 
