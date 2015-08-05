@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
 from django.forms.util import ErrorList
+from django.conf import settings
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
@@ -165,7 +166,8 @@ def review(request):
             return render(request, 'review.html', {'user': user,
                                                  'account': account,
                                                  'email_object': email_object,
-                                                 'last_4': last_4})
+                                                 'last_4': last_4,
+                                                 'paypal': settings.PAYPAL_SETTINGS})
 
     elif request.POST.get('billing_frequency') is not None:
 
