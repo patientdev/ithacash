@@ -299,9 +299,15 @@ input[type=radio] {
 }
 
 #total td {
-    background-color: #70A14E;
-    text-align: right;
     font-size: 1.4em;
+}
+
+#total td[first-of-type] {
+    text-align: left;
+}
+
+#total td[last-of-type] {
+    text-align: right;
 }
 
 #checkout td {
