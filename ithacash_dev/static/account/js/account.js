@@ -31,7 +31,7 @@ $(function() {
         $('#account-type-selection').slideDown();
     })
 
-    $('form#account').submit(function( event ) {
+    $('form').submit(function( event ) {
 
     	event.preventDefault();
 
@@ -45,11 +45,11 @@ $(function() {
 			method: 'POST',
 			data: data
 		})
-		.success(function( response ){
+		.fail(function( response ){
 
-			if ( typeof response.errors != 'undefined') {
+			if ( response.status == 400 ) {
 
-	            errors = $.parseJSON(response.errors);
+	            errors = $.parseJSON(response.responseText);
 
 	            // Which fields have errors
 	            error_indices = []
@@ -67,9 +67,9 @@ $(function() {
 
 	                // If the name of the input equals the error field index
 	                if ( $.inArray(input_name, error_indices) != -1 ) {
-	                    error_message = errors[input_name][0]['message'];
+	                    error_message = errors[input_name][0];
 
-	                    // Logic for dealing with repeat errors
+	                    // Update error message if input is still invalid
 	                    if ( $(this).next('.error-message').length > 0 ) {
 	                        $(this).next('.error-message').text(error_message);
 	                    }
@@ -94,9 +94,15 @@ $(function() {
 	            return false;
 	        }
 
-	     $('form').unbind().submit(); 
+	        else if ( response.status == 500 ) {
+	        	$('form').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
+	        }
+
 
 	    })
+		.success(function(){
+		     $('form').unbind().submit(); 
+		})
 	})
 
 	$('.help').hover(function() {
