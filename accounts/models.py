@@ -113,8 +113,8 @@ class IthacashAccount(models.Model):
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
     phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
     website = models.URLField(max_length=255, blank=True, null=True)
-    txt2pay = models.BooleanField()
-    txt2pay_phone = models.BooleanField()
+    txt2pay = models.BooleanField(default=False)
+    txt2pay_phone = models.BooleanField(default=False)
     electronic_signature = models.CharField(max_length=5)  # ???
 
     created = models.DateTimeField(auto_now_add=True)

@@ -23,13 +23,5 @@ urlpatterns = [
     url(r'^apply/', 'signup.views.apply'),
     url(r'^account/', 'signup.views.account'),
 
-    url(r'^getting-an-account/', 'signup.views.getting_an_account'),
-    url(r'^sign-up/$', 'signup.views.sign_up'),
-    url(r'^sign-up/individual/$', 'signup.views.sign_up_individual'),
-    url(r'^sign-up/individual/apply/', 'signup.views.apply'),
-    url(r'^sign-up/freelancer/apply/', 'signup.views.apply'),
-    url(r'^sign-up/business/$', 'signup.views.sign_up_business'),
-    url(r'^sign-up/business/apply/', 'signup.views.apply'),
-    url(r'^sign-up/premier/apply/', 'signup.views.apply'),
-    url(r'^sign-up/non-profit/apply/', 'signup.views.apply')
+    url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint")
 ]
