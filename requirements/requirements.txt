@@ -5,3 +5,4 @@ django-phonenumber-field
 factory_boy
 mock
 mandrill
+psycopg2
