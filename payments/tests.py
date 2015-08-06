@@ -34,8 +34,12 @@ class PaypalTests(TestCase):
         r.POST['payment_gross'] = payment_amount
 
         with patch.object(PaypalValidator, 'validate_paypal_ipn', return_value=True) as mock_paypal_ipn:
-            response = paypal_ipn_endpoint(r)
-            self.assertEqual(account.payments.count(), 1)
+            with patch.object(IthacashAccount, 'send_awaiting_verification_message', return_value=None) as mock_email_sender:
+                response = paypal_ipn_endpoint(r)
+                self.assertEqual(account.payments.count(), 1)
 
-            payment = account.payments.all()[0]
-            self.assertEqual(payment.signuppayment.amount, payment_amount)
+                payment = account.payments.all()[0]
+                self.assertEqual(payment.signuppayment.amount, payment_amount)
+
+                self.assertEqual(mock_paypal_ipn.call_count, 1)
+                self.assertEqual(mock_email_sender.call_count, 1)
