@@ -81,12 +81,11 @@ def signup_phase_one(request):
                 if IthacashAccount.objects.filter(owner=email_object.owner).exists():
                     form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
                     return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
-            
-            @crosstown_traffic()
-            def send_email_later():
-                email_object.send_confirmation_message()
 
-            return HttpResponseRedirect('/accounts/await-confirmation/')
+
+            request.session['most_recent_confirmation_key'] = email_object.most_recent_confirmation_key
+
+            return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
         else:
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
@@ -96,6 +95,12 @@ def signup_phase_one(request):
 
 
 def await_confirmation(request):
+    email_object = Email.objects.get(most_recent_confirmation_key=request.session['most_recent_confirmation_key'])
+
+    @crosstown_traffic()
+    def send_email_later():
+        email_object.send_confirmation_message()
+
     return render(request, 'await-confirmation.html')
 
 
@@ -125,11 +130,11 @@ def create_account(request, email_key):
 
         # Send "Thank you; we'll review your application" email here?
 
-        if account_form.cleaned_data['account_type'] is not any(('Individual', 'Nonprofit')):
+        if account_form.cleaned_data['account_type'] is 'Individual':
             return HttpResponseRedirect('/accounts/purchase-ithaca-dollars/')
 
         else:
-            return HttpResponseRedirect('/accounts/sign-up-fee/')
+            return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
     else:
         # Combine form errors into one payload

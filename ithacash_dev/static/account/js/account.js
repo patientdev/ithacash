@@ -34,14 +34,17 @@ $(function() {
     $('form#account').submit(function( event ) {
 
     	event.preventDefault();
+    	event.stopImmediatePropagation();
 
     	form = $(this);
 
     	data = form.serialize();
-		action_url = '';
+		action_url = $(this).attr('action');
+		validation_url = window.location.pathname;
 
+		// Have AJAX handle the validation
 		$.ajax({
-			url: action_url, 
+			url: validation_url, 
 			method: 'POST',
 			data: data
 		})
@@ -101,7 +104,7 @@ $(function() {
 
 	    })
 		.success(function(){
-		     $('form').unbind().submit(); 
+		     $('form#account').unbind('submit').submit(); 
 		})
 	})
 
