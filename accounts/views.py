@@ -169,6 +169,8 @@ def review(request):
 
             last_4 = request.POST['tin'][-4:]
 
+            settings.PAYPAL_SETTINGS['button_ids'][account.account_type]
+
             context = {
                 'user': user,
                 'account': account,
