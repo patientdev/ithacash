@@ -179,6 +179,14 @@ def review(request):
 
             return render(request, 'review.html', context)
 
+        else:
+            # Combine form errors into one payload
+            errors = {}
+            errors.update(account_form.errors)
+            errors.update(user_form.errors)
+            return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
+
+
     elif request.POST.get('billing_frequency') is not None:
 
         billing_form = BillingFrequencyForm(request.POST or None)
