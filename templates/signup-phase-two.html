@@ -12,10 +12,6 @@
         white-space: normal;
     }
 
-    #id_is_ssn {
-        margin-left: 10px;
-    }
-
     #id_is_ssn li {
         display: inline;
     }
@@ -100,7 +96,7 @@
             {% endif %}
                 <div class="help-text">
                     <div class="help">?</div>
-                    <div class="text">As shown on your income tax return</div>
+                    <div class="text">This should read exactly as it appears on your tax returns</div>
                 </div>
             </div>
 
@@ -114,11 +110,11 @@
                 <label id="ssn_label">
                     Please indicate which type of Tax-ID this is.
                 </label>
-                <p>{{ form.is_ssn }}</p>
+                {{ form.is_ssn }}
             {% endif %}
                 <div class="help-text">
                     <div class="help">?</div>
-                    <div class="text">We will only contact you in case of support needs or problems with your account</div>
+                    <div class="text">Required for tax reporting purposes. Your Tax ID # is either an Employer Identification Number (EIN) or a Social Security Number (SSN). This information is stored securely and is never shared.</div>
                 </div>
             </div>
 
@@ -173,12 +169,12 @@
             {% endif %}
                 <div class="help-text">
                     <div class="help">?</div>
-                    <div class="text">We will only contact you in case of support needs or problems with your account</div>
+                    <div class="text">This should be the number you want us to call when we need to get ahold of you. This can be the same number as the phone you want to use for TXT2PAY, but it doesn&rsquo;t have to be.</div>
                 </div>
             </div>
 
             <div id="txt2pay" class="field">
-                <p><label>{{ form.txt2pay }} Enable TXT2PAY</label></p>
+                <p><label>{{ form.txt2pay }} I&rsquo;d like to use TXT2PAY</label></p>
 
                 <div class="help-text">
                     <div class="help">?</div>
@@ -187,7 +183,7 @@
             </div>
 
             <div id="txt2pay-phone" class="field">
-                <p><label>{{ form.txt2pay_phone }} Lease TXT2PAY Phone</label></p>
+                <p><label>{{ form.txt2pay_phone }} I need a device for my Point of Sale</label></p>
                 
                 <div class="help-text">
                     <div class="help">?</div>
@@ -200,21 +196,23 @@
                 
                 <div class="help-text">
                     <div class="help">?</div>
-                    <div class="text">Lease a mobile phone from us for $10/mo to perform TXT2PAY transactions.</div>
+                    <div class="text">For use with &ldquo;TXT2PAY&rdquo;</div>
                 </div>
             </div>
 
-            <h3>Signature</h3>
+            <div id="signature">
+                <h3>Signature</h3>
 
-            I certify that the above information is correct and also agree to the <a href="{% static 'docs/Inaugural_Membership_Agreement_v1.1.pdf' %}">terms & conditions</a>
+                <p>I certify that the above information is correct and also agree to the <a href="{% static 'docs/Inaugural_Membership_Agreement_v1.1.pdf' %}">terms & conditions</a></p>
 
-            {% if form.electronic_signature.errors %}
-                {% for error in form.electronic_signature.errors %}
-                    <p>{{ form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
-                {% endfor %}
-            {% else %}
-                <p>{{ form.electronic_signature }}</p>
-            {% endif %}
+                {% if form.electronic_signature.errors %}
+                    {% for error in form.electronic_signature.errors %}
+                        <p>{{ form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ form.electronic_signature }}</p>
+                {% endif %}
+            </div>
         </div>
 
         <p><button type="submit" class="white-button next">Next</button></p>
