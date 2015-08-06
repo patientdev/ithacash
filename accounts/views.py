@@ -24,17 +24,6 @@ class EmailForm(forms.ModelForm):
             'address': forms.EmailInput(attrs={'placeholder': 'Your email'}),
         }
 
-    def clean(self):
-        cleaned_data = super(EmailForm, self).clean()
-        address = cleaned_data.get("address")
-
-        try:
-            Email.objects.get(address=address)
-            self.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
-        except:
-            pass
-
-
 
 class AccountForm(forms.ModelForm):
 
@@ -87,6 +76,11 @@ def signup_phase_one(request):
 
         if form.is_valid():
             email_object, created = Email.objects.get_or_create(address=request.POST['address'])
+
+            if not created:
+                if IthacashAccount.objects.filter(owner=email_object.owner).exists():
+                    form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
+                    return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
             
             @crosstown_traffic()
             def send_email_later():
