@@ -35,11 +35,11 @@ class AccountForm(forms.ModelForm):
         widgets = {
             'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
             'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
-            'address_2': forms.TextInput(attrs={'placeholder': 'Address 1'}),
+            'address_2': forms.TextInput(attrs={'placeholder': 'Address 2'}),
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'state': forms.TextInput(attrs={'placeholder': 'State'}),
             'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
-            'tin': forms.TextInput(attrs={'placeholder': 'TIN'}),
+            'tin': forms.TextInput(attrs={'placeholder': 'Tax ID #'}),
             'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
             'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
             'website': forms.TextInput(attrs={'placeholder': 'Website'}),
