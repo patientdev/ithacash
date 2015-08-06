@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'pages.views.front'),
+    url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^$', 'signup.views.front'),
-    url(r'^apply/', 'signup.views.apply'),
-    url(r'^account/', 'signup.views.account'),
 
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint")
 ]
