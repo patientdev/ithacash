@@ -7,9 +7,12 @@ import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
-from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT
+from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
 from django.template import Context, loader
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
@@ -22,7 +25,7 @@ class IthacashUser(AbstractBaseUser):
 
 class Email(models.Model):
     address = models.EmailField(unique=True)
-    owner = models.ForeignKey(IthacashUser, blank=True, null=True)
+    owner = models.ForeignKey(IthacashUser, related_name="emails", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     confirmed = models.DateTimeField(blank=True, null=True)
     most_recent_confirmation_key = models.CharField(max_length=255)
@@ -97,7 +100,7 @@ class IthacashAccount(models.Model):
         ('Semi-Annual', 'Semi-Annual')
     )
 
-    owner = models.ForeignKey(IthacashUser)
+    owner = models.ForeignKey(IthacashUser, related_name="accounts")
 
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
     entity_name = models.CharField(max_length=255)
@@ -119,3 +122,23 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
+
+    def send_awaiting_verification_message(self):
+
+        account_email = self.owner.emails.all()[0].address
+
+        t = loader.get_template('emails/please_wait_while_we_verify.txt')
+        c = Context({})
+        message = t.render(c)
+
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+        logger.info("Sending verification email to %s for account %s" % (account_email, self))
+        mandrill_client.messages.send(
+            {
+                'to': [{'email': account_email}],  # Right now, users aren't allowed to have more than one email address.
+                'text': message,
+                'from_name': 'Ithacash Support',
+                'from_email': 'support@ithacash.com',
+                'subject': VERIFICATION_SUBJECT_LINE,
+            })

@@ -20,5 +20,7 @@ def paypal_ipn_endpoint(request):
         account = IthacashAccount.objects.get(id=account_id)
 
         payment = SignUpPayment.objects.create(account=account, amount=request.POST['payment_gross'])
+
+        account.send_awaiting_verification_message()
     
     return HttpResponse("PROCESSED.")
