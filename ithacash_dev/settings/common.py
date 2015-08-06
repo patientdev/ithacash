@@ -102,5 +102,5 @@ ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'ithacash_dev/settings/secrets/
 AUTH_USER_MODEL = 'accounts.IthacashUser'
 
 # django-phonenumberfield
-# PHONENUMBER_DEFAULT_REGION = 'US'
-# PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'US'
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
