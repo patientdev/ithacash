@@ -11,6 +11,21 @@
         line-height: 1.2em;
         white-space: normal;
     }
+
+    #id_is_ssn {
+        margin-left: 10px;
+    }
+
+    #id_is_ssn li {
+        display: inline;
+    }
+
+    #ssn_label {
+        margin-top: 10px;
+        display: block;
+        margin-bottom: -18px;
+        font-size: 15px;
+    }
 </style>
 {% endblock %}
 
@@ -96,6 +111,10 @@
                 {% endfor %}
             {% else %} 
                 <p>{{ form.tin }}</p>
+                <label id="ssn_label">
+                    Please indicate which type of Tax-ID this is.
+                </label>
+                <p>{{ form.is_ssn }}</p>
             {% endif %}
                 <div class="help-text">
                     <div class="help">?</div>
