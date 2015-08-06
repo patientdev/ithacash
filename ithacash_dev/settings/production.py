@@ -15,6 +15,7 @@ DATABASES = {
 PAYPAL_SETTINGS = {
     'url': 'https://www.paypal.com/cgi-bin/webscr',
     'button_ids': {
+        'Individual': None,
         'Standard Business': "2GVP4YZDG27ML",
         'Premier Business': "4M72KKRAMTXPL",
         'Nonprofit': "SKU9BAQ3ZJUVU",
