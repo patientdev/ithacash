@@ -6,7 +6,7 @@ from django import forms
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
-from ithacash_dev.settings.production import PAYPAL_SETTINGS
+from django.conf import settings
 
 
 class EmailForm(forms.ModelForm):
@@ -37,6 +37,8 @@ class EmailForm(forms.ModelForm):
 
 
 class AccountForm(forms.ModelForm):
+
+    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
 
     class Meta:
         model = IthacashAccount
@@ -173,8 +175,8 @@ def review(request):
                 'account': account,
                 'email_object': email_object,
                 'last_4': last_4,
-                'paypal_form': PAYPAL_SETTINGS,
-                'paypal_button_id': PAYPAL_SETTINGS['button_ids'][account.account_type]
+                'paypal_form': settings.PAYPAL_SETTINGS,
+                'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account.account_type]
             }
 
             return render(request, 'review.html', context)

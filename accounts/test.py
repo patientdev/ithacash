@@ -13,8 +13,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
         address = 'dingo@dingo.com'
         self.assertFalse(Email.objects.filter(address=address).exists())
 
-        test_recipient = 'dingo@dingo.com'
-        self.client.post('/accounts/signup/', {'address': test_recipient})
+        self.client.post('/accounts/signup/', {'address': address})
         self.assertTrue(Email.objects.filter(address=address).exists())
 
         # Now let's look at the email that's sent.
@@ -27,7 +26,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
             self.assertEqual(mock_email_sender.call_count, 1)
 
             email_sent_to = mock_email_sender.call_args[0][0]['to'][0]['email']
-            self.assertEqual(email_sent_to, test_recipient)
+            self.assertEqual(email_sent_to, address)
 
     def test_confirm_email(self):
         email_object = Email.objects.create(address="test@test.com")
@@ -62,6 +61,7 @@ class CreateAccountTests(TestCase):
      u'state': u'NY',
      u'electronic_signature': u'asdas',
      u'tin': u'445556154',
+     u'is_ssn': u'True',
      u'phone_mobile': u'',
      u'address_1': u'4 llama road',
      u'full_name': u'Some Guy I guess',
@@ -70,10 +70,6 @@ class CreateAccountTests(TestCase):
      }
 
     def test_create_account_with_invalid_data(self):
-        '''
-        FAILING
-        TODO: #35
-        '''
         email = Email.objects.create(address="nobody@nothing.com")
 
         r = RequestFactory()

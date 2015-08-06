@@ -110,6 +110,7 @@ class IthacashAccount(models.Model):
     state = models.CharField(max_length=255, default='NY')
     zip_code = models.CharField(max_length=255, default='14850')
     tin = EncryptedCharField(max_length=255)
+    is_ssn = models.BooleanField(default=False)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
     phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
     website = models.URLField(max_length=255, blank=True, null=True)
