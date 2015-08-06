@@ -204,11 +204,15 @@
                 </div>
             </div>
 
+            <h3>Signature</h3>
+
+            I certify that the above information is correct and also agree to the <a href="{% static 'docs/Inaugural_Membership_Agreement_v1.1.pdf' %}">terms & conditions</a>
+
             {% if form.electronic_signature.errors %}
                 {% for error in form.electronic_signature.errors %}
                     <p>{{ form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
-            {% else %} 
+            {% else %}
                 <p>{{ form.electronic_signature }}</p>
             {% endif %}
         </div>
