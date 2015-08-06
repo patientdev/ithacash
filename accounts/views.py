@@ -54,7 +54,7 @@ class AccountForm(forms.ModelForm):
             'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
             'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
             'website': forms.TextInput(attrs={'placeholder': 'Website'}),
-            'electronic_signature': forms.TextInput(attrs={'placeholder': 'Electronic Signature'})
+            'electronic_signature': forms.TextInput(attrs={'placeholder': 'Your Full Name'})
         }
 
 

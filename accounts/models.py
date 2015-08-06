@@ -116,6 +116,6 @@ class IthacashAccount(models.Model):
     website = models.URLField(max_length=255, blank=True, null=True)
     txt2pay = models.BooleanField(default=False)
     txt2pay_phone = models.BooleanField(default=False)
-    electronic_signature = models.CharField(max_length=5)  # ???
+    electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
