@@ -56,6 +56,7 @@
     dest: /ithacash/production
     accept_hostkey: yes
     depth: 1
+    force: yes
 
 - name: Install Project reqs
   sudo: yes
@@ -64,6 +65,16 @@
     requirements: /ithacash/production/requirements/requirements.txt
     virtualenv: /ithacash/virtualenv
     state: latest
+
+- name: Migrations
+  sudo: yes
+  sudo_user: "{{ app_user }}"
+  django_manage:
+    settings: ithacash_dev.settings.production
+    command: migrate
+    virtualenv: /ithacash/virtualenv
+    app_path: /ithacash/production
+
 
 - name: Apply hendrix upstart template
   template: src=hendrix-upstart.j2 dest=/etc/init/hendrix.conf mode=0751
@@ -78,7 +89,7 @@
   sudo_user: root
 
 - name: Copy SSL creds
-  synchronize: src=../../ssl dest=/ithacash
+  synchronize: src=../../../ithacash_dev/settings/secrets/ssl dest=/ithacash
 
 - name: Remove nginx default config
   file: path=/etc/nginx/sites-enabled/default state=absent

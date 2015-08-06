@@ -10,7 +10,7 @@
 
     manage_path: /ithacash/production
     venv_path: /ithacash/virtualenv
-    settings_dot_path: ithacash_dev.settings.common
+    settings_dot_path: ithacash_dev.settings.production
     hendrix_opts: "--loud --http_port 8000 --settings {{settings_dot_path}} --log /ithacash/hendrix-twisted.log"
     app_user: nonroot
     app_group: appdeployer
