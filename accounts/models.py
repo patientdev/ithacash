@@ -109,9 +109,9 @@ class IthacashAccount(models.Model):
 
     address_1 = models.CharField(max_length=255)
     address_2 = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, default='Ithaca')
-    state = models.CharField(max_length=255, default='NY')
-    zip_code = models.CharField(max_length=255, default='14850')
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    zip_code = models.CharField(max_length=255)
     tin = EncryptedCharField(max_length=255)
     is_ssn = models.BooleanField(default=False)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
