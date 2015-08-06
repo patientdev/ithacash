@@ -108,6 +108,19 @@ $(function() {
 		})
 	})
 
+	$('form#account input').focus(function() {
+		$(this).parent().siblings('.help-text').find('.text').css('opacity', '1');
+	})
+	$('form#account input').blur(function() {
+		$(this).parent().siblings('.help-text').find('.text').css('opacity', '0');
+	})
+
+	$('form#account label').hover(function() {
+		$(this).parent().siblings('.help-text').find('.text').css('opacity', '1');
+	}, function() {
+		$(this).parent().siblings('.help-text').find('.text').css('opacity', '0');
+	})
+
 	$('.help').hover(function() {
 		$(this).siblings('.text').css('opacity', '1');
 	}, function() {
