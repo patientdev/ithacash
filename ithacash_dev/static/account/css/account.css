@@ -119,7 +119,8 @@ form {
 }*/
 
 form p {
-    margin-bottom: 0;
+    width: 20em;
+    margin: 20px auto 0 auto;
     position: relative;
 }
 
