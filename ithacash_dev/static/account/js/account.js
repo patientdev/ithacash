@@ -110,6 +110,7 @@ $(function() {
 
 	$('form#account input').focus(function() {
 		$(this).parent().siblings('.help-text').find('.text').css('opacity', '1');
+		$(this).siblings('.error-message').remove();
 	})
 	$('form#account input').blur(function() {
 		$(this).parent().siblings('.help-text').find('.text').css('opacity', '0');
