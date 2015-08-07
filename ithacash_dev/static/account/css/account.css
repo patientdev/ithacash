@@ -11,6 +11,10 @@ header {
     display: none;
 }
 
+a {
+    color: rgb(85, 123, 62);
+}
+
 #content {
     padding-top: 0;
     padding-bottom: 40px;
