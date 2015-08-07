@@ -1,13 +1,13 @@
-Great!  You've finished the first step of creating an Ithacash account.  Now we want to, you know, get to know you a little.
+Sweet! You've finished the first step of creating an Ithacash account. Now help us get to know you a little better.
 
-You can complete your application here:
+We're ready when you are, just click here:
 
 {{ application_url }}
 
-
 Your new friends at Ithacash
-support@ithacash.com
-(607) 654-0807
 
-This email is being sent because the form at {{ form_url }} was submitted with {{ email_address }} as the contact.
-If you have received this email in error, disregard.  (Of course).
+support@ithacash.com
+(607) 391-2789
+
+This email is being sent because the form at {{ form_url }} was submitted with ({{ email_address }}) as the contact.
+If you have received this email in error, please just ignore it and/or let us know so we don't send you any further emails without your permission.
