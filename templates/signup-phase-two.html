@@ -134,22 +134,21 @@
                 <p>{{ form.address_2 }}</p>
             {% endif %}
 
-            <p class="two-inputs">
-                {{ form.city }}
-                {{ form.zip_code }}
             {% if form.city.errors %}
                 {% for error in form.city.errors %}
-                    {{ form.city }} <span class="error-message">{{ error|escape }}</span>
+                    <p>{{ form.city }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
+            {% else %}
+                <p>{{ form.city }}</p>
             {% endif %}
+
             {% if form.zip_code.errors %}
                 {% for error in form.zip_code.errors %}
-                    {{ form.zip_code }} <span class="error-message">{{ error|escape }}</span>
+                    <p>{{ form.zip_code }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
+            {% else %}
+                <p>{{ form.zip_code }}</p>
             {% endif %}
-
-            </p>
-
 
             {% if form.state.errors %}
                 {% for error in form.state.errors %}
