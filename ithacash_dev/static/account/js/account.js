@@ -4,6 +4,7 @@ $(function() {
 
         if ( $('#id_account_type').val()  == 'Individual' ) {
             $('#id_entity_name').hide();
+            $('#txt2pay-phone').css('display', 'none');
         }
 	}
 
@@ -11,9 +12,12 @@ $(function() {
         if ( $(this).val()  == 'Individual') {
             $('#id_entity_name').val('n/a').hide();
             $('#id_full_name').attr('placeholder', 'Your Name');
+            $('#txt2pay-phone').css('display', 'none');
         } 
 
         else {
+
+            $('#txt2pay-phone').css('display', 'block');
 
             if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premier Business' || $(this).val() == 'Freelancer') {
            		$('#id_entity_name').attr('placeholder', 'Business Name');
