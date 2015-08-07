@@ -9,22 +9,40 @@ $(function() {
 	}
 
     $('#id_account_type').change(function() {
-        if ( $(this).val()  == 'Individual') {
+    	account_type_selection = $(this).val();
+
+    	$('.info-card').css('display', 'none');
+
+        if ( account_type_selection  == 'Individual') {
             $('#id_entity_name').val('n/a').hide();
             $('#id_full_name').attr('placeholder', 'Your Name');
             $('#txt2pay-phone').css('display', 'none');
+            $('#individual-info').css('display', 'block');
         } 
 
         else {
 
             $('#txt2pay-phone').css('display', 'block');
 
-            if ( $(this).val() == 'Standard Business' || $(this).val() == 'Premier Business' || $(this).val() == 'Freelancer') {
+            if ( account_type_selection == 'Standard Business' || account_type_selection == 'Premier Business' || account_type_selection == 'Freelancer') {
            		$('#id_entity_name').attr('placeholder', 'Business Name');
+
+           		if ( account_type_selection == 'Standard Business') {
+		            $('#standard-info').css('display', 'block');
+           		}
+
+           		else if ( account_type_selection == 'Premier Business') {
+		            $('#premier-info').css('display', 'block');
+           		}
+
+           		else if ( account_type_selection == 'Freelancer') {
+		            $('#freelancer-info').css('display', 'block');
+		        }
             } 
 
             else {
                 $('#id_entity_name').attr('placeholder', 'Organization Name');
+	            $('#nonprofit-info').css('display', 'block');
             }
 
             $('#id_full_name').attr('placeholder', 'Contact Name');
