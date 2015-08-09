@@ -174,7 +174,7 @@
                     <p>{{ form.tin }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
             {% else %} 
-                <p>{{ form.tin }}</p>
+                <p>{{ form.tin }} <input type="hidden" name="tin-value"></p>
                 <label id="ssn_label">
                     Please indicate which type of Tax-ID this is.
                 </label>
@@ -295,4 +295,18 @@
 
 {% block foot %}
 <script src="{% static 'account/js/account.js' %}"></script>
+<script src="{% static 'account/js/jquery.mask.js' %}"></script>
+<script>
+$(function() {
+    $('#id_tin').mask('000-00-0000');
+    $('#id_tin').blur(function() {
+        tin_val = $(this).val();
+        if ( tin_val != '***-**-****') {
+            $('input[name=tin-value').val(tin_val);
+            last_4 = tin_val.slice(-4);
+            $(this).val('***-**-' + last_4);
+        }
+    })
+})
+</script>
 {% endblock %}
