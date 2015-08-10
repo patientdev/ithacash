@@ -171,10 +171,10 @@
             <div id="tin" class="field">
             {% if form.tin.errors %}
                 {% for error in form.tin.errors %}
-                    <p>{{ form.tin }} <span class="error-message">{{ error|escape }}</span></p>
+                    <p>{{ form.tin.as_hidden }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
             {% else %} 
-                <p>{{ form.tin }} <input type="hidden" name="tin-value"></p>
+                <p>{{ form.tin.as_hidden }} <input type="text" id="tin-input" name="tin-input" placeholder="Tax ID #"></p>
                 <label id="ssn_label">
                     Please indicate which type of Tax-ID this is.
                 </label>
@@ -298,15 +298,22 @@
 <script src="{% static 'account/js/jquery.mask.js' %}"></script>
 <script>
 $(function() {
-    $('#id_tin').mask('000-00-0000');
-    $('#id_tin').blur(function() {
+
+    if ( $('#id_tin').val() != '' ) {
+        $('#tin-input').val('*********')
+    }  
+
+    $('#tin-input').focus(function() {
+        $(this).val($('#id_tin').val());
+    });
+
+    $('#tin-input').blur(function() {
         tin_val = $(this).val();
-        if ( tin_val != '***-**-****') {
-            $('input[name=tin-value').val(tin_val);
-            last_4 = tin_val.slice(-4);
-            $(this).val('***-**-' + last_4);
+        $('#id_tin').val(tin_val);
+        if ( tin_val != '*********') {
+            $(this).val('*********');
         }
-    })
+    });
 })
 </script>
 {% endblock %}
