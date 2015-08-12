@@ -202,6 +202,12 @@ def review(request):
     else:
         return HttpResponseRedirect('/accounts/signup/')
 
+def thanks(request):
+    return render(request, 'thanks.html')
+
+def whoops(request):
+    return render(request, 'whoops.html')
+
 # TODO: PERMISSIONS!
 def list_accounts(request):
     return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})
