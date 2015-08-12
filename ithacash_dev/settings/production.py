@@ -19,6 +19,6 @@ PAYPAL_SETTINGS = {
         'Standard Business': "2GVP4YZDG27ML",
         'Premier Business': "4M72KKRAMTXPL",
         'Nonprofit': "SKU9BAQ3ZJUVU",
-        'Freelancer': "5SFX422BMEQJS",
+        'Freelancer': "77D4TSU2PGL92",
     }
 }
