@@ -1,0 +1,22 @@
+{% extends 'head-foot.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'account/css/account.css' %}">
+<style>
+p {
+	width: 400px;
+	margin: auto;
+	text-align: left;
+	line-height: 1.4em;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+
+	<h2>Welcome to Ithacash</h2>
+	<p>Thanks for signing up! If you have any questions, feel free to contact us at <a href="mailto:support@ithacash.com">support@ithacash.com</a> or 607.654.0807.</p>
+</div>
+{% endblock %}
