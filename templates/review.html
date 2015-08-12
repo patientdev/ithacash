@@ -167,29 +167,16 @@
                             {% endif %}
                         </td>
                     </tr>
-                    <tr id="monthly-fee">
-                        <td>Monthly Fee</td>
-                        <td>{% if account.account_type == 'Standard Business' %}
-                                $<span class="monthly-usd">20</span>
-                            {% elif account.account_type == 'Premier Business' %}
-                                $<span class="monthly-usd">30</span>
-                            {% elif account.account_type == 'Nonprofit' %}
-                                $<span class="monthly-usd">20</span>
-                            {% elif account.account_type == 'Freelancer' %}
-                                $<span class="monthly-usd">10</span>
-                            {% endif %}
-                        </td>
-                    </tr>
                     <tr id="total">
                         <td>Total</td>
                         <td>{% if account.account_type == 'Standard Business' %}
-                                $<span class="total-usd">260</span>.00
+                                $<span class="total-usd">240</span>.00
                             {% elif account.account_type == 'Premier Business' %}
-                                $<span class="total-usd">390</span>.00
+                                $<span class="total-usd">360</span>.00
                             {% elif account.account_type == 'Nonprofit' %}
-                                $<span class="total-usd">260</span>.00
+                                $<span class="total-usd">240</span>.00
                             {% elif account.account_type == 'Freelancer' %}
-                                $<span class="total-usd">130</span>.00
+                                $<span class="total-usd">120</span>.00
                             {% endif %}
                         </td>
                     </tr>
@@ -203,7 +190,7 @@
                             </form>
                 </tbody>
         </table>
-        {% else %}<p><a href="/accounts/purchase-ithaca-dollars/" class="white-button">Confirm</a></p>
+        {% else %}<p><a href="/thanks/" class="white-button">Confirm</a></p>
         {% endif %}
         </div>
 </div>

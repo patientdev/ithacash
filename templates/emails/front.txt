@@ -1,0 +1,3 @@
+<p>{% for key, value in post_data.items %}
+<strong>{{ key }}:</strong> {{ value }}<br>
+{% endfor %}</p>
