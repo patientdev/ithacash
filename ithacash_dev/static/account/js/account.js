@@ -70,6 +70,9 @@ $(function() {
 			method: 'POST',
 			data: data
 		})
+		.always(function( response ) {
+			console.log(response);
+		})
 		.fail(function( response ){
 
 			if ( response.status == 400 ) {
@@ -120,7 +123,7 @@ $(function() {
 	        }
 
 	        else if ( response.status == 500 ) {
-	        	$('form').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
+	        	$('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
 	        }
 
 
