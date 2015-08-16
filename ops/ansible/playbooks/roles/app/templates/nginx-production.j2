@@ -35,5 +35,9 @@ ssl_stapling_verify on; # Requires nginx => 1.3.7
                proxy_pass   http://localhost:8000; # Apache
                proxy_set_header Host       $host;
        }
+
+       location /login {
+               return 301 https://communities.cyclos.org/Ithacash/#login; 
+       }
 }
 
