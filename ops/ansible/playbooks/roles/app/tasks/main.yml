@@ -48,15 +48,29 @@
 #    body_format: raw
 #    body: "key={{appserver_ssh_key.content|b64decode}}&title=appserver_key"
 
-- name: Checkout project from gitlab
+- name: Checkout 'master' branch from gitlab
   sudo: yes
   sudo_user: "{{ app_user }}"
   git:
-    repo: git@gitlab.ithacash.com:ithacash/ithacash.git
+    repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
+    version: master
     dest: /ithacash/production
     accept_hostkey: yes
     depth: 1
     force: yes
+  when: ansible_nodename == 'farva'
+
+- name: Checkout 'develop' branch from gitlab
+  sudo: yes
+  sudo_user: "{{ app_user }}"
+  git:
+    repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
+    version: develop
+    dest: /ithacash/production
+    accept_hostkey: yes
+    depth: 1
+    force: yes
+  when: ansible_nodename == 'Ithacacash.com'
 
 - name: Install Project reqs
   sudo: yes
@@ -96,6 +110,11 @@
 
 - name: Apply Ithacash nginx config
   template: src=nginx-production.j2 dest=/etc/nginx/sites-enabled/production
+  when: ansible_nodename == 'farva'
+
+- name: Apply staging.ithacash.com nginx config
+  template: src=nginx-staging.js dest=/etc/nginx/sites-enabled/production
+  when: ansible_nodename == 'Ithacacash.com'
 
 - name: Restart nginx
   service: name=nginx state=restarted
