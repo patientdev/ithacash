@@ -6,3 +6,4 @@ factory_boy
 mock
 mandrill
 psycopg2
+newrelic
