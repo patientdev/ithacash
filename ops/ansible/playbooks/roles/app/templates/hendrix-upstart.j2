@@ -11,5 +11,6 @@ script
     env PYTHONPATH={{manage_path}}
     cd {{manage_path}}
     . {{venv_path}}/bin/activate
-    exec hx start {{hendrix_opts}}
+    env NEW_RELIC_CONFIG_FILE={{manage_path}}/ops/ansible/playbooks/roles/app/templates/newrelic.ini
+    exec newrelic-admin run-program hx start {{hendrix_opts}}
 end script
