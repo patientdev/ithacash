@@ -30,3 +30,4 @@ os_requirements:
     - postgresql-client
     - nginx
     - postgresql-9.3
+requirements_txt: "{{ manage_path }}/ops/ansible/playbooks/requirements.txt"
