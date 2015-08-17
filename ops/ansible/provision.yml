@@ -2,7 +2,6 @@
 - hosts: servers
   vars_files:
     - vars.yml
-  sudo: true
 
   tasks:
   - name: Create appdeployers group
@@ -19,4 +18,9 @@
 
   - name: Install OS requirements
     apt: pkg={{item}} update_cache=yes state=latest
-    with_items: {{ os_requirements }}
+    with_items: "{{ os_requirements }}"
+
+  - name: Install requirements.txt
+    pip: requirements={{ requirements_txt }} 
+
+- include: deploy.yml

@@ -1,32 +1,55 @@
-app_db_name: "ithacash"
-app_db_user: "ithacash_db_user"
-app_db_password: "{{ lookup('file', '../../../ithacash_dev/settings/secrets/PRODUCTION_DB_PASSWORD') }}"
+---
+- hosts: servers
+  vars_files:
+    - vars.yml
 
-manage_path: /ithacash/{{ nickname }}
-venv_path: /ithacash/virtualenv
-settings_dot_path: ithacash_dev.settings.{{ nickname }}
-hendrix_opts: "--loud --http_port 8000 --settings {{settings_dot_path}} --log /ithacash/hendrix-twisted.log"
-app_user: nonroot
-app_group: appdeployer
-
-project_repo: git@gitlab.ithacash.com:ithacash/ithacash.git
-os_requirements:
-    - build-essential
-    - libpng12-dev
-    - zlib1g-dev
-    - libjpeg62-dev
-    - python-dev
-    - python-virtualenv
-    - python-httplib2
-    - git-core
-    - python2.7-dev
-    - libffi-dev
-    - libpq-dev
-    - pkg-config
-    - libgraphviz-dev
-    - graphviz
-    - libatlas-base-dev
-    - libfreetype6-dev
-    - postgresql-client
-    - nginx
-    - postgresql-9.3
+  tasks:
+  - name: Checkout repo from gitlab
+    sudo: yes
+    sudo_user: "{{ app_user }}"
+    git:
+      repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
+      dest: /ithacash/{{ nickname }}
+      version: "{{ branch }}"
+      accept_hostkey: yes
+      depth: 1
+      force: yes
+  
+  - name: Migrations
+    sudo: yes
+    sudo_user: "{{ app_user }}"
+    django_manage:
+      settings: ithacash_dev.settings.production
+      command: migrate
+      virtualenv: /ithacash/virtualenv
+      app_path: /ithacash/production
+  
+  - name: Apply hendrix upstart template
+    template: src=hendrix-upstart.j2 dest=/etc/init/hendrix.conf mode=0751
+    sudo: yes
+    sudo_user: root
+  
+  - name: Start hendrix
+    service:
+      name="hendrix"
+      state=restarted
+    sudo: yes
+    sudo_user: root
+  
+  - name: Copy SSL creds
+    synchronize: src=../../../ithacash_dev/settings/secrets/ssl dest=/ithacash
+  
+  - name: Remove nginx default config
+    file: path=/etc/nginx/sites-enabled/default state=absent
+  
+  - name: Apply Ithacash nginx config
+    template: src=nginx-production.j2 dest=/etc/nginx/sites-enabled/production
+    when: ansible_nodename == 'farva'
+  
+  - name: Apply staging.ithacash.com nginx config
+    template: src=nginx-staging.js dest=/etc/nginx/sites-enabled/production
+    when: ansible_nodename == 'Ithacacash.com'
+  
+  - name: Restart nginx
+    service: name=nginx state=restarted
+    sudo: yes  
