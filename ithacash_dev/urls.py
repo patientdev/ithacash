@@ -19,6 +19,10 @@ whitelisted URLs here:
 See ops/ansible/playbooks/roles/caching/templates/etc__varnish__default.vcl
 '''
 
+
+def error_view(request):
+    raise RuntimeError("This is a test Ithacash error.")
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'pages.views.front'),
@@ -28,4 +32,6 @@ urlpatterns = [
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
+
+    url(r'^test_utils/error_test/$', error_view)
 ]
