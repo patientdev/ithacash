@@ -74,7 +74,7 @@ input:focus, textarea:focus {
 
 header {
     position: fixed;
-    padding: 20px 50px;
+    padding: 20px 10%;
     background-color: rgba(255, 255, 255, 1);
     width: 100%;
     -webkit-transition: box-shadow .2s linear;
@@ -83,14 +83,14 @@ header {
     font-size: 1.2em;
 }
 
-li#sign-up a, li#buy-i-dollars a {
+#nav-menu ul li#sign-up a, #nav-menu ul li#buy-i-dollars a {
     color: white;
     line-height: 1em;
     padding-bottom: 11px;
     font-size: .8em;
 }
 
-li#sign-up a:hover, li#buy-i-dollars a:hover {
+#nav-menu ul li#sign-up a:hover, #nav-menu ul li#buy-i-dollars a:hover {
     border: none;
 }
 
@@ -110,39 +110,9 @@ h1 img {
     width: 200px;
 }
 
-#nav-menu-container {
-    width: 70%; height: 100px;
-    float: right;
-}
-
-#nav-menu {
-    padding-left: 0;
-    margin: 0;
-    list-style-type: none;
-    float: right;
-    line-height: 53px;
-}
-
-#nav-menu li {
-    padding: 0 10px;
-    margin: 0;
+#nav-menu p {
     display: inline-block;
     float: left;
-}
-
-#nav-menu a {
-    text-decoration: none;
-    color: black;
-    text-align: center;
-    font-size: 1em;
-    font-weight: 400;
-    letter-spacing: 1px;
-    padding-bottom: 5px;
-    line-height: 1em;
-}
-
-#nav-menu a:hover {
-    border-bottom: 3px solid #89af3e;
 }
 
 #content {
