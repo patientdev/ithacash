@@ -1,0 +1,31 @@
+- name: Prepare to add PPA from URL
+  apt: pkg={{item}} update_cache=yes state=latest
+  with_items:
+    - apt-transport-https
+
+
+# Inspired by this doc: https://www.varnish-cache.org/installation/ubuntu
+- name: Add Varnish PPA Key
+  apt_key: url=https://repo.varnish-cache.org/GPG-key.txt state=present
+
+- name: Add Varnish PPA
+  apt_repository: repo='deb https://repo.varnish-cache.org/ubuntu/ precise varnish-4.0'
+
+- name: Install Varnish
+  apt: pkg={{item}} update_cache=yes state=latest
+  with_items:
+    - varnish
+
+- name: Varnish params
+  template:
+    src: etc__default__varnish
+    dest: /etc/default/varnish
+
+- name: Varnish VCL
+  template:
+    src: etc__varnish__default.vcl
+    dest: /etc/varnish/default.vcl
+
+- name: Restart varnish
+  service: name=varnish state=restarted
+  sudo: yes
