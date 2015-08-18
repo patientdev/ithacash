@@ -18,3 +18,4 @@
   roles:
   - app
   - database
+  - caching
