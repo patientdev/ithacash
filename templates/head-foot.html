@@ -13,6 +13,7 @@
 		<link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 		<link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
+		<link rel="stylesheet" href="{% static 'css/nav.css' %}">
 		<link rel="stylesheet" href="{% static 'js/slick/slick.css' %}">
 		<link rel="stylesheet" href="{% static 'css/mobile.css' %}" media="only screen and (max-device-width:800px)"/>
 
@@ -56,18 +57,54 @@
 	
 	<div id="container" class="clear">
 		<header>
-			<h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+			<div id="header-top">
+				<h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
 
-			<ul id="nav-menu">
-				<li><a href="/#how-it-works">How It Works</a></li>
-				<li><a href="/#how-to-get-started">Get Started</a></li>
-				<li><a href="/#the-circuit">The Circuit</a></li>
-				<li><a href="/#core-services">Core Services</a></li>
-				<li><a href="/#accounts">Accounts</a></li>
-				<li><a href="/#contact">Contact</a></li>
-				<li id="buy-i-dollars"><a href="/accounts/signup" class="green-button">Sign Up</a></li>
-				<li id="sign-up"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Buy i$</a></li>
-			</ul>
+				<p>A regional benefit currency</p>
+			</div>
+
+			<div id="nav-menu">
+				<p><a href="/">Home</a></p>
+				<ul>
+					<li><a href="">Why Ithacash</a></li>
+					<li><a href="/#how-it-works">How It Works</a>
+						<ul>
+							<li>Overview</li>
+							<li>General Info
+								<ul>
+									<li>Incentives</li>
+									<li>Fees</li>
+									<li>Earning &amp; Spending</li>
+									<li>Issuance</li>
+									<li>Backing</li>
+									<li>Circulation</li>
+									<li>Redemption</li>
+									<li>Taxes &amp; Regulations
+										<ul>
+											<li>NYS Dept. of Finance</li>
+											<li>Services</li>
+											<li>FINCEN</li>
+											<li>Money Transmission</li>
+											<li>Barter Industry</li>
+											<li>Regulations</li>
+											<li>Reporting to IRS</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>Paper Currency</li>
+							<li>Digital Currency</li>
+							<li>TXT2PAY</li>
+							<li>PAYITFWD</li>
+						</ul>
+					</li>
+					<li><a href="/#how-to-get-started">Directory</a></li>
+					<li><a href="/#the-circuit">About Us</a></li>
+					<li><a href="/#core-services">Shop</a></li>
+					<li id="buy-i-dollars"><a href="/accounts/signup" class="green-button">Get Started</a></li>
+					<li id="sign-up"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Login</a></li>
+				</ul>
+			</div>
 		</header>
 
 		{% block content %}
