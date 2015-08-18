@@ -74,7 +74,7 @@ input:focus, textarea:focus {
 
 header {
     position: fixed;
-    padding: 20px 10%;
+    padding: 20px 165px 0 165px;
     background-color: rgba(255, 255, 255, 1);
     width: 100%;
     -webkit-transition: box-shadow .2s linear;
@@ -83,14 +83,15 @@ header {
     font-size: 1.2em;
 }
 
-#nav-menu ul li#sign-up a, #nav-menu ul li#buy-i-dollars a {
+#nav-menu ul li#nav-get-started a, #nav-menu ul li#nav-login a {
     color: white;
     line-height: 1em;
     padding-bottom: 11px;
     font-size: .8em;
+    vertical-align: top;
 }
 
-#nav-menu ul li#sign-up a:hover, #nav-menu ul li#buy-i-dollars a:hover {
+#nav-menu ul li#nav-get-started a:hover, #nav-menu ul li#nav-login a:hover {
     border: none;
 }
 
@@ -103,7 +104,8 @@ header {
 h1 {
     display: inline-block;
     vertical-align: middle;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 h1 img {
@@ -117,7 +119,7 @@ h1 img {
 
 #content {
     width: 100%;
-    padding-top: 93px;
+    padding-top: 121px;
 }
 
 #intro {
