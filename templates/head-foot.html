@@ -59,15 +59,13 @@
 		<header>
 			<div id="header-top">
 				<h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
-
-				<p>A regional benefit currency</p>
 			</div>
 
-			<div id="nav-menu">
-				<p><a href="/">Home</a></p>
+			<div id="nav-menu" class="clear">
+				<p id="nav-home"><a href="/">Home</a></p>
 				<ul>
 					<li><a href="">Why Ithacash</a></li>
-					<li><a href="/#how-it-works">How It Works</a>
+					<li id="nav-how-it-works"><a href="/#how-it-works">How It Works</a>
 						<ul>
 							<li>Overview</li>
 							<li>General Info
@@ -101,8 +99,8 @@
 					<li><a href="/#how-to-get-started">Directory</a></li>
 					<li><a href="/#the-circuit">About Us</a></li>
 					<li><a href="/#core-services">Shop</a></li>
-					<li id="buy-i-dollars"><a href="/accounts/signup" class="green-button">Get Started</a></li>
-					<li id="sign-up"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Login</a></li>
+					<li id="nav-get-started"><a href="/accounts/signup" class="green-button">Get Started</a></li>
+					<li id="nav-login"><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="green-button dark-green-button">Login</a></li>
 				</ul>
 			</div>
 		</header>
@@ -115,6 +113,7 @@
 	<footer>
 	
 	<script src="{% static 'js/ithacash.js' %}"></script>
+	<script src="{% static 'js/nav.js' %}"></script>
 	<script src="{% static 'js/slick/slick.min.js' %}"></script>
 
 	{% block foot %}
