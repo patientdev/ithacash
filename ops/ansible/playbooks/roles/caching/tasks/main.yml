@@ -13,7 +13,7 @@
 - name: Add stable nginx PPA
   apt_repository: repo='ppa:nginx/stable'
 
-- name: Install Varnish
+- name: Install Varnish and nginx
   apt: pkg={{item}} update_cache=yes state=latest
   with_items:
     - varnish
