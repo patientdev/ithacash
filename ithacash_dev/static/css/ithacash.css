@@ -1,8 +1,8 @@
-html, body { padding: 0; margin: 0; width: 100%; }
+html, body { padding: 0; margin: 0; width: 100%; position: relative; }
 
 body, button, input, textarea {
-    font: 200 14px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
-    color: #999;
+    font: 200 16px/1.6em "Maven Pro", Helvetica, Arial, sans-serif;
+    color: #666;
     letter-spacing: .5px;
 }
 
@@ -21,28 +21,61 @@ body, button, input, textarea {
     overflow: hidden;
 }
 
+.container {
+    width: 1000px;
+    margin: auto;
+    position: relative;
+}
+.container::after {
+    content: " ";
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
 h1, h2 {
     color: black;
 }
 
 h2, h3, h4 {
     font-family: "Varela Round";
-    text-transform: uppercase;
     line-height: 1em;
     letter-spacing: 2px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    font-weight: 200;
 }
 
 h2 {
-    font-size: 50px;
-    text-align: center;
+    font-size: 2em;
     font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 60px;
+    margin-bottom: 0;
+    color: rgb(141, 171, 69);
+}
+
+h3 {
+    color: rgb(90, 117, 35);
+    font-size: 1.6em;
+}
+
+.green-background h2 {
+    color: white;
+}
+
+sup {
+    line-height: 1em;
+}
+
+a {
+    color: rgb(90, 117, 35);
+    text-decoration: none;
 }
 
 section {
-    padding: 40px 0;
     width: 100%;
+    min-height: 80vh;
+    position: relative;
+    padding: 40px 0;
 }
 
 .green-button {
@@ -74,60 +107,88 @@ input:focus, textarea:focus {
 
 header {
     position: fixed;
-    padding: 20px 165px 0 165px;
+    padding: 10px 165px 0 165px;
     background-color: rgba(255, 255, 255, 1);
     width: 100%;
-    -webkit-transition: box-shadow .2s linear;
     z-index: 100;
-    white-space: nowrap;
     font-size: 1.2em;
+}
+
+header .angled-footer {
+    width: 200px;
+    background-color: white;
+    position: absolute;
+    bottom: -16px; left: 0;
+    height: 18px;
+
 }
 
 #nav-menu ul li#nav-get-started a, #nav-menu ul li#nav-login a {
     color: white;
     line-height: 1em;
     padding-bottom: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: .8em;
     vertical-align: top;
+    font-weight: 200;
 }
 
 #nav-menu ul li#nav-get-started a:hover, #nav-menu ul li#nav-login a:hover {
     border: none;
 }
 
-#container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
 h1 {
     display: inline-block;
     vertical-align: middle;
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 h1 img {
-    width: 200px;
+    width: 220px;
 }
 
-#nav-menu p {
+#header-contact {
+    position: absolute;
+    margin: auto;
+    text-align: right;
+    top: 0;
+    width: 1000px;
+}
+
+#header-contact p {
     display: inline-block;
-    float: left;
+    font-size: .8em;
+}
+
+#header-contact p:first-of-type {
+    font-style: italic;
+}
+
+#header-contact p:nth-of-type(2) {
+    color: green;
+}
+
+#header-contact p:nth-of-type(3) a {
+    color: gray;
 }
 
 #content {
     width: 100%;
-    padding-top: 121px;
+    padding-top: 112px;
 }
 
 #intro {
     background-image: url(../img/owner-cling.jpg);
     background-size: cover;
     width: 100%;
-    height: calc(100vh - 93px);
+    height: calc(100vh - 200px);
     position: relative;
+}
+
+#intro .container {
+    height: 100%;
 }
 
 #intro p.caption {
@@ -142,23 +203,45 @@ h1 img {
     line-height: 1em;
 }
 
-#email-list-box {
+#intrinsically-local {
     position: absolute;
-    width: 360px; height: 396px;
-    top: 50%; left: 15%;
-    margin-top: -198px;
-    background-color: white;
-    border-radius: 8px;
-    padding: 40px;
-    text-align: justify;
+    width: 400px;
+    top: 35%; left:0 ;
+    background-color: rgb(140, 170, 69);
+    color: white;
+    padding: 30px;
 }
 
-#email-list-box h2 {
-    text-transform: uppercase;
-    font-size: 1.2em;
+#intrinsically-local h2 {
     margin: 0;
     letter-spacing: 1px;
-    text-align: center;
+    color: white;
+}
+
+
+.angled-cta {
+    background-color: rgb(91, 117, 45);
+    margin: 0;
+    padding: 3px 15px 3px 35px;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: .8em;
+    color: white;
+    display: inline-block;
+    float: right;
+    position: relative;
+}
+
+.angled-cta::before {
+    /*content: url(/static/img/cta_digonal_grn-trans.png);*/
+    position: absolute;
+    left: 0; top: 0;
+}
+
+
+#intrinsically-local p:last-of-type {
+    position: absolute;
+    right: 0; bottom: 0;
 }
 
 #email-list-box form {
@@ -178,16 +261,13 @@ h1 img {
     width: 100%;
 }
 
-#how-it-works h2, #accounts h2 {
-    margin-bottom: 20px;
-}
-
 #carousel {
-    border-top: 14px solid rgb(76, 118, 38);
-    border-bottom: 14px solid rgb(76, 118, 38);
+    border-bottom: 1px solid rgb(213, 213, 213);
     position: relative;
     text-align: center;
-    padding: 40px 0;
+    width: 100%;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 #carousel svg {
@@ -224,7 +304,7 @@ h1 img {
 }
 
 #panels {
-    width: 55%;
+    width: 75%;
     display: inline-block;
     vertical-align: middle;
     padding-top: 25px;
@@ -244,7 +324,8 @@ h1 img {
 }
 
 .panel img {
-    height: 150px;
+    height: 160px;
+    vertical-align: middle;
 }
 
 .panel .left img {
@@ -256,20 +337,20 @@ h1 img {
 }
 
 .panel .left {
-    width: 30%;
+    width: 33%;
     float: left;
     text-align: center;
     margin-right: 20px;
 }
 
 .panel .center {
-    width: 30%;
+    width: 50%;
     margin: auto;
-    padding-top: 75px;
+    padding-top: 120px;
 }
 
 .panel .right {
-    width: 30%;
+    width: 33%;
     float: right;
     text-align: center;
     margin-left: 20px;
