@@ -1,21 +1,27 @@
-"""ithacash_dev URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
-"""
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
+
+'''
+Are you adding a new app?
+
+Currently our caching service (Varnish) strips all cookies
+unless they are from a whitelisted URL path.
+
+This is suggested by the Varnish documentation for websites
+which only use CSRF on certain URL paths.
+
+https://www.varnish-cache.org/docs/4.0/users-guide/increasing-your-hitrate.html#cookies-from-the-client
+
+If your new app is not read-only (and needs the CSRF cookie), add it to the
+whitelisted URLs here:
+
+See ops/ansible/playbooks/roles/caching/templates/etc__varnish__default.vcl
+'''
+
+
+def error_view(request):
+    raise RuntimeError("This is a test Ithacash error.")
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -26,4 +32,6 @@ urlpatterns = [
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
+
+    url(r'^test_utils/error_test/$', error_view)
 ]
