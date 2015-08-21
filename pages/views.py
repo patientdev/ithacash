@@ -28,7 +28,7 @@ def front(request):
         try:
             mandrill_client.messages.send(
                 {
-                    'to': [{'email': 'shane@patientdev.com'}, {'email': 'shane@shanecav.net'}],
+                    'to': [{'email': 'support@ithacash.com'}],
                     'html': message,
                     'from_name': 'Ithacash.com',
                     'from_email': request.POST['email'],
