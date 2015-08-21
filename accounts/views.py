@@ -39,7 +39,7 @@ class AccountForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'state': forms.TextInput(attrs={'placeholder': 'State'}),
             'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
-            'tin': forms.TextInput(attrs={'type': 'Tax ID #'}),
+            'tin': forms.TextInput(attrs={'placeholder': 'Tax ID #'}),
             'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
             'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
             'website': forms.TextInput(attrs={'placeholder': 'Website'}),
