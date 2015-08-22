@@ -9,7 +9,7 @@ https:/docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https:/docs.djangoproject.com/en/1.8/ref/settings/
 """
-from secrets import SECRET_KEY, MANDRILL_API_KEY
+from secrets import SECRET_KEY, MANDRILL_API_KEY, MAILCHIMP_API_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
