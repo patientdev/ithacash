@@ -12,7 +12,7 @@
  	<form id="join-email-list" class="form" action="" method="POST">
  		<input type="hidden" name="form" value="newsletter_form">
 		{{ newsletter_form.as_p }}
- 		<button class="green-button">Join the Email List</button>
+		<p><button class="green-button">Join the Email List</button></p>
  	</form>
  </div>
 
@@ -480,10 +480,9 @@
 
 		<div id="contact-form">
 		 	<form id="send-message" class="form" action="" method="POST">
-				<input type="hidden" name="which" value="message">
-				<input type="email" name="email" placeholder="Your Email">
-				<textarea name="message" placeholder="Your Message"></textarea>
-				<button class="green-button">Send</button>
+		 		<input type="hidden" name="form" value="message_form">
+				{{ message_form.as_p }}
+				<p><button class="green-button">Send</button></p>
 			</form>
 		</div>
 

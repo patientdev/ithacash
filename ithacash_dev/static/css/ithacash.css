@@ -172,7 +172,7 @@ h1 img {
 
 #email-list-box {
     position: absolute;
-    width: 360px; height: 396px;
+    width: 360px;
     top: 50%; left: 15%;
     margin-top: -198px;
     background-color: white;
@@ -190,12 +190,7 @@ h1 img {
 }
 
 #email-list-box form {
-    line-height: 3em;
     text-align: center;
-}
-
-#email-list-box button {
-    margin-top: 20px;
 }
 
 #join-email-list input {
@@ -204,6 +199,14 @@ h1 img {
     padding: 5px 8px;
     color: black;
     width: 100%;
+}
+
+#join-email-list p {
+    margin: 10px 0;
+}
+
+#email-list-box p.error {
+    color: rgb(136, 177, 71);
 }
 
 #how-it-works h2, #accounts h2 {
@@ -849,7 +852,7 @@ h1 img {
     text-align: right;
 }
 
-#contact-form input, #contact-form textarea {
+#send-message input, #send-message textarea {
     width: 100%;
     background-color: rgb(230, 231, 233);
     border: none;
@@ -858,18 +861,17 @@ h1 img {
     letter-spacing: .5px;
 }
 
-#contact-form input {
-    margin-bottom: 20px;
-}
-
-#contact-form textarea {
+#send-message textarea {
     height: 11.8em;
     font-family: "Maven Pro", Helvetica, Arial, sans-serif;
 }
 
-#contact-info p {
+#send-message p {
     margin-top: 0;
-    margin-bottom: 30px;
+}
+
+#send-message p:last-of-type {
+    margin-top: 10px;
 }
 
 #contact-info img { width: 50px; }
