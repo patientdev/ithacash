@@ -40,17 +40,25 @@ $(function() {
 		$.ajax({
 			url: validation_url, 
 			method: 'POST',
-			data: data
+			data: data,
+			statusCode: {
+				200: function() {
+			    	$('#send-message').replaceWith('<p>Thanks for the message!</p>');
+			    },
+
+				400: function() {
+
+					$('#send-message').append('<p class="error">Please fill out both inputs.</p>');
+				},
+
+				500: function() {
+			    	$('#send-message button').replaceWith('<p class="error">An error occured. Please refresh the page and try again.</p>');
+			    }
+			}
 		})
 		.always(function( response ) {
 			console.log(response);
 		})
-		.fail(function( response ){
-			$('#send-message').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
-	    })
-	    .success(function(response) {
-			$('#send-message button').replaceWith('<p>Thanks for the message!</p>');
-	    })
 	});
 
 	$('#join-email-list').submit(function( event ) {
@@ -62,17 +70,35 @@ $(function() {
 		$.ajax({
 			url: validation_url, 
 			method: 'POST',
-			data: data
+			data: data,
+			statusCode: {
+				200: function() {
+			    	$('#join-email-list').replaceWith('<p class="error">Thanks for signing up!</p>');
+			    },
+
+				400: function( response ) {
+
+		            errors = $.parseJSON(response.responseText);
+
+		            console.log(errors);
+
+		            if ( errors.errors == 'already exists' ) {
+						$('#join-email-list').replaceWith('<p class="error">It looks like you&rsquo;re already signed&ndash;up! Check your spam folder if you&rsquo;re not receiving our newsletter.</p>');
+					}
+
+					else {
+						$('#join-email-list').append('<p class="error">Please submit your email address.');
+					}
+				},
+
+				500: function() {
+			    	$('#join-email-list').replaceWith('<p class="error">An error occured. Please refresh the page and try again.</p>');
+			    }
+			}
 		})
 		.always(function( response ) {
 			console.log(response);
 		})
-		.fail(function( response ){
-			$('#send-message').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
-	    })
-	    .success(function(response) {
-	    	$('#join-email-list button').replaceWith('<p>Thanks for signing up!</p>');
-	    })
 	});
 
 	$('#panels').slick({
