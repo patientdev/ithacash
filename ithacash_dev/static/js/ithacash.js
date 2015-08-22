@@ -56,9 +56,6 @@ $(function() {
 			    }
 			}
 		})
-		.always(function( response ) {
-			console.log(response);
-		})
 	});
 
 	$('#join-email-list').submit(function( event ) {
@@ -80,8 +77,6 @@ $(function() {
 
 		            errors = $.parseJSON(response.responseText);
 
-		            console.log(errors);
-
 		            if ( errors.errors == 'already exists' ) {
 						$('#join-email-list').replaceWith('<p class="error">It looks like you&rsquo;re already signed&ndash;up! Check your spam folder if you&rsquo;re not receiving our newsletter.</p>');
 					}
@@ -95,9 +90,6 @@ $(function() {
 			    	$('#join-email-list').replaceWith('<p class="error">An error occured. Please refresh the page and try again.</p>');
 			    }
 			}
-		})
-		.always(function( response ) {
-			console.log(response);
 		})
 	});
 
