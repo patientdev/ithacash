@@ -23,12 +23,14 @@
 	content: url(/static/img/cta_digonal_grn-trans.png); 
 }
 
+#intrinsically-local .angled-cta a, #invigorating-our-economy .angled-cta a {
+	color: white;
+}
+
 #invigorating-our-economy {
 	background-image: url(/static/img/front/img_tompkins_map.png);
 	background-repeat: no-repeat;
-	background-position: 0px -200px;
 	padding: 100px 0;
-	background-size: 60%;
 }
 
 .angled-box {
@@ -64,6 +66,8 @@ header .angled-box {
 
 .angled-header {
 	text-transform: uppercase;
+	font-size: 1.2em;
+	padding-top: 2px;
 }
 
 #invigorating-our-economy .angled-header {
@@ -96,12 +100,18 @@ header .angled-box {
 #how-it-works .angled-cta::before {
 	content: url(/static/img/angle_26_trans-white-top-left.png);
 	left: 0;
+	display: inline-block;
+	margin: 0;
+}
+
+#how-it-works .angled-cta a {
+	color: white;
 }
 
 #how-it-works .angled-header {
 	background-color: white;
 	position: absolute;
-	top: -25px;
+	top: -22px;
 	right: 0;
 	padding-right: 10px;
 	text-align: left;
@@ -149,7 +159,8 @@ header .angled-box {
 
 #who-uses-it {
 	background-image: url(/static/img/homegreenhome-background.jpg);
-	background-size: cover;
+	background-size: 100%;
+	background-position: 0% 50%;
 }
 
 #who-uses-it h2 { margin: 0; }
@@ -167,5 +178,13 @@ header .angled-box {
 
 #who-uses-it .right {
 	background-color: white;
-	padding: 30px 40px;
+	padding: 20px;
+}
+
+.more-arrow {
+	position: absolute;
+	bottom: -60px;
+	left: 25%;
+	margin-left: -20px;
+	z-index: 100;
 }
