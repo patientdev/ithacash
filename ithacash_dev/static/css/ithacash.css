@@ -1,7 +1,7 @@
 html, body { padding: 0; margin: 0; width: 100%; position: relative; }
 
 body, button, input, textarea {
-    font: 200 16px/1.6em "Maven Pro", Helvetica, Arial, sans-serif;
+    font: 200 14px/1.6em "Maven Pro", Helvetica, Arial, sans-serif;
     color: #666;
     letter-spacing: .5px;
 }
@@ -73,6 +73,7 @@ a {
 
 section {
     width: 100%;
+    min-width: 1000px;
     min-height: 80vh;
     position: relative;
     padding: 40px 0;
@@ -106,7 +107,7 @@ input:focus, textarea:focus {
 }
 
 header {
-    position: fixed;
+    position: relative;
     padding: 10px 165px 0 165px;
     background-color: rgba(255, 255, 255, 1);
     width: 100%;
@@ -159,7 +160,8 @@ h1 img {
 
 #header-contact p {
     display: inline-block;
-    font-size: .8em;
+    font-size: .9em;
+    margin: 0 10px;
 }
 
 #header-contact p:first-of-type {
@@ -176,14 +178,13 @@ h1 img {
 
 #content {
     width: 100%;
-    padding-top: 112px;
 }
 
 #intro {
     background-image: url(../img/owner-cling.jpg);
     background-size: cover;
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 175px);
     position: relative;
 }
 
@@ -206,7 +207,9 @@ h1 img {
 #intrinsically-local {
     position: absolute;
     width: 400px;
-    top: 35%; left:0 ;
+    height: 278px;
+    margin-top: -139px;
+    top: 50%; left:0 ;
     background-color: rgb(140, 170, 69);
     color: white;
     padding: 30px;
