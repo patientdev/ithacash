@@ -9,3 +9,8 @@ ops/ssl
 db.sqlite3
 
 utils/front-end/node_modules/
+
+.sass-cache
+*.lock
+utils/front-end/css/
+*.map
