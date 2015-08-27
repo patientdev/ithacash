@@ -6,8 +6,16 @@
 
 server {
        listen         80;
-       return         301 https://$host$request_uri;
+       return         301 https://ithacash.com$request_uri;
 }
+
+#server {
+#       listen         443 ssl;
+#       server_name    www.ithacash.com;
+#       ssl_certificate /ithacash/ssl/ithacash-bundle.crt;
+#       ssl_certificate_key /ithacash/ssl/ithacash.key;
+#       return         301 https://ithacash.com$request_uri;
+#}
 
 server {
        listen 443;
