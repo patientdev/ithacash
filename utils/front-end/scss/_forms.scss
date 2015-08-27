@@ -1,7 +1,63 @@
-input[type=text] {
-  border-radius: 10px;
+input[type=text],
+input[type=email] {
+  border-radius: 5px;
   padding: 10px;
-  font-size: 1.4em;
-  border: 1px solid $light-gray;
+  font-size: 1.2em;
+  border: 1px solid $medium-gray;
   font-weight: 100;
+
+  :focus {
+    outline: 1px solid $light-green;
+  }
+}
+
+.helptext {
+  opacity: 0;
+  display: none;
+  transition: all 1s ease;
+}
+
+.helptext-wrapper {
+
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "?";
+    border-radius: 50%;
+    background-color: $light-gray;
+    color: $dark-green;
+    padding: 6px 10px;
+    line-height: 1em;
+    font-size: .9em;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  &:hover .helptext {
+    opacity: 1;
+    display: block;
+    position: absolute;
+    width: 200px;
+    padding: 10px;
+    background-color: $medium-gray;
+    color: $white;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-size: .9em;
+    line-height: 1.2em;
+  }
+}
+
+button {
+  background-color: $light-green;
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 10px;
+
+  :hover {
+    cursor: pointer;
+  }
 }
