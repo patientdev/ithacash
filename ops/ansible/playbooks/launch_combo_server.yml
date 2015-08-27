@@ -16,5 +16,5 @@
     app_group: appdeployer
 
   roles:
-  - app
   - database
+  - app
