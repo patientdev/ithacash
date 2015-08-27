@@ -13,25 +13,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css" href="{% static 'style-guide/css/style-guide.css' %}">
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <h1><a href="https://ithacash.com"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="Ithacash"></a></h1>
+    <div id="container">
 
-        <h2>h2. Header</h2>
-        <h3>h3. Header</h3>
+        <p><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" class="logo" alt="Ithacash"></p>
+        <p><img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-tiny" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-small" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-medium" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-large" alt="Ithacash"></p>
 
-        <ul>
-            <li><strong>&lt;strong&gt;</strong></li>
-            <li><a href="">link</a></li>
-        </ul>
+        <section>
+            <div class="dark-green-background swatch"></div>
+            <div class="light-green-background swatch"></div>
+        </section>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{% static 'js/vendor/jquery-1.11.3.min.js' %}"><\/script>')</script>
+        <section>
+            <h2>h2. Header</h2>
+            <h3>h3. Header</h3>
+        </section>
+
+        <section>
+            <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+            <p><u>This line of text will render as underlined</u></p>
+            <p><small>This line of text is meant to be treated as fine print.</small></p>
+            <p><strong>This line rendered as bold text.</strong></p>
+            <p><em>This line rendered as italicized text.</em></p>
+        </section>
+
+        <section>
+            <blockquote>
+                <p>This is a link that we can point out.</p>
+            </blockquote>
+
+            <ul>
+                <li>This is a list</li>
+                <li>There are a few items here</li>
+                <li>Oh look another</li>
+            </ul>
+        </section>
+
+        <section>
+            <div class="angled-cta-right light-green-background">Call to action</div>
+            <div class="angled-cta-left dark-green-background">Call to action</div>
+
+            <p><a href="" class="link-cta">A call&ndash;to&ndash;action link</a></p>
+            <p><a href="">This line rendered as a link.</a></p>
+        </section>
+
+        <section>
+            <form>
+                <p><input type="text" placeholder="Your Email Address"></p>
+            </form>
+        </section>
+    </div>
+    <script src="//localhost:35729/livereload.js"></script>
     </body>
 </html>

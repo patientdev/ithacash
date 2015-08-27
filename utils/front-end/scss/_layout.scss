@@ -1,0 +1,15 @@
+#container {
+  margin: auto;
+  max-width: 1020px;
+  width: 980px;
+}
+
+.swatch {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+}
+
+.swatch:nth-of-type(1) {
+  margin-right: 40px;
+}

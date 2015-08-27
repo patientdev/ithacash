@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           style: "compressed"
         },
         files: {
-          "<%= django.static %>/style-guide/css/style-guide.css": "<%= django.static %>/style-guide/css/style-guide.scss"
+          "<%= django.static %>/style-guide/css/style-guide.css": "scss/main.scss"
         }
       }
     },
@@ -35,10 +35,10 @@ module.exports = function(grunt) {
         livereload: true
       },
       css: {
-        files: ["<%= django.static %>/style-guide/css/style-guide.scss"],
-        tasks: ["sass"]
+        files: ["scss/*.scss", "<%= django.static %>/../../templates/style-guide.html"],
+        tasks: ["sass", "csslint"]
       }
-    }
+    },
 
     // autoprefixer: {
     //   global: {
@@ -56,18 +56,21 @@ module.exports = function(grunt) {
     //   }
     // },
 
-    // csslint: {
-    //   src: ['<%= globalConfig.src  %>/css/ithacash.css']
-    // },
+    csslint: {
+      src: ['<%= django.static %>/style-guide/css/style-guide.css'],
+      options: {
+        format: 'compact'
+      }
+    },
 
-    // scsslint: {
-    //   allFiles: [
-    //     'scss/*.scss',
-    //   ],
-    //   options: {
-    //     compact: true
-    //   }
-    // }
+    scsslint: {
+      allFiles: [
+        'scss/*.scss',
+      ],
+      options: {
+        compact: true
+      }
+    }
 
   });
 
@@ -77,7 +80,7 @@ module.exports = function(grunt) {
   grunt.registerTask("test", ["jshint", "scsslint", "csslint"]);
   grunt.registerTask("build", ["uglify", "sass", "autoprefixer"]);
   grunt.registerTask("scss", ["sass"]);
-  grunt.registerTask("dev", ["sass", "watch"]);
+  grunt.registerTask("dev", ["sass", "csslint", "watch"]);
   grunt.registerTask("default", "Let's get 'er going here now", function() {
     grunt.task.run('test', 'build');
   })

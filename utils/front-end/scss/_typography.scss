@@ -1,4 +1,36 @@
-h2 {
-  font-family: 'Panfresco', Helvetica, Arial, sans-serif;
-  font-size: 
+@font-face {
+  font-family: 'Panfresco';
+  src: url('/static/fonts/panfresco-250-regular.eot'); // IE9 Compat Modes
+  src: url('/static/fonts/panfresco-250-regular.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+       url('/static/fonts/panfresco-250-regular.woff') format('woff'), // Pretty Modern Browsers
+       url('/static/fonts/panfresco-250-regular.ttf')  format('truetype'), // Safari, Android, iOS
+       url('/static/fonts/panfresco-250-regular.svg#svgFontName') format('svg'); // Legacy iOS
+
+  src: url('/static/fonts/panfresco-100-regular.eot'); // IE9 Compat Modes
+  src: url('/static/fonts/panfresco-100-regular.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+       url('/static/fonts/panfresco-100-regular.woff') format('woff'), // Pretty Modern Browsers
+       url('/static/fonts/panfresco-100-regular.ttf')  format('truetype'), // Safari, Android, iOS
+       url('/static/fonts/panfresco-100-regular.svg#svgFontName') format('svg'); // Legacy iOS
+}
+
+blockquote {
+  border-left: 3px solid $light-green;
+  margin-left: 0;
+  padding-left: 20px;
+  color: $light-gray;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+li::before {
+  content: "•";
+  color: $dark-green;
+  margin-right: 10px;
+  font-size: 1.4em;
 }
