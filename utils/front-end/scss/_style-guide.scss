@@ -1,0 +1,125 @@
+
+
+$light-gray: rgb(240, 240, 240);
+$medium-gray: rgb(140, 140, 140);
+$dark-gray: rgb(102, 102, 102);
+$light-green: rgb(142, 176, 55);
+$dark-green: rgb(78, 116, 23);
+$white: rgb(255, 255, 255);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: $dark-gray;
+  font: 200 18px/1.6em "Maven Pro", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: $light-green;
+}
+
+section {
+  margin: 60px 0;
+}
+
+.logo {
+  width: 250px;
+}
+
+.mark-tiny {
+  width: 25px;
+}
+
+.mark-small {
+  width: 50px;
+}
+
+.mark-medium {
+  width: 100px;
+}
+
+.mark-large {
+  width: 200px;
+}
+
+h2 {
+  color: $light-green;
+  font-family: 'Panfresco', Helvetica, Arial, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 200;
+  line-height: 1em;
+  margin: 0;
+}
+
+h3 {
+  color: $dark-green;
+  font-size: 1.4em;
+  line-height: 1em;
+  font-weight: 500;
+}
+
+strong {
+  color: $dark-green;
+}
+
+mark {
+  background-color: $light-green;
+  color: $white;
+}
+
+.dark-green-background {
+  background-color: $dark-green;
+  color: $white;
+}
+
+.light-green-background {
+  background-color: $light-green;
+  color: $white;
+}
+
+.angled-cta-left,
+.angled-cta-right {
+  text-transform: uppercase;
+  display: inline-block;
+  height: 26px;
+  position: relative;
+  font-size: 14px;
+}
+
+.angled-cta-left {
+  padding: 0 20px 0 40px;
+}
+
+.angled-cta-right {
+  padding: 0 40px 0 20px;
+}
+
+.angled-cta-left::before {
+  content: url("/static/img/angle_26_trans-white-top-left.png");
+  position: absolute;
+  left: 0;
+  width: 26px;
+  height: 26px;
+}
+
+.angled-cta-right::before {
+  content: url("/static/img/angle_26_trans-white-bottom-right.png");
+  position: absolute;
+  right: 0;
+  width: 26px;
+  height: 26px;
+
+}
+
+.link-cta {
+  text-decoration: none;
+}
+
+.link-cta::after {
+  content: ">";
+  margin-left: 5px;
+}

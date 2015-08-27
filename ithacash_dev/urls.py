@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
+    url(r'^style-guide/$', 'pages.views.style_guide'),
 ]
