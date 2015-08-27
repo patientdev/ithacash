@@ -1,0 +1,28 @@
+header { position: relative; text-align: center; padding: 40px 0;}
+#nav-menu { display: none; }
+
+h1 img {
+	width: 400px;
+}
+
+#intro, #the-network {
+	height: 50vh;
+}
+
+#content {
+	padding: 0;
+}
+
+#accounts > ul > li p {
+	margin: 0 40px 0 0;
+}
+
+#account-info img {
+	width: 200px;
+}
+
+#accounts > ul > li p span {
+	width: 150px;
+}
+
+#panels, #shop-local .sub-step { width: 75%; }
