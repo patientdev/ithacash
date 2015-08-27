@@ -7,44 +7,48 @@ from django.conf import settings
 
 def front(request):
 
-	if request.method == 'POST':
+    if request.method == 'POST':
 
-		which = request.POST['which']
-		post_data = request.POST.copy()
-		del post_data['csrfmiddlewaretoken']
-		del post_data['which']
+        which = request.POST['which']
+        post_data = request.POST.copy()
+        del post_data['csrfmiddlewaretoken']
+        del post_data['which']
 
-		subject = 'Ithacash Newsletter Signup' if which == 'email' else 'Message from ithacash.com'
+        subject = 'Ithacash Newsletter Signup' if which == 'email' else 'Message from ithacash.com'
 
-		t = loader.get_template('emails/front.txt')
-		c = Context({
-			'post_data': post_data
-		})
-		message = t.render(c)
+        t = loader.get_template('emails/front.txt')
+        c = Context({
+            'post_data': post_data
+        })
+        message = t.render(c)
 
-		mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
-		
-		try:
-			mandrill_client.messages.send(
-				{
-					'to': [{'email': 'shane@patientdev.com'}, {'email': 'shane@shanecav.net'}],
-					'html': message,
-					'from_name': 'Ithacash.com',
-					'from_email': request.POST['email'],
-					'subject': subject,
-				})
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
 
-			return (JsonResponse({'success': True}))
+        try:
+            mandrill_client.messages.send(
+                {
+                    'to': [{'email': 'shane@patientdev.com'}, {'email': 'shane@shanecav.net'}],
+                    'html': message,
+                    'from_name': 'Ithacash.com',
+                    'from_email': request.POST['email'],
+                    'subject': subject,
+                })
 
-		except Exception,e:
-			return (JsonResponse({'errors': str(e)}, status=500))
+            return (JsonResponse({'success': True}))
 
-		else:
-			return (JsonResponse({'errors': 'else'}, status=500))
+        except Exception, e:
+            return (JsonResponse({'errors': str(e)}, status=500))
 
-	else:	
-		return render(request, 'front.html')
+        else:
+            return (JsonResponse({'errors': 'else'}, status=500))
+
+    else:
+        return render(request, 'front.html')
 
 
 def getting_an_account(request):
-	return render(request, 'getting.html')
+    return render(request, 'getting.html')
+
+
+def style_guide(request):
+    return render(request, 'style-guide.html')

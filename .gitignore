@@ -7,3 +7,5 @@ ithacash_dev/settings/secrets/*
 ops/ssl
 .idea
 db.sqlite3
+
+utils/front-end/node_modules/
