@@ -12,5 +12,5 @@ utils/front-end/node_modules/
 
 .sass-cache
 *.lock
-utils/front-end/css/
+utils/front-end/temp/
 *.map

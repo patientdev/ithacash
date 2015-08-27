@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           style: "compressed"
         },
         files: {
-          "<%= django.static %>/style-guide/css/style-guide.css": "scss/main.scss"
+          "temp/style-guide.css": "scss/main.scss"
         }
       }
     },
@@ -40,12 +40,12 @@ module.exports = function(grunt) {
       }
     },
 
-    // autoprefixer: {
-    //   global: {
-    //     src: "temp/global-unprefixed.dev.css",
-    //     dest: "<%= globalConfig.src  %>/css/ithacash.css"
-    //   }
-    // },
+    autoprefixer: {
+      global: {
+        src: "temp/style-guide.css",
+        dest: "<%= django.static %>/style-guide/css/style-guide.css"
+      }
+    },
 
     // jshint: {
     //   options: {
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
   grunt.registerTask("test", ["jshint", "scsslint", "csslint"]);
   grunt.registerTask("build", ["uglify", "sass", "autoprefixer"]);
   grunt.registerTask("scss", ["sass"]);
-  grunt.registerTask("dev", ["sass", "csslint", "watch"]);
+  grunt.registerTask("dev", ["sass", "autoprefixer", "csslint", "watch"]);
   grunt.registerTask("default", "Let's get 'er going here now", function() {
     grunt.task.run('test', 'build');
   })
