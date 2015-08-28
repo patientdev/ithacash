@@ -43,6 +43,11 @@
 
 - name: Apply Ithacash nginx config
   template: src=nginx-production.j2 dest=/etc/nginx/sites-enabled/production
+  when: ansible_nodename == 'farva'
+
+- name: Apply Ithacash nginx config
+  template: src=nginx-staging.js dest=/etc/nginx/sites-enabled/production
+  when: ansible_nodename == 'Ithacacash.com'
 
 - name: Restart nginx
   service: name=nginx state=restarted
