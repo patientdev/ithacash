@@ -13,5 +13,5 @@ $(function() {
 	// 		$('#invigorating-our-economy').css('background-position', '0px ' + background_offset + 'px');
 	// 	}
 
-	})
+	// })
 })
