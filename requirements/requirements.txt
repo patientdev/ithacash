@@ -7,3 +7,4 @@ mock
 mandrill
 psycopg2
 newrelic
+raven

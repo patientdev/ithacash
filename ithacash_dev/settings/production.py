@@ -1,5 +1,7 @@
 from common import *
-from secrets import PRODUCTION_DATABASE_PASSWORD
+from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
+
+DEBUG = False
 
 DATABASES = {
     "default": {
@@ -21,4 +23,8 @@ PAYPAL_SETTINGS = {
         'Nonprofit': "SKU9BAQ3ZJUVU",
         'Freelancer': "77D4TSU2PGL92",
     }
+}
+
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN,
 }

@@ -18,3 +18,5 @@
   roles:
   - database
   - app
+  - caching
+  - monitored

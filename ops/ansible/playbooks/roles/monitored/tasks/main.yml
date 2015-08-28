@@ -1,0 +1,16 @@
+# Doc: https://rpm.newrelic.com/accounts/1066053/servers/get_started
+- name: Add New Relic PPA Key
+  apt_key: url=https://download.newrelic.com/548C16BF.gpg state=present
+
+- name: Add New Relic PPA
+  apt_repository: repo='deb http://apt.newrelic.com/debian/ newrelic non-free'
+
+- name: Install New Relic System Monitor
+  apt: pkg=newrelic-sysmond update_cache=yes state=latest
+
+- name: Apply New Relic license key
+  command: nrsysmond-config --set license_key="{{ lookup('file', '../../../ithacash_dev/settings/secrets/NEWRELIC_KEY') }}"
+
+- name: Restart varnish
+  service: name=newrelic-sysmond state=started
+  sudo: yes
