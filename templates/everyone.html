@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Everyone{% endblock %}
+
+{% block styles %}
+<style>
+body {
+    font-size: 1.6em;
+    color: #666;
+}
+
+header {
+    padding: 0;
+}
+
+h1 img { width: auto; }
+
+#container {
+    width: 600px;
+    margin: auto;
+    padding-top: 60px;
+    position: relative;
+}
+</style>
+{% endblock %}
+
+{% block header %}
+    <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+{% endblock %}
+
+{% block content %}
+<p>Thanks for participating in the <strong>Ithacash Art Contest</strong>. We&rsquo;ll be posting the full submission guidelines very soon.</p>
+
+<p>If you are working on a submission, keep going at whatever size feels right or use the template below for better alignment to the new Ithaca Dollar design. We can&rsquo;t wait to see what you create!</p>
+
+<p><a class="green-button" href="{% static 'pdf/Ithacash Art Contest Template.pdf' %}">Download Template</a></p>
+{% endblock %}
