@@ -6,6 +6,32 @@
     position: relative;
 }
 
+#nav-menu ul li#nav-get-started a, #nav-menu ul li#nav-login a {
+    color: white;
+    line-height: 1em;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: .8em;
+    vertical-align: top;
+    font-weight: 200;
+}
+
+#nav-menu ul li#nav-get-started a:hover, #nav-menu ul li#nav-login a:hover {
+    border: none;
+}
+
+h1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+h1 img {
+    width: 220px;
+}
+
 #nav-menu ul {
     padding-left: 0;
     margin: 0;
@@ -176,4 +202,49 @@ header .angled-footer::after {
     content: url(/static/img/nav/angle_18_header_white-trans.png);
     position: absolute;
     right: -18px;
+}
+
+#nav-menu ul li#nav-get-started a, #nav-menu ul li#nav-login a {
+    color: white;
+    line-height: 1em;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: .8em;
+    vertical-align: top;
+    font-weight: 200;
+}
+
+#nav-menu ul li#nav-get-started a:hover, #nav-menu ul li#nav-login a:hover {
+    border: none;
+}
+
+h1 img {
+    width: 220px;
+}
+
+#header-contact {
+    position: absolute;
+    margin: auto;
+    text-align: right;
+    top: 0;
+    width: 1000px;
+}
+
+#header-contact p {
+    display: inline-block;
+    font-size: .9em;
+    margin: 0 10px;
+}
+
+#header-contact p:first-of-type {
+    font-style: italic;
+}
+
+#header-contact p:nth-of-type(2) {
+    color: green;
+}
+
+#header-contact p:nth-of-type(3) a {
+    color: gray;
 }

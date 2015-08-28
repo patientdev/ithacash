@@ -1,0 +1,9 @@
+default: []
+
+dev:
+  description: 'Testing and serving'
+  tasks:
+    - 'sass'
+    - 'autoprefixer'
+    - 'csslint'
+    - 'watch'

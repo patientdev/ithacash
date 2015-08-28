@@ -1,7 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #container {
+  width: 1000px;
   margin: auto;
-  max-width: 1020px;
-  width: 980px;
+  position: relative;
+}
+
+.container {
+    width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
+.container::after {
+    content: " ";
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
+section {
+    width: 100%;
+    min-width: 1000px;
+    min-height: 80vh;
+    position: relative;
+    padding: 40px 0;
+}
+
+header {
+    position: relative;
+    padding: 10px 165px 0 165px;
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    z-index: 100;
+    font-size: 1.2em;
+}
+
+header .angled-footer {
+    width: 200px;
+    background-color: white;
+    position: absolute;
+    bottom: -16px; left: 0;
+    height: 18px;
+
 }
 
 .swatch {

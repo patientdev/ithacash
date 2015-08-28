@@ -61,3 +61,18 @@ button {
     cursor: pointer;
   }
 }
+
+.green-button {
+    background-color: rgb(136, 177, 71);
+    padding: 11px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.dark-green-button {
+    background-color: rgb(84, 124, 66);
+}
