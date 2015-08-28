@@ -21,6 +21,14 @@ body, button, input, textarea {
     overflow: hidden;
 }
 
+a {
+    color: #8eb037;
+}
+
+strong {
+    color: #4e7417;
+}
+
 h1, h2 {
     color: black;
 }
