@@ -23,12 +23,12 @@ class CyclosCsvWriter(object):
 
     cyclos_required_fieldnames = ('name', 'username', 'email', 'password', 'creationdate', 'broker', 'images', 'address[identifier].name', 'address[identifier].line1', 'address[identifier].line2', 'address[identifier].neighborhood', 'address[identifier].pobox', 'address[identifier].zip', 'address[identifier].city', 'address[identifier].region', 'address[identifier].country', 'address[identifier].private', 'mobile[identifier].name', 'mobile[identifier].number', 'mobile[identifier].private', 'landline[identifier].name', 'landline[identifier].number', 'landline[identifier].private')
 
-    def __init__(self, ithacash_user_object, csvfile_path, *args, **kwargs):
+    def __init__(self, ithacash_user_dict, csvfile_path, *args, **kwargs):
         super(CyclosCsvWriter, self).__init__(*args, **kwargs)
 
         self.mapped = False
         self.cyclos_field_dict = dict.fromkeys(self.cyclos_required_fieldnames)
-        self.ithacash_user_dict = ithacash_user_object.__dict__
+        self.ithacash_user_dict = ithacash_user_dict
         self.csvfile_path = csvfile_path
 
     def map_dict_to_cyclos_fields(self, ithacash_user_dict=None):
@@ -37,7 +37,8 @@ class CyclosCsvWriter(object):
         get corresponding values from self.form_input_dict,
         use them to populate self.cyclos_field_dict
         '''
-        ithacash_user_dict = ithacash_user_dict.__dict__ or self.ithacash_user_dict.__dict__
+
+        ithacash_user_dict = ithacash_user_dict or self.ithacash_user_dict
 
         for cyclos_field_name, ithacash_user_field_name in self.cyclos_csv_to_ithacash_user_mapping.iteritems():
 
