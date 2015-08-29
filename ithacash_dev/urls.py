@@ -33,4 +33,6 @@ urlpatterns = [
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
     url(r'^style-guide/$', 'pages.views.style_guide'),
+    url(r'^everyone/$', 'pages.views.everyone'),
+    url(r'^test_utils/error_test/$', error_view)
 ]
