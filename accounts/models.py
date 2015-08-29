@@ -123,6 +123,13 @@ class IthacashAccount(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+
+        if self.entity_name == 'n/a':
+            self.entity_name = self.owner.full_name
+
+        return super(IthacashAccount, self).save(*args, **kwargs)
+
     def send_awaiting_verification_message(self):
 
         account_email = self.owner.emails.all()[0].address
