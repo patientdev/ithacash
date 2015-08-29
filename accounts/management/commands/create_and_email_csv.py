@@ -16,7 +16,9 @@ class Command(BaseCommand):
 
         since_yesterday_morning = datetime.now() - timedelta(days=1)
 
-        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=since_yesterday_morning, accounts__created__gt=since_yesterday_morning)
+        # most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=since_yesterday_morning, accounts__created__gt=since_yesterday_morning)
+
+        most_recent_account_signups = IthacashUser.objects.all()
 
         new_ithacash_users = []
 
@@ -56,6 +58,8 @@ class Command(BaseCommand):
                         }
                     ]
                 })
+
+            return result
 
         except Exception, e:
             return sys.exit(e)
