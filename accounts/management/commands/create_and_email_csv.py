@@ -59,7 +59,7 @@ class Command(BaseCommand):
                     ]
                 })
 
-            return result
+            print "%s: Email sent." % datetime.now()
 
         except Exception, e:
             return sys.exit(e)
