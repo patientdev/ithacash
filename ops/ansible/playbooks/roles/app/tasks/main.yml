@@ -105,4 +105,4 @@
     cron_file: django_maintenance
     user: root
     minute: "1"
-    job: "/ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log"
+    job: "/ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log"
