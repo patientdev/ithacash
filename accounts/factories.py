@@ -20,4 +20,3 @@ class IthacashAccountFactory(factory.DjangoModelFactory):
     billing_frequency = "Monthly"
 
     address_1 = "1 Nowhere lane"
-    

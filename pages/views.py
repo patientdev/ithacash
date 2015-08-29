@@ -78,3 +78,7 @@ def front(request):
 
 def getting_an_account(request):
     return render(request, 'getting.html')
+
+
+def everyone(request):
+    return render(request, 'everyone.html')
