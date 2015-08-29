@@ -28,6 +28,7 @@
     - libfreetype6-dev
     - postgresql-client
     - postgresql-9.3
+    - cron
 
 ## SSH key business not working; gitlab API seems whacky about it.
 # - name: slurp public key to use on gitlab
@@ -97,3 +98,11 @@
     state=restarted
   sudo: yes
   sudo_user: root
+
+- name: Apply cron jobs
+  cron:
+    name: Send email with CSV of new Ithacash account signups for Cyclos import
+    cron_file: django_maintenance
+    user: root
+    minute: "1"
+    job: "/ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log"
