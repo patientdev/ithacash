@@ -31,15 +31,16 @@
 
     <div id="forms">
         <form id="account" method="POST" action="/accounts/await-confirmation/" class="clear">
+        {% csrf_token %}
         <input type="hidden" name="most_recent_confirmation_key" value="{{ email_object.most_recent_confirmation_key }}">
         <div id="login">
-        
+
             <h2>First, your email address.</h2>
             {% if form.address.errors %}
                 {% for error in form.address.errors %}
                     <p>{{ form.address }} <span class="error-message">{{ error|escape }}</span></p>
                 {% endfor %}
-            {% else %} 
+            {% else %}
                 <p>{{ form.address }}</p>
             {% endif %}
 
