@@ -99,9 +99,9 @@
   sudo: yes
   sudo_user: root
 
-- name: Apply cron jobs
+- name: Add Django management scripts to cron
   cron:
     name: Send email with CSV of new Ithacash account signups for Cyclos import
-    hour: 8
+    hour: 6
     minute: 0
-    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log
+    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv --settings=ithacash_dev.settings.production >> /var/log/django_maintenance.log
