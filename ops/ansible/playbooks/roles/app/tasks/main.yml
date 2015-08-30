@@ -28,6 +28,7 @@
     - libfreetype6-dev
     - postgresql-client
     - postgresql-9.3
+    - cron
 
 ## SSH key business not working; gitlab API seems whacky about it.
 # - name: slurp public key to use on gitlab
