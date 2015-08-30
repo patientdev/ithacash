@@ -83,3 +83,10 @@
     state=restarted
   sudo: yes
   sudo_user: root
+
+- name: Add Django maintenance scripts to cron
+  cron:
+    name: Send email with CSV of new Ithacash account signups for Cyclos import
+    hour: 8
+    minute: 0
+    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log
