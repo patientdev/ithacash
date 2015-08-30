@@ -102,7 +102,6 @@
 - name: Apply cron jobs
   cron:
     name: Send email with CSV of new Ithacash account signups for Cyclos import
-    cron_file: django_maintenance
-    user: root
-    minute: "1"
-    job: "/ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log"
+    hour: 8
+    minute: 0
+    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv >> /var/log/django_maintenance.log

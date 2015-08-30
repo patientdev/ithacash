@@ -16,53 +16,55 @@ class Command(BaseCommand):
 
         since_yesterday_morning = datetime.now() - timedelta(days=1)
 
-        # most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=since_yesterday_morning, accounts__created__gt=since_yesterday_morning)
+        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=since_yesterday_morning, accounts__created__gt=since_yesterday_morning)
 
-        most_recent_account_signups = IthacashUser.objects.all()
+        if most_recent_account_signups:
+            new_ithacash_users = []
 
-        new_ithacash_users = []
+            for user_object in most_recent_account_signups:
 
-        for user_object in most_recent_account_signups:
+                # Get Emails child
+                emails = user_object.emails.all()[0].__dict__
 
-            # Get Emails child
-            emails = user_object.emails.all()[0].__dict__
+                # Get IthacashAccounts child
+                accounts = user_object.accounts.all()[0].__dict__
 
-            # Get IthacashAccounts child
-            accounts = user_object.accounts.all()[0].__dict__
+                combined_user_dict = dict(emails, **accounts)
+                combined_user_dict.update(user_object.__dict__)
 
-            combined_user_dict = dict(emails, **accounts)
-            combined_user_dict.update(user_object.__dict__)
+                new_ithacash_users.append(combined_user_dict)
 
-            new_ithacash_users.append(combined_user_dict)
+            csv_to_email = StringIO.StringIO()
+            csv_writer = CyclosCsvWriter(new_ithacash_users, csv_to_email)
+            csv_writer.map_dict_to_cyclos_fields(new_ithacash_users)
+            csv_writer.output_to_csv(csv_to_email)
 
-        csv_to_email = StringIO.StringIO()
-        csv_writer = CyclosCsvWriter(new_ithacash_users, csv_to_email)
-        csv_writer.map_dict_to_cyclos_fields(new_ithacash_users)
-        csv_writer.output_to_csv(csv_to_email)
+            mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
 
-        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+            try:
+                result = mandrill_client.messages.send(
+                    {
+                        'to': [{'email': 'shane@ithacash.com'}],
+                        'text': 'Import this CSV into Cyclos',
+                        'from_name': 'Ithacash.com',
+                        'from_email': "shane@ithacash.com",
+                        'subject': 'New user accounts',
+                        'attachments': [
+                            {
+                                'type': 'text/csv',
+                                'name': 'new_ithacash_users_2015_08_30',
+                                'content': b64encode(csv_to_email.getvalue())
+                            }
+                        ]
+                    })
 
-        try:
-            result = mandrill_client.messages.send(
-                {
-                    'to': [{'email': 'shane@ithacash.com'}],
-                    'text': 'Import this CSV into Cyclos',
-                    'from_name': 'Ithacash.com',
-                    'from_email': "shane@ithacash.com",
-                    'subject': 'New user accounts',
-                    'attachments': [
-                        {
-                            'type': 'text/csv',
-                            'name': 'new_ithacash_users_2015_08_30',
-                            'content': b64encode(csv_to_email.getvalue())
-                        }
-                    ]
-                })
+                print "%s: %s" % (datetime.now(), result)
 
-            print "%s: Email sent." % datetime.now()
+            except Exception, e:
+                print "%s: Mandrill error:\n%s" % (datetime.now(), e)
 
-        except Exception, e:
-            return sys.exit(e)
+        else:
+            print "%s: Nothing to send." % datetime.now()
 
 
 class CyclosCsvWriter(object):
