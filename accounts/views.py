@@ -1,4 +1,5 @@
-import json, sys
+import json
+import sys
 from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
@@ -70,13 +71,20 @@ def getting_an_account(request):
     return render(request, 'getting-an-account.html')
 
 
-@csrf_exempt
 def signup_phase_one(request):
     form = EmailForm(request.POST or None)
 
     if request.method == 'POST':
 
         if form.is_valid():
+            email_object, created = Email.objects.get_or_create(address=request.POST['address'])
+
+            if not created:
+                if IthacashAccount.objects.filter(owner=email_object.owner).exists():
+                    form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
+                    return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
+
+            request.session['most_recent_confirmation_key'] = email_object.most_recent_confirmation_key
 
             return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
@@ -84,29 +92,18 @@ def signup_phase_one(request):
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-phase-one.html', {'form': form })
+        return render(request, 'signup-phase-one.html', {'form': form})
 
 
-@csrf_exempt
 def await_confirmation(request):
 
-    if request.method == 'POST':
+    email_object = Email.objects.get(most_recent_confirmation_key=request.session['most_recent_confirmation_key'])
 
-        email_object, created = Email.objects.get_or_create(address=request.POST['address'])
+    @crosstown_traffic()
+    def send_email_later():
+        email_object.send_confirmation_message()
 
-        if not created:
-            if IthacashAccount.objects.filter(owner=email_object.owner).exists():
-                form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
-                return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
-
-        @crosstown_traffic()
-        def send_email_later():
-            email_object.send_confirmation_message()
-
-        return render(request, 'await-confirmation.html')
-
-    else:
-        return HttpResponseRedirect('/accounts/signup/')
+    return render(request, 'await-confirmation.html')
 
 
 def purchase_ithaca_dollars(request):
@@ -128,8 +125,8 @@ def create_account(request, email_key):
 
     if request.method != 'POST':
         return render(request, 'signup-phase-two.html', {'form': account_form,
-                                                     'user_form': user_form,
-                                                     'email_object': email_object})
+                                                         'user_form': user_form,
+                                                         'email_object': email_object})
 
     if user_form.is_valid() and account_form.is_valid():
 
@@ -194,11 +191,10 @@ def review(request):
             errors.update(user_form.errors)
             return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
-
     elif request.POST.get('billing_frequency') is not None:
 
         billing_form = BillingFrequencyForm(request.POST or None)
-        
+
         ithacash_user = IthacashUser.objects.get(username=request.POST.get('account_owner'))
         ithacash_user.ithacashaccount_set.update(billing_frequency=request.POST['billing_frequency'])
 
@@ -207,11 +203,14 @@ def review(request):
     else:
         return HttpResponseRedirect('/accounts/signup/')
 
+
 def thanks(request):
     return render(request, 'thanks.html')
 
+
 def whoops(request):
     return render(request, 'whoops.html')
+
 
 # TODO: PERMISSIONS!
 def list_accounts(request):

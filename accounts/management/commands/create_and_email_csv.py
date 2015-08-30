@@ -14,9 +14,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        since_yesterday_morning = datetime.now() - timedelta(days=1)
+        yesterday = datetime.now() - timedelta(days=1)
 
-        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=since_yesterday_morning, accounts__created__gt=since_yesterday_morning)
+        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
 
         if most_recent_account_signups:
             new_ithacash_users = []
@@ -44,10 +44,10 @@ class Command(BaseCommand):
             try:
                 result = mandrill_client.messages.send(
                     {
-                        'to': [{'email': 'shane@ithacash.com'}],
+                        'to': [{'email': 'scott@ithacash.com'}],
                         'text': 'Import this CSV into Cyclos',
                         'from_name': 'Ithacash.com',
-                        'from_email': "shane@ithacash.com",
+                        'from_email': "it@ithacash.com",
                         'subject': 'New user accounts',
                         'attachments': [
                             {
@@ -61,7 +61,7 @@ class Command(BaseCommand):
                 print "%s: %s" % (datetime.now(), result)
 
             except Exception, e:
-                print "%s: Mandrill error:\n%s" % (datetime.now(), e)
+                print "%s:  Error:\n%s" % (datetime.now(), e)
 
         else:
             print "%s: Nothing to send." % datetime.now()
@@ -71,7 +71,7 @@ class CyclosCsvWriter(object):
 
     cyclos_csv_to_ithacash_user_mapping = {
         'name': 'entity_name',
-        'email': 'address',  # Do we need this?
+        'email': 'address',
         'username': 'username',
         'creationdate': 'created',
         'address[identifier].line1': 'address_1',
