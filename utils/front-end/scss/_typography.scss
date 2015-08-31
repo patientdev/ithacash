@@ -14,12 +14,13 @@
 }
 
 body {
-  color: $dark-gray;
-  font: 200 14px/1.6em "Maven Pro", Helvetica, Arial, sans-serif;
+  color: $medium-gray;
+  font: 200 16px/1.6em "Open Sans", Helvetica, Arial, sans-serif;
   letter-spacing: .5px;
 }
 
 h2 {
+  color: $light-green;
   font-family: 'Panfresco', Helvetica, Arial, sans-serif;
   font-size: 2.6rem;
   font-weight: 200;
@@ -28,6 +29,7 @@ h2 {
 }
 
 h3 {
+  color: $dark-green;
   font-size: 1.4em;
   line-height: 1em;
   font-weight: 500;
@@ -40,18 +42,18 @@ blockquote {
   color: $medium-gray;
 }
 
-// ul {
-//   padding: 0;
-// }
+ul {
+  padding: 0;
+}
 
-// li {
-//   list-style-type: none;
-// }
+li {
+  list-style-type: none;
+}
 
-// li::before {
-//   content: "•";
-//   color: $dark-green;
-//   margin-right: 10px;
-//   font-size: 1.4em;
-//   vertical-align: middle;
-// }
+li::before {
+  content: "•";
+  color: $dark-green;
+  margin-right: 10px;
+  font-size: 1.4em;
+  vertical-align: middle;
+}
