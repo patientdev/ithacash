@@ -3,9 +3,7 @@ module.exports = {
         livereload: true
     },
     css: {
-        files: ["scss/*.scss", "<%= django.static %>/../../templates/style-guide.html"],
+        files: ["scss/*.scss", "js/*.js", "<%= django.static %>/../../templates/style-guide.html"],
         tasks: ["sass", "autoprefixer", "csslint"]
     }
 };
-
-
