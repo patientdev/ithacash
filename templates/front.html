@@ -1,4 +1,4 @@
-{% extends 'head-foot.html' %}
+{% extends 'base.html' %}
 
 {% load staticfiles %}
 
@@ -6,15 +6,15 @@
 
 <div id="intro">
 <div class="container">
- <div id="intrinsically-local">
- 	<h2>Intrinsically Local</h2>
- 	<p>Ithacash is a regional benefit currency for Ithaca, Tompkins County, and beyond. Every <strong>Ithaca Dollar (i$)</strong> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that&rsquo;s built to stay in our region, strengthen our local economy, and meet our community&rsquo;s needs.</p>
- 	<p class="angled-cta"><a href="/learn-more/">Learn More</a></p>
+ <div id="intrinsically-local" class="light-green-background">
+     <h2>Intrinsically Local</h2>
+     <p class="prominent-graph"><strong>Ithacash</strong> is a regional benefit currency for Ithaca, Tompkins County, and beyond. Every <strong>Ithaca Dollar (i$)</strong> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that&rsquo;s built to stay in our region, strengthen our local economy, and meet our community&rsquo;s needs.</p>
+     <div class="angled-cta-left bottom-right dark-green-background"><a href="/learn-more/">Learn More</a></div>
  </div>
 
-</div>
+  <div class="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
 
- 	<p class="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></p>
+</div>
 
 </div>
 
@@ -22,221 +22,224 @@
 <div class="angled-box angled-box-26">Brett Bossard. Owner, Cinemapolis</div>
 <div class="angled-header">Why Ithacash</div>
 <div class="container">
-	<div class="right">
-		<h2>Invigorating Our Economy</h2>
-		<p>Money &ldquo;as usual&rdquo; isn't working. Businesses are struggling. Families are having a hard time keeping up, and many people simply can&rsquo;t get their basic needs met. External financial forces take local profits out of the area and limit local reinvestment. Ithacash plugs the leaks, fills the gaps, and provides local incentives that keep our community thriving.</p>
-	 	<p class="angled-cta"><a href="">Spending a Difference</a></p>
-	</div>
+    <div class="right">
+        <h2>Invigorating Our Economy</h2>
+        <p class="prominent-graph">Money &ldquo;as usual&rdquo; isn't working. Businesses are struggling. Families are having a hard time keeping up, and many people simply can&rsquo;t get their basic needs met. External financial forces take local profits out of the area and limit local reinvestment. <strong>Ithacash plugs the leaks, fills the gaps, and provides local incentives</strong> that keep our community thriving.</p>
+        <div class="angled-cta-left dark-green-background bottom-right"><a href="">Spending a Difference</a></div>
+    </div>
 </div>
 </section>
 
-<section id="how-it-works">
+<section id="how-it-works" class="white-background">
 <div class="angled-header">How It Works</div>
 <div class="container">
-	<div id="carousel">
+    <div id="carousel">
 
-		<div id="left-arrow">
-			<button class="carousel-button">
-				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<polygon points="15,0 15,20 0,10"></polygon>
-				</svg>
-			</button>
-		</div>
+        <div id="left-arrow">
+            <button class="carousel-button">
+                <svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon points="15,0 15,20 0,10"></polygon>
+                </svg>
+            </button>
+        </div>
 
-		<div id="ithacash-arrow"><img src="{% static 'img/carousel/money-arrow.png' %}"></div>
+        <div id="ithacash-arrow"><img src="{% static 'img/carousel/money-arrow.png' %}"></div>
 
-		<div id="panels">
-			<div class="panel" id="ind-to-ind-1">
-				<div class="left">
-					<img src="{% static 'img/carousel/gardener.png' %}">
-				</div>
+        <div id="panels">
+            <div class="panel" id="ind-to-ind-1">
+                <div class="left">
+                    <img src="{% static 'img/carousel/gardener.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/mom.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/mom.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Individual to Individual</h3>
-					<p>Andre pays his friend&rsquo;s daughter Sarah in Ithaca Dollars for a few hours of babysitting...</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Individual to Individual</h3>
+                    <p>Andre pays his friend&rsquo;s daughter Sarah in Ithaca Dollars for a few hours of babysitting...</p>
+                </div>
+            </div>
 
-			<div class="panel" id="ind-to-biz">
-				<div class="left">
-					<img src="{% static 'img/carousel/mom.png' %}">
-				</div>
+            <div class="panel" id="ind-to-biz">
+                <div class="left">
+                    <img src="{% static 'img/carousel/mom.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/business.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/business.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Individual to Business</h3>
-					<p>Sarah users her Ithaca Dollars to buy a beverage and small treat at a local cafe...</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Individual to Business</h3>
+                    <p>Sarah users her Ithaca Dollars to buy a beverage and small treat at a local cafe...</p>
+                </div>
+            </div>
 
-			<div class="panel" id="biz-to-biz-1">
-				<div class="left">
-					<img src="{% static 'img/carousel/business.png' %}">
-				</div>
+            <div class="panel" id="biz-to-biz-1">
+                <div class="left">
+                    <img src="{% static 'img/carousel/business.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/photographer.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/photographer.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Business to Business</h3>
-					<p>The cafe&rsquo;s owners John and Dan hire Tom, a local photographer, to take photos for their new menu...</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Business to Business</h3>
+                    <p>The cafe&rsquo;s owners John and Dan hire Tom, a local photographer, to take photos for their new menu...</p>
+                </div>
+            </div>
 
-			<div class="panel" id="biz-to-biz-2">
-				<div class="left">
-					<img src="{% static 'img/carousel/photographer.png' %}">
-				</div>
+            <div class="panel" id="biz-to-biz-2">
+                <div class="left">
+                    <img src="{% static 'img/carousel/photographer.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/mechanic.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/mechanic.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Business to Business</h3>
-					<p>Tom uses his Ithaca Dollars to pay Al for some work on his car...</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Business to Business</h3>
+                    <p>Tom uses his Ithaca Dollars to pay Al for some work on his car...</p>
+                </div>
+            </div>
 
-			<div class="panel" id="biz-to-np">
-				<div class="left">
-					<img src="{% static 'img/carousel/mechanic.png' %}">
-				</div>
+            <div class="panel" id="biz-to-np">
+                <div class="left">
+                    <img src="{% static 'img/carousel/mechanic.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/dog.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/dog.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Business to Nonprofit</h3>
-					<p>Al has a big heart for the local animal shelter. His donation of Ithaca Dollars is tax deductible, as usual.</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Business to Nonprofit</h3>
+                    <p>Al has a big heart for the local animal shelter. His donation of Ithaca Dollars is tax deductible, as usual.</p>
+                </div>
+            </div>
 
-			<div class="panel" id="np-to-np-1">
-				<div class="left">
-					<img src="{% static 'img/carousel/dog.png' %}">
-				</div>
+            <div class="panel" id="np-to-np-1">
+                <div class="left">
+                    <img src="{% static 'img/carousel/dog.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/workshop.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/workshop.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Nonprofit to Nonprofit</h3>
-					<p>The shelter&rsquo;s staff use Ithaca Dollars to take a course on modern fundraising strategies offered by Leslie.</p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Nonprofit to Nonprofit</h3>
+                    <p>The shelter&rsquo;s staff use Ithaca Dollars to take a course on modern fundraising strategies offered by Leslie.</p>
+                </div>
+            </div>
 
-			<div class="panel" id="np-to-np-2">
-				<div class="left">
-					<img src="{% static 'img/carousel/workshop.png' %}">
-				</div>
+            <div class="panel" id="np-to-np-2">
+                <div class="left">
+                    <img src="{% static 'img/carousel/workshop.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/veggies.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/veggies.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Nonprofit to Nonprofit</h3>
-					<p>Leslie buys her team a share of a local Community Supported Agriculture (CSA) to share in the office from Aaron. </p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Nonprofit to Nonprofit</h3>
+                    <p>Leslie buys her team a share of a local Community Supported Agriculture (CSA) to share in the office from Aaron. </p>
+                </div>
+            </div>
 
-			<div class="panel" id="np-to-ind">
-				<div class="left">
-					<img src="{% static 'img/carousel/veggies.png' %}">
-				</div>
+            <div class="panel" id="np-to-ind">
+                <div class="left">
+                    <img src="{% static 'img/carousel/veggies.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/painter.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/painter.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Nonprofit to Individual</h3>
-					<p>Aaron has been saving up to buy a new a piece of art. Luckily Ryan, his favorite local artist, accepts Ithaca Dollars for his work. </p>
-				</div>
-			</div>
+                <div class="center">
+                    <h3>Nonprofit to Individual</h3>
+                    <p>Aaron has been saving up to buy a new a piece of art. Luckily Ryan, his favorite local artist, accepts Ithaca Dollars for his work. </p>
+                </div>
+            </div>
 
-			<div class="panel" id="ind-to-ind-2">
-				<div class="left">
-					<img src="{% static 'img/carousel/painter.png' %}">
-				</div>
+            <div class="panel" id="ind-to-ind-2">
+                <div class="left">
+                    <img src="{% static 'img/carousel/painter.png' %}">
+                </div>
 
-				<div class="right">
-					<img src="{% static 'img/carousel/gardener.png' %}">
-				</div>
+                <div class="right">
+                    <img src="{% static 'img/carousel/gardener.png' %}">
+                </div>
 
-				<div class="center">
-					<h3>Individual to Individual</h3>
-					<p>Ryan loves to travel, so he pays his friend Andre some Ithaca Dollars to take care of his garden while he’s away.</p>
-				</div>
-			</div>
-		</div>
+                <div class="center">
+                    <h3>Individual to Individual</h3>
+                    <p>Ryan loves to travel, so he pays his friend Andre some Ithaca Dollars to take care of his garden while he’s away.</p>
+                </div>
+            </div>
+        </div>
 
-		<div id="right-arrow">
-			<button class="carousel-button">
-				<svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<polygon points="0,0 15,10 0,20 "></polygon>
-				</svg>
-			</button>
-		</div>
-	</div>
+        <div id="right-arrow">
+            <button class="carousel-button">
+                <svg class="tri" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon points="0,0 15,10 0,20 "></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
 
-	<div class="left">
-		<h2>As Easy As Cash</h2>
-		<p>Ithaca Dollars can be used anywhere they are accepted. Making change is easy. You can pay via a simple text message and even transfer funds with a free online account. Get an additional 25% Bonus when you purchase digital currency online or convert to paper currency at a local store (coming soon).</p>
-	 	<p class="clear"><a href="" class="angled-cta">Learn More</a></p>
+    <div class="left">
+        <h2>As Easy As Cash</h2>
+        <p class="prominent-graph"><strong>Ithaca Dollars</strong> can be used anywhere they are accepted. Making change is easy. You can pay via a simple text message and even transfer funds with a free online account. Get an additional 25% Bonus when you purchase digital currency online or convert to paper currency at a local store (coming soon).</p>
+         <div class="angled-cta-left dark-green-background bottom-right"><a href="" class="angled-cta">Learn More</a></div>
 
-	 	<p><a href="">How is it different from Ithaca Hours<sup>&copy;</sup>?</a></p>
-	</div>
+         <p><a href="" class="link-cta">How is it different from Ithaca Hours<sup>&copy;</sup>?</a></p>
+    </div>
 
-	<div class="right">
-		<h3>Paper Currency</h3>
-		<p>In the coming months, hundreds of businesses will be accepting this new state-of-the-art paper currency, starting with the <strong>i$1 and i$5</strong>.</p>
-		<ul>
-			<li><a href="">Learn More</a></li>
-		</ul>
+    <div class="right">
+        <h3>Paper Currency</h3>
+        <p>In the coming months, hundreds of businesses will be accepting this new state-of-the-art paper currency, starting with the <strong>i$1 and i$5</strong>.</p>
 
-		<h3>Online Accounts</h3>
-		<p>Use Ithacash as a <strong>secure digital currency</strong> to send and receive funds like a normal bank account with lower fees and built-in community support.</p>
-		<ul>
-			<li><a href="">Get a Free Account</a></li>
-			<li><a href="">Purchase Ithaca Dollars and Get 25% More</a></li>
-		</ul>
+        <p><a href="" class="link-cta">Learn More</a></p>
 
-		<h3>TXT2PAY</h3>
-		<p><strong>Link any cell phone</strong> (not just a smart phone) to your online account and send a secure payment with a basic text message. As easy as typing, no wallet necessary.</p>
-		<ul>
-			<li><a href="">As Easy As Typing</a></li>
-		</ul>
-	</div>
+        <h3>Online Accounts</h3>
+        <p>Use Ithacash as a <strong>secure digital currency</strong> to send and receive funds like a normal bank account with lower fees and built-in community support.</p>
+
+        <p><a href="" class="link-cta">Get a Free Account</a></p>
+        <p><a href="" class="link-cta">Purchase Ithaca Dollars and Get 25% More</a></p>
+
+        <h3>TXT2PAY</h3>
+        <p><strong>Link any cell phone</strong> (not just a smart phone) to your online account and send a secure payment with a basic text message. As easy as typing, no wallet necessary.</p>
+
+        <p><a href="" class="link-cta">As Easy As Typing</a></p>
+    </div>
 </div>
 </section>
 
-<section id="who-uses-it">
+<section id="who-uses-it" class="light-green-background">
 <div class="container">
+
 <div class="left">
-<h2>More than <strong>104</strong> <br>locations now accepting <br>Ithaca Dollars.</h2>
+<p class="header-graph">More than <strong>104</strong> <br>locations now accepting <br>Ithaca Dollars.</p>
 </div>
 
-<div class="right">
+<div class="right white-background">
 <h2>Marketplace Accepted</h2>
-<p>Look for this sticker on your favorite store front to see who is currently accepting <strong>Ithaca Dollars (i$)</strong> or view our Directory</p>
-<p><a href="/learn-more/" class="angled-cta">Learn More</a></p>
+<p class="prominent-graph">Look for this sticker on your favorite store front to see who is currently accepting <strong>Ithaca Dollars (i$)</strong> or view our Directory</p>
+
+<p><a href="" class="link-cta">View Map</a></p>
+
+<div class="angled-cta-left dark-green-background bottom-right"><a href="/learn-more/" class="angled-cta">Directory</a></div>
 </div>
 </div>
 </section>
 {% endblock %}
 
-{% block foot %}
-<script src="/static/js/front.js"></script>
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/front.js' %}"></script>
+<script src="{% static 'js/slick/slick.js' %}"></script>
 {% endblock %}

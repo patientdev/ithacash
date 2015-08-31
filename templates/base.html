@@ -11,7 +11,7 @@
 
         <link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
         {% block styles %}{% endblock %}
@@ -55,7 +55,60 @@
 
         <header>
             <div class="container">
-            {% block header %}{% endblock %}
+            {% block header %}
+            <div id="header-top">
+                <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+            </div>
+
+            <div id="header-contact">
+                <p>A regional benefit currency</p>
+                <p>607&ndash;391&ndash;2789</p>
+                <p><a href="/contact/">Contact Us</a></p>
+            </div>
+
+            <div id="nav-menu" class="clear">
+                <p id="nav-home"><a href="/">Home</a></p>
+                <ul>
+                    <li><a href="">Why Ithacash</a></li>
+                    <li id="nav-how-it-works"><a href="/#how-it-works">How It Works</a>
+                        <ul>
+                            <li>Overview</li>
+                            <li>General Info
+                                <ul>
+                                    <li>Incentives</li>
+                                    <li>Fees</li>
+                                    <li>Earning &amp; Spending</li>
+                                    <li>Issuance</li>
+                                    <li>Backing</li>
+                                    <li>Circulation</li>
+                                    <li>Redemption</li>
+                                    <li>Taxes &amp; Regulations
+                                        <ul>
+                                            <li><a href="">NYS Dept. of Finance</a></li>
+                                            <li><a href="">Services</a></li>
+                                            <li><a href="">FINCEN</a></li>
+                                            <li><a href="">Money Transmission</a></li>
+                                            <li><a href="">Barter Industry</a></li>
+                                            <li><a href="">Regulations</a></li>
+                                            <li><a href="">Reporting to IRS</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Paper Currency</li>
+                            <li>Digital Currency</li>
+                            <li>TXT2PAY</li>
+                            <li>PAYITFWD</li>
+                        </ul>
+                    </li>
+                    <li><a href="/#how-to-get-started">Directory</a></li>
+                    <li><a href="/#the-circuit">About Us</a></li>
+                    <li><a href="/#core-services">Shop</a></li>
+                    <li id="nav-get-started"><a href="/accounts/signup" class="green-button">Get Started</a></li>
+                    <li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
+                </ul>
+            </div>
+            {% endblock %}
             </div>
         </header>
 
@@ -69,7 +122,12 @@
 
     </div>
 
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
+        </script>
+        <script src="{% static 'js/ithacash.js' %}"></script>
+    {% endblock %}
 
     </body>
 </html>

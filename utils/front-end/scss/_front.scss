@@ -4,12 +4,6 @@
     display: inline-block;
 }
 
-.left {
-    width: 40%;
-    float: left;
-    display: inline-block;
-}
-
 .dark-green-background {
   background-color: $dark-green;
   color: $white;
@@ -20,20 +14,10 @@
   color: $white;
 }
 
-#intrinsically-local .angled-cta::before, #invigorating-our-economy .angled-cta::before {
-    content: url(/static/img/cta_digonal_grn-trans.png); 
-}
-
-#intrinsically-local .angled-cta a, #invigorating-our-economy .angled-cta a {
-    color: $white;
-}
-
 #invigorating-our-economy {
     background-image: url("/static/img/front/img_tompkins_map.png");
     background-repeat: no-repeat;
-    padding: 100px 0;
-    background-size: 50%;
-    background-position: 0 20%;
+    background-size: 55%;
 }
 
 .angled-box {
@@ -100,17 +84,6 @@ header .angled-box {
     right: 0; top: 0;
 }
 
-#how-it-works .angled-cta::before {
-    content: url(/static/img/angle_26_trans-white-top-left.png);
-    left: 0;
-    display: inline-block;
-    margin: 0;
-}
-
-#how-it-works .angled-cta a {
-    color: white;
-}
-
 #how-it-works .angled-header {
     background-color: white;
     position: absolute;
@@ -127,37 +100,6 @@ header .angled-box {
     position: absolute;
     left: -26px;
     top: 0;
-}
-
-#how-it-works ul {
-    padding-left: 70px;
-    list-style-type: none;
-}
-
-#how-it-works a {
-    text-decoration: none;
-}
-
-#how-it-works a::before {
-    content: "> ";
-    color: rgb(90, 117, 35);
-}
-
-#how-it-works .right p {
-    padding-left: 70px;
-}
-
-#how-it-works .left p {
-    font-size: 1.2em;
-    margin-bottom: 40px;
-}
-
-#how-it-works .left p a {
-    font-size: .8em;
-}
-
-#how-it-works .left .angled-cta {
-    font-size: .7em;
 }
 
 #who-uses-it {
@@ -179,16 +121,11 @@ header .angled-box {
     font-size: 2em;
 }
 
-#who-uses-it .right {
-    background-color: white;
-    padding: 20px;
-}
-
 .more-arrow {
     position: absolute;
-    bottom: -60px;
-    left: 25%;
-    margin-left: -20px;
+    bottom: -45px;
+    width: 415px;
+    text-align: center;
     z-index: 100;
 }
 
@@ -218,12 +155,9 @@ header .angled-box {
 
 #intrinsically-local {
     position: absolute;
-    width: 400px;
-    height: 278px;
+    width: 432px;
     margin-top: -139px;
     top: 50%; left:0 ;
-    background-color: $light-green;
-    color: white;
     padding: 30px;
 }
 
@@ -231,35 +165,6 @@ header .angled-box {
     margin: 0;
     letter-spacing: 1px;
     color: white;
-}
-
-
-.angled-cta {
-    background-color: rgb(91, 117, 45);
-    margin: 0;
-    padding: 3px 15px 3px 35px;
-    text-align: right;
-    text-transform: uppercase;
-    font-size: .8em;
-    color: white;
-    display: inline-block;
-    float: right;
-    position: relative;
-}
-
-.angled-cta a {
-    text-decoration: none;
-}
-
-.angled-cta::before {
-    /*content: url(/static/img/cta_digonal_grn-trans.png);*/
-    position: absolute;
-    left: 0; top: 0;
-}
-
-#intrinsically-local p:last-of-type {
-    position: absolute;
-    right: 0; bottom: 0;
 }
 
 #email-list-box form {
