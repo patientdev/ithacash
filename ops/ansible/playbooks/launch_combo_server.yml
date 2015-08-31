@@ -1,7 +1,7 @@
 - name: Turn the server into both an app and database server.
   user: root
 
-  hosts: "{{ deployment_environment }}"
+  hosts: "comboservers"
 
   vars:
     app_db_name: "ithacash"
