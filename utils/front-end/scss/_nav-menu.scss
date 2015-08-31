@@ -32,6 +32,10 @@ h1 img {
     width: 220px;
 }
 
+#nav-menu {
+    font-family: $mavenpro;
+}
+
 #nav-menu ul {
     padding-left: 0;
     margin: 0;
@@ -58,6 +62,8 @@ h1 img {
     display: inline-block;
     position: relative;
 }
+
+#nav-menu li::before { content: none; }
 
 #nav-menu ul a, #nav-home a {
     text-decoration: none;
@@ -86,7 +92,7 @@ h1 img {
 
 /* Level 2 */
 #nav-menu ul li > ul { display: none; }
-#nav-menu ul li > ul { 
+#nav-menu ul li > ul {
     position: absolute;
     left: -154px;
     top: 30px;
@@ -101,12 +107,12 @@ h1 img {
     display: block;
     padding: 13px 15px 13px 40px;
     line-height: 1em;
-    position: relative; 
+    position: relative;
     font-weight: 500;
 }
 #nav-menu ul li ul li:after {
     content: "\276F";
-    float: right; 
+    float: right;
     color: white;
     font-size: 1.3em;
     font-weight: 100;
@@ -118,7 +124,7 @@ h1 img {
 }
 #nav-menu ul li ul li:hover:after {
     content: "\276F";
-    float: right; 
+    float: right;
     color: rgb(188, 212, 99);
 }
 
@@ -154,12 +160,12 @@ h1 img {
 }
 #nav-menu ul li ul li ul li:after, #nav-menu ul li ul li ul li:hover:after {
     content: none;
-    float: none; 
+    float: none;
 }
 
 
 /* Level 4 */
-#nav-menu ul li ul li ul li ul, #nav-menu ul li ul li ul li:hover ul { 
+#nav-menu ul li ul li ul li ul, #nav-menu ul li ul li ul li:hover ul {
     display: none;
     position: relative;
     float: none;
@@ -176,7 +182,7 @@ h1 img {
     border: none;
 }
 #nav-menu ul li ul li ul li ul li:after {
-    
+
 }
 #nav-menu ul li ul li ul li ul li:hover {
     border-bottom: none;

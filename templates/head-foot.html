@@ -2,139 +2,138 @@
 
 <!DOCTYPE html>
 <html lang="en" class="clear">
-	<head>
-		<meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="Money Made for Main St." />
-		
-		<title>Ithacash &mdash; Money Made for Main St.</title>
+        <meta name="description" content="Money Made for Main St." />
 
-		<link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
-		<link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <title>Ithacash &mdash; Money Made for Main St.</title>
 
-		<link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
-		<link rel="stylesheet" href="{% static 'js/slick/slick.css' %}">
-		<link rel="stylesheet" href="{% static 'css/mobile.css' %}" media="only screen and (max-device-width:800px)"/>
+        <link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
-		<link rel="icon" type="image/x-icon" href="{% static 'img/IthaCash_icon_2color.png' %}">
+        <link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
+        <link rel="stylesheet" href="{% static 'js/slick/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mobile.css' %}" media="only screen and (max-device-width:800px)"/>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script>if (!window.jQuery) { document.write('<script src="/static/js/jquery-1.11.3.min.js"><\/script>'); }</script>
+        <link rel="icon" type="image/x-icon" href="{% static 'img/IthaCash_icon_2color.png' %}">
 
-		<!-- Twitter Card data -->
-		<meta name="twitter:card" content="summary">
-		<meta name="twitter:site" content="@ithacash">
-		<meta name="twitter:title" content="Ithacash: Money Made for Main St.">
-		<meta name="twitter:description" content="Money Made for Main St.">
-		<meta name="twitter:creator" content="@ithacash">
-		<meta name="twitter:image" content="https://ithacash.com/img/IthaCash_icon_2color.png">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>if (!window.jQuery) { document.write('<script src="/static/js/jquery-1.11.3.min.js"><\/script>'); }</script>
 
-		<!-- Open Graph data -->
-		<meta property="og:title" content="Ithacash: Money Made for Main St." />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://ithacash.com/" />
-		<meta property="og:image" content="https://ithacash.com/img/IthaCash_icon_2color.png" />
-		<meta property="og:description" content="Money Made for Main St." /> 
-		<meta property="og:site_name" content="Ithacash" />
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@ithacash">
+        <meta name="twitter:title" content="Ithacash: Money Made for Main St.">
+        <meta name="twitter:description" content="Money Made for Main St.">
+        <meta name="twitter:creator" content="@ithacash">
+        <meta name="twitter:image" content="https://ithacash.com/img/IthaCash_icon_2color.png">
 
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <!-- Open Graph data -->
+        <meta property="og:title" content="Ithacash: Money Made for Main St." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ithacash.com/" />
+        <meta property="og:image" content="https://ithacash.com/img/IthaCash_icon_2color.png" />
+        <meta property="og:description" content="Money Made for Main St." />
+        <meta property="og:site_name" content="Ithacash" />
 
-			ga('create', 'UA-59984381-2', 'auto');
-			ga('send', 'pageview');
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		</script>
+            ga('create', 'UA-59984381-2', 'auto');
+            ga('send', 'pageview');
 
-		{% block head %}
-		{% endblock %}
+        </script>
 
-	</head>
-	<body class="clear">
-	<header>
-	<div class="container">
-		<div id="header-top">
-			<h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
-		</div>
+        {% block head %}
+        {% endblock %}
 
-		<div id="header-contact">
-			<p>A regional benefit currency</p>
-			<p>607&ndash;391&ndash;2789</p>
-			<p><a href="/contact/">Contact Us</a></p>
-		</div>
+    </head>
+    <body class="clear">
+    <header>
+    <div class="container">
+        <div id="header-top">
+            <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+        </div>
 
-		<div id="nav-menu" class="clear">
-			<p id="nav-home"><a href="/">Home</a></p>
-			<ul>
-				<li><a href="">Why Ithacash</a></li>
-				<li id="nav-how-it-works"><a href="/#how-it-works">How It Works</a>
-					<ul>
-						<li>Overview</li>
-						<li>General Info
-							<ul>
-								<li>Incentives</li>
-								<li>Fees</li>
-								<li>Earning &amp; Spending</li>
-								<li>Issuance</li>
-								<li>Backing</li>
-								<li>Circulation</li>
-								<li>Redemption</li>
-								<li>Taxes &amp; Regulations
-									<ul>
-										<li><a href="">NYS Dept. of Finance</a></li>
-										<li><a href="">Services</a></li>
-										<li><a href="">FINCEN</a></li>
-										<li><a href="">Money Transmission</a></li>
-										<li><a href="">Barter Industry</a></li>
-										<li><a href="">Regulations</a></li>
-										<li><a href="">Reporting to IRS</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>Paper Currency</li>
-						<li>Digital Currency</li>
-						<li>TXT2PAY</li>
-						<li>PAYITFWD</li>
-					</ul>
-				</li>
-				<li><a href="/#how-to-get-started">Directory</a></li>
-				<li><a href="/#the-circuit">About Us</a></li>
-				<li><a href="/#core-services">Shop</a></li>
-				<li id="nav-get-started"><a href="/accounts/signup" class="green-button">Get Started</a></li>
-				<li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="angled-footer"></div>
-	</header>
-	
-	<div id="content" class="clear">
+        <div id="header-contact">
+            <p>A regional benefit currency</p>
+            <p>607&ndash;391&ndash;2789</p>
+            <p><a href="/contact/">Contact Us</a></p>
+        </div>
 
-		{% block content %}
-		{% endblock %}
+        <div id="nav-menu" class="clear">
+            <p id="nav-home"><a href="/">Home</a></p>
+            <ul>
+                <li><a href="">Why Ithacash</a></li>
+                <li id="nav-how-it-works"><a href="/#how-it-works">How It Works</a>
+                    <ul>
+                        <li>Overview</li>
+                        <li>General Info
+                            <ul>
+                                <li>Incentives</li>
+                                <li>Fees</li>
+                                <li>Earning &amp; Spending</li>
+                                <li>Issuance</li>
+                                <li>Backing</li>
+                                <li>Circulation</li>
+                                <li>Redemption</li>
+                                <li>Taxes &amp; Regulations
+                                    <ul>
+                                        <li><a href="">NYS Dept. of Finance</a></li>
+                                        <li><a href="">Services</a></li>
+                                        <li><a href="">FINCEN</a></li>
+                                        <li><a href="">Money Transmission</a></li>
+                                        <li><a href="">Barter Industry</a></li>
+                                        <li><a href="">Regulations</a></li>
+                                        <li><a href="">Reporting to IRS</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Paper Currency</li>
+                        <li>Digital Currency</li>
+                        <li>TXT2PAY</li>
+                        <li>PAYITFWD</li>
+                    </ul>
+                </li>
+                <li><a href="/#how-to-get-started">Directory</a></li>
+                <li><a href="/#the-circuit">About Us</a></li>
+                <li><a href="/#core-services">Shop</a></li>
+                <li id="nav-get-started"><a href="/accounts/signup" class="green-button">Get Started</a></li>
+                <li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="angled-footer"></div>
+    </header>
 
-	</div>
+    <div id="content" class="clear">
 
-	<footer>
-	
-	<script src="{% static 'js/ithacash.js' %}"></script>
-	<script src="{% static 'js/nav.js' %}"></script>
-	<script src="{% static 'js/slick/slick.min.js' %}"></script>
+        {% block content %}
+        {% endblock %}
 
-	{% block foot %}
-	{% endblock %}
+    </div>
 
-	<script type="text/javascript">(function() {
+    <footer>
+    
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/slick/slick.min.js' %}"></script>
+
+    {% block foot %}
+    {% endblock %}
+
+    <script type="text/javascript">(function() {
 document.status = 200;var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
 ma.src = '//analytics.sitemandala.com/sitemandala/assets/javascripts/sm.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma,s);
 })();
-	</script>
-	
-	</footer>
+    </script>
 
-	</body>
+    </footer>
+
+    </body>
 </html>
