@@ -1,6 +1,3 @@
 module.exports = {
-    src: ['<%= django.static %>/css/ithacash.css'],
-    options: {
-    format: 'compact'
-    }
+    src: ['<%= django.static %>/css/ithacash.css']
 };
