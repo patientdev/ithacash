@@ -16,6 +16,12 @@ module.exports = function(grunt) {
       django: {
         static: '../../ithacash_dev/static'
       }
+    },
+
+    loadGruntTasks: {
+        pattern: 'grunt-*',
+        config: require('./package.json'),
+        scope: 'devDependencies'
     }
 
   });

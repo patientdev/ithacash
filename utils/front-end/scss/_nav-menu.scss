@@ -67,7 +67,7 @@ h1 img {
 
 #nav-menu ul a, #nav-home a {
     text-decoration: none;
-    color: rgb(96, 96, 96);
+    color: $dark-gray;
     text-align: center;
     font-size: .85em;
     font-weight: 600;
@@ -101,7 +101,6 @@ h1 img {
     background-color: rgb(232, 240, 217);
     border-top: 2px solid rgb(167, 195, 110);
     padding: 20px 0;
-    font-size: .9em;
 }
 #nav-menu ul li ul li {
     display: block;
@@ -135,11 +134,10 @@ h1 img {
     display: block;
     position: absolute;
     left: 275px;
-    top: -65px;
+    top: -67px;
     width: 300px;
     background-color: white;
     padding: 20px;
-    font-size: 1em;
     overflow: scroll;
 }
 #nav-menu ul li ul li ul li {
@@ -150,17 +148,26 @@ h1 img {
     line-height: 1em;
     position: relative;
 }
-#nav-menu ul li ul li ul li:hover {
-    border-bottom: 2px solid rgb(235, 235, 235);
-    font-weight: 500;
-}
-#nav-menu ul li ul li ul li a:hover {
-    border-bottom: 2px solid rgb(235, 235, 235);
-    font-weight: 500;
-}
-#nav-menu ul li ul li ul li:after, #nav-menu ul li ul li ul li:hover:after {
-    content: none;
-    float: none;
+#nav-menu ul li ul li ul li {
+
+    a {
+        display: block;
+        text-align: left;
+    }
+
+    &:hover {
+        border-bottom: 2px solid $light-gray;
+    }
+
+    &:hover a {
+        color: $black;
+        text-align: left;
+    }
+
+    &:after, &:hover:after {
+        content: none;
+        float: none;
+    }
 }
 
 

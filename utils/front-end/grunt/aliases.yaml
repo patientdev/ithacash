@@ -3,6 +3,7 @@ default: []
 dev:
   description: 'Testing and serving'
   tasks:
+    - 'uglify'
     - 'sass'
     - 'autoprefixer'
     - 'csslint'
