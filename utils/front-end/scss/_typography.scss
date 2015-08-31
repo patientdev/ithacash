@@ -15,24 +15,31 @@
 
 body {
   color: $medium-gray;
-  font: 200 16px/1.6em "Open Sans", Helvetica, Arial, sans-serif;
+  font: 300 16px/1.4em "Open Sans", Helvetica, Arial, sans-serif;
   letter-spacing: .5px;
 }
 
+h1 {
+    font-family: "Panfresco", Helvetica, Arial, sans-serif;
+    font-size: 3.4rem;
+}
+
 h2 {
-  color: $light-green;
-  font-family: 'Panfresco', Helvetica, Arial, sans-serif;
+  font-family: "Panfresco", Helvetica, Arial, sans-serif;
   font-size: 2.6rem;
   font-weight: 200;
   line-height: 1em;
   margin: 0;
+  white-space: nowrap;
+  color: $light-green;
 }
 
 h3 {
   color: $dark-green;
   font-size: 1.4em;
   line-height: 1em;
-  font-weight: 500;
+  font-weight: 600;
+  margin-top: 40px;
 }
 
 blockquote {
@@ -56,4 +63,21 @@ li::before {
   margin-right: 10px;
   font-size: 1.4em;
   vertical-align: middle;
+}
+
+.prominent-graph {
+    font-size: 1.2rem;
+    line-height: 1.6em;
+    letter-spacing: 1px;
+}
+
+.header-graph {
+    font-size: 3rem;
+    font-family: $opensans;
+    color: $white;
+    line-height: 1em;
+}
+
+.header-graph strong {
+    font-size: 1.4em;
 }

@@ -1,0 +1,39 @@
+strong {
+  color: $dark-green;
+}
+
+mark {
+  background-color: $light-green;
+  color: $white;
+}
+
+.dark-green-background {
+  background-color: $dark-green;
+  color: $white;
+}
+
+.dark-green-background strong, .dark-green-background h2 {
+    color: $white;
+}
+
+.light-green-background {
+  background-color: $light-green;
+  color: $white;
+}
+
+.light-green-background strong, .light-green-background h2 {
+    color: $white;
+}
+
+.white-background {
+    background-color: $white;
+    color: $medium-gray;
+}
+
+.white-background h2 {
+    color: $light-green;
+}
+
+.white-background strong {
+    color: $dark-gray;
+}
