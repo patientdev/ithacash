@@ -1,25 +1,11 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block header %}
+    <h1>Ithacash Styleguide</h1>
+{% endblock %}
 
-        <link rel="stylesheet" type="text/css" href="{% static 'style-guide/css/style-guide.css' %}">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-    <div id="container">
+{% block content %}
 
         <p><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" class="logo" alt="Ithacash"></p>
         <p><img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-tiny" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-small" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-medium" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-large" alt="Ithacash"></p>
@@ -70,5 +56,5 @@
         </section>
     </div>
     <script src="//localhost:35729/livereload.js"></script>
-    </body>
-</html>
+
+    {% endblock %}

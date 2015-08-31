@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import mandrill, requests, json
+import mandrill
+import requests
+import json
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
@@ -82,3 +84,7 @@ def getting_an_account(request):
 
 def everyone(request):
     return render(request, 'everyone.html')
+
+
+def style_guide(request):
+    return render(request, 'style-guide.html')
