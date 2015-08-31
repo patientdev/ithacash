@@ -1,2 +1,2 @@
-[comboservers]
-104.131.222.45
+[staging]
+104.131.222.45 branch=develop deployment_environment=staging

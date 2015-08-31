@@ -1,9 +1,5 @@
-[servers]
-production
-staging
-
 [production]
-45.55.80.254 branch=master nickname=production
+45.55.80.254 branch=master deployment_environment=production
 
 [staging]
-104.131.222.45 branch=develop nickname=staging
+104.131.222.45 branch=develop deployment_environment=staging

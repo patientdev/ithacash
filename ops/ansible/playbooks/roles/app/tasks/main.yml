@@ -45,35 +45,22 @@
 #    body_format: raw
 #    body: "key={{appserver_ssh_key.content|b64decode}}&title=appserver_key"
 
-- name: Checkout 'master' branch from gitlab
+- name: Checkout branch from gitlab
   sudo: yes
   sudo_user: "{{ app_user }}"
   git:
     repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
-    version: master
-    dest: /ithacash/production
+    version: "{{ branch }}"
+    dest: /ithacash/{{ deployment_environment }}
     accept_hostkey: yes
     depth: 1
     force: yes
-  when: ansible_nodename == 'farva'
-
-- name: Checkout 'develop' branch from gitlab
-  sudo: yes
-  sudo_user: "{{ app_user }}"
-  git:
-    repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
-    version: develop
-    dest: /ithacash/production
-    accept_hostkey: yes
-    depth: 1
-    force: yes
-  when: ansible_nodename == 'Ithacacash.com'
 
 - name: Install Project reqs
   sudo: yes
   sudo_user: "{{ app_user }}"
   pip:
-    requirements: /ithacash/production/requirements/requirements.txt
+    requirements: /ithacash/{{ deployment_environment }}/requirements/requirements.txt
     virtualenv: /ithacash/virtualenv
     state: latest
 
@@ -81,10 +68,10 @@
   sudo: yes
   sudo_user: "{{ app_user }}"
   django_manage:
-    settings: ithacash_dev.settings.production
+    settings: ithacash_dev.settings.{{ deployment_environment }}
     command: migrate
     virtualenv: /ithacash/virtualenv
-    app_path: /ithacash/production
+    app_path: /ithacash/{{ deployment_environment }}
 
 
 - name: Apply hendrix upstart template
@@ -104,4 +91,4 @@
     name: Send email with CSV of new Ithacash account signups for Cyclos import
     hour: 6
     minute: 0
-    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv --settings=ithacash_dev.settings.production >> /var/log/django_maintenance.log
+    job: /ithacash/virtualenv/bin/python /ithacash/{{ deployment_environment }}/manage.py create_and_email_csv --settings=ithacash_dev.settings.{{ deployment_environment }} >> /var/log/django_maintenance.log
