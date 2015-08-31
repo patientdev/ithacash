@@ -1,7 +1,16 @@
 from common import *
 from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
 
-DEBUG = False
+DEBUG = True
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ithacash.com', '45.55.80.254']
+
+X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 DATABASES = {
     "default": {

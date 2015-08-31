@@ -1,6 +1,8 @@
 from common import *
 from secrets import PRODUCTION_DATABASE_PASSWORD
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ithacash.com', '45.55.80.254']
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
