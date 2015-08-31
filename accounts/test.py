@@ -16,6 +16,13 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
         self.client.post('/accounts/signup/', {'address': address})
         self.assertTrue(Email.objects.filter(address=address).exists())
 
+        test_user_object = Email.objects.get(address=address)
+        most_recent_confirmation_key = test_user_object.most_recent_confirmation_key
+        self.assertTrue(Email.objects.filter(most_recent_confirmation_key=most_recent_confirmation_key).exists())
+
+        session = self.client.session
+        self.client.post('/accounts/await-confirmation/', {session['most_recent_confirmation_key']: most_recent_confirmation_key})
+
         # Now let's look at the email that's sent.
         self.assertNumCrosstownTasks(1)
         email_sender = self.next_task()
@@ -53,21 +60,21 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 class CreateAccountTests(TestCase):
 
     account_post_data = {
-     u'username': u'joe_individual',
-     u'city': u'Ithaca',
-     u'account_type': u'Individual',
-     u'address_2': u'',
-     u'entity_name': u'n/a',
-     u'state': u'NY',
-     u'electronic_signature': u'asdas',
-     u'tin': u'445556154',
-     u'is_ssn': u'True',
-     u'phone_mobile': u'',
-     u'address_1': u'4 llama road',
-     u'full_name': u'Some Guy I guess',
-     u'phone_landline': u'+16075554141',
-     u'zip_code': u'14850'
-     }
+        u'username': u'joe_individual',
+        u'city': u'Ithaca',
+        u'account_type': u'Individual',
+        u'address_2': u'',
+        u'entity_name': u'n/a',
+        u'state': u'NY',
+        u'electronic_signature': u'asdas',
+        u'tin': u'445556154',
+        u'is_ssn': u'True',
+        u'phone_mobile': u'',
+        u'address_1': u'4 llama road',
+        u'full_name': u'Some Guy I guess',
+        u'phone_landline': u'+16075554141',
+        u'zip_code': u'14850'
+    }
 
     def test_create_account_with_invalid_data(self):
         email = Email.objects.create(address="nobody@nothing.com")
@@ -99,5 +106,3 @@ class CreateAccountTests(TestCase):
         response = self.test_create_account_with_valid_data()
 
         self.assertTrue(IthacashAccount.objects.exists())
-
-
