@@ -4,7 +4,7 @@ module.exports = {
     },
     global: {
         files: {
-            '<%= django.static  %>/js/ithacash.js': ['js/*.js']
+            '<%= django.static %>/js/ithacash.js': ['js/*.js']
         }
     }
 };

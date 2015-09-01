@@ -8,6 +8,7 @@ from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
 from .forms import newsletter_subscription_form, send_message_form
+from pages.forms import PageCreatorForm
 
 
 @csrf_exempt
@@ -88,3 +89,27 @@ def everyone(request):
 
 def style_guide(request):
     return render(request, 'style-guide.html')
+
+
+@csrf_exempt
+def page_creator(request):
+
+    if request.method == 'POST':
+
+        form = PageCreatorForm(request.POST)
+
+        if form.is_valid():
+
+            print form
+
+            form.save()
+
+            return render(request, 'page-creator.html', {'form': PageCreatorForm()})
+
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
+
+    else:
+        form = PageCreatorForm()
+
+    return render(request, 'page-creator.html', {'form': form})

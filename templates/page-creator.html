@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>Ithacash Page Creater</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+<div class="container">
+    <form method="POST" action="/page-creator/">
+        {% for field in form %}
+            <p>{{ field }}
+
+                {% if field.help_text %}
+                    <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ field.help_text|safe }}</span></span>
+                {% endif %}
+
+            </p>
+            <p>{{ field.errors }}</p>
+        {% endfor %}
+
+        <button>Create</button>
+    </form>
+</div>
+</section>
+{% endblock %}
