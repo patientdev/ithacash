@@ -1,5 +1,6 @@
 input[type=text],
-input[type=email] {
+input[type=email],
+textarea {
   border-radius: 5px;
   padding: 10px;
   font-size: 1.2em;
@@ -38,7 +39,8 @@ input[type=email] {
     opacity: 1;
     display: block;
     position: absolute;
-    width: 200px;
+    min-width: 200px;
+    width: 300px;
     padding: 10px;
     background-color: $medium-gray;
     color: $white;
@@ -46,6 +48,8 @@ input[type=email] {
     border-radius: 10px;
     font-size: .9em;
     line-height: 1.2em;
+    top: -7px;
+    left: 30px;
   }
 }
 
