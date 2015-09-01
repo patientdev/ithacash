@@ -1,7 +1,8 @@
 from common import *
 from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
 
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ithacash.com', '45.55.80.254']
 

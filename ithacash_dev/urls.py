@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
+from django.contrib.flatpages import views
 
 '''
 Are you adding a new app?
@@ -34,5 +35,6 @@ urlpatterns = [
     url(r'^whoops/$', 'accounts.views.whoops'),
     url(r'^style-guide/$', 'pages.views.style_guide'),
     url(r'^everyone/$', 'pages.views.everyone'),
-    url(r'^test_utils/error_test/$', error_view)
+    url(r'^page-creator/$', 'pages.views.page_creator'),
+    url(r'^test_utils/error_test/$', error_view),
 ]
