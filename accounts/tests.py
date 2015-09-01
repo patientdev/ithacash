@@ -3,8 +3,13 @@ from django.test.client import RequestFactory
 from hendrix.utils.test_utils import AsyncTestMixin
 from accounts.models import Email, IthacashAccount
 from mock import patch
+import requests
 import mandrill
 from accounts.views import review
+from accounts.factories import IthacashUserFactory, EmailFactory, IthacashAccountFactory
+
+from accounts.management.commands import create_and_email_csv
+from base64 import b64encode
 
 
 class SignupPhaseOneTests(AsyncTestMixin, TestCase):
@@ -106,3 +111,30 @@ class CreateAccountTests(TestCase):
         response = self.test_create_account_with_valid_data()
 
         self.assertTrue(IthacashAccount.objects.exists())
+
+    def test_csv_export_and_email(self):
+
+        """
+        Assert that the base64 encoding of the csv_output has reached mandrill
+        """
+
+        # Give us a premade user, email, and account
+        user = IthacashUserFactory()
+        email = EmailFactory(owner=user)
+        account = IthacashAccountFactory(owner=user)
+
+        combined_dict = dict(email.__dict__, **account.__dict__)
+        combined_dict.update(user.__dict__)
+
+        new_fake_ithacash_users = [combined_dict]
+
+        with patch.object(mandrill.Messages, 'send') as mock_email_sender:
+
+            csv_processor = create_and_email_csv.Command()
+
+            csv_processor.map_cyclos_keys_to_ithacash_user_values(new_fake_ithacash_users)
+            csv_output = csv_processor.output_csv().getvalue()
+            csv_processor.email_csv()
+
+            csv_attachment = mock_email_sender.call_args[0][0]['attachments'][0]['content']
+            self.assertEqual(b64encode(csv_output), csv_attachment)
