@@ -7,11 +7,12 @@ respawn
 setuid {{app_user}}
 setgid {{app_group}}
 
+NEW_RELIC_CONFIG_FILE={{manage_path}}/ops/ansible/playbooks/roles/app/templates/newrelic.ini
+export NEW_RELIC_CONFIG_FILE
+
 script
     env PYTHONPATH={{manage_path}}
     cd {{manage_path}}
     . {{venv_path}}/bin/activate
-    env NEW_RELIC_CONFIG_FILE={{manage_path}}/ops/ansible/playbooks/roles/app/templates/newrelic.ini
-    export NEW_RELIC_CONFIG_FILE
     exec newrelic-admin run-program hx start {{hendrix_opts}}
 end script
