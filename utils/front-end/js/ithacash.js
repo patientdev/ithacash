@@ -93,4 +93,85 @@ $(function() {
         })
     });
 
+    $('form.standard-form').submit(function( event ) {
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        form = $(this);
+
+        data = form.serialize();
+        action_url = $(this).attr('action');
+        validation_url = window.location.pathname;
+
+        // Have AJAX handle the validation
+        $.ajax({
+            url: validation_url,
+            method: 'POST',
+            data: data
+        })
+        .always(function( response ) {
+            console.log(response);
+        })
+        .fail(function( response ){
+
+            if ( response.status == 400 ) {
+
+                errors = $.parseJSON(response.responseText);
+
+                // Which fields have errors
+                error_indices = []
+                $.each(errors, function(index) {
+                    error_indices.push(index);
+                    console.log(index);
+                })
+
+                inputs = $(':input', form);
+
+                //
+                // Highlight form inputs that have errors
+                //
+                $.each(inputs, function() {
+                    input_name = $(this).attr('name');
+
+                    // If the name of the input equals the error field index
+                    if ( $.inArray(input_name, error_indices) != -1 ) {
+                        error_message = errors[input_name][0];
+
+                        // Update error message if input is still invalid
+                        if ( $(this).next('.error-message').length > 0 ) {
+                            $(this).next('.error-message').text(error_message);
+                        }
+
+                        else {
+                            $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
+                        }
+                    }
+
+                    // De-highlight iputs that are now valid
+                    else {
+                        $(this).removeClass('error');
+                        $(this).next('.error-message').remove();
+                    }
+                })
+
+                    $('html, body').animate({
+                        scrollTop: $('.error-message').first().offset().top - 170
+                    })
+
+
+                return false;
+            }
+
+            else if ( response.status == 500 ) {
+                $('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
+            }
+
+
+        })
+        .success(function(){
+             $('form#account').unbind('submit').submit();
+        })
+    })
+
 });

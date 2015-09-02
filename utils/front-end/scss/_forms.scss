@@ -22,6 +22,12 @@ textarea {
 
   position: relative;
   display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+
+  textarea + & {
+      vertical-align: top;
+  }
 
   &::before {
     content: "?";
@@ -66,6 +72,23 @@ button {
   }
 }
 
+.error-message {
+    margin-left: 60px;
+    position: absolute;
+    line-height: 45px;
+
+    textarea + & + .helptext-wrapper {
+        vertical-align: top;
+    }
+}
+
+.error-message::before {
+    content: "•";
+    color: red;
+    margin-right: 10px;
+    font-size: 1.4em;
+}
+
 .green-button {
     background-color: rgb(136, 177, 71);
     padding: 11px 25px;
@@ -75,8 +98,18 @@ button {
     line-height: 1em;
     letter-spacing: 1px;
     text-decoration: none;
+
+    &:hover {
+        background-color: $pale-green;
+        color: $dark-gray;
+    }
 }
 
 .dark-green-button {
     background-color: rgb(84, 124, 66);
+
+    &:hover {
+        background-color: $pale-green;
+        color: #555;
+    }
 }

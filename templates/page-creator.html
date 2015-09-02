@@ -7,7 +7,7 @@
 {% block content %}
 <section>
 <div class="container">
-    <form method="POST" action="/page-creator/">
+    <form method="POST" action="/page-creator/" class="standard-form">
         {% for field in form %}
             <p>{{ field }}
 
@@ -16,7 +16,6 @@
                 {% endif %}
 
             </p>
-            <p>{{ field.errors }}</p>
         {% endfor %}
 
         <button>Create</button>

@@ -10,6 +10,7 @@ db.sqlite3
 
 utils/front-end/node_modules/
 
+ithacash_dev/static/css/ithacash.css
 .sass-cache
 *.lock
 utils/front-end/temp/
