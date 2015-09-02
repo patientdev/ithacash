@@ -107,7 +107,7 @@ def page_creator(request):
             return render(request, 'page-creator.html', {'form': PageCreatorForm()})
 
         else:
-            return JsonResponse({'errors': form.errors}, status=400)
+            return JsonResponse(form.errors, status=400)
 
     else:
         form = PageCreatorForm()
