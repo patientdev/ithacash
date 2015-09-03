@@ -1,9 +1,3 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
 a {
   color: $light-green;
 }
@@ -33,15 +27,11 @@ a {
   text-transform: uppercase;
   position: relative;
   font-size: 14px;
-  color: white;
-
-  a {
-    color: $white;
-    line-height: 30px;
-    text-decoration: none;
-    height: 30px;
-    display: block;
-  }
+  color: $white;
+  line-height: 30px;
+  text-decoration: none;
+  height: 30px;
+  display: inline-block;
 
   &.bottom-right {
     position: absolute;
@@ -50,36 +40,27 @@ a {
   }
 }
 
-.angled-cta-left a {
-  padding: 0 20px 0 10px;
-}
-
-.angled-cta-right a {
-  padding: 0 40px 0 20px;
-}
-
 .angled-cta-left {
 
-    a::before {
-      position: absolute;
-      left: -31px;
-    }
+  padding: 0 20px 0 10px;
 
-    &.dark-green-background a::before {
-        content: url("/static/img/cta_digonal_trans-darkgrn.png");
-    }
+  &::before {
+    position: absolute;
+    left: -31px;
+    content: url("/static/img/cta_digonal_trans-darkgrn.png");
+  }
 
-    &.light-green-background a::before {
-        content: url("/static/img/cta_digonal_trans-lightgrn.png");
-    }
 }
 
-.angled-cta-right a::before {
-  content: url("/static/img/angle_26_trans-white-bottom-right.png");
-  position: absolute;
-  right: 0;
-  width: 26px;
-  height: 26px;
+.angled-cta-right {
+
+  padding: 0 40px 0 20px;
+
+  &::before {
+    content: url("/static/img/cta_digonal_grn-trans.png");
+    position: absolute;
+    right: -31px;
+  }
 
 }
 
