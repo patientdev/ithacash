@@ -7,15 +7,18 @@ textarea {
   border: 1px solid $medium-gray;
   font-weight: 100;
 
-  :focus {
+  &:focus {
     outline: 1px solid $light-green;
   }
 }
 
+textarea {
+    height: 20em;
+}
+
 .helptext {
-  opacity: 0;
   display: none;
-  transition: all 1s ease;
+  z-index: 10;
 }
 
 .helptext-wrapper {
@@ -23,7 +26,6 @@ textarea {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 300px;
 
   textarea + & {
       vertical-align: top;

@@ -100,7 +100,20 @@ def page_creator(request):
 
         if form.is_valid():
 
-            print form
+            new_page = form.save(commit=False)
+
+            content = request.POST.get('content')
+
+            new_page_content = ''
+
+            for line in content.splitlines():
+                if line:
+                    if '<h3>' not in line:
+                        line = '<p>%s</p>' % line
+
+                    new_page_content += '%s\n\n' % line
+
+            new_page.content = new_page_content
 
             form.save()
 
