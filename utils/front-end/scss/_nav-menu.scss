@@ -41,10 +41,11 @@ h1 img {
     margin: 0;
     list-style-type: none;
     float: right;
+    width: 750px;
 }
 
 #nav-menu ul li ul {
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, .6);
+    // box-shadow: 4px 4px 10px rgba(0, 0, 0, .6);
 }
 
 /*#nav-menu > ul > li:first-of-type::before {
@@ -57,7 +58,7 @@ h1 img {
 }*/
 
 #nav-menu li {
-    padding: 0 5px 8px 5px;
+    padding: 0 5px 10px 5px;
     margin: 0;
     display: inline-block;
     position: relative;
@@ -74,14 +75,6 @@ h1 img {
     padding-bottom: 5px;
     line-height: 1em;
     vertical-align: bottom;
-}
-
-#nav-menu ul a:hover {
-    border-bottom: 3px solid #89af3e;
-}
-
-#nav-menu > ul > li#nav-how-it-works a:hover {
-    border: none;
 }
 
 /* Level 1 */
@@ -199,8 +192,13 @@ h1 img {
     content: "blah";
 }
 
-#nav-get-started a, #nav-login a {
-    vertical-align: top;
+#nav-get-started,
+#nav-login {
+    float: right;
+
+    a {
+        vertical-align: top;
+    }
 }
 
 header .angled-footer {

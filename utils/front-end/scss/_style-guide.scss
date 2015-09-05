@@ -1,82 +1,103 @@
-a {
-  color: $light-green;
+a
+{
+    color: $light-green;
 }
 
-.logo {
-  width: 250px;
+.logo
+{
+    width: 250px;
 }
 
-.mark-tiny {
-  width: 25px;
+.mark-tiny
+{
+    width: 25px;
 }
 
-.mark-small {
-  width: 50px;
+.mark-small
+{
+    width: 50px;
 }
 
-.mark-medium {
-  width: 100px;
+.mark-medium
+{
+    width: 100px;
 }
 
-.mark-large {
-  width: 200px;
+.mark-large
+{
+    width: 200px;
 }
 
 .angled-cta-left,
-.angled-cta-right {
-  text-transform: uppercase;
-  position: relative;
-  font-size: 14px;
-  color: $white;
-  line-height: 30px;
-  text-decoration: none;
-  height: 30px;
-  display: inline-block;
+.angled-cta-right
+{
+    font-size: 14px;
+    line-height: 30px;
 
-  &.bottom-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
+    position: relative;
+
+    display: inline-block;
+
+    height: 30px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: $white;
+
+    &.bottom-right
+    {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }
 
-.angled-cta-left {
+.angled-cta-left
+{
+    padding: 0 20px 0 10px;
 
-  padding: 0 20px 0 10px;
+    &::before
+    {
+        position: absolute;
+        left: -31px;
 
-  &::before {
-    position: absolute;
-    left: -31px;
-    content: url("/static/img/cta_digonal_trans-darkgrn.png");
-  }
-
+        content: url('/static/img/cta_digonal_trans-darkgrn.png');
+    }
 }
 
-.angled-cta-right {
+.angled-cta-right
+{
+    padding: 0 40px 0 20px;
 
-  padding: 0 40px 0 20px;
+    &::before
+    {
+        position: absolute;
+        right: -31px;
 
-  &::before {
-    content: url("/static/img/cta_digonal_grn-trans.png");
-    position: absolute;
-    right: -31px;
-  }
-
+        content: url('/static/img/cta_digonal_grn-trans.png');
+    }
 }
 
-.link-cta {
-  text-decoration: none;
-  position: relative;
-  padding-left: 20px;
+.cta-link
+{
+    position: relative;
 
-  &::before {
-      content: ">";
-      position: absolute;
-      left: 0;
-      transition: all .15s ease-out;
-  }
+    padding-left: 20px;
 
-  &:hover::before {
-      left: 5px;
-  }
+    text-decoration: none;
+
+    &::before
+    {
+        position: absolute;
+        left: 0;
+
+        content: '>';
+        transition: all .15s ease-out;
+    }
+
+    &:hover::before
+    {
+        left: 5px;
+    }
 }
