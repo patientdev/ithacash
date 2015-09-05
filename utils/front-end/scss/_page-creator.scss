@@ -1,0 +1,35 @@
+#styling-elements
+{
+    line-height: 1em;
+
+    width: 600px;
+}
+
+.styling-element
+{
+    display: inline-block;
+
+    margin: 10px;
+    padding: 10px 20px;
+
+    vertical-align: middle;
+
+    border: 2px solid $light-green;
+    border-radius: 10px;
+}
+
+.styling-element *
+{
+    margin: 0;
+}
+
+.styling-element:hover
+{
+    cursor: pointer;
+
+    border: 2px solid $dark-green;
+}
+
+.styling-element span {
+    display: none;
+}
