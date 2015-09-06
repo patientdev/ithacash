@@ -1,4 +1,4 @@
-strong {
+strong, b {
   color: $dark-green;
 }
 
@@ -12,7 +12,7 @@ mark {
   color: $white;
 }
 
-.dark-green-background strong, .dark-green-background h2 {
+.dark-green-background strong, .dark-green-background b, .dark-green-background h2 {
     color: $white;
 }
 
@@ -21,7 +21,7 @@ mark {
   color: $white;
 }
 
-.light-green-background strong, .light-green-background h2 {
+.light-green-background strong, .light-green-background b, .light-green-background h2 {
     color: $white;
 }
 
