@@ -1,3 +1,13 @@
+header .angled-footer {
+    display: block;
+    height: 26px;
+    width: 26%;
+    position: absolute;
+    bottom: -26px;
+    left: 0;
+    background-color: $white;
+}
+
 #nav-home {
     display: inline-block;
     background-color: white;
@@ -81,6 +91,10 @@ h1 img {
 #nav-menu ul li { position: relative; }
 #nav-menu ul li:hover {
     background-color: rgb(232, 240, 217);
+}
+
+#nav-menu ul #nav-get-started:hover, #nav-menu ul #nav-login:hover {
+    background-color: transparent;
 }
 
 /* Level 2 */
@@ -201,18 +215,24 @@ h1 img {
     }
 }
 
-header .angled-footer {
-    background-color: white;
-    height: 18px;
-    width: 30%;
+#nav-menu .angled-footer {
+    display: block;
     position: absolute;
-    bottom: -18px; left: 0;
+    bottom: 0;
+    left: 0;
+    height: 26px;
+    bottom: -26px;
+    width: 223px;
+    background-color: $white;
+    border-top: 2px solid $white;
 }
 
-header .angled-footer::after {
-    content: url(/static/img/nav/angle_18_header_white-trans.png);
+#nav-menu .angled-footer::after {
+    content: url('/static/img/angle_26_trans-white-top-left.png');
     position: absolute;
-    right: -18px;
+    right: -26px;
+    top: -4px;
+    border-top: 2px solid $white;
 }
 
 #nav-menu ul li#nav-get-started a, #nav-menu ul li#nav-login a {

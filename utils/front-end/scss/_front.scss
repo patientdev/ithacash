@@ -153,26 +153,6 @@ header .angled-box {
     line-height: 1em;
 }
 
-header .angled-header {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 26px;
-    bottom: -26px;
-    width: 363px;
-    background-color: $white;
-    border-top: 2px solid $white;
-}
-
-header .angled-header::after {
-    content: url('/static/img/angle_26_trans-white-top-left.png');
-    position: absolute;
-    right: -26px;
-    top: -4px;
-    border-top: 2px solid $white;
-}
-
 #intrinsically-local {
     position: absolute;
     width: 432px;
