@@ -15,7 +15,7 @@
 
 body {
   color: $medium-gray;
-  font: 300 16px/1.4em "Open Sans", Helvetica, Arial, sans-serif;
+  font: 400 16px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
   letter-spacing: .5px;
 }
 
@@ -24,6 +24,7 @@ h1 {
     font-size: 3.4rem;
     line-height: 1em;
     color: $light-green;
+    margin-bottom: 10px;
 }
 
 h2 {
@@ -43,6 +44,8 @@ h3 {
   font-weight: 600;
   margin-top: 40px;
 }
+
+h3:first-child { margin-top: 0; }
 
 blockquote {
   border-left: 3px solid $light-green;
@@ -69,8 +72,9 @@ li::before {
 
 .prominent-graph {
     font-size: 1.2rem;
-    line-height: 1.6em;
+    line-height: 1.5em;
     letter-spacing: 1px;
+    font-weight: 300;
 }
 
 .header-graph {

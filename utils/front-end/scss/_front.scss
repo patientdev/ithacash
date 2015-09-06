@@ -163,12 +163,16 @@ header .angled-box {
     font-size: 2em;
 }
 
-.more-arrow {
+#more-arrow {
     position: absolute;
     bottom: -45px;
     width: 415px;
     text-align: center;
     z-index: 100;
+}
+
+#more-arrow input:focus {
+    outline: none;
 }
 
 #intro {

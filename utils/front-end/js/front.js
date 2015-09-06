@@ -15,14 +15,24 @@ $(function() {
 
     // })
 
-    // $('#panels').slick({
-    // 	  infinite: true,
-    // 	  autoplay: true,
-    // 	  autoplaySpeed: 7000,
-    // 	  prevArrow: $('#left-arrow button'),
-    // 	  nextArrow: $('#right-arrow button')
-    // }).on('afterChange', function() {
-    // 	var currentSlide = $(this).slick('slickCurrentSlide');
-    // 	if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
-    // });
+    $('#panels').slick({
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 7000,
+          prevArrow: $('#left-arrow button'),
+          nextArrow: $('#right-arrow button')
+    }).on('afterChange', function() {
+        var currentSlide = $(this).slick('slickCurrentSlide');
+        if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
+    });
+
+    $('#more-arrow').click(function() {
+        windowHeight = $(window).height();
+        sectionHeight = $('#invigorating-our-economy').height();
+        offset = $('#invigorating-our-economy').offset().top + 52 - ((windowHeight - sectionHeight)/2);
+
+        $('html, body').animate({
+            scrollTop: offset + 'px'
+        });
+    })
 })
