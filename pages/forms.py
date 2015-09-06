@@ -29,4 +29,4 @@ class PageCreatorForm(FlatpageForm):
     enable_comments = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'hide'}), initial=False, required=False)
     registration_required = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'hide'}), initial=False, required=False)
     sites = forms.ChoiceField(widget=forms.Select(attrs={'class': 'hide'}), choices=(('1', 'ithacash.com'),), initial='1')
-    template_name = forms.CharField(help_text="The template that this page will be based on (defaults to flatpages/default.html)", widget=forms.TextInput(), initial="flatpages/default.html")
+    template_name = forms.CharField(help_text="The template that this page will be based on (defaults to flatpages/template.html)", widget=forms.TextInput(), initial="flatpages/template.html")

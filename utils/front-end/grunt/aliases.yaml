@@ -1,10 +1,16 @@
 default: []
 
-dev:
-  description: 'Testing and serving'
+build:
+  description: 'Prep for production'
   tasks:
     - 'uglify'
     - 'sass'
     - 'autoprefixer'
     - 'csslint'
+
+dev:
+  description: 'Testing and serving'
+  tasks:
+    - 'sass'
+    - 'uglify'
     - 'watch'
