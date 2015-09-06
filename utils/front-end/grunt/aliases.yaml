@@ -12,5 +12,6 @@ dev:
   description: 'Testing and serving'
   tasks:
     - 'sass'
+    - 'autoprefixer'
     - 'uglify'
     - 'watch'

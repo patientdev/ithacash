@@ -4,7 +4,7 @@ module.exports = {
     },
     css: {
         files: ["scss/*.scss", "<%= django.static %>/../../templates/style-guide.html"],
-        tasks: ["sass", "autoprefixer", "csslint"]
+        tasks: ["sass", "autoprefixer"]
     },
     js: {
         files: ["js/*.js"],
