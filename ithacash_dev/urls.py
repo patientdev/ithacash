@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
     url(r'^everyone/$', 'pages.views.everyone'),
-    url(r'^test_utils/error_test/$', error_view)
+    url(r'^test_utils/error_test/$', error_view),
+    url(r'^page-creator/$', 'pages.views.page_creator'),
 ]
