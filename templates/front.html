@@ -7,6 +7,14 @@
     section {
       padding: 60px 0;
     }
+
+    footer {
+        margin-top: 0;
+    }
+
+    #who-uses-it {
+        min-height: 600px;
+    }
 </style>
 {% endblock %}
 
@@ -31,7 +39,7 @@
 <div class="container">
     <div class="right">
         <h2>Invigorating Our Economy</h2>
-        <p class="prominent-graph">Money &ldquo;as usual&rdquo; isn't working. Businesses are struggling. Families are having a hard time keeping up, and many people simply can&rsquo;t get their basic needs met. External financial forces take local profits out of the area and limit local reinvestment. <strong>Ithacash plugs the leaks, fills the gaps, and provides local incentives</strong> that keep our community thriving.</p>
+        <p class="prominent-graph light-green-background">Money &ldquo;as usual&rdquo; isn't working. Businesses are struggling, families are having a hard time keeping up, and many people simply can&rsquo;t get their basic needs met. External financial forces take local profits out of the area and limit local reinvestment. <b>Ithacash plugs the leaks, fills the gaps, and provides local incentives</b> that keep our community thriving.</p>
         <a href="" class="angled-cta-left bottom-right dark-green-background">Spending a Difference</a>
     </div>
 </div>
@@ -224,9 +232,11 @@
         <p><a href="" class="cta-link">As Easy As Typing</a></p>
     </div>
 </div>
+<div class="angled-footer"></div>
 </section>
 
 <section id="who-uses-it" class="light-green-background">
+<div class="angled-header">Who Uses It</div>
 <div class="container">
 
 <div class="left">
@@ -237,7 +247,11 @@
 <h2>Marketplace Accepted</h2>
 <p class="prominent-graph">Look for this sticker on your favorite store front to see who is currently accepting <strong>Ithaca Dollars (i$)</strong> or view our Directory</p>
 
-<p><a href="" class="cta-link">View Map</a></p>
+<div>
+<img src="{% static 'img/img_window_cling.png' %}" style="float: left;"><a href="" class="cta-link" style="float: right;">View Map</a>
+
+<div style="clear: both;"></div>
+</div>
 
 <a href="" class="angled-cta-left bottom-right dark-green-background">Directory</a>
 </div>
