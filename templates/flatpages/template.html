@@ -1,0 +1,186 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" class="clear">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Money Made for Main St." />
+
+        <title>{% block title %}{{ flatpage.title }} :: Ithacash{% endblock %}</title>
+
+        <link href='//fonts.googleapis.com/css?family=Maven+Pro:500,400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+        <style>
+            #sidebar {
+                width: 25%;
+                float: right;
+            }
+
+            article {
+                width: 75%;
+                float: left;
+                padding-right: 60px;
+            }
+
+            #headline {
+                background-image: url('/static/img/img_pattern_hex_green.png');
+                background-size: cover;
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+
+            h1 {
+                font-family: "Open Sans";
+                font-weight: 400;
+                color: white;
+                font-size: 1.6em;
+
+            }
+        </style>
+        {% block styles %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{% static 'img/IthaCash_icon_2color.png' %}">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>if (!window.jQuery) { document.write('<script src="/static/js/jquery-1.11.3.min.js"><\/script>'); }</script>
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@ithacash">
+        <meta name="twitter:title" content="Ithacash: Money Made for Main St.">
+        <meta name="twitter:description" content="Money Made for Main St.">
+        <meta name="twitter:creator" content="@ithacash">
+        <meta name="twitter:image" content="https://ithacash.com/img/IthaCash_icon_2color.png">
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="Ithacash: Money Made for Main St." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ithacash.com/" />
+        <meta property="og:image" content="https://ithacash.com/img/IthaCash_icon_2color.png" />
+        <meta property="og:description" content="Money Made for Main St." />
+        <meta property="og:site_name" content="Ithacash" />
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-59984381-2', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+    </head>
+    <body class="clear">
+
+    <div id="container" class="clear">
+
+        <header>
+            <div class="container">
+            {% block header %}
+            <div id="header-top">
+                <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+            </div>
+
+            <div id="header-contact">
+                <p>A regional benefit currency</p>
+                <p>607&ndash;391&ndash;2789</p>
+                <p><a href="/contact/">Contact Us</a></p>
+            </div>
+
+            <div id="nav-menu" class="clear">
+                <p id="nav-home"><a href="/">Home</a></p>
+                <ul>
+                    <li><a href="">Why Ithacash</a></li>
+                    <li id="nav-how-it-works"><a href="">How It Works</a>
+                        <ul>
+                            <li><a href="">Overview</a></li>
+                            <li><a href="">General Info</a>
+                                <ul>
+                                    <li><a href="">Incentives</a></li>
+                                    <li><a href="">Fees</a></li>
+                                    <li><a href="">Earning &amp; Spending</a></li>
+                                    <li><a href="">Issuance</a></li>
+                                    <li><a href="">Backing</a></li>
+                                    <li><a href="">Circulation</a></li>
+                                    <li><a href="">Redemption</a></li>
+                                    <li><a href="">Taxes &amp; Regulations</a>
+                                        <ul>
+                                            <li><a href="">NYS Dept. of Finance</a></li>
+                                            <li><a href="">Services</a></li>
+                                            <li><a href="">FINCEN</a></li>
+                                            <li><a href="">Money Transmission</a></li>
+                                            <li><a href="">Barter Industry</a></li>
+                                            <li><a href="">Regulations</a></li>
+                                            <li><a href="">Reporting to IRS</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">Paper Currency</a></li>
+                            <li><a href="">Digital Currency</a></li>
+                            <li><a href="">TXT2PAY</a></li>
+                            <li><a href="">PAYITFWD</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Directory</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Shop</a></li>
+                    <li id="nav-get-started"><a href="/accounts/signup" class="green-button">Get Started</a></li>
+                    <li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
+                </ul>
+            </div>
+            {% endblock %}
+            </div>
+        </header>
+
+        <div id="content">
+
+        <div id="headline">
+        <div class="container">
+            <h1>How It Works</h1>
+        </div>
+        </div>
+        <div class="container">
+        <h2>{{ flatpage.title }}</h2>
+            {% block content %}
+                <article>
+                    {{ flatpage.content }}
+                </article>
+            {% endblock %}
+
+             <aside id="sidebar">
+                <section>
+                    <h3>Latest Blog Article</h3>
+                    <p> Use Ithacash as a <span style="font-weight: bold">secure digital currency</span> to pay and recieve funds like a normal bank account with lower fees and built-in community support.</p>
+                     <a class="cta-link" href="">Read More</a>
+                 </section>
+                 <section>
+                     <h3>TXT2PAY</h3>
+                     <p><span style="font-weight: bold">Link any cell phone</span> (not just a smart phone) to your online account and send a secure payment with a basic text message. As easy as typing, no wallet necessary.</p>
+                     <a class="cta-link" href="">Get Connected</a>
+                 </section>
+            </aside>
+        </div>
+        </div>
+
+        <footer>
+            {% block footer %}{% endblock %}
+        </footer>
+
+    </div>
+
+    {% block scripts %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
+        </script>
+        <script src="{% static 'js/ithacash.js' %}"></script>
+    {% endblock %}
+
+    </body>
+</html>
