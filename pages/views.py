@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import mandrill, requests, json
+import mandrill
+import requests
+import json
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
 from .forms import newsletter_subscription_form, send_message_form
+from pages.forms import PageCreatorForm
 
 
 @csrf_exempt
@@ -79,5 +82,50 @@ def front(request):
 def getting_an_account(request):
     return render(request, 'getting.html')
 
+
 def everyone(request):
     return render(request, 'everyone.html')
+
+
+def style_guide(request):
+    return render(request, 'style-guide.html')
+
+
+@csrf_exempt
+def page_creator(request):
+
+    if request.method == 'POST':
+
+        form = PageCreatorForm(request.POST)
+
+        if form.is_valid():
+
+            new_page = form.save(commit=False)
+
+            content = request.POST.get('content')
+
+            new_page_content = ''
+
+            for line in content.splitlines():
+                if line:
+                    if '<h3>' not in line:
+                        line = '<p>%s</p>' % line
+
+                    new_page_content += '%s\n\n' % line
+
+            new_page.content = new_page_content
+
+            form.save()
+
+            return render(request, 'page-creator.html', {'form': PageCreatorForm()})
+
+        else:
+            return JsonResponse(form.errors, status=400)
+
+    else:
+        form = PageCreatorForm()
+
+    return render(request, 'page-creator.html', {'form': form})
+
+def template(request):
+    return render(request, 'flatpages/template.html')
