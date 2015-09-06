@@ -8,6 +8,10 @@
       padding: 60px 0;
     }
 
+    #how-it-works {
+        padding: 0;
+    }
+
     footer {
         margin-top: 0;
     }
@@ -28,7 +32,7 @@
      <a href="" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
  </div>
 
-  <div class="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
+  <div id="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
 </div>
 
 </div>
@@ -261,6 +265,5 @@
 
 {% block scripts %}
 {{ block.super }}
-<script src="{% static 'js/front.js' %}"></script>
 <script src="{% static 'js/slick/slick.js' %}"></script>
 {% endblock %}

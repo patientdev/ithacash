@@ -97,6 +97,10 @@ h1 img {
     background-color: transparent;
 }
 
+#nav-menu ul #nav-get-started:hover a, #nav-menu ul #nav-login:hover a {
+    color: #555;
+}
+
 /* Level 2 */
 #nav-menu ul li > ul { display: none; }
 #nav-menu ul li > ul {
