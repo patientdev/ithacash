@@ -16,10 +16,6 @@ p {
     display: none;
 }
 
-section {
-  padding: 60px 0;
-}
-
 .left {
     width: 45%;
     float: left;
@@ -64,15 +60,6 @@ header {
     font-size: 1.2em;
 }
 
-header .angled-footer {
-    width: 200px;
-    background-color: white;
-    position: absolute;
-    bottom: -16px; left: 0;
-    height: 18px;
-
-}
-
 .swatch {
   display: inline-block;
   height: 200px;
@@ -81,4 +68,24 @@ header .angled-footer {
 
 .swatch:nth-of-type(1) {
   margin-right: 40px;
+}
+
+footer {
+    background-color: $dark-green;
+    color: $white;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+footer a {
+    color: $white;
+    text-decoration: none;
+    font-family: $mavenpro;
+}
+
+footer ul { margin: 0; }
+
+footer li {
+    display: inline;
+    margin: 0 10px;
 }
