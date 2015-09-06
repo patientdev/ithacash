@@ -126,3 +126,6 @@ def page_creator(request):
         form = PageCreatorForm()
 
     return render(request, 'page-creator.html', {'form': form})
+
+def template(request):
+    return render(request, 'flatpages/template.html')
