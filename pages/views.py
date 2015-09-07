@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.forms.models import model_to_dict
 import mandrill
 import requests
 import json
@@ -9,6 +10,7 @@ from django.template import Context, loader
 from django.conf import settings
 from .forms import newsletter_subscription_form, send_message_form
 from pages.forms import PageCreatorForm
+from django.contrib.flatpages.models import *
 
 
 @csrf_exempt
@@ -126,6 +128,38 @@ def page_creator(request):
         form = PageCreatorForm()
 
     return render(request, 'page-creator.html', {'form': form})
+
+
+@csrf_exempt
+def list_pages(request):
+
+    form = PageCreatorForm(request.POST or None)
+
+    if request.method == 'POST':
+
+        if request.POST.get('form') == 'edit':
+
+            url = request.POST.get('url')
+            page = FlatPage.objects.get(url=url)
+            page_dict = model_to_dict(page)
+
+            return JsonResponse({'page': page_dict})
+
+        else:
+
+            page_id = request.POST.get('form')
+
+            form = PageCreatorForm(request.POST)
+
+            if form.is_valid():
+
+                obj, created = FlatPage.objects.update_or_create(id=page_id, defaults={'title': request.POST.get('title'), 'url': request.POST.get('url'), 'content': request.POST.get('content'), 'template_name': request.POST.get('template_name')})
+
+            return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'form': form})
+
+    else:
+        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'form': form})
+
 
 def template(request):
     return render(request, 'flatpages/template.html')

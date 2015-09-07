@@ -35,4 +35,5 @@ urlpatterns = [
     url(r'^everyone/$', 'pages.views.everyone'),
     url(r'^test_utils/error_test/$', error_view),
     url(r'^page-creator/$', 'pages.views.page_creator'),
+    url(r'^page-creator/list-pages/$', 'pages.views.list_pages'),
 ]
