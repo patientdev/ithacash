@@ -133,7 +133,7 @@ def page_creator(request):
 @csrf_exempt
 def list_pages(request):
 
-    form = PageCreatorForm(request.POST or None)
+    form = PageCreatorForm()
 
     if request.method == 'POST':
 
@@ -148,8 +148,6 @@ def list_pages(request):
         else:
 
             page_id = request.POST.get('form')
-
-            form = PageCreatorForm(request.POST)
 
             if form.is_valid():
 
