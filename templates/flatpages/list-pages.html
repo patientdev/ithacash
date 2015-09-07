@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+<style>
+    #content {
+        padding-top: 0;
+    }
+
+    section {
+        padding: 0;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    tbody tr {
+        border-top: 1px solid #555;
+        border-bottom: 1px solid #555;
+    }
+
+    td, th {
+        padding: 10px;
+    }
+
+    textarea {
+        width: calc(100% - 45px);
+        color: black;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+<h1>Ithacash Subpages</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+<div class="container">
+    <div class="left">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>URL</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.title }}</td>
+                <td>{{ page.url }}</td>
+                <td><button name="form" value="edit">Edit</button></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <div class="right">
+        <form method="POST" action="" class="standard-form">
+                {{ form.sites }}
+                <p>{{ form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
+
+                <p>{{ form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.title.help_text|safe }}</span></span></p>
+
+                <p>{{ form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.template_name.help_text|safe }}</span></span></p>
+
+                <p>{{ form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.content.help_text|safe }}</span></span></p>
+
+                <h3>Styling elements</h3>
+
+                <div id="styling-elements">
+                    <div class="styling-element">
+                        <a>link</a>
+                        <span><a href=""></a></span>
+                    </div>
+
+                    <div class="styling-element">
+                        <h3>Subheading</h3>
+                        <span><h3></h3></span>
+                    </div>
+
+                    <div class="styling-element">
+                        <a class="cta-link">CTA link</a>
+                        <span><a class="cta-link" href=""></a></span>
+                    </div>
+
+                    <div class="styling-element">
+                        <strong>bold text</strong>
+                        <span><strong></strong></span>
+                    </div>
+
+                    <div class="styling-element">
+                        <i>italic text</i>
+                        <span><i></i></span>
+                    </div>
+                </div>
+
+                <p><button name="form" value="update">Update</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('.left button').click(function() {
+        pageURL = $(this).parent().prev().text();
+
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: {url:pageURL, form:'edit'}
+        })
+        .success(function( response ) {
+            console.log(response);
+            page = response.page;
+
+            $('#id_url').val(page.url);
+            $('#id_title').val(page.title);
+            $('#id_content').val(page.content);
+            $('.right button').val(page.id);
+        });
+    })
+</script>
+{% endblock %}
