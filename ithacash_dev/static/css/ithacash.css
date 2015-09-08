@@ -91,14 +91,14 @@ header {
     font-size: 1.2em;
 }
 
-li#sign-up a, li#buy-i-dollars a {
+li#sign-up a, li#log-in a {
     color: white;
     line-height: 1em;
     padding-bottom: 11px;
     font-size: .8em;
 }
 
-li#sign-up a:hover, li#buy-i-dollars a:hover {
+li#sign-up a:hover, li#log-in a:hover {
     border: none;
 }
 
