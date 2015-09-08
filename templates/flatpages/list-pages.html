@@ -133,7 +133,7 @@
 
             $('#id_url').val(page.url);
             $('#id_title').val(page.title);
-            $('#id_content').val(page.content).replace('<p>', '').replace('</p>', '');
+            $('#id_content').val(page.content.replace(/<p>/gi, '').replace(/<\/p>/gi, ''));
             $('.right button').val(page.id);
         });
     })
