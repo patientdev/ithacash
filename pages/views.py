@@ -8,9 +8,10 @@ import json
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
-from .forms import newsletter_subscription_form, send_message_form
-from pages.forms import PageCreatorForm
-from django.contrib.flatpages.models import *
+from pages.forms import PageCreatorForm, newsletter_subscription_form, send_message_form
+from pages.models import IthacashSubPages
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages.forms import FlatpageForm
 
 
 @csrf_exempt
@@ -133,25 +134,25 @@ def page_creator(request):
 @csrf_exempt
 def list_pages(request):
 
-    form = PageCreatorForm()
+    form = PageCreatorForm(request.POST or None)
 
     if request.method == 'POST':
 
         if request.POST.get('form') == 'edit':
 
-            url = request.POST.get('url')
-            page = FlatPage.objects.get(url=url)
+            page_id = request.POST.get('id')
+            page = FlatPage.objects.get(id=page_id)
             page_dict = model_to_dict(page)
 
             return JsonResponse({'page': page_dict})
 
         else:
 
-            page_id = request.POST.get('form')
+            form = PageCreatorForm(request.POST)
 
             if form.is_valid():
 
-                obj, created = FlatPage.objects.update_or_create(id=page_id, defaults={'title': request.POST.get('title'), 'url': request.POST.get('url'), 'content': request.POST.get('content'), 'template_name': request.POST.get('template_name')})
+                form.save()
 
             return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'form': form})
 
