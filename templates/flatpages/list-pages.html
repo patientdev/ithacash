@@ -52,16 +52,20 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Title</th>
                 <th>URL</th>
+                <th>Heading</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
         {% for page in pages %}
             <tr>
+                <td>{{ page.id }}</td>
                 <td>{{ page.title }}</td>
                 <td>{{ page.url }}</td>
+                <td>{{ page.subpage.heading }}</td>
                 <td><button name="form" value="edit">Edit</button></td>
             </tr>
         {% endfor %}
@@ -71,8 +75,13 @@
 
     <div class="right">
         <form method="POST" action="" class="standard-form">
-                {{ form.sites }}
+                <div class="hide">
+                    {{ form.enable_comments }} {{ form.registration_required }} {{ form.sites }} {{ form.subpage }}
+                </div>
+
                 <p>{{ form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
+
+                <p>{{ form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.heading.help_text|safe }}</span></span></p>
 
                 <p>{{ form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.title.help_text|safe }}</span></span></p>
 
@@ -109,7 +118,7 @@
                     </div>
                 </div>
 
-                <p><button name="form" value="update">Update</button></p>
+                <p><button>Update</button></p>
             </div>
         </form>
     </div>
@@ -120,12 +129,12 @@
 {% block scripts %}
 <script>
     $('.left button').click(function() {
-        pageURL = $(this).parent().prev().text();
+        page_id = $(this).parent().siblings(':first').text();
 
         $.ajax({
             type: "POST",
             url: "",
-            data: {url:pageURL, form:'edit'}
+            data: {id:parseInt(page_id), form:'edit'}
         })
         .success(function( response ) {
             console.log(response);
@@ -134,6 +143,7 @@
             $('#id_url').val(page.url);
             $('#id_title').val(page.title);
             $('#id_content').val(page.content.replace(/<p>/gi, '').replace(/<\/p>/gi, ''));
+            $('#id_subpage select').val(page.subpage);
             $('.right button').val(page.id);
         });
     })
