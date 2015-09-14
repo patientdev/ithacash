@@ -52,7 +52,7 @@ class Command(BaseCommand):
                         'attachments': [
                             {
                                 'type': 'text/csv',
-                                'name': 'new_ithacash_users_2015_08_30',
+                                'name': 'new_ithacash_users_%s' % datetime.now().strftime('%Y_%m_%d'),
                                 'content': b64encode(csv_to_email.getvalue())
                             }
                         ]
