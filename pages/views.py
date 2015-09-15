@@ -8,8 +8,7 @@ import json
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
-from pages.forms import PageCreatorForm, newsletter_subscription_form, send_message_form
-from pages.models import IthacashSubPages
+from pages.forms import *
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 
@@ -97,67 +96,63 @@ def style_guide(request):
 @csrf_exempt
 def page_creator(request):
 
-    if request.method == 'POST':
-
-        form = PageCreatorForm(request.POST)
-
-        if form.is_valid():
-
-            new_page = form.save(commit=False)
-
-            content = request.POST.get('content')
-
-            new_page_content = ''
-
-            for line in content.splitlines():
-                if line:
-                    if '<h3>' not in line:
-                        line = '<p>%s</p>' % line
-
-                    new_page_content += '%s\n\n' % line
-
-            new_page.content = new_page_content
-
-            form.save()
-
-            return render(request, 'page-creator.html', {'form': PageCreatorForm()})
-
-        else:
-            return JsonResponse(form.errors, status=400)
-
-    else:
-        form = PageCreatorForm()
-
-    return render(request, 'page-creator.html', {'form': form})
-
-
-@csrf_exempt
-def list_pages(request):
-
-    form = PageCreatorForm(request.POST or None)
+    flatpage_form = FlatPageForm()
+    subpage_form = SubPageForm()
 
     if request.method == 'POST':
 
         if request.POST.get('form') == 'edit':
 
             page_id = request.POST.get('id')
-            page = FlatPage.objects.get(id=page_id)
-            page_dict = model_to_dict(page)
+            flatpage = FlatPage.objects.get(id=page_id)
+            flatpage_dict = model_to_dict(flatpage)
+            subpage = SubPage.objects.get(flatpage=page_id)
+            subpage_dict = model_to_dict(subpage)
 
-            return JsonResponse({'page': page_dict})
+            return JsonResponse({'flatpage': flatpage_dict, 'subpage': subpage_dict})
 
         else:
 
-            form = PageCreatorForm(request.POST)
+            page_url = request.POST.get('url')
 
-            if form.is_valid():
+            print page_url
 
-                form.save()
+            try:
+                flatpage_instance = FlatPage.objects.get(url=page_url)
+                subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
+            except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
+                flatpage_instance = None
+                subpage_instance = None
 
-            return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'form': form})
+            flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
+            subpage_form = SubPageForm(request.POST, instance=subpage_instance)
+
+            if flatpage_form.is_valid() and subpage_form.is_valid():
+
+                flatpage = flatpage_form.save(commit=False)
+
+                content = request.POST.get('content')
+
+                flatpage_content = ''
+
+                for line in content.splitlines():
+                    if line:
+                        if '<h3>' not in line:
+                            line = '<p>%s</p>' % line
+
+                        flatpage_content += '%s\n\n' % line
+
+                flatpage.content = flatpage_content
+                flatpage.save()
+
+                subpage = subpage_form.save(commit=False)
+                subpage.flatpage = flatpage
+                subpage.save()
+
+            return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'form': form})
+        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
 
 def template(request):

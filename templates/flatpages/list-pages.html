@@ -76,18 +76,18 @@
     <div class="right">
         <form method="POST" action="" class="standard-form">
                 <div class="hide">
-                    {{ form.enable_comments }} {{ form.registration_required }} {{ form.sites }} {{ form.subpage }}
+                    {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }} {{ flatpage_form.id }}
                 </div>
 
-                <p>{{ form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
 
-                <p>{{ form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.heading.help_text|safe }}</span></span></p>
+                <p>{{ subpage_form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.heading.help_text|safe }}</span></span></p>
 
-                <p>{{ form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.title.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.title.help_text|safe }}</span></span></p>
 
-                <p>{{ form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.template_name.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.template_name.help_text|safe }}</span></span></p>
 
-                <p>{{ form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.content.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.content.help_text|safe }}</span></span></p>
 
                 <h3>Styling elements</h3>
 
@@ -136,15 +136,20 @@
             url: "",
             data: {id:parseInt(page_id), form:'edit'}
         })
+        .always(function( response ) {
+            console.log(response);
+        })
         .success(function( response ) {
             console.log(response);
-            page = response.page;
+            flatpage = response.flatpage;
+            subpage = response.subpage;
 
-            $('#id_url').val(page.url);
-            $('#id_title').val(page.title);
-            $('#id_content').val(page.content.replace(/<p>/gi, '').replace(/<\/p>/gi, ''));
-            $('#id_subpage select').val(page.subpage);
-            $('.right button').val(page.id);
+            $('#id_url').val(flatpage.url);
+            $('#id_title').val(flatpage.title);
+            $('#id_content').val(flatpage.content.replace(/<p>/gi, '').replace(/<\/p>/gi, ''));
+            $('#id_subpage select').val(subpage.flatpage);
+            $('#id_heading').val(subpage.heading);
+            $('.right button').val(flatpage.id);
         });
     })
 </script>
