@@ -70,9 +70,6 @@ $(function() {
             method: 'POST',
             data: data
         })
-        .always(function( response ) {
-            console.log(response);
-        })
         .fail(function( response ){
 
             if ( response.status == 400 ) {

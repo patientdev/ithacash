@@ -77,6 +77,7 @@ def signup_phase_one(request):
     if request.method == 'POST':
 
         address = request.POST.get('address')
+
         if form.is_valid():
 
             if Email.objects.filter(address=address).exists():
