@@ -8,4 +8,4 @@ urlpatterns = [
     url(r'^create_account/(?P<email_key>\w+)', 'accounts.views.create_account', name="account_application"),
     url(r'^review/$', 'accounts.views.review'),
     url(r'^list_accounts/$', 'accounts.views.list_accounts'),
-    ]
+]
