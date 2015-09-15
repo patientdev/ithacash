@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.flatpages.forms import FlatpageForm
-from pages.models import IthacashSubPages
+from pages.models import SubPage
 from django.contrib.flatpages.models import FlatPage
 
 
@@ -18,22 +18,26 @@ class send_message_form(forms.Form):
     message = forms.CharField(max_length=255, label='', widget=forms.Textarea(attrs={'placeholder': 'Name'}))
 
 
-class PageCreatorForm(FlatpageForm):
-
-    class Meta:
-        model = IthacashSubPages
-        fields = '__all__'
+class FlatPageForm(FlatpageForm):
 
     def __init__(self, *args, **kwargs):
-        super(PageCreatorForm, self).__init__(*args, **kwargs)
+        super(FlatPageForm, self).__init__(*args, **kwargs)
 
     url = forms.CharField(help_text="e.g. /how-it-works/general-info/earning-spending/", label="", widget=forms.TextInput(attrs={'placeholder': 'Page URL'}))
     title = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Title'}))
     content = forms.CharField(help_text="Please follow the <a href='/style-guide/' target='_blank'>Ithacash Web Style Guide</a>", label="", widget=forms.Textarea(attrs={'placeholder': 'Page Content'}))
-    heading = forms.CharField(help_text="e.g. How It Works", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Heading'}))
 
     # Default values
     enable_comments = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'hide'}), required=False)
     registration_required = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'hide'}), required=False)
     sites = forms.ChoiceField(widget=forms.Select(attrs={'class': 'hide'}), choices=(('1', 'ithacash.com'),), initial='1')
     template_name = forms.CharField(help_text="The template that this page will be based on (defaults to flatpages/template.html)", widget=forms.TextInput(), initial="flatpages/template.html")
+
+
+class SubPageForm(forms.ModelForm):
+
+    class Meta:
+        model = SubPage
+        fields = {'heading'}
+
+    heading = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Heading'}))
