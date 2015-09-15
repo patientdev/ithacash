@@ -112,6 +112,8 @@ class CyclosCsvWriter(object):
 
             mapped_dict['creationdate'] = mapped_dict['creationdate'].strftime('%m/%d/%Y')
 
+            # Cyclos chokes on equivalent mobile and landline numbers,
+            # so blank the landline if that's true
             if mapped_dict['landline[identifier].number'] and mapped_dict['landline[identifier].number'] == mapped_dict['mobile[identifier].number']:
                 mapped_dict['landline[identifier].number'] = ''
 

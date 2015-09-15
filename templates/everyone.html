@@ -1,39 +1,146 @@
 {% extends 'base.html' %}
-
 {% load staticfiles %}
 
 {% block title %}Everyone{% endblock %}
 
 {% block styles %}
+<link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
 <style>
-body {
-    font-size: 1.6em;
-    color: #666;
-}
+    #content {
+        padding-top: 0;
+        padding-bottom: 60px;
+    }
 
-header {
-    padding: 0;
-}
+    h2 {
+        text-align: left;
+        font-size: 2em;
+        margin-top: 40px;
+    }
 
-h1 img { width: auto; }
+    h3 {
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
 
-#container {
-    width: 600px;
-    margin: auto;
-    padding-top: 60px;
-    position: relative;
-}
+    h2 + p {
+        margin-top: 10px;
+    }
+
+    h3 + p {
+        margin-top: 5px;
+    }
 </style>
 {% endblock %}
 
-{% block header %}
-    <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
-{% endblock %}
-
 {% block content %}
-<p>Thanks for participating in the <strong>Ithacash Art Contest</strong>. We&rsquo;ll be posting the full submission guidelines very soon.</p>
+<div class="container">
+<h1 id="headline">Ithacash Art Contest</h1>
 
-<p>If you are working on a submission, keep going at whatever size feels right or use the template below for better alignment to the new Ithaca Dollar design. We can&rsquo;t wait to see what you create!</p>
-
-<p><a class="green-button" href="{% static 'pdf/Ithacash Art Contest Template.pdf' %}">Download Template</a></p>
+<blockquote>
+    <p><strong>Ithacash is calling for art submissions for the new One Ithaca Dollar bill (i$1).</strong></p>
+</blockquote>
+<p>We think that the real celebrities of Tompkins County are the every-day people who live, work, and shop in the area... the people who put their energy, time, and commitment into the community to make it a better place for everyone.<br />
+  <br />
+  With the pdf template below, draw, paint, sketch, or otherwise create an image depicting “the Commons” and/or “the Commoner” and enter to win Ithacash prizes and your chance to have your artwork selected for a limited collectors series of the One Ithaca Dollar bill. Pretty much anything goes, but we’ll pick the ideas and final creations that best represent these concepts as the winners.<br />
+  <br />
+You can create an entry by making art on this piece of paper, or you can create a larger piece for submission physically or digitally. All art submitted will be reviewed by a jury of people from the community, and all artwork must be original with full rights released for its use in order to be considered.</p>
+<h2>Submission Deadline</h2>
+<p><strong>Friday, October 16, 2015</strong> (8:00 pm) regardless of postmark<br />
+</p>
+<h2>Prizes</h2>
+<p>The finalists selected for the Ithacash Art Contest will each receive:</p>
+<p>1. i$300 in digital Ithaca Dollars. (Online Ithacash account required.)<br />
+  2. The chance to have your artwork included in a Limited Collector's Series for the i$1 Ithaca Dollar.<br />
+  3. The chance to have your artwork printed on circulating Ithacash currency.<br />
+4. Two full sets of the Limited Collector's Series that includes your artwork.</p>
+<h2>Required Entry Formats</h2>
+<p>All artwork must be either in 2D physical or digital form.</p>
+<h3>Using the Template</h3>
+<p>Download the template and use this to compose your artwork so that it fits the provided space on the i$1 bill. You can create directly on a print out of this pdf or you can use it as the basis for a more involved piece of art.</p>
+<p><button class="green-button">DOWNLOAD TEMPLATE</button></p>
+<h3>Physical Works</h3>
+<p>If you chose to break out of the pdf template format, you can submit 2D works in any size as long as it is no larger than 17&quot; (wide) x 11&quot; (tall). The final pieces will be scanned and used digitally, but may be used in a final Art Exhibit (to be determined at a later date). Please label your physical piece on the back with your full name, phone number, and email address so that we may contact you in the future.<br />
+</p>
+<h2>Digital Submissions</h2>
+<p>For art files created or captured in digital form, please submit your final work on a CD and saved in the following formats: </p>
+<h3>Preferred format:</h3>
+<p>TIFF @ 300 dpi at a minimum width size of 1800 pixels.<br />
+  JPEG @ 300 dpi at a minimum width size of 1800 pixels.<br />
+  Adobe PDF for scalable vector artwork only.</p>
+<h3>Names or Other Marks</h3>
+<p>Do not embed any information on the face of the image or file itself, such as name, copyright, logo, etc., that would interfere with the image or reproduction quality. See the Terms and Conditions below. All copyrights apply without signature or watermark.</p>
+<h3>Colors</h3>
+ <p>If selected, there is a chance that we can reproduce your artwork in full color, however, we may need to convert your image to a one color halftone. Feel free to submit in full color, but you can also include a one color version that reflects your artistic intention.</p>
+<p>The final color spaces should be Grayscale and CMYK (four color process). All other color spaces will be converted to one of these depending on the nature of the artwork. For physical works, we will scan and convert to these formats for you.</p>
+<h3>Fonts</h3>
+<p>Any fonts used should be outlined so that the final piece appears as you intended.</p>
+<h3>What is NOT accepted</h3>
+  <p>Works larger than the maximum size indicated and/or works done in three dimensions that cannot easily be scanned by a flatbed scanner. This includes sculptural works, mixed mediums that have a raised surface or reflective material that prohibit accurate image capture.</p>
+<h3>Packaging Your Artwork</h3>
+<p><strong>Templates<br />
+</strong>For works drawn directly onto the templates provided, please include your name, phone and email somewhere on the piece so that we may contact you in the future. </p>
+<p><strong>Other Submissions</strong><br />
+  For all other submissions, please complete the following form and include it with your submission. Please label your works of art and/or CD with your full name, phone number, and email address so that we may contact you in the future.</p>
+<p>ENTRY FORM (Available soon)<br />
+</p>
+<h3>Submitting Your Work</h3>
+<p>Once your artwork is completed and you have attached the required information, you can drop off or send in your submission. Just make sure we receive it by the Deadline listed above.</p>
+<h3>Checklist</h3>
+  <p>Use this checklist before you submit your works.</p>
+<ul>
+  <li>Label your paper template with your name, phone number, and email address somewhere outside of the artwork area.</li><br />
+   <li>Label your physical artwork (if different than paper template) with your name, phone number, and email address so that it will not fall off.</li><br />
+    <li>Label your submitted CD with your name, phone number, and email address. Also, please name your file in a way that will make it easier for us to identify your work: &quot;last name_first name_short title of work&quot;. It should look something like this:  &quot;Jones_Jane_TheCommoner.jpg&quot;</li><br />
+    <li>Download, complete, and include the Entry Form</li>
+</ul>
+<blockquote>
+<p><strong>Mail or drop off your submission so that it is received (regardless of postmark) on or before October 15, 2015, by 8:00 pm.</strong></p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Drop-Off</h2>
+<p>You can bring in your submission to the Ithacash Office any time we are open and there is someone to receive your package.</p>
+<h3>Drop-Off Location:</h3>
+<p>Ithacash<br />
+  Rev Incubator<br />
+  101 E. State St. #202<br />
+Ithaca, New York 14850</p>
+<h3>Drop-Off Times:</h3>
+<p>Ithacash Office hours are: Mon-Fri., 10 am to 5pm<br />
+  Extended Drop-Off Hours: Friday, October 15, 10 am - 8 pm.</p>
+<p>If hand-delivering while the Ithacash Office is closed, please do not leave your submission unattended or ask other businesses to be responsible for your entry. </p>
+<p>Please check our website for the address as the Rev offices will be relocating back to its new space in the near future.<br />
+  We are not responsible for lost or stolen works of art. If you are concerned about the safety of your physical artwork, then we suggest you scan the original and submit as a digital file.<br />
+</p>
+<h3>Mail-In</h3>
+  <p>You can also place your physical piece of art or digital CD submission (including all forms and labels) in the mail and send it to our offices:</p>
+<p>Ithacash<br />
+  Attn: Art Contest<br />
+  101 E. State St. #202<br />
+  Ithaca, New York 14850</p>
+<p>Signature-accepted deliveries are available.</p>
+<h2>The Jury &amp; Selection Criteria</h2>
+<p>Works submitted will be judged on a variety of criteria by a diverse jury of locals from the Tompkins County area. Finalists will be chosen who best exemplify the intent of the contest which is to depict an interesting and genuine interpretation of &quot;The Commons&quot; and/or &quot;The Commoner.&quot; Unlike other art contests, the idea or subject matter may be as important as the final result. We will also strive to represent a wide range of styles to highlight the diversity that makes our community so rich.</p>
+<p>If you would like to be considered as a juror for this competition, please contact Ithacash by email with some indication as to why your insights into Ithaca and Tompkins County make you qualified to judge other's works. info@ithacash.com (encrypt this email address)<br />
+</p>
+<h3>Notification of Acceptance</h3>
+<p>Entrants will be notified via email of the results on or about November 2, 2015.<br />
+</p>
+<h3>Pick Up of Works</h3>
+<p>Upon completion of the contest and any potential exhibit (if time and venue allow), we will provide Pick Up times for artists to collect their physical pieces in person. Digital submissions via CD will not be returned. We will notify all entrants via email of these times and locations when they become available.</p>
+<ul>
+    <li>The artist or his/her designee must personally retrieve all works. Ithacash is not responsible for packing, delivering, or shipping works.</li>
+    <li>Any works not retrieved by the last published retrieval time will become part of the Ithacash permanent art collection.</li>
+    <li>Ithacash is not responsible for damage to or loss of any artwork.</li>
+</ul>
+</p>
+<h2>Terms and Conditions</h2>
+<p>By submitting the ENTRY FORM, you agree that:</p>
+<ul>
+    <li>You accept all the Terms and Conditions of these rules and the call for entry.</li>
+    <li>You certify that the images submitted are your own work and that there is no copyright infringement. Ithacash will not be held liable for any infringement of rights that might arise in connection with the jurying, displaying, or use of any image.</li>
+</ul>
+<h3>Use Rights</h3>
+<p>All artists maintain copyright on their images. If your image is selected for use and/or exhibit, you grant Ithacash the right to use that image for the purpose of printing and selling a limited series of the currency, ongoing Ithacash marketing, the Ithacash website, online or physical exhibits, or other Ithacash programs without further contact or compensation from Ithacash.</p>
+<p>For information concerning situations when signed model and/or property release forms may be necessary, and for samples of wording, please visit <a href="http://ASMP.org" target="_blank">ASMP.org</a></p></p>
+</div>
 {% endblock %}
