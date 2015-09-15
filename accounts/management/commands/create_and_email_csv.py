@@ -112,6 +112,9 @@ class CyclosCsvWriter(object):
 
             mapped_dict['creationdate'] = mapped_dict['creationdate'].strftime('%m/%d/%Y')
 
+            if mapped_dict['landline[identifier].number'] and mapped_dict['landline[identifier].number'] == mapped_dict['mobile[identifier].number']:
+                mapped_dict['landline[identifier].number'] = ''
+
             self.cyclos_field_list.append(mapped_dict)
 
         self.mapped = True

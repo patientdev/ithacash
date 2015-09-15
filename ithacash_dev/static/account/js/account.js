@@ -70,6 +70,9 @@ $(function() {
             method: 'POST',
             data: data
         })
+        .always(function( response ) {
+            console.log(response);
+        })
         .fail(function( response ){
 
             if ( response.status == 400 ) {
@@ -126,6 +129,7 @@ $(function() {
 
         })
         .success(function(){
+             // Send successful form inputs to the next step
              $('form#account').unbind('submit').submit();
         })
     })
