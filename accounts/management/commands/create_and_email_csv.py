@@ -110,6 +110,8 @@ class CyclosCsvWriter(object):
 
                 mapped_dict[cyclos_field_name] = new_value
 
+            mapped_dict['creationdate'] = mapped_dict['creationdate'].strftime('%m/%d/%Y')
+
             self.cyclos_field_list.append(mapped_dict)
 
         self.mapped = True
