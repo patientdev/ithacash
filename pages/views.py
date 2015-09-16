@@ -96,7 +96,7 @@ def style_guide(request):
 @csrf_exempt
 def page_creator(request):
 
-    flatpage_form = FlatPageForm()
+    flatpage_form = FlatPageForm(initial={'sites': ('1',)})
     subpage_form = SubPageForm()
 
     if request.method == 'POST':
@@ -144,6 +144,7 @@ def page_creator(request):
 
                 flatpage.content = flatpage_content
                 flatpage.save()
+                flatpage_form.save_m2m()
 
                 subpage = subpage_form.save(commit=False)
                 subpage.flatpage = flatpage
