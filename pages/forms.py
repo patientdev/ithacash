@@ -20,9 +20,6 @@ class send_message_form(forms.Form):
 
 class FlatPageForm(FlatpageForm):
 
-    def __init__(self, *args, **kwargs):
-        super(FlatPageForm, self).__init__(*args, **kwargs)
-
     url = forms.CharField(help_text="e.g. /how-it-works/general-info/earning-spending/", label="", widget=forms.TextInput(attrs={'placeholder': 'Page URL'}))
     title = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Title'}))
     content = forms.CharField(help_text="Please follow the <a href='/style-guide/' target='_blank'>Ithacash Web Style Guide</a>", label="", widget=forms.Textarea(attrs={'placeholder': 'Page Content'}))
