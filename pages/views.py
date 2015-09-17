@@ -129,6 +129,7 @@ def page_creator(request):
 
                 flatpage_form.save(commit=False)
                 flatpage_form.save_m2m()
+                flatpage_form.save()
 
                 subpage_form.save(commit=False)
                 subpage_form.flatpage = flatpage_form
