@@ -64,7 +64,7 @@
                 <td>{{ page.title }}</td>
                 <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
                 <td>{{ page.subpage.heading }}</td>
-                <td><button name="form" value="edit">Edit</button></td>
+                <td><button name="page_id" value="{{ page.id }}">Edit</button></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -127,7 +127,8 @@
 {% block scripts %}
 <script>
     $('.left button').click(function() {
-        page_id = $(this).parent().siblings(':first').text();
+        page_id = $(this).val();
+        console.log(page_id);
 
         $.ajax({
             type: "POST",

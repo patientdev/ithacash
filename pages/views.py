@@ -9,6 +9,7 @@ from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
 from pages.forms import *
+from pages.utils import *
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 
@@ -101,10 +102,13 @@ def page_creator(request):
 
     if request.method == 'POST':
 
-        if request.POST.get('form') == 'edit':
+        if request.POST.get('form'):
 
             page_id = request.POST.get('id')
+
             flatpage = FlatPage.objects.get(id=page_id)
+            print flatpage
+            flatpage.content = PageCreatorPreProcessing(flatpage.content).rstrip()
             flatpage_dict = model_to_dict(flatpage)
             subpage = SubPage.objects.get(flatpage=page_id)
             subpage_dict = model_to_dict(subpage)
@@ -114,8 +118,6 @@ def page_creator(request):
         else:
 
             page_url = request.POST.get('url')
-
-            print page_url
 
             try:
                 flatpage_instance = FlatPage.objects.get(url=page_url)
@@ -133,16 +135,7 @@ def page_creator(request):
 
                 content = request.POST.get('content')
 
-                flatpage_content = ''
-
-                for line in content.splitlines():
-                    if line:
-                        if '<h3>' not in line:
-                            line = '<p>%s</p>' % line
-
-                        flatpage_content += '%s\n\n' % line
-
-                flatpage.content = flatpage_content
+                flatpage.content = PageCreatorPostProcessing(content)
                 flatpage.save()
                 flatpage_form.save_m2m()
 
