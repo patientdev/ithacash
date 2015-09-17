@@ -74,7 +74,7 @@
     <div class="right">
         <form method="POST" action="" class="standard-form">
                 <div class="hide">
-                    {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }} {{ flatpage_form.id }}
+                    {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
                 </div>
 
                 <p>{{ flatpage_form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <p><button>Update</button></p>
+                <p><button name="id" value="{{ flatpage_form.initial.id|default_if_none:"" }}">Update</button></p>
             </div>
         </form>
     </div>
