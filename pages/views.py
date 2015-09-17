@@ -107,8 +107,6 @@ def page_creator(request):
             page_id = request.POST.get('id')
 
             flatpage = FlatPage.objects.get(id=page_id)
-            print flatpage
-            flatpage.content = PageCreatorPreProcessing(flatpage.content).rstrip()
             flatpage_dict = model_to_dict(flatpage)
             subpage = SubPage.objects.get(flatpage=page_id)
             subpage_dict = model_to_dict(subpage)
