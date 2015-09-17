@@ -107,6 +107,8 @@ def page_creator(request):
             page_id = request.POST.get('id')
 
             flatpage = FlatPage.objects.get(id=page_id)
+            print flatpage
+            flatpage.content = PageCreatorPreProcessing(flatpage.content).rstrip()
             flatpage_dict = model_to_dict(flatpage)
             subpage = SubPage.objects.get(flatpage=page_id)
             subpage_dict = model_to_dict(subpage)
@@ -115,10 +117,8 @@ def page_creator(request):
 
         else:
 
-            page_url = request.POST.get('url')
-
             try:
-                flatpage_instance = FlatPage.objects.get(url=page_url)
+                flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
                 subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
             except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
                 flatpage_instance = None
@@ -129,13 +129,12 @@ def page_creator(request):
 
             if flatpage_form.is_valid() and subpage_form.is_valid():
 
-                flatpage.content = PageCreatorPostProcessing(content)
-                flatpage.save()
+                flatpage_form.save(commit=False)
                 flatpage_form.save_m2m()
 
-                subpage = subpage_form.save(commit=False)
-                subpage.flatpage = flatpage
-                subpage.save()
+                subpage_form.save(commit=False)
+                subpage_form.flatpage = flatpage_form
+                subpage_form.save()
 
             return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
