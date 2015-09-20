@@ -127,12 +127,10 @@ def page_creator(request):
 
             if flatpage_form.is_valid() and subpage_form.is_valid():
 
-                flatpage = flatpage_form.save(commit=False)
-                flatpage.save()
-                flatpage_form.save_m2m()
+                flatpage = flatpage_form.save()
 
                 subpage_form.save(commit=False)
-                subpage_form.flatpage = flatpage_form
+                subpage_form.flatpage = flatpage
                 subpage_form.save()
 
             return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
