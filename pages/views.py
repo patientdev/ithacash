@@ -118,7 +118,7 @@ def page_creator(request):
             try:
                 flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
                 subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
-            except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
+            except (FlatPage.DoesNotExist, SubPage.DoesNotExist, ValueError):
                 flatpage_instance = None
                 subpage_instance = None
 
@@ -127,9 +127,9 @@ def page_creator(request):
 
             if flatpage_form.is_valid() and subpage_form.is_valid():
 
-                flatpage_form.save(commit=False)
+                flatpage = flatpage_form.save(commit=False)
+                flatpage.save()
                 flatpage_form.save_m2m()
-                flatpage_form.save()
 
                 subpage_form.save(commit=False)
                 subpage_form.flatpage = flatpage_form
