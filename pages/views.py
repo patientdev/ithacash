@@ -129,9 +129,9 @@ def page_creator(request):
 
                 flatpage = flatpage_form.save()
 
-                subpage_form.save(commit=False)
-                subpage_form.flatpage = flatpage
-                subpage_form.save()
+                subpage = subpage_form.save(commit=False)
+                subpage.flatpage = flatpage
+                subpage.save()
 
             return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
