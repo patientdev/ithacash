@@ -9,4 +9,8 @@ sub vcl_recv {
     if ( !( req.url ~ "^/accounts/") ) {
       unset req.http.Cookie;
     }
+
+    if ( req.url ~ "^/page-creator/" ) {
+      return (pass);
+    }
 }
