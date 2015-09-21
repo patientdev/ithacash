@@ -17,6 +17,14 @@
         padding: 5px 10px;
     }
 
+    .left button {
+        font-size: .9em;
+    }
+
+    .del {
+        background-color: rgb(255, 94, 94);
+    }
+
     table {
         border-collapse: collapse;
     }
@@ -64,7 +72,7 @@
                 <td>{{ page.title }}</td>
                 <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
                 <td>{{ page.subpage.heading }}</td>
-                <td><button name="page_id" value="{{ page.id }}">Edit</button></td>
+                <td><button name="page_id" value="{{ page.id }}" class="edit">Edit</button> <button name="page_id" value="{{ page.id }}" class="del">Delete</button></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -128,27 +136,32 @@
 <script>
     $('.left button').click(function() {
         page_id = $(this).val();
-        console.log(page_id);
+        action = $(this).text() == 'Edit' ? 'edit' : 'del'
 
         $.ajax({
             type: "POST",
             url: "",
-            data: {id:parseInt(page_id), form:'edit'}
-        })
-        .always(function( response ) {
-            console.log(response);
+            data: {id:parseInt(page_id), action:action}
         })
         .success(function( response ) {
-            console.log(response);
-            flatpage = response.flatpage;
-            subpage = response.subpage;
 
-            $('#id_url').val(flatpage.url);
-            $('#id_title').val(flatpage.title);
-            $('#id_content').val(flatpage.content);
-            $('#id_subpage select').val(subpage.flatpage);
-            $('#id_heading').val(subpage.heading);
-            $('.right button').val(flatpage.id);
+            if ( typeof response.flatpage != 'undefined') {
+                flatpage = response.flatpage;
+                subpage = response.subpage;
+
+                $('#id_url').val(flatpage.url);
+                $('#id_title').val(flatpage.title);
+                $('#id_content').val(flatpage.content);
+                $('#id_subpage select').val(subpage.flatpage);
+                $('#id_heading').val(subpage.heading);
+                $('.right button').val(flatpage.id);
+            }
+
+            else {
+                page_id = response.page_id;
+
+                tr = $('.left button[value=' + page_id + ']').parents('tr').remove();
+            }
         });
     })
 
