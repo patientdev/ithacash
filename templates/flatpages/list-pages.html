@@ -48,6 +48,18 @@
         color: black;
     }
 
+    #id_content {
+        height: 15em;
+    }
+
+    #id_meta_desc {
+        height: 4.8em;
+    }
+
+    #id_meta_keywords {
+        width: calc(100% - 45px);
+    }
+
     .action {
         width: 45px;
     }
@@ -90,15 +102,15 @@
                     {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
                 </div>
 
-                <p>{{ flatpage_form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.url.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.url.help_text|safe }}</span></span></p>
 
-                <p>{{ subpage_form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.heading.help_text|safe }}</span></span></p>
+                <p>{{ subpage_form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.heading.help_text|safe }}</span></span></p>
 
-                <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.title.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.title.help_text|safe }}</span></span></p>
 
-                <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.template_name.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.template_name.help_text|safe }}</span></span></p>
 
-                <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ form.content.help_text|safe }}</span></span></p>
+                <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.content.help_text|safe }}</span></span></p>
 
                 <h3>Styling elements</h3>
 
@@ -128,6 +140,10 @@
                         <span><i></i></span>
                     </div>
                 </div>
+
+                <p>{{ subpage_form.meta_desc }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_desc.help_text|safe }}</span></span></p>
+
+                <p>{{ subpage_form.meta_keywords }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_keywords.help_text|safe }}</span></span></p>
 
                 <p><button name="id" value="{{ flatpage_form.initial.id|default_if_none:"" }}">Update</button></p>
             </div>

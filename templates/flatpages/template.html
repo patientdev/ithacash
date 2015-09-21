@@ -5,7 +5,8 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Money Made for Main St." />
+        <meta name="description" content="{{ flatpage.subpage.meta_desc | default_if_none:'Money Made for Main St.' }}" />
+        <meta name="keywords" content="{{ flatpage.subpage.meta_keywords | default_if_none:'ithaca, local, currency' }}" />
 
         <title>{% block title %}{{ flatpage.title }} :: Ithacash{% endblock %}</title>
 
