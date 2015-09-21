@@ -27,6 +27,7 @@
 
     table {
         border-collapse: collapse;
+        width: 100%;
     }
 
     th {
@@ -46,6 +47,10 @@
         width: calc(100% - 45px);
         color: black;
     }
+
+    .action {
+        width: 45px;
+    }
 </style>
 {% endblock %}
 
@@ -60,10 +65,10 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>URL</th>
-                <th>Heading</th>
-                <th></th>
+                <th class="title">Title</th>
+                <th class="url">URL</th>
+                <th class="heading">Heading</th>
+                <th class="action"></th>
             </tr>
         </thead>
         <tbody>
@@ -72,7 +77,7 @@
                 <td>{{ page.title }}</td>
                 <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
                 <td>{{ page.subpage.heading }}</td>
-                <td><button name="page_id" value="{{ page.id }}" class="edit">Edit</button> <button name="page_id" value="{{ page.id }}" class="del">Delete</button></td>
+                <td><button name="page_id" value="{{ page.id }}" class="edit">Edit</button> <!-- <button name="page_id" value="{{ page.id }}" class="del">Delete</button> --></td>
             </tr>
         {% endfor %}
         </tbody>
