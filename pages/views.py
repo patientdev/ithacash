@@ -117,8 +117,11 @@ def page_creator(request):
 
             page_id = request.POST.get('id')
 
-            flatpage = FlatPage.objects.get(id=page_id)
-            subpage = SubPage.objects.get(flatpage=page_id)
+            try:
+                flatpage = FlatPage.objects.get(id=page_id)
+                subpage = SubPage.objects.get(flatpage=page_id)
+            except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
+                pass
 
             flatpage.delete()
             subpage.delete()
