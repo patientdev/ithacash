@@ -102,7 +102,7 @@ def page_creator(request):
 
     if request.method == 'POST':
 
-        if request.POST.get('form'):
+        if request.POST.get('action') == 'edit':
 
             page_id = request.POST.get('id')
 
@@ -112,6 +112,18 @@ def page_creator(request):
             subpage_dict = model_to_dict(subpage)
 
             return JsonResponse({'flatpage': flatpage_dict, 'subpage': subpage_dict})
+
+        elif request.POST.get('action') == 'del':
+
+            page_id = request.POST.get('id')
+
+            flatpage = FlatPage.objects.get(id=page_id)
+            subpage = SubPage.objects.get(flatpage=page_id)
+
+            flatpage.delete()
+            subpage.delete()
+
+            return JsonResponse({'page_id': page_id})
 
         else:
 
@@ -137,7 +149,6 @@ def page_creator(request):
 
             else:
                 return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
-
 
     else:
         return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
