@@ -38,5 +38,5 @@ class SubPageForm(forms.ModelForm):
         fields = {'heading', 'meta_desc', 'meta_keywords'}
 
     heading = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Heading'}))
-    meta_desc = forms.CharField(help_text="Succinct Ithacash description", label="", widget=forms.Textarea(attrs={'placeholder': 'Meta Description'}))
-    meta_keywords = forms.CharField(help_text="e.g. ithaca, currency, local", label="", widget=forms.TextInput(attrs={'placeholder': 'Meta Keywords'}))
+    meta_desc = forms.CharField(help_text="Succinct Ithacash description", initial="Ithacash", label="", widget=forms.Textarea(attrs={'placeholder': 'Meta Description'}))
+    meta_keywords = forms.CharField(help_text="e.g. ithaca, currency, local", initial="ithaca, local, currency", label="", widget=forms.TextInput(attrs={'placeholder': 'Meta Keywords'}))
