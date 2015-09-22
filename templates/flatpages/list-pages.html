@@ -43,9 +43,14 @@
         padding: 10px;
     }
 
-    textarea {
+    #mceu_9 {
         width: calc(100% - 45px);
+        display: inline-block;
+    }
+
+    textarea {
         color: black;
+        width: calc(100% - 45px);
     }
 
     #id_content {
@@ -112,34 +117,7 @@
 
                 <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.content.help_text|safe }}</span></span></p>
 
-                <h3>Styling elements</h3>
-
-                <div id="styling-elements">
-                    <div class="styling-element">
-                        <a>link</a>
-                        <span><a href=""></a></span>
-                    </div>
-
-                    <div class="styling-element">
-                        <h3>Subheading</h3>
-                        <span><h3></h3></span>
-                    </div>
-
-                    <div class="styling-element">
-                        <a class="cta-link">CTA link</a>
-                        <span><a class="cta-link" href=""></a></span>
-                    </div>
-
-                    <div class="styling-element">
-                        <strong>bold text</strong>
-                        <span><strong></strong></span>
-                    </div>
-
-                    <div class="styling-element">
-                        <i>italic text</i>
-                        <span><i></i></span>
-                    </div>
-                </div>
+                <h3>SEO Metadata</h3>
 
                 <p>{{ subpage_form.meta_desc }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_desc.help_text|safe }}</span></span></p>
 
@@ -154,7 +132,31 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
 <script>
+
+    // TinyMCE
+    tinymce.init({
+        plugins: "link, fullscreen",
+        selector: "#id_content",
+        toolbar: "undo redo | styleselect | bold italic link | bullist | blockquote | removeformat | fullscreen",
+        content_css: "{% static 'css/page-creator.css' %}",
+        elementpath: false,
+        menubar: false,
+        statusbar: false,
+        browser_spellcheck: true,
+        invalid_elements: "script",
+        style_formats: [
+            {title: "Highlight", inline: "mark"}
+        ],
+        link_class_list: [
+            {title: 'None', value: ''},
+            {title: "> CTA link", inline: "a", value: "cta-link"},
+            {title: "Angled CTA →", value: "angled-cta-right light-green-background"},
+            {title: "← Angled CTA", value: "angled-cta-left dark-green-background"}
+        ]
+    });
+
     $('.left button').click(function() {
         page_id = $(this).val();
         action = $(this).text() == 'Edit' ? 'edit' : 'del'
@@ -172,7 +174,7 @@
 
                 $('#id_url').val(flatpage.url);
                 $('#id_title').val(flatpage.title);
-                $('#id_content').val(flatpage.content);
+                tinyMCE.activeEditor.setContent(flatpage.content);
                 $('#id_subpage select').val(subpage.flatpage);
                 $('#id_heading').val(subpage.heading);
                 $('.right button').val(flatpage.id);
