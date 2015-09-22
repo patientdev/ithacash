@@ -147,7 +147,21 @@
         browser_spellcheck: true,
         invalid_elements: "script",
         style_formats: [
-            {title: "Highlight", inline: "mark"}
+            {title: "Headers", items: [
+                {title: "Header 3", format: "h3"},
+                {title: "Header 4", format: "h4"}
+            ]},
+            {title: "Blocks", items: [
+                {title: "Standout", format: "blockquote"}
+            ]},
+            {title: "Inline", items: [
+                {title: "Bold", icon: "bold", inline: "b"},
+                {title: "Italic", icon: "italic", format: "italic"},
+                {title: "Underline", icon: "underline", format: "underline"},
+                {title: "Highlight", inline: "mark"},
+                {title: "Superscript", icon: "superscript", format: "superscript"},
+                {title: "Subscript", icon: "subscript", format: "subscript"}
+            ]}
         ],
         link_class_list: [
             {title: 'None', value: ''},
