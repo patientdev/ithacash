@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 import mandrill
 import requests
 import json
+import bleach
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
@@ -142,7 +143,12 @@ def page_creator(request):
 
             if flatpage_form.is_valid() and subpage_form.is_valid():
 
-                flatpage = flatpage_form.save()
+                # Let's whitelist tags for POSTed content
+                flatpage = flatpage_form.save(commit=False)
+                bleach.ALLOWED_TAGS.extend(['p', 'mark'])
+                flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, strip=True)
+                flatpage.save()
+                flatpage_form.save_m2m()
 
                 subpage = subpage_form.save(commit=False)
                 subpage.flatpage = flatpage
