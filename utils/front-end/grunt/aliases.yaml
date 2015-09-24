@@ -19,4 +19,4 @@ dev:
 img:
   description: "Optimize images"
   tasks:
-    - "imagemin"
+    - "newer:imagemin"
