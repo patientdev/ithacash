@@ -55,8 +55,8 @@ class UserSignupForm(forms.ModelForm):
         model = IthacashUser
         fields = ['username', 'full_name']
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Username'})
         }
 
 
