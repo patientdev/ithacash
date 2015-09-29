@@ -5,10 +5,6 @@ import requests
 from requests_oauthlib import OAuth1
 import hashlib
 
-if __name__ == "__main__":
-    dump_and_encrypt()
-    upload_to_egnyte()
-
 
 def dump_and_encrypt():
     db_name = 'ithacash'
@@ -85,3 +81,8 @@ def upload_to_egnyte():
     else:
         os.remove('/root/ithacash_db_dump_%s.enc' % today)
         print "%s: %s" % (datetime.now(), response)
+
+
+if __name__ == "__main__":
+    dump_and_encrypt()
+    upload_to_egnyte()
