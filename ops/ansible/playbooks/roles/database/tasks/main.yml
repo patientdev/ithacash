@@ -32,4 +32,4 @@
     name: Dump, encrypt, and backup Ithacash database to Egnyte
     hour: 6
     minute: 0
-    job: /ithacash/virtualenv/bin/python /ithacash/{{ deployment_environment }}/ops/ansible/playbooks/roles/database/templates/db_backup.py >> /var/log/ithacash_db_backup.log
+    job: /ithacash/virtualenv/bin/python /ithacash/production/ops/ansible/playbooks/roles/database/templates/db_backup.py >> /var/log/ithacash_db_backup.log
