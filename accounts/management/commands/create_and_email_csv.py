@@ -44,7 +44,7 @@ class Command(BaseCommand):
             try:
                 result = mandrill_client.messages.send(
                     {
-                        'to': [{'email': 'scott@ithacash.com'}],
+                        'to': [{'email': 'scott@ithacash.com', 'name': 'Scott Morris'}, {'email': 'beline@ithacash.com', 'name': 'Beline Falzon'}],
                         'text': 'Import this CSV into Cyclos',
                         'from_name': 'Ithacash.com',
                         'from_email': "it@ithacash.com",
