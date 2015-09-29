@@ -2,7 +2,6 @@ import os
 import datetime
 import subprocess
 import requests
-from requests_oauthlib import OAuth1
 import hashlib
 
 
