@@ -9,4 +9,3 @@ psycopg2
 newrelic
 raven
 bleach
-requests_oauthlib
