@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'pages.views.front'),
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/')),
+    url(r'^join/$', RedirectView.as_view(url='/accounts/signup/')),
     url(r'^accounts/', include('accounts.urls')),
 
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
