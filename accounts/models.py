@@ -10,13 +10,14 @@ from phonenumber_field.modelfields import PhoneNumberField
 from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
 from django.template import Context, loader
 from django.conf import settings
+from django.core import validators
 import logging
 
 logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
-    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION)
+    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5)])
     full_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 

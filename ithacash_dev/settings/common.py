@@ -20,8 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Quick-start development settings - unsuitable for production
 # See https:/docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ithacash.com', '45.55.80.254']
-
 # Application definition
 
 SITE_ID = 1
@@ -52,13 +50,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
-
-X_FRAME_OPTIONS = 'DENY'
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
 
 ROOT_URLCONF = 'ithacash_dev.urls'
