@@ -11,7 +11,7 @@ def dump_and_encrypt():
     db_port = '5432'
     db_host = 'localhost'
     db_user = 'ithacash_db_user'
-    db_pass = open('/ithacash/staging/ithacash_dev/settings/secrets/PRODUCTION_DB_PASSWORD', 'r').read()
+    db_pass = open('/ithacash/production/ithacash_dev/settings/secrets/PRODUCTION_DB_PASSWORD', 'r').read()
 
     today = datetime.datetime.now().strftime('%Y_%m_%d')
 
@@ -76,11 +76,11 @@ def upload_to_egnyte():
     response = r.json()
 
     if response['checksum'] != backup_hash:
-        print "%s: %s" % (datetime.now(), response)
+        print "Error: %s: %s" % (datetime.datetime.now(), response)
 
     else:
         os.remove('/root/ithacash_db_dump_%s.enc' % today)
-        print "%s: %s" % (datetime.now(), response)
+        print "%s: %s" % (datetime.datetime.now(), response)
 
 
 if __name__ == "__main__":
