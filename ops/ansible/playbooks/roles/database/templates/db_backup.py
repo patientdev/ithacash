@@ -5,8 +5,12 @@ import requests
 from requests_oauthlib import OAuth1
 import hashlib
 
+if __name__ == "__main__":
+    dump_and_encrypt()
+    upload_to_egnyte()
 
-def encrypt():
+
+def dump_and_encrypt():
     db_name = 'ithacash'
     db_port = '5432'
     db_host = 'localhost'
@@ -71,13 +75,13 @@ def upload_to_egnyte():
     today = datetime.datetime.now().strftime('%Y_%m_%d')
     filepath = '/IT/Backups/Database/ithacash_db_dump_%s.enc' % today
     backup_file = {'file': open('/root/ithacash_db_dump_%s.enc' % today, 'rb')}
-    # headers = {'X-Sha512-Checksum': backup_hash }
 
     r = requests.post('https://ithacash.egnyte.com/pubapi/v1/fs-content/Shared%s' % filepath, files=backup_file, headers={'Authorization': 'Bearer %s' % egnyte_token})
     response = r.json()
 
     if response['checksum'] != backup_hash:
-        exit(1)
+        print "%s: %s" % (datetime.now(), response)
 
     else:
-        print 'Success!'
+        os.remove('/root/ithacash_db_dump_%s.enc' % today)
+        print "%s: %s" % (datetime.now(), response)
