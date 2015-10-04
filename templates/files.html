@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% for file in files %}
+        <p><img src="{{ file.file.url }}"><br>{{ file.file.path }}</p>
+    {% endfor %}
+{% endblock %}
