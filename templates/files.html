@@ -3,6 +3,6 @@
 
 {% block content %}
     {% for file in files %}
-        <p><img src="{{ file.file.url }}"><br>{{ file.file.path }}</p>
+        <p><img src="{{ file.file.url }}"><br>{{ file.file.path }}<br>{{ file.file.url }}</p>
     {% endfor %}
 {% endblock %}
