@@ -102,7 +102,7 @@
     </div>
 
     <div class="right">
-        <form method="POST" action="" class="standard-form">
+        <form method="POST" action="" class="standard-form" enctype="multipart/form-data">
                 <div class="hide">
                     {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
                 </div>
@@ -114,6 +114,8 @@
                 <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.title.help_text|safe }}</span></span></p>
 
                 <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.template_name.help_text|safe }}</span></span></p>
+
+                <p>{{ upload_form.file }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ upload_form.file.help_text|safe }}</span></span></p>
 
                 <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.content.help_text|safe }}</span></span></p>
 
