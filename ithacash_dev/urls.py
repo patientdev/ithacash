@@ -38,5 +38,7 @@ urlpatterns = [
     url(r'^test_utils/error_test/$', error_view),
     url(r'^page-creator/$', 'pages.views.page_creator'),
     url(r'^page-creator/files/$', 'pages.views.files'),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('django.contrib.flatpages.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
