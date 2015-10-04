@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.flatpages.forms import FlatpageForm
-from pages.models import SubPage
+from pages.models import *
 from django.contrib.flatpages.models import FlatPage
 
 
@@ -40,3 +40,15 @@ class SubPageForm(forms.ModelForm):
     heading = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Heading'}))
     meta_desc = forms.CharField(help_text="Succinct Ithacash description", initial="Ithacash", label="", widget=forms.Textarea(attrs={'placeholder': 'Meta Description'}))
     meta_keywords = forms.CharField(help_text="e.g. ithaca, currency, local", initial="ithaca, local, currency", label="", widget=forms.TextInput(attrs={'placeholder': 'Meta Keywords'}))
+
+
+class FileUploadForm(forms.ModelForm):
+
+    class Meta:
+        model = UploadedFiles
+        fields = {'file'}
+
+    file = forms.FileField(
+        label='Select a file',
+        help_text='max 1 megabyte'
+    )

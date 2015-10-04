@@ -92,6 +92,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'ithacash_dev/static'
 STATICFILES_DIRS = (BASE_DIR, 'ithacash_dev/static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'pages/media'
+
 HENDRIX_CHILD_RESOURCES = (
     'hendrix.contrib.resources.static.DefaultDjangoStaticResource',
     # uncomment if you would like to serve the django admin static files

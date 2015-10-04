@@ -11,6 +11,7 @@ from django.template import Context, loader
 from django.conf import settings
 from pages.forms import *
 from pages.utils import *
+from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 
@@ -100,6 +101,7 @@ def page_creator(request):
 
     flatpage_form = FlatPageForm(initial={'sites': ('1',)})
     subpage_form = SubPageForm()
+    upload_form = FileUploadForm()
 
     if request.method == 'POST':
 
@@ -131,6 +133,8 @@ def page_creator(request):
 
         else:
 
+            upload_form = FileUploadForm(request.POST, request.FILES)
+
             try:
                 flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
                 subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
@@ -141,7 +145,9 @@ def page_creator(request):
             flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
             subpage_form = SubPageForm(request.POST, instance=subpage_instance)
 
-            if flatpage_form.is_valid() and subpage_form.is_valid():
+            if flatpage_form.is_valid() and subpage_form.is_valid() and upload_form.is_valid():
+
+                upload_form.save()
 
                 # Let's whitelist tags for POSTed content
                 flatpage = flatpage_form.save(commit=False)
@@ -162,8 +168,14 @@ def page_creator(request):
                 return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form, 'upload_form': upload_form})
 
 
 def template(request):
     return render(request, 'flatpages/template.html')
+
+
+def files(request):
+    files = UploadedFiles.objects.all()
+
+    return render(request, 'files.html', {'files': files})
