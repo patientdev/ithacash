@@ -46,9 +46,10 @@ class FileUploadForm(forms.ModelForm):
 
     class Meta:
         model = UploadedFiles
-        fields = {'file'}
+        fields = {'file', 'title'}
 
     file = forms.FileField(
         label='Select a file',
-        help_text='max 1 megabyte'
+        help_text='Images to be shown on pages should be below 50kb. Full-size images should be available via a link only'
     )
+    title = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Image Title'}))
