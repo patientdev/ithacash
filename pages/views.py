@@ -97,7 +97,6 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
-@csrf_exempt
 def page_creator(request):
 
     flatpage_form = FlatPageForm(initial={'sites': ('1',)})
