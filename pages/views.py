@@ -142,6 +142,8 @@ def page_creator(request):
             flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
             subpage_form = SubPageForm(request.POST, instance=subpage_instance)
 
+            print flatpage_form.errors
+
             if flatpage_form.is_valid() and subpage_form.is_valid():
 
                 # Let's whitelist tags for POSTed content
