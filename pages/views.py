@@ -14,6 +14,7 @@ from pages.utils import *
 from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
+from os.path import basename
 
 
 @csrf_exempt
@@ -186,7 +187,9 @@ def files(request):
     elif request.method == 'POST':
 
         if upload_form.is_valid():
-            upload_form.save()
+            uploaded_file = upload_form.save(commit=False)
+            uploaded_file.title = basename(uploaded_file.file.path)
+            uploaded_file.save()
             return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
 
         else:
