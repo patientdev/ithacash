@@ -6,7 +6,8 @@ backend default {
 }
 
 sub vcl_recv {
-    if ( !( req.url ~ "^/accounts/") ) {
+    if ( !req.url ~ "^/accounts/" &&
+        !req.url ~ "^/page-creator(.*)") {
       unset req.http.Cookie;
     }
 
