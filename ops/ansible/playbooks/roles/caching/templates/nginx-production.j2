@@ -39,24 +39,32 @@ ssl_session_tickets off; # Requires nginx >= 1.5.9
 ssl_stapling on; # Requires nginx >= 1.3.7
 ssl_stapling_verify on; # Requires nginx => 1.3.7
 
-       location / {
-               proxy_pass   http://localhost:6081; # Varnish
-               proxy_set_header Host       $host;
-       }
+    location / {
+           proxy_pass   http://localhost:6081; # Varnish
+           proxy_set_header Host       $host;
+    }
 
-       location /login {
-               return       301 https://communities.cyclos.org/Ithacash/#login;
-       }
+    location /login {
+           return       301 https://communities.cyclos.org/Ithacash/#login;
+    }
 
-       location /directory {
-               return       301 https://communities.cyclos.org/Ithacash/#users.users.search;
-       }
+    location /directory {
+           return       301 https://communities.cyclos.org/Ithacash/#users.users.search;
+    }
 
-       location /buy {
-               return       301 https://squareup.com/market/ithacash/ithaca-dollars;
-       }
+    location /buy {
+           return       301 https://squareup.com/market/ithacash/ithaca-dollars;
+    }
 
-       location /shop {
-               return       301 https://squareup.com/market/ithacash;
-       }
+    location /shop {
+           return       301 https://squareup.com/market/ithacash;
+    }
+
+    location /media {
+        alias /ithacash/production/pages/media/;
+    }
+
+    location /static {
+        alias /ithacash/production/ithacash_dev/static/;
+    }
 }
