@@ -11,3 +11,4 @@ class SubPage(models.Model):
 
 class UploadedFiles(models.Model):
     file = models.FileField()
+    title = models.CharField(unique=True, max_length=255)

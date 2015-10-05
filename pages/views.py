@@ -101,7 +101,6 @@ def page_creator(request):
 
     flatpage_form = FlatPageForm(initial={'sites': ('1',)})
     subpage_form = SubPageForm()
-    upload_form = FileUploadForm()
 
     if request.method == 'POST':
 
@@ -133,8 +132,6 @@ def page_creator(request):
 
         else:
 
-            upload_form = FileUploadForm(request.POST, request.FILES)
-
             try:
                 flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
                 subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
@@ -145,14 +142,13 @@ def page_creator(request):
             flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
             subpage_form = SubPageForm(request.POST, instance=subpage_instance)
 
-            if flatpage_form.is_valid() and subpage_form.is_valid() and upload_form.is_valid():
-
-                upload_form.save()
+            if flatpage_form.is_valid() and subpage_form.is_valid():
 
                 # Let's whitelist tags for POSTed content
                 flatpage = flatpage_form.save(commit=False)
-                bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br'])
+                bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
                 bleach.ALLOWED_ATTRIBUTES['a'].extend(['class'])
+                bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
                 flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
                 flatpage.save()
                 flatpage_form.save_m2m()
@@ -168,7 +164,7 @@ def page_creator(request):
                 return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form, 'upload_form': upload_form})
+        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
 
 def template(request):
@@ -176,6 +172,22 @@ def template(request):
 
 
 def files(request):
-    files = UploadedFiles.objects.all()
+    files = UploadedFiles.objects.all().order_by('id').reverse()
 
-    return render(request, 'files.html', {'files': files})
+    upload_form = FileUploadForm(request.POST or None, request.FILES or None)
+
+    if request.method == 'GET' and 'json' in request.GET:
+        return render(request, 'files_json.html', {'files': files}, content_type="application/json")
+
+    elif request.method == 'GET' and 'json' not in request.GET:
+
+        return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+
+    elif request.method == 'POST':
+
+        if upload_form.is_valid():
+            upload_form.save()
+            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+
+        else:
+            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
