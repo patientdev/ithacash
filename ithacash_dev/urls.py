@@ -1,6 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 '''
 Are you adding a new app?
@@ -35,5 +37,8 @@ urlpatterns = [
     url(r'^whoops/$', 'accounts.views.whoops'),
     url(r'^test_utils/error_test/$', error_view),
     url(r'^page-creator/$', 'pages.views.page_creator'),
+    url(r'^page-creator/files/$', 'pages.views.files'),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('django.contrib.flatpages.urls')),
 ]
