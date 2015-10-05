@@ -139,10 +139,10 @@
 
     // TinyMCE
     tinymce.init({
-        plugins: "link, fullscreen, image, imagetools, textcolor",
+        plugins: "link, fullscreen, image, imagetools, textcolor, save",
         selector: "#id_content",
         convert_urls: false,
-        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
+        toolbar: "save | undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
         content_css: "{% static 'css/page-creator.css' %}",
         elementpath: false,
         menubar: false,
