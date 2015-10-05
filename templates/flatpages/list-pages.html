@@ -102,7 +102,7 @@
     </div>
 
     <div class="right">
-        <form method="POST" action="" class="standard-form">
+        <form method="POST" action="" class="standard-form" enctype="multipart/form-data">
                 <div class="hide">
                     {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
                 </div>
@@ -114,6 +114,8 @@
                 <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.title.help_text|safe }}</span></span></p>
 
                 <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.template_name.help_text|safe }}</span></span></p>
+
+                <p><a href="files/" class="green-button" target="_blank">Upload Images</a></p>
 
                 <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.content.help_text|safe }}</span></span></p>
 
@@ -137,9 +139,10 @@
 
     // TinyMCE
     tinymce.init({
-        plugins: "link, fullscreen",
+        plugins: "link, fullscreen, image, imagetools, textcolor",
         selector: "#id_content",
-        toolbar: "undo redo | styleselect | bold italic link | bullist | blockquote | removeformat | fullscreen",
+        convert_urls: false,
+        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
         content_css: "{% static 'css/page-creator.css' %}",
         elementpath: false,
         menubar: false,
@@ -169,6 +172,14 @@
             {title: "Angled CTA →", value: "angled-cta-right light-green-background"},
             {title: "← Angled CTA", value: "angled-cta-left dark-green-background"},
             {title: "Button", value: "green-button"}
+        ],
+        image_list: "/page-creator/files/?json",
+        imagetools_toolbar: 'imageoptions',
+        textcolor_map: [
+            "4d7416", "Dark green",
+            "8caa45", "Light green",
+            "dd1800", "Red",
+            "777777", "Bold gray"
         ]
     });
 
