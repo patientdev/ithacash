@@ -103,6 +103,7 @@
 
     <div class="right">
         <form method="POST" action="" class="standard-form" enctype="multipart/form-data">
+            {% csrf_token %}
                 <div class="hide">
                     {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
                 </div>
@@ -139,10 +140,10 @@
 
     // TinyMCE
     tinymce.init({
-        plugins: "link, fullscreen, image, imagetools, textcolor, save",
+        plugins: "link, fullscreen, image, imagetools, textcolor",
         selector: "#id_content",
         convert_urls: false,
-        toolbar: "save | undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
+        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
         content_css: "{% static 'css/page-creator.css' %}",
         elementpath: false,
         menubar: false,
@@ -190,7 +191,7 @@
         $.ajax({
             type: "POST",
             url: "",
-            data: {id:parseInt(page_id), action:action}
+            data: {id:parseInt(page_id), action:action, csrfmiddlewaretoken: "{{ csrf_token }}"}
         })
         .success(function( response ) {
 
