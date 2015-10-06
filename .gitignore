@@ -11,6 +11,8 @@ db.sqlite3
 utils/front-end/node_modules/
 utils/front-end/img/
 
+pages/media/
+
 .sass-cache
 *.lock
 utils/front-end/temp/
