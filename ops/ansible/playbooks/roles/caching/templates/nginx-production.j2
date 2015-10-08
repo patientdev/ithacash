@@ -60,6 +60,10 @@ ssl_stapling_verify on; # Requires nginx => 1.3.7
            return       301 https://squareup.com/market/ithacash;
     }
 
+    location /apply {
+           return       301 https://ithacash.com/accounts/signup/;
+    }
+
     location /media {
         alias /ithacash/production/pages/media/;
     }
