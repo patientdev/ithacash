@@ -149,7 +149,7 @@ def page_creator(request):
                 # Let's whitelist tags for POSTed content
                 flatpage = flatpage_form.save(commit=False)
                 bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
-                bleach.ALLOWED_ATTRIBUTES['a'].extend(['class'])
+                bleach.ALLOWED_ATTRIBUTES['a'].extend(['class', 'target'])
                 bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
                 flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
                 flatpage.save()
