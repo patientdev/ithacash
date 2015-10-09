@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+{% endblock %}
 
 {% block header %}
 <h1>Ithacash Page Creater</h1>

@@ -1,14 +1,20 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.forms.models import model_to_dict
 import mandrill
 import requests
 import json
+import bleach
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
-from .forms import newsletter_subscription_form, send_message_form
-from pages.forms import PageCreatorForm
+from pages.forms import *
+from pages.utils import *
+from pages.models import UploadedFiles
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages.forms import FlatpageForm
+from os.path import basename
 
 
 @csrf_exempt
@@ -91,42 +97,101 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
-@csrf_exempt
 def page_creator(request):
+
+    flatpage_form = FlatPageForm(initial={'sites': ('1',)})
+    subpage_form = SubPageForm()
 
     if request.method == 'POST':
 
-        form = PageCreatorForm(request.POST)
+        if request.POST.get('action') == 'edit':
 
-        if form.is_valid():
+            page_id = request.POST.get('id')
 
-            new_page = form.save(commit=False)
+            flatpage = FlatPage.objects.get(id=page_id)
+            flatpage_dict = model_to_dict(flatpage)
+            subpage = SubPage.objects.get(flatpage=page_id)
+            subpage_dict = model_to_dict(subpage)
 
-            content = request.POST.get('content')
+            return JsonResponse({'flatpage': flatpage_dict, 'subpage': subpage_dict})
 
-            new_page_content = ''
+        elif request.POST.get('action') == 'del':
 
-            for line in content.splitlines():
-                if line:
-                    if '<h3>' not in line:
-                        line = '<p>%s</p>' % line
+            page_id = request.POST.get('id')
 
-                    new_page_content += '%s\n\n' % line
+            try:
+                flatpage = FlatPage.objects.get(id=page_id)
+                subpage = SubPage.objects.get(flatpage=page_id)
+            except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
+                pass
 
-            new_page.content = new_page_content
+            flatpage.delete()
+            subpage.delete()
 
-            form.save()
-
-            return render(request, 'page-creator.html', {'form': PageCreatorForm()})
+            return JsonResponse({'page_id': page_id})
 
         else:
-            return JsonResponse(form.errors, status=400)
+
+            try:
+                flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
+                subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
+            except (FlatPage.DoesNotExist, SubPage.DoesNotExist, ValueError):
+                flatpage_instance = None
+                subpage_instance = None
+
+            flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
+            subpage_form = SubPageForm(request.POST, instance=subpage_instance)
+
+            print flatpage_form.errors
+
+            if flatpage_form.is_valid() and subpage_form.is_valid():
+
+                # Let's whitelist tags for POSTed content
+                flatpage = flatpage_form.save(commit=False)
+                bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
+                bleach.ALLOWED_ATTRIBUTES['a'].extend(['class', 'target'])
+                bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
+                flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
+                flatpage.save()
+                flatpage_form.save_m2m()
+
+                subpage = subpage_form.save(commit=False)
+                subpage.flatpage = flatpage
+                subpage.save()
+
+                return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
+
+            else:
+
+                return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        form = PageCreatorForm()
-
-    return render(request, 'page-creator.html', {'form': form})
+        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
 
 def template(request):
     return render(request, 'flatpages/template.html')
+
+
+def files(request):
+    files = UploadedFiles.objects.all().order_by('id').reverse()
+
+    upload_form = FileUploadForm(request.POST or None, request.FILES or None)
+
+    if request.method == 'GET' and 'json' in request.GET:
+        return render(request, 'files_json.html', {'files': files}, content_type="application/json")
+
+    elif request.method == 'GET' and 'json' not in request.GET:
+
+        return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+
+    elif request.method == 'POST':
+
+        if upload_form.is_valid():
+            uploaded_file = upload_form.save(commit=False)
+            uploaded_file.title = basename(uploaded_file.file.path)
+            uploaded_file.save()
+            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+
+        else:
+            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})

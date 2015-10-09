@@ -26,3 +26,10 @@
   postgresql_user: db={{app_db_name}} name={{app_db_user}} password={{app_db_password}} priv=ALL
   sudo: yes
   sudo_user: postgres
+
+- name: Add database backup script to cron
+  cron:
+    name: Dump, encrypt, and backup Ithacash database to Egnyte
+    hour: 6
+    minute: 0
+    job: /ithacash/virtualenv/bin/python /ithacash/production/ops/ansible/playbooks/roles/database/templates/db_backup.py >> /var/log/ithacash_db_backup.log
