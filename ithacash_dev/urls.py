@@ -1,7 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
-from django.contrib.flatpages import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 '''
 Are you adding a new app?
@@ -33,8 +34,10 @@ urlpatterns = [
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
     url(r'^thanks/$', 'accounts.views.thanks'),
     url(r'^whoops/$', 'accounts.views.whoops'),
-    url(r'^style-guide/$', 'pages.views.style_guide'),
-    url(r'^everyone/$', 'pages.views.everyone'),
-    url(r'^page-creator/$', 'pages.views.page_creator'),
     url(r'^test_utils/error_test/$', error_view),
+    url(r'^page-creator/$', 'pages.views.page_creator'),
+    url(r'^page-creator/files/$', 'pages.views.files'),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    'document_root': settings.MEDIA_ROOT}),
+    url(r'^', include('django.contrib.flatpages.urls')),
 ]

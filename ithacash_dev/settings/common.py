@@ -19,12 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # Quick-start development settings - unsuitable for production
 # See https:/docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-ALLOWED_HOSTS = []
+# Application definition
 
 SITE_ID = 1
-
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -65,7 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -92,6 +89,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'ithacash_dev/static'
 STATICFILES_DIRS = (BASE_DIR, 'ithacash_dev/static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'pages/media'
 
 HENDRIX_CHILD_RESOURCES = (
     'hendrix.contrib.resources.static.DefaultDjangoStaticResource',

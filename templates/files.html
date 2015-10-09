@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+<style>
+    img {
+        max-width: 300px;
+    }
+
+    input[name="file"] {
+        border: 1px solid #8caa45;
+        padding: 5px;
+    }
+
+    .image {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+        float: none;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+<h1>Image Upload</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<form method="POST" action="" class="standard-form" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<p>{{ upload_form.file }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ upload_form.file.help_text|safe }}</span></span></p>
+<p>{{ upload_form.title }}</p>
+
+<button>Upload</button>
+</form>
+
+{% for file in files %}
+    <div class="image">
+        <p><img src="{{ file.file.url }}"><br>{{ file.title }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
