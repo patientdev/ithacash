@@ -2,7 +2,10 @@
 *.csv
 *.sqlite3
 *ithacash_dev/settings/ignore.py
+*ithacash_dev/settings/local.py
 ithacash_dev/settings/secrets/*
+
+pages/media
 
 ops/ssl
 .idea

@@ -62,7 +62,39 @@ class Command(BaseCommand):
                 combined_user_dict = dict(emails, **accounts)
                 combined_user_dict.update(user_object.__dict__)
 
-                self.new_ithacash_users.append(combined_user_dict)
+                new_ithacash_users.append(combined_user_dict)
+
+            csv_to_email = StringIO.StringIO()
+            csv_writer = CyclosCsvWriter(new_ithacash_users, csv_to_email)
+            csv_writer.map_dict_to_cyclos_fields(new_ithacash_users)
+            csv_writer.output_to_csv(csv_to_email)
+
+            mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+            try:
+                result = mandrill_client.messages.send(
+                    {
+                        'to': [{'email': 'scott@ithacash.com', 'name': 'Scott Morris'}, {'email': 'beline@ithacash.com', 'name': 'Beline Falzon'}],
+                        'text': 'Import this CSV into Cyclos',
+                        'from_name': 'Ithacash.com',
+                        'from_email': "it@ithacash.com",
+                        'subject': 'New user accounts',
+                        'attachments': [
+                            {
+                                'type': 'text/csv',
+                                'name': 'new_ithacash_users_%s' % datetime.now().strftime('%Y_%m_%d'),
+                                'content': b64encode(csv_to_email.getvalue())
+                            }
+                        ]
+                    })
+
+                print "%s: %s" % (datetime.now(), result)
+
+            except Exception, e:
+                print "%s:  Error:\n%s" % (datetime.now(), e)
+
+        else:
+            print "%s: Nothing to send." % datetime.now()
 
         return self.new_ithacash_users
 
@@ -82,6 +114,13 @@ class Command(BaseCommand):
                     raise TypeError("The dict didn't have a key '%s', which is required to map the data to a Cyclos CSV." % ithacash_user_field_name)
 
                 mapped_dict[cyclos_field_name] = new_value
+
+            mapped_dict['creationdate'] = mapped_dict['creationdate'].strftime('%m/%d/%Y')
+
+            # Cyclos chokes on equivalent mobile and landline numbers,
+            # so blank the landline if that's true
+            if mapped_dict['landline[identifier].number'] and mapped_dict['landline[identifier].number'] == mapped_dict['mobile[identifier].number']:
+                mapped_dict['landline[identifier].number'] = ''
 
             self.cyclos_field_list.append(mapped_dict)
 

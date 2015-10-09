@@ -126,9 +126,15 @@ $(function() {
                 $('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
             }
 
+            else {
+                $('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
+                console.log(response.responseText);
+            }
+
 
         })
         .success(function(){
+             // Send successful form inputs to the next step
              $('form#account').unbind('submit').submit();
         })
     })

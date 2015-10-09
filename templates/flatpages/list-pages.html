@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+<style>
+    #content {
+        padding-top: 0;
+    }
+
+    section {
+        padding: 0;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+
+    .left button {
+        font-size: .9em;
+    }
+
+    .del {
+        background-color: rgb(255, 94, 94);
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    tbody tr {
+        border-top: 1px solid #555;
+        border-bottom: 1px solid #555;
+    }
+
+    td, th {
+        padding: 10px;
+    }
+
+    #mceu_9 {
+        width: calc(100% - 45px);
+        display: inline-block;
+    }
+
+    textarea {
+        color: black;
+        width: calc(100% - 45px);
+    }
+
+    #id_content {
+        height: 15em;
+    }
+
+    #id_meta_desc {
+        height: 4.8em;
+    }
+
+    #id_meta_keywords {
+        width: calc(100% - 45px);
+    }
+
+    .action {
+        width: 45px;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+<h1>Ithacash Subpages</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+<div class="container">
+    <div class="left">
+    <table>
+        <thead>
+            <tr>
+                <th class="title">Title</th>
+                <th class="url">URL</th>
+                <th class="heading">Heading</th>
+                <th class="action"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.title }}</td>
+                <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
+                <td>{{ page.subpage.heading }}</td>
+                <td><button name="page_id" value="{{ page.id }}" class="edit">Edit</button> <!-- <button name="page_id" value="{{ page.id }}" class="del">Delete</button> --></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <div class="right">
+        <form method="POST" action="" class="standard-form" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="hide">
+                    {{ flatpage_form.enable_comments }} {{ flatpage_form.registration_required }} {{ flatpage_form.sites }}
+                </div>
+
+                <p>{{ flatpage_form.url }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.url.help_text|safe }}</span></span></p>
+
+                <p>{{ subpage_form.heading }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.heading.help_text|safe }}</span></span></p>
+
+                <p>{{ flatpage_form.title }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.title.help_text|safe }}</span></span></p>
+
+                <p>{{ flatpage_form.template_name }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.template_name.help_text|safe }}</span></span></p>
+
+                <p><a href="files/" class="green-button" target="_blank">Upload Images</a></p>
+
+                <p>{{ flatpage_form.content }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ flatpage_form.content.help_text|safe }}</span></span></p>
+
+                <h3>SEO Metadata</h3>
+
+                <p>{{ subpage_form.meta_desc }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_desc.help_text|safe }}</span></span></p>
+
+                <p>{{ subpage_form.meta_keywords }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_keywords.help_text|safe }}</span></span></p>
+
+                <p><button name="id" value="{{ flatpage_form.initial.id|default_if_none:"" }}">Update</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+<script>
+
+    // TinyMCE
+    tinymce.init({
+        plugins: "link, fullscreen, image, imagetools, textcolor",
+        selector: "#id_content",
+        convert_urls: false,
+        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | fullscreen",
+        content_css: "{% static 'css/page-creator.css' %}",
+        elementpath: false,
+        menubar: false,
+        statusbar: false,
+        browser_spellcheck: true,
+        invalid_elements: "script",
+        style_formats: [
+            {title: "Headers", items: [
+                {title: "Header 3", format: "h3"},
+                {title: "Header 4", format: "h4"}
+            ]},
+            {title: "Blocks", items: [
+                {title: "Standout", format: "blockquote"}
+            ]},
+            {title: "Inline", items: [
+                {title: "Bold", icon: "bold", inline: "b"},
+                {title: "Italic", icon: "italic", format: "italic"},
+                {title: "Underline", icon: "underline", format: "underline"},
+                {title: "Highlight", inline: "mark"},
+                {title: "Superscript", icon: "superscript", format: "superscript"},
+                {title: "Subscript", icon: "subscript", format: "subscript"}
+            ]}
+        ],
+        link_class_list: [
+            {title: 'None', value: ''},
+            {title: "> CTA link", inline: "a", value: "cta-link"},
+            {title: "Angled CTA →", value: "angled-cta-right light-green-background"},
+            {title: "← Angled CTA", value: "angled-cta-left dark-green-background"},
+            {title: "Button", value: "green-button"}
+        ],
+        image_list: "/page-creator/files/?json",
+        imagetools_toolbar: 'imageoptions',
+        textcolor_map: [
+            "4d7416", "Dark green",
+            "8caa45", "Light green",
+            "dd1800", "Red",
+            "777777", "Bold gray"
+        ]
+    });
+
+    $('.left button').click(function() {
+        page_id = $(this).val();
+        action = $(this).text() == 'Edit' ? 'edit' : 'del'
+
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: {id:parseInt(page_id), action:action, csrfmiddlewaretoken: "{{ csrf_token }}"}
+        })
+        .success(function( response ) {
+
+            if ( typeof response.flatpage != 'undefined') {
+                flatpage = response.flatpage;
+                subpage = response.subpage;
+
+                $('#id_url').val(flatpage.url);
+                $('#id_title').val(flatpage.title);
+                tinyMCE.activeEditor.setContent(flatpage.content);
+                $('#id_subpage select').val(subpage.flatpage);
+                $('#id_heading').val(subpage.heading);
+                $('.right button').val(flatpage.id);
+            }
+
+            else {
+                page_id = response.page_id;
+
+                tr = $('.left button[value=' + page_id + ']').parents('tr').remove();
+            }
+        });
+    })
+
+    $.fn.extend({
+    insertAtCaret: function(myValue){
+      return this.each(function(i) {
+        if (document.selection) {
+          //For browsers like Internet Explorer
+          this.focus();
+          var sel = document.selection.createRange();
+          sel.text = myValue;
+          this.focus();
+        }
+        else if (this.selectionStart || this.selectionStart == '0') {
+          //For browsers like Firefox and Webkit based
+          var startPos = this.selectionStart;
+          var endPos = this.selectionEnd;
+          var scrollTop = this.scrollTop;
+          this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+          this.focus();
+          this.selectionStart = startPos + myValue.length;
+          this.selectionEnd = startPos + myValue.length;
+          this.scrollTop = scrollTop;
+        } else {
+          this.value += myValue;
+          this.focus();
+        }
+      });
+    }
+    });
+
+    $('.styling-element').click(function() {
+        $('#id_content').insertAtCaret($('span', this).html());
+    });
+</script>
+{% endblock %}

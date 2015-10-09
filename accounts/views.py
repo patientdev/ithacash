@@ -55,8 +55,8 @@ class UserSignupForm(forms.ModelForm):
         model = IthacashUser
         fields = ['username', 'full_name']
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Username'})
         }
 
 
@@ -76,17 +76,16 @@ def signup_phase_one(request):
 
     if request.method == 'POST':
 
+        address = request.POST.get('address')
+
         if form.is_valid():
-            email_object, created = Email.objects.get_or_create(address=request.POST['address'])
 
-            if not created:
-                if IthacashAccount.objects.filter(owner=email_object.owner).exists():
-                    form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
-                    return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
+            if Email.objects.filter(address=address).exists():
+                form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
+                return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
-            request.session['most_recent_confirmation_key'] = email_object.most_recent_confirmation_key
-
-            return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+            else:
+                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
         else:
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
@@ -97,11 +96,15 @@ def signup_phase_one(request):
 
 def await_confirmation(request):
 
-    email_object = Email.objects.get(most_recent_confirmation_key=request.session['most_recent_confirmation_key'])
+    if request.method == 'POST':
 
-    @crosstown_traffic()
-    def send_email_later():
-        email_object.send_confirmation_message()
+        email_object, created = Email.objects.get_or_create(address=request.POST['address'])
+
+        if created:
+
+            @crosstown_traffic()
+            def send_email_later():
+                email_object.send_confirmation_message()
 
     return render(request, 'await-confirmation.html')
 
