@@ -8,3 +8,5 @@ mandrill
 psycopg2
 newrelic
 raven
+bleach
+
