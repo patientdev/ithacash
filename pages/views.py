@@ -157,6 +157,8 @@ def page_creator(request):
 
                 subpage = subpage_form.save(commit=False)
                 subpage.flatpage = flatpage
+                print subpage.meta_keywords
+                print subpage.meta_desc
                 subpage.save()
 
                 return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
