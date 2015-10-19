@@ -30,20 +30,20 @@
     - postgresql-9.3
     - cron
 
-## SSH key business not working; gitlab API seems whacky about it.
-# - name: slurp public key to use on gitlab
-#  slurp: src="~/.ssh/id_rsa.pub"
-#  register: appserver_ssh_key
-#  sudo_user: "{{ app_user }}"
+- name: slurp public key to use on gitlab
+  slurp: src="~/.ssh/id_rsa.pub"
+  register: appserver_ssh_key
+  sudo_user: "{{ app_user }}"
 
-# - name: Activate SSH key for gitlab 'appserver' user
-#  uri:
-#    url: https://gitlab.ithacash.com/api/v3/user/keys
-#    method: POST
-#    HEADER_PRIVATE-TOKEN: '1WDSfRcYyyg7sHikwFwd'
-#    validate_certs: no
-#    body_format: raw
-#    body: "key={{appserver_ssh_key.content|b64decode}}&title=appserver_key"
+- name: Activate SSH key for gitlab 'appserver' user
+  uri:
+    url: https://gitlab.ithacash.com/api/v3/projects/1/keys
+    method: POST
+    HEADER_PRIVATE-TOKEN: '_utsQYTsABFiuheoCw9P'
+    validate_certs: no
+    body_format: raw
+    body: "id=1&key={{appserver_ssh_key.content|b64decode|urlencode}}&title=Staging%20server%20key"
+    status_code: 201
 
 - name: Checkout branch from gitlab
   sudo: yes
