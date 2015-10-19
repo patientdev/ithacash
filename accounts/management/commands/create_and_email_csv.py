@@ -30,6 +30,8 @@ class Command(BaseCommand):
 
     def __init__(self, new_user_list=None, *args, **kwargs):
 
+        super(Command, self).__init__(*args, **kwargs)
+
         self.new_ithacash_users = new_user_list or []
         self.cyclos_field_list = []
         self.csv_buffer = StringIO.StringIO()
@@ -38,10 +40,13 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        self.get_most_recent_signups()
-        self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
-        self.output_csv()
-        return self.email_csv(self.csv_buffer)
+        if self.get_most_recent_signups():
+            self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
+            self.output_csv()
+            print self.email_csv(self.csv_buffer)
+
+        else:
+            print "%s: Nothing to send." % datetime.now()
 
     def get_most_recent_signups(self):
 
@@ -62,39 +67,7 @@ class Command(BaseCommand):
                 combined_user_dict = dict(emails, **accounts)
                 combined_user_dict.update(user_object.__dict__)
 
-                new_ithacash_users.append(combined_user_dict)
-
-            csv_to_email = StringIO.StringIO()
-            csv_writer = CyclosCsvWriter(new_ithacash_users, csv_to_email)
-            csv_writer.map_dict_to_cyclos_fields(new_ithacash_users)
-            csv_writer.output_to_csv(csv_to_email)
-
-            mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
-
-            try:
-                result = mandrill_client.messages.send(
-                    {
-                        'to': [{'email': 'scott@ithacash.com', 'name': 'Scott Morris'}, {'email': 'beline@ithacash.com', 'name': 'Beline Falzon'}],
-                        'text': 'Import this CSV into Cyclos',
-                        'from_name': 'Ithacash.com',
-                        'from_email': "it@ithacash.com",
-                        'subject': 'New user accounts',
-                        'attachments': [
-                            {
-                                'type': 'text/csv',
-                                'name': 'new_ithacash_users_%s' % datetime.now().strftime('%Y_%m_%d'),
-                                'content': b64encode(csv_to_email.getvalue())
-                            }
-                        ]
-                    })
-
-                print "%s: %s" % (datetime.now(), result)
-
-            except Exception, e:
-                print "%s:  Error:\n%s" % (datetime.now(), e)
-
-        else:
-            print "%s: Nothing to send." % datetime.now()
+                self.new_ithacash_users.append(combined_user_dict)
 
         return self.new_ithacash_users
 
@@ -103,6 +76,10 @@ class Command(BaseCommand):
         new_ithacash_users = new_ithacash_users or self.new_ithacash_users
 
         for new_user in new_ithacash_users:
+
+            if new_user['account_type'] != 'Individual' and new_user['entity_name'] == '':
+                new_user['entity_name'] = new_user['full_name']
+                print new_user['entity_name']
 
             mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
 
