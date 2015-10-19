@@ -10,7 +10,7 @@ def paypal_ipn_endpoint(request):
     is_legit = PaypalValidator().validate_paypal_ipn(request.POST.copy())
 
     if is_legit:
-        print is_legit
+        pass
 
     else:
         return HttpResponseBadRequest("This request was not validated by paypal.")
@@ -22,5 +22,5 @@ def paypal_ipn_endpoint(request):
         payment = SignUpPayment.objects.create(account=account, amount=request.POST['payment_gross'])
 
         account.send_awaiting_verification_message()
-    
+
     return HttpResponse("PROCESSED.")
