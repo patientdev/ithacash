@@ -59,7 +59,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 class CreateAccountTests(TestCase):
 
     account_post_data = {
-        u'username': u'joe_individual',
+        u'username': u'joesephshmo',
         u'city': u'Ithaca',
         u'account_type': u'Individual',
         u'address_2': u'',
