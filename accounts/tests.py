@@ -64,11 +64,11 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 class CreateAccountTests(TestCase):
 
     account_post_data = {
-        u'username': u'joesephshmo',
+        u'username': u'josephshmo',
         u'city': u'Ithaca',
         u'account_type': u'Individual',
         u'address_2': u'',
-        u'entity_name': u'n/a',
+        u'entity_name': u'',
         u'state': u'NY',
         u'electronic_signature': u'asdas',
         u'tin': u'445556154',
@@ -106,7 +106,6 @@ class CreateAccountTests(TestCase):
 
         response = review(r)
         self.assertEqual(response.status_code, 200)
-        return response
 
     def test_create_account_with_valid_data_results_in_account_objects(self):
         print 'test_create_account_with_valid_data_results_in_account_objects'
@@ -118,7 +117,8 @@ class CreateAccountTests(TestCase):
         self.assertTrue(IthacashAccount.objects.exists())
 
     def test_csv_export_and_email(self):
-
+        print 'test_csv_export_and_email'
+        
         """
         Assert that the base64 encoding of the csv_output has reached mandrill
         """
