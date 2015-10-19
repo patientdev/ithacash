@@ -11,13 +11,13 @@ from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJE
 from django.template import Context, loader
 from django.conf import settings
 from django.core import validators
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
-
     username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')
 ])
     full_name = models.CharField(max_length=255)
@@ -80,7 +80,7 @@ class Email(models.Model):
 
     def confirm(self, key):
         if key == self.most_recent_confirmation_key:
-            self.confirmed = datetime.now()
+            self.confirmed = timezone.now()
             self.save()
             return True
         else:
