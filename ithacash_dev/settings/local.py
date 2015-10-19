@@ -13,8 +13,11 @@ DATABASES = {
 PAYPAL_SETTINGS = {
     'url': 'https://www.sandbox.paypal.com/cgi-bin/webscr',
     'button_ids': {
-        'Standard Business': "KT959QR33959U",
-        'Individual': "AAAAAAAAAAAAA",
+        'Individual': None,
+        'Standard Business': "AAAAAAAAAAAAA",
+        'Premier Business': "AAAAAAAAAAAAA",
+        'Nonprofit': "AAAAAAAAAAAAA",
+        'Freelancer': "AAAAAAAAAAAAA",
     }
 }
 
