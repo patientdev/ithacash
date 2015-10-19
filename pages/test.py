@@ -7,18 +7,21 @@ import json
 class PageCreator(TestCase):
 
     def create_flatpage(self):
+        print 'create_flatpage'
 
         fake_post = {'url': '/test/', 'title': 'Test Title', 'content': '<p>test</p>', 'template_name': 'fake_template.html', 'sites': '1', 'meta_desc': 'Test desc', 'meta_keywords': 'Test, keywords', 'heading': 'Test Heading'}
 
         self.client.post('/page-creator/', fake_post)
 
     def test_flatpage_creation(self):
+        print 'test_flatpage_creation'
 
         self.create_flatpage()
 
         self.assertTrue(FlatPage.objects.filter(url='/test/').exists())
 
     def test_flatpage_edit(self):
+        print 'test_flatpage_edit'
 
         self.create_flatpage()
 
@@ -30,7 +33,8 @@ class PageCreator(TestCase):
         self.assertEqual('New Test Title', flatpage.title)
 
     def test_return_flatpage(self):
-
+        print 'test_return_flatpage'
+        
         self.create_flatpage()
 
         fake_post = {'id': '1', 'action': 'edit'}

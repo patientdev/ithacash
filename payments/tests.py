@@ -19,6 +19,8 @@ SAMPLE_PAYPAL_IPN_PAYLOAD = {
 class PaypalTests(TestCase):
 
     def test_ipn_endpoint(self):
+        print 'test_ipn_endpoint'
+        
         r = RequestFactory()
         r.method = "POST"
         r.POST = SAMPLE_PAYPAL_IPN_PAYLOAD

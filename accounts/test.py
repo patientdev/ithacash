@@ -10,10 +10,13 @@ from accounts.views import review
 class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 
     def test_first_stage_give_email(self):
+        print 'test_first_stage_give_email'
         address = 'dingo@dingo.com'
         self.assertFalse(Email.objects.filter(address=address).exists())
 
     def test_confirm_email(self):
+        print 'test_confirm_email'
+
         address = 'test@test.com'
 
         self.client.post('/accounts/await-confirmation/', {'address': address})
@@ -41,6 +44,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
         self.assertIsNotNone(email_object.confirmed)
 
     def test_confirm_email_view(self):
+        print 'test_confirm_email_view'
         email_object = Email.objects.create(address="test@test.com")
         key = email_object.most_recent_confirmation_key
         response = self.client.get('/accounts/create_account/%s' % key)
@@ -72,6 +76,8 @@ class CreateAccountTests(TestCase):
     }
 
     def test_create_account_with_invalid_data(self):
+        print 'test_create_account_with_invalid_data'
+
         email = Email.objects.create(address="nobody@nothing.com")
 
         r = RequestFactory()
@@ -83,6 +89,8 @@ class CreateAccountTests(TestCase):
         self.assertIsNotNone(response)
 
     def test_create_account_with_valid_data(self):
+        print 'test_create_account_with_valid_data'
+
         email = Email.objects.create(address="nobody@nothing.com")
         self.account_post_data['most_recent_confirmation_key'] = email.most_recent_confirmation_key
 
@@ -96,6 +104,8 @@ class CreateAccountTests(TestCase):
         return response
 
     def test_create_account_with_valid_data_results_in_account_objects(self):
+        print 'test_create_account_with_valid_data_results_in_account_objects'
+
         self.assertFalse(IthacashAccount.objects.exists())
 
         response = self.test_create_account_with_valid_data()
