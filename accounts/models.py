@@ -11,6 +11,7 @@ from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJE
 from django.template import Context, loader
 from django.conf import settings
 from django.core import validators
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
@@ -78,7 +79,7 @@ class Email(models.Model):
 
     def confirm(self, key):
         if key == self.most_recent_confirmation_key:
-            self.confirmed = datetime.now()
+            self.confirmed = timezone.now()
             self.save()
             return True
         else:
