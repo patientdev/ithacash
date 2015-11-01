@@ -67,15 +67,6 @@ h1 img {
     z-index: 20;
 }*/
 
-#nav-menu li {
-    padding: 0 5px 10px 5px;
-    margin: 0;
-    display: inline-block;
-    position: relative;
-}
-
-#nav-menu li::before { content: none; }
-
 #nav-menu ul a, #nav-home a {
     text-decoration: none;
     color: $dark-gray;
@@ -85,6 +76,15 @@ h1 img {
     padding-bottom: 5px;
     line-height: 1em;
     vertical-align: bottom;
+}
+
+#nav-menu li {
+    margin: 0;
+    display: inline-block;
+    padding: 0 5px 10px 5px;
+    position: relative;
+
+    &::before { content: none; }
 }
 
 /* Level 1 */
