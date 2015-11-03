@@ -12,11 +12,21 @@ from django.conf import settings
 
 class Command(BaseCommand):
 
-    def handle(self, *args, **kwargs):
+    def add_arguments(self, parser):
+        parser.add_argument('--user', action='append', help='Specify multiple users with additional --user arguments')
 
-        yesterday = datetime.now() - timedelta(days=1)
+    def handle(self, *args, **options):
 
-        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
+        if options['user']:
+            most_recent_account_signups = []
+            for user in options['user']:
+                print user
+                user_object = IthacashUser.objects.get(username=user)
+                most_recent_account_signups.append(user_object)
+        else:
+            yesterday = datetime.now() - timedelta(days=1)
+
+            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
 
         if most_recent_account_signups:
             new_ithacash_users = []
