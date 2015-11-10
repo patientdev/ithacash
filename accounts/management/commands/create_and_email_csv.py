@@ -38,7 +38,10 @@ class Command(BaseCommand):
         self.mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
         self.csv_output = csv.DictWriter(self.csv_buffer, fieldnames=self.cyclos_required_fieldnames)
 
-    def handle(self, *args, **kwargs):
+    def add_arguments(self, parser):
+        parser.add_argument('--user', action='append', help='Specify multiple users with additional --user arguments')
+
+    def handle(self, *args, **options):
 
         if self.get_most_recent_signups():
             self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
@@ -52,7 +55,16 @@ class Command(BaseCommand):
 
         yesterday = datetime.now() - timedelta(days=1)
 
-        most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
+        if options['user']:
+            most_recent_account_signups = []
+            for user in options['user']:
+                print user
+                user_object = IthacashUser.objects.get(username=user)
+                most_recent_account_signups.append(user_object)
+        else:
+            yesterday = datetime.now() - timedelta(days=1)
+
+            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
 
         if most_recent_account_signups:
 

@@ -9,7 +9,7 @@ class PageCreator(TestCase):
     def create_flatpage(self):
         print 'create_flatpage'
 
-        fake_post = {'url': '/test/', 'title': 'Test Title', 'content': '<p>test</p>', 'template_name': 'fake_template.html', 'sites': '1', 'meta_desc': 'Test desc', 'meta_keywords': 'Test, keywords', 'heading': 'Test Heading'}
+        fake_post = {'url': '/test/', 'title': 'Test Title', 'content': '<p>test</p>', 'template_name': 'fake_template.html', 'sites': '1', 'meta_desc': 'Test desc', 'meta_keywords': 'Test, keywords', 'heading': 'Test Heading', 'meta_image': 'https://ithacash.com/static/img/IthaCash_icon_2color.png'}
 
         self.client.post('/page-creator/', fake_post)
 
@@ -25,7 +25,7 @@ class PageCreator(TestCase):
 
         self.create_flatpage()
 
-        fake_post = {'id': '1', 'url': '/test/', 'title': 'New Test Title', 'content': '<p>test</p>', 'template_name': 'fake_template.html', 'sites': '1', 'meta_desc': 'Test desc', 'meta_keywords': 'Test, keywords', 'heading': 'Test Heading'}
+        fake_post = {'id': '1', 'url': '/test/', 'title': 'New Test Title', 'content': '<p>test</p>', 'template_name': 'fake_template.html', 'sites': '1', 'meta_desc': 'Test desc', 'meta_keywords': 'Test, keywords', 'heading': 'Test Heading', 'meta_image': 'https://ithacash.com/static/img/IthaCash_icon_2color.png'}
 
         self.client.post('/page-creator/', fake_post)
 
@@ -34,7 +34,7 @@ class PageCreator(TestCase):
 
     def test_return_flatpage(self):
         print 'test_return_flatpage'
-        
+
         self.create_flatpage()
 
         fake_post = {'id': '1', 'action': 'edit'}

@@ -61,7 +61,7 @@
         height: 4.8em;
     }
 
-    #id_meta_keywords {
+    #id_meta_keywords, #id_meta_image {
         width: calc(100% - 45px);
     }
 
@@ -125,6 +125,8 @@
                 <p>{{ subpage_form.meta_desc }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_desc.help_text|safe }}</span></span></p>
 
                 <p>{{ subpage_form.meta_keywords }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_keywords.help_text|safe }}</span></span></p>
+
+                <p>{{ subpage_form.meta_image }} <span class="helptext-wrapper dark-gray-background"><span class="helptext">{{ subpage_form.meta_image.help_text|safe }}</span></span></p>
 
                 <p><button name="id" value="{{ flatpage_form.initial.id|default_if_none:"" }}">Update</button></p>
             </div>
