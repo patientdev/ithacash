@@ -1,0 +1,109 @@
+#carousel {
+    border-bottom: 1px solid rgb(213, 213, 213);
+    position: relative;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+#carousel svg {
+    width: 15px; height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+}
+
+#left-arrow, #right-arrow {
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#right-arrow svg {
+    float: right;
+}
+
+#left-arrow svg {
+    float: left;
+}
+
+.tri {
+    height: 100%;
+}
+
+#ithacash-arrow {
+    width: 200px;
+    position: absolute;
+    left: 50%; margin-left: -100px;
+    top: 40px;
+    z-index: 10;
+}
+
+#panels {
+    width: 75%;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.panel {
+    display: inline-block;
+    width: 100%;
+    white-space: normal;
+    position: relative;
+    right: 0;
+    -webkit-transition: right .75s ease-out, left .75s ease-out;
+    transition: right .75s ease-out, left .75s ease-out;
+    padding: 0 20px;
+}
+
+.panel img {
+    height: 160px;
+    vertical-align: middle;
+}
+
+.panel .left img {
+    float: right;
+}
+
+.panel .right img {
+    float: left;
+}
+
+.panel .left {
+    width: 33%;
+    float: left;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.panel .center {
+    width: 50%;
+    margin: auto;
+    padding-top: 120px;
+}
+
+.panel .right {
+    width: 33%;
+    float: right;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.panel h3 {
+    color: black;
+    text-transform: none;
+    font-size: 1em;
+}
+
+.panel p {
+    margin-bottom: 0;
+}
+
+#carousel button {
+    background-color: transparent;
+    border: none;
+}
+
+#ind-to-ind-1.panel { display: inline-block; }

@@ -30,27 +30,28 @@
     - postgresql-9.3
     - cron
 
-## SSH key business not working; gitlab API seems whacky about it.
-# - name: slurp public key to use on gitlab
-#  slurp: src="~/.ssh/id_rsa.pub"
-#  register: appserver_ssh_key
-#  sudo_user: "{{ app_user }}"
+- name: slurp public key to use on gitlab
+  slurp: src="~/.ssh/id_rsa.pub"
+  register: appserver_ssh_key
+  sudo_user: "{{ app_user }}"
 
-# - name: Activate SSH key for gitlab 'appserver' user
-#  uri:
-#    url: https://gitlab.ithacash.com/api/v3/user/keys
-#    method: POST
-#    HEADER_PRIVATE-TOKEN: '1WDSfRcYyyg7sHikwFwd'
-#    validate_certs: no
-#    body_format: raw
-#    body: "key={{appserver_ssh_key.content|b64decode}}&title=appserver_key"
+- name: Activate SSH key for gitlab 'appserver' user
+  uri:
+    url: https://gitlab.ithacash.com/api/v3/projects/1/keys
+    method: POST
+    HEADER_PRIVATE-TOKEN: '_utsQYTsABFiuheoCw9P'
+    validate_certs: no
+    body_format: raw
+    body: "id=1&key={{appserver_ssh_key.content|b64decode|urlencode}}&title=Staging%20server%20key"
+    status_code: 201
 
-- name: Checkout project from gitlab
+- name: Checkout branch from gitlab
   sudo: yes
   sudo_user: "{{ app_user }}"
   git:
-    repo: git@gitlab.ithacash.com:ithacash/ithacash.git
-    dest: /ithacash/production
+    repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
+    version: "{{ branch }}"
+    dest: /ithacash/{{ deployment_environment }}
     accept_hostkey: yes
     depth: 1
     force: yes
@@ -59,7 +60,7 @@
   sudo: yes
   sudo_user: "{{ app_user }}"
   pip:
-    requirements: /ithacash/production/requirements/requirements.txt
+    requirements: /ithacash/{{ deployment_environment }}/requirements/requirements.txt
     virtualenv: /ithacash/virtualenv
     state: latest
 
@@ -67,10 +68,10 @@
   sudo: yes
   sudo_user: "{{ app_user }}"
   django_manage:
-    settings: ithacash_dev.settings.production
+    settings: ithacash_dev.settings.{{ deployment_environment }}
     command: migrate
     virtualenv: /ithacash/virtualenv
-    app_path: /ithacash/production
+    app_path: /ithacash/{{ deployment_environment }}
 
 
 - name: Apply hendrix upstart template
@@ -90,4 +91,4 @@
     name: Send email with CSV of new Ithacash account signups for Cyclos import
     hour: 6
     minute: 0
-    job: /ithacash/virtualenv/bin/python /ithacash/production/manage.py create_and_email_csv --settings=ithacash_dev.settings.production >> /var/log/django_maintenance.log
+    job: /ithacash/virtualenv/bin/python /ithacash/{{ deployment_environment }}/manage.py create_and_email_csv --settings=ithacash_dev.settings.{{ deployment_environment }} >> /var/log/django_maintenance.log

@@ -5,8 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="{{ flatpage.subpage.meta_desc | default_if_none:'Money Made for Main St.' }}" />
-        <meta name="keywords" content="{{ flatpage.subpage.meta_keywords | default_if_none:'ithaca, local, currency' }}" />
+        <meta name="description" content="Money Made for Main St." />
 
         <title>{% block title %}{{ flatpage.title }} :: Ithacash{% endblock %}</title>
 
@@ -14,7 +13,7 @@
         <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="{% static 'css/page-creator.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
         <style>
             #sidebar {
                 width: 25%;
@@ -34,12 +33,16 @@
                 margin-bottom: 30px;
             }
 
-            h1 {
+            #headline h1 {
                 font-family: "Open Sans";
                 font-weight: 400;
                 color: white;
                 font-size: 1.6em;
+                margin-top: 36px;
+            }
 
+            h2 {
+                margin-bottom: 20px;
             }
         </style>
         {% block styles %}{% endblock %}
@@ -93,8 +96,25 @@
                 <p>607&ndash;391&ndash;2789</p>
                 <p><a href="/contact/">Contact Us</a></p>
             </div>
+
+            <div id="nav-menu" class="clear">
+                {% if request.get_full_path != "/" %}
+                    <p id="nav-home"><a href="/">Home</a></p>
+                {% endif %}
+                <ul>
+                    <li><a href="/why-ithacash/">Why Ithacash</a></li>
+                    <li id="nav-how-it-works"><a href="/how-it-works/">How It Works</a></li>
+                    <li><a href="https://communities.cyclos.org/Ithacash/#users.users.map-directory" target="_blank">Directory</a></li>
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank">Shop</a></li>
+                    <li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
+                    <li id="nav-get-started"><a href="/accounts/signup/" class="green-button">Get Started</a></li>
+                </ul>
+            <div class="angled-footer"></div>
+            </div>
             {% endblock %}
             </div>
+        <div class="angled-footer"></div>
         </header>
 
         <div id="content">
@@ -105,9 +125,9 @@
         </div>
         </div>
         <div class="container">
-        <h2>{{ flatpage.title }}</h2>
             {% block content %}
                 <article>
+                    <h2>{{ flatpage.title }}</h2>
                     {{ flatpage.content }}
                 </article>
             {% endblock %}
@@ -118,18 +138,7 @@
         </div>
         </div>
 
-        <footer>
-            {% block footer %}{% endblock %}
-        </footer>
-
     </div>
-
-    {% block scripts %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
-        </script>
-        <script src="{% static 'js/ithacash.js' %}"></script>
-    {% endblock %}
 
     </body>
 </html>

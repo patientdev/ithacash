@@ -1,0 +1,117 @@
+input[type=text],
+input[type=email],
+textarea {
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.2em;
+  border: 1px solid $medium-gray;
+  font-weight: 100;
+
+  &:focus {
+    outline: 1px solid $light-green;
+  }
+}
+
+textarea {
+    height: 20em;
+}
+
+.helptext {
+  display: none;
+  z-index: 10;
+}
+
+.helptext-wrapper {
+
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  textarea + & {
+      vertical-align: top;
+  }
+
+  &::before {
+    content: "?";
+    border-radius: 50%;
+    background-color: $light-gray;
+    color: $dark-green;
+    padding: 6px 10px;
+    line-height: 1em;
+    font-size: .9em;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  &:hover .helptext {
+    opacity: 1;
+    display: block;
+    position: absolute;
+    min-width: 200px;
+    width: 300px;
+    padding: 10px;
+    background-color: $medium-gray;
+    color: $white;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-size: .9em;
+    line-height: 1.2em;
+    top: -7px;
+    left: 30px;
+  }
+}
+
+button {
+  background-color: $light-green;
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 10px;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.error-message {
+    margin-left: 60px;
+    position: absolute;
+    line-height: 45px;
+
+    textarea + & + .helptext-wrapper {
+        vertical-align: top;
+    }
+}
+
+.error-message::before {
+    content: "•";
+    color: red;
+    margin-right: 10px;
+    font-size: 1.4em;
+}
+
+.green-button {
+    background-color: rgb(136, 177, 71);
+    padding: 11px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $pale-green;
+        color: $dark-gray;
+    }
+}
+
+.dark-green-button {
+    background-color: rgb(84, 124, 66);
+
+    &:hover {
+        background-color: $pale-green;
+        color: #555;
+    }
+}

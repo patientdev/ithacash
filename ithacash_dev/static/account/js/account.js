@@ -70,8 +70,8 @@ $(function() {
             method: 'POST',
             data: data
         })
-        .always(function(response) {
-                console.log(response);
+        .always(function( response ) {
+            console.log(response);
         })
         .fail(function( response ){
 
