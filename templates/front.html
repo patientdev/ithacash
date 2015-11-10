@@ -1,27 +1,57 @@
-{% extends 'head-foot.html' %}
+{% extends 'base.html' %}
 
 {% load staticfiles %}
 
+{% block styles %}
+<style>
+    section {
+      padding: 60px 0;
+    }
+
+    #how-it-works {
+        padding: 0;
+    }
+
+    footer {
+        margin-top: 0;
+    }
+
+    #who-uses-it {
+        min-height: 600px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div id="content">
 
 <div id="intro">
- <div id="email-list-box">
-     <h2>Money Made for Main St.</h2>
-     <p>Ithacash is a new way for you to earn &amp; spend locally. Our cooperative currency, Ithaca Dollars (i$), work alongside conventional money to benefit the regional economy and its people. Join our growing community to learn more. </p>
-     <form id="join-email-list" class="form" action="" method="POST">
-         <input type="hidden" name="form" value="newsletter_form">
-        {{ newsletter_form.as_p }}
-        <p><button class="green-button">Join the Email List</button></p>
-     </form>
+<div class="container">
+ <div id="intrinsically-local" class="light-green-background">
+     <h2>Why local money?</h2>
+     <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
+     <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
  </div>
 
-    <p class="caption">Brett Bossard. Owner, Cinemapolis</p>
+  <div id="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
+</div>
+    <div style="position: absolute; left: 0; bottom: 0; color: black; font-style: italic; background-color: rgba(255, 255, 255, .4); font-size: .8em; padding: 3px 10px; border-radius: 4px 4px 0 0;">Photo by <a href="http://www.th-photo.com" style="color: black;" target="_blank">Tom Hoebbel</a></div>
 </div>
 
-<section id="how-it-works">
-    <h2>How It Works</h2>
+<section id="invigorating-our-economy" class="light-green-background">
+<div class="angled-box angled-box-26">Brett Bossard. Owner, Cinemapolis</div>
+<div class="angled-header">Why Ithacash</div>
+<div class="container">
+    <div class="right">
+        <h2>Invigorating Our Economy</h2>
+        <p class="prominent-graph light-green-background">Money &ldquo;as usual&rdquo; isn't working. Businesses are struggling, families are having a hard time keeping up, and many people simply can&rsquo;t get their basic needs met. External financial forces take local profits out of the area and limit local reinvestment. <b>Ithacash plugs the leaks, fills the gaps, and provides local incentives</b> that keep our region thriving.</p>
+        <a href="/how-it-works/" class="angled-cta-left bottom-right dark-green-background">Spending a Difference</a>
+    </div>
+</div>
+</section>
 
+<section id="how-it-works" class="white-background">
+<div class="angled-header">How It Works</div>
+<div class="container">
     <div id="carousel">
 
         <div id="left-arrow">
@@ -179,326 +209,60 @@
             </button>
         </div>
     </div>
-</section>
 
-<section id="how-to-get-started">
-    <h2>How To Get Started</h2>
-    <div id="path">
-        <div class="step clear">
+    <div class="left">
+        <h2>As Easy As Cash</h2>
+        <p class="prominent-graph"><strong>Ithaca Dollars</strong> can be used anywhere they are accepted. You can pay via a simple text message, and send money via a free online account. Get an additional 25% Bonus when you purchase digital currency online or convert to paper currency at participating local stores (coming soon).</p>
 
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="15" y="43">#1</text>
-            </svg>
+         <p><a href="" class="cta-link">How is it different from Ithaca Hours<sup>&copy;</sup>?</a></p>
+         <p><a href="" class="cta-link">Security</a></p>
 
-            <div class="left">
-                <h3>Sign Up</h3>
-                <p>It&rsquo;s Simple!</p>
-                <p>Fill out an application<br> on our Sign Up Page</p>
-                <p><a href="/apply/" class="green-button">Apply Now</a></p>
-            </div>
-            <div class="right">
-                <img src="{% static 'img/howtogetstarted-sign-up.png' %}">
-            </div>
-        </div>
-        <div class="step clear">
-
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="13" y="42">#2</text>
-            </svg>
-            <div class="left">
-                <img src="{% static 'img/howtogetstarted-phone.png' %}">
-            </div>
-            <div class="right">
-                <h3>Link Your Phone</h3>
-                <p>Any mobile phone can make &amp; take i$ payments via text message. (TXT2PAY)</p>
-                <p>(No sensitive financial infomation is stored on your phone.)</p>
-            </div>
-        </div>
-        <div class="step clear" id="shop-local">
-
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="13" y="43">#3</text>
-            </svg>
-
-            <svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <line x1="0" y1="40" x2="60" y2="0"></line>
-                <line x1="60" y1="0" x2="120" y2="40"></line>
-                <polygon points="11.5,36 109,36, 118.75,42, 3,42" style="fill: rgb(235, 235, 235);"></polygon>
-            </svg>
-
-            <div class="sub-step clear">
-
-                <h3>Enter the Marketplace</h3>
-
-                <div class="left">
-                    <div class="top">
-                        <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                              <text x="13" y="43">3a</text>
-                        </svg>
-
-                        <h3>Shop<br> Local</h3>
-
-                        <p>What is it you want? i$ pack a bit more punch in your wallet. No i$? No worries! You can use our 0% interest lines of PayItFWD credit.</p>
-                    </div>
-                    <div class="bottom">
-                        <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                              <text x="13" y="43">3b</text>
-                        </svg>
-
-                        <h3>Save<br> Cash</h3>
-
-                        <p>Spend your i$ first, and save your other hard&ndash;earned money for things only it can buy.</p>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="top">
-                        <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                              <text x="13" y="43">3c</text>
-                        </svg>
-
-                        <h3>Earn<br> Income</h3>
-
-                        <p>List your goods &amp; skills and start selling in i$. Gain new customers, move more stock, and bill more hours.</p>
-                    </div>
-                    <div class="bottom">
-                        <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                              <text x="13" y="43">3d</text>
-                        </svg>
-
-                        <h3>Save<br> Up</h3>
-
-                        <p>Looking to make a bigger purchase? <br>Use i$ creatively to help you save.</p>
-                    </div>
-                </div>
-            </div>
-
-            <svg class="angle" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <line x1="0" y1="0" x2="60" y2="40"></line>
-                <line x1="60" y1="40" x2="120" y2="0"></line>
-                <polygon points="3,0, 115,0 106,6 14,6" style="fill: rgb(235, 235, 235);"></polygon>
-            </svg>
-        </div>
-        <div class="step clear">
-
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="13" y="43">#4</text>
-            </svg>
-
-            <div class="left">
-                <img src="{% static 'img/howtogetstarted-drum.png' %}">
-            </div>
-            <div class="right">
-                <h3>Find Your Rhythm</h3>
-                <p>Get the most from your account by buying and selling at a pace that works best for you.</p>
-            </div>
-        </div>
-        <div class="step clear">
-
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="13" y="43">#5</text>
-            </svg>
-
-            <div class="left">
-                <h3>Make a Wishlist</h3>
-                <p>By getting clear about what you want you&rsquo;ll help all of us know what&rsquo;s in demand.</p>
-            </div>
-            <div class="right">
-                <img src="{% static 'img/howtogetstarted-wand.png' %}">
-            </div>
-        </div>
-        <div class="step clear">
-
-            <svg class="hex" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <polygon points="15,0 55,0, 70,30, 55,60, 15,60, 0,30"></polygon>
-                  <text x="13" y="43">#6</text>
-            </svg>
-
-            <div class="left">
-                <p class="social"><a href="http://facebook.com/ithacash" target="_blank"><img src="{% static 'img/facebook.png' %}"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="{% static 'img/twitter.png' %}"></a> <a href="mailto:join@ithacash.com?subject=Check%20out%20ithacash" target="_blank"><img src="{% static 'img/email.png' %}"></a></p>
-            </div>
-            <div class="right">
-                <h3>Share the Wealth</h3>
-                <p>The circuit works best when you share it with your friends!</p>
-            </div>
-        </div>
+         <a href="/how-it-works/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
     </div>
 
-</section>
+    <div class="right">
+        <h3>Paper Currency</h3>
+        <p>In the coming months, hundreds of businesses will be accepting this new state&ndash;of&ndash;the&ndash;art paper currency, starting with the <b>i$1 and i$5</b>.</p>
 
-<section id="the-circuit">
-    <h2>The Circuit</h2>
-    <h3>Coming soon with over 100 locations</h3>
-</section>
+        <p><a href="" class="cta-link">Security</a></p>
+        <p><a href="" class="cta-link">Pre&ndash;order Ithaca Dollar bills</a></p>
 
-<section id="core-services">
-    <h2>Core Services</h2>
+        <h3>Online Accounts</h3>
+        <p>Use our <b>secure digital currency</b> to make and take payments, just like any other third&ndash;party service. Using Ithacash means lower transacting fees, and automatically shows support for the local community.</p>
 
-    <div id="services">
-        <div class="left">
-            <div id="ithaca-dollars">
-                <p class="image"><img src="{% static 'img/i-dollar.png' %}"></p>
-                <div class="caption">
-                    <h3>Ithaca Dollars</h3>
-                    <p>A fully modern, easy&ndash;to&ndash; use local currency. Arriving this Summer!</p>
-                    <p><a href="https://squareup.com/market/ithacash/ithaca-dollars" class="green-button dark-green-button" target="_blank">Buy i$</a></p>
-                </div>
-            </div>
+        <p><a href="/accounts/signup/" class="cta-link">Get a Free Account</a></p>
+        <p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="cta-link">Purchase Ithaca Dollars and Get 25% More</a></p>
 
-            <div id="ithacash-online">
-                <p class="image"><img src="{% static 'img/monitor.png' %}"></p>
-                <div class="caption">
-                    <h3>Ithacash Online</h3>
-                    <p>Secure online accounts and an online marketplace.</p>
-                </div>
-            </div>
+        <h3>TXT2PAY</h3>
+        <p><b>Link any cell phone</b> (no smartphone required) to your online account, and send a secure payment with a standard text message. As easy as typing, no wallet necessary.</p>
 
-            <div id="txt2pay">
-                <p class="image"><img src="{% static 'img/howtogetstarted-phone.png' %}"></p>
-                <div class="caption">
-                    <h3>TXT2PAY</h3>
-                    <p>Any mobile phone can make &amp; take i$ payments via text message.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="right">
-            <div id="network-of-trust">
-                <p><img src="{% static 'img/trust-network.png' %}"></p>
-                <h3>A Network of Trust</h3>
-                <p>Universally afforable memberships ensure everyone can participate.</p>
-            </div>
-
-            <div id="payitfwd">
-                <p><img src="{% static 'img/pay-it-forward.png' %}"></p>
-                <h3>PAYITFWD Credit</h3>
-                <p>Accessible lines of credit at 0% interest.</p>
-            </div>
-        </div>
+        <p><a href="/txt2pay/" class="cta-link">As Easy As Typing</a></p>
     </div>
-
-</section>
-
-<section id="accounts" class="clear">
-    <h2>Accounts</h2>
-
-    <ul>
-        <li id="individual" class="clear"><p><img src="{% static 'img/individual.png' %}"><span>Individuals</span></p></li>
-        <li id="freelance"class="clear"><p><img src="{% static 'img/freelancer.png' %}"><span>Freelancers</span></p></li>
-        <li id="business"class="clear"><p><img src="{% static 'img/business.png' %}"><span>Businesses</span></p></li>
-        <li id="nonprofit"class="clear"><p><img src="{% static 'img/nonprofit.png' %}"><span>Nonprofits</span></p></li>
-    </ul>
-
-    <div id="account-info">
-        <div id="individual-info">
-            <div class="img"><img src="{% static 'img/individual.jpg' %}"></div>
-
-            <div class="copy">
-                <p>Anyone can join the circuit as an individual. These accounts may view the directory and advertisements of those making offers of goods &amp; services for i$.</p>
-
-                <h4>How They Get i$</h4>
-                <ul>
-                    <li>Winning them from promotional campaigns</li>
-                    <li>By purchasing i$ and getting the &ldquo;Buy-In Bonus&rdquo;</li>
-                    <li>Through PAYITFWD lines of credit</li>
-                    <li>By accepting them for goods, services, or as a portion of wages.</li>
-                </ul>
-                <p><a href="/apply" class="green-button">Join the Circuit</a></p>
-            </div>
-        </div>
-        <div id="freelance-info">
-            <div class="img"><img src="{% static 'img/freelancer.jpg' %}"></div>
-
-            <div class="copy">
-                <p>For one&ndash;person businesses without a <em>place</em> of business. Freelancers may list advertisements and be promoted in the circuit as a preferred local provider.</p>
-
-                <h4>How They Get i$</h4>
-                <ul>
-                    <li>Sales of goods &amp; services.</li>
-                    <li>PAYITFWD lines of credit.</li>
-                    <li>Bonuses + Grants</li>
-                    <li>Purchases of i$</li>
-                </ul>
-                <p><a href="/apply" class="green-button">Join the Circuit</a></p>
-            </div>
-        </div>
-        <div id="business-info">
-            <div class="img"><img src="{% static 'img/business.jpg' %}"></div>
-
-            <div class="copy">
-                <p>Local businesses may choose between <strong>Regular</strong> and <strong>Premier</strong> accounts. In addition to listing advertisements and enjoying general promotion as a business member, Premier businesses get added visibility and priority access when it comes to new offerings.</p>
-
-                <h4>How They Get i$</h4>
-                <ul>
-                    <li>Sales of goods &amp; services.</li>
-                    <li>PAYITFWD lines of credit.</li>
-                    <li>Bonuses + Grants</li>
-                    <li>Purchases of i$</li>
-                </ul>
-                <p><a href="/apply" class="green-button">Join the Circuit</a></p>
-            </div>
-        </div>
-        <div id="nonprofit-info">
-
-            <div class="img"><img src="{% static 'img/nonprofit.jpg' %}"></div>
-
-            <div class="copy">
-                <p>Local 501(c)3&rsquo;s, non&ndash;exempt organizations, and other community associations can join the circuit and receive even more support from those who see the value of the work they do in the community. Nonprofits can post advertisements in the marketplace just like business accounts.</p>
-
-                <h4>How They Get i$</h4>
-                <ul>
-                    <li>Sales of goods &amp; services.</li>
-                    <li>PAYITFWD lines of credit.</li>
-                    <li>Bonuses + Grants</li>
-                    <li>Purchases of i$</li>
-                    <li>Donations of i$</li>
-                </ul>
-                <p><a href="/apply" class="green-button">Join the Circuit</a></p>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-<section id="contact" class="clear">
-    <h2>Say Hello</h2>
-
-    <div>
-        <div id="logos">
-            <h3>A Member of</h3>
-        <p><a href="http://revithaca.com" target="_blank"><img src="{% static 'img/rev.png' %}"></a> <a href="http://www.localfirstithaca.org" target="_blank"><img src="{% static 'img/local-first-ithaca.jpg' %}"></a> <a href="http://www.mutualaidnetwork.org" target="_blank"><img src="{% static 'img/man-logo-sun-blue.jpg' %}"></a> <a href="http://www.irta.com" target="_blank"><img src="{% static 'img/IRTAmemberlogo.jpg' %}"></a> <a href="http://www.tompkinschamber.org" target="_blank"><img src="{% static 'img/chamber-of-commerce.gif' %}"></a></p>
-        </div>
-
-        <div id="contact-form">
-             <form id="send-message" class="form" action="" method="POST">
-                 <input type="hidden" name="form" value="message_form">
-                {{ message_form.as_p }}
-                <p><button class="green-button">Send</button></p>
-            </form>
-        </div>
-
-        <div id="contact-info">
-            <p>Ithacash Benefit Corporation<br>
-            101 E. State St., #202<br>
-            Ithaca, NY 14850</p>
-
-            <p><a href="mailto:join@ithacash.com">join@ithacash.com</a><br>
-            <a href="tel:6076540807">607.391.2789</p>
-
-            <p><a href="http://facebook.com/ithacash" target="_blank"><img src="{% static 'img/facebook.png' %}"></a> <a href="http://twitter.com/ithacash" target="_blank"><img src="{% static 'img/twitter.png' %}"></a> <a href="mailto:join@ithacash.com" target="_blank"><img src="{% static 'img/email.png' %}"></a></p>
-        </div>
-    </div>
-
-</section>
-
 </div>
+<div class="angled-footer"></div>
+</section>
+
+<section id="who-uses-it" class="light-green-background">
+<div class="angled-header">Who Uses It</div>
+<div class="container">
+
+<div class="left">
+<p class="header-graph">More than <strong>104</strong> <br>locations now accepting <br>Ithaca Dollars.</p>
+</div>
+
+<div class="right white-background">
+<h2>Marketplace Accepted</h2>
+<p class="prominent-graph">Many local businesses, nonprofits, and community members are already using <b>Ithaca Dollars (i$)</b> to get the things they want and need. Locations currently accepting i$ can be viewed on our Directory.</p>
+
+<p><img src="{% static 'img/img_window_cling.png' %}" style="float: left;"></p>
+
+<a href="https://communities.cyclos.org/Ithacash/#users.users.map-directory" class="angled-cta-left bottom-right dark-green-background" target="_blank">Directory</a>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/slick/slick.js' %}"></script>
 {% endblock %}

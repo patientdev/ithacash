@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Panfresco';
+  src: url('/static/fonts/panfresco-250-regular.eot'); // IE9 Compat Modes
+  src: url('/static/fonts/panfresco-250-regular.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+       url('/static/fonts/panfresco-250-regular.woff') format('woff'), // Pretty Modern Browsers
+       url('/static/fonts/panfresco-250-regular.ttf')  format('truetype'), // Safari, Android, iOS
+       url('/static/fonts/panfresco-250-regular.svg#svgFontName') format('svg'); // Legacy iOS
+
+  src: url('/static/fonts/panfresco-100-regular.eot'); // IE9 Compat Modes
+  src: url('/static/fonts/panfresco-100-regular.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+       url('/static/fonts/panfresco-100-regular.woff') format('woff'), // Pretty Modern Browsers
+       url('/static/fonts/panfresco-100-regular.ttf')  format('truetype'), // Safari, Android, iOS
+       url('/static/fonts/panfresco-100-regular.svg#svgFontName') format('svg'); // Legacy iOS
+}
+
+body {
+  color: $medium-gray;
+  font: 400 16px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
+  letter-spacing: .5px;
+}
+
+h1 {
+    font-family: "Panfresco", Helvetica, Arial, sans-serif;
+    font-size: 3.4rem;
+    line-height: 1em;
+    color: $light-green;
+    margin-bottom: 10px;
+}
+
+h2 {
+  font-family: "Panfresco", Helvetica, Arial, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 200;
+  line-height: 1em;
+  margin: 0;
+  white-space: nowrap;
+  color: $light-green;
+}
+
+h3 {
+  color: $dark-green;
+  font-size: 1.4em;
+  line-height: 1em;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+h3:first-child { margin-top: 0; }
+
+blockquote {
+  border-left: 3px solid $light-green;
+  margin-left: 0;
+  padding-left: 20px;
+  color: $medium-gray;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+li::before {
+  content: "•";
+  color: $dark-green;
+  margin-right: 10px;
+  font-size: 1.4em;
+  vertical-align: middle;
+}
+
+.prominent-graph {
+    font-size: 1.2rem;
+    line-height: 1.5em;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.header-graph {
+    font-size: 3rem;
+    font-family: $opensans;
+    color: $white;
+    line-height: 1em;
+}
+
+.header-graph strong {
+    font-size: 1.4em;
+}
