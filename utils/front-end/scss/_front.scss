@@ -229,3 +229,14 @@ header .angled-box {
     color: black;
     width: 100%;
 }
+
+footer .angled-header p {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+footer .angled-header a {
+    text-decoration: none;
+    font-weight: bold;
+}
