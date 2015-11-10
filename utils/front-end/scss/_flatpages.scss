@@ -1,0 +1,33 @@
+#sidebar {
+    width: 30%;
+    float: right;
+}
+
+article {
+    width: 70%;
+    float: left;
+    padding-right: 60px;
+}
+
+#headline {
+    background-image: url('/static/img/img_pattern_hex_green.png');
+    background-size: cover;
+    padding: 45px 0 20px 0;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-family: "Open Sans";
+    font-weight: 400;
+    color: white;
+    font-size: 1.6em;
+
+}
+
+aside img {
+    max-width: 100%;
+}
+
+aside p:first-of-type {
+    margin-top: 0;
+}

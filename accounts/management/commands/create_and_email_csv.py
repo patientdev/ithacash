@@ -12,73 +12,6 @@ from django.conf import settings
 
 class Command(BaseCommand):
 
-    def add_arguments(self, parser):
-        parser.add_argument('--user', action='append', help='Specify multiple users with additional --user arguments')
-
-    def handle(self, *args, **options):
-
-        if options['user']:
-            most_recent_account_signups = []
-            for user in options['user']:
-                print user
-                user_object = IthacashUser.objects.get(username=user)
-                most_recent_account_signups.append(user_object)
-        else:
-            yesterday = datetime.now() - timedelta(days=1)
-
-            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
-
-        if most_recent_account_signups:
-            new_ithacash_users = []
-
-            for user_object in most_recent_account_signups:
-
-                # Get Emails child
-                emails = user_object.emails.all()[0].__dict__
-
-                # Get IthacashAccounts child
-                accounts = user_object.accounts.all()[0].__dict__
-
-                combined_user_dict = dict(emails, **accounts)
-                combined_user_dict.update(user_object.__dict__)
-
-                new_ithacash_users.append(combined_user_dict)
-
-            csv_to_email = StringIO.StringIO()
-            csv_writer = CyclosCsvWriter(new_ithacash_users, csv_to_email)
-            csv_writer.map_dict_to_cyclos_fields(new_ithacash_users)
-            csv_writer.output_to_csv(csv_to_email)
-
-            mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
-
-            try:
-                result = mandrill_client.messages.send(
-                    {
-                        'to': [{'email': 'scott@ithacash.com', 'name': 'Scott Morris'}, {'email': 'beline@ithacash.com', 'name': 'Beline Falzon'}],
-                        'text': 'Import this CSV into Cyclos',
-                        'from_name': 'Ithacash.com',
-                        'from_email': "it@ithacash.com",
-                        'subject': 'New user accounts',
-                        'attachments': [
-                            {
-                                'type': 'text/csv',
-                                'name': 'new_ithacash_users_%s' % datetime.now().strftime('%Y_%m_%d'),
-                                'content': b64encode(csv_to_email.getvalue())
-                            }
-                        ]
-                    })
-
-                print "%s: %s" % (datetime.now(), result)
-
-            except Exception, e:
-                print "%s:  Error:\n%s" % (datetime.now(), e)
-
-        else:
-            print "%s: Nothing to send." % datetime.now()
-
-
-class CyclosCsvWriter(object):
-
     cyclos_csv_to_ithacash_user_mapping = {
         'name': 'entity_name',
         'email': 'address',
@@ -95,19 +28,70 @@ class CyclosCsvWriter(object):
 
     cyclos_required_fieldnames = ('name', 'username', 'email', 'password', 'creationdate', 'broker', 'images', 'address[identifier].name', 'address[identifier].line1', 'address[identifier].line2', 'address[identifier].neighborhood', 'address[identifier].pobox', 'address[identifier].zip', 'address[identifier].city', 'address[identifier].region', 'address[identifier].country', 'address[identifier].private', 'mobile[identifier].name', 'mobile[identifier].number', 'mobile[identifier].private', 'landline[identifier].name', 'landline[identifier].number', 'landline[identifier].private')
 
-    def __init__(self, new_ithacash_users, csv_output, *args, **kwargs):
-        super(CyclosCsvWriter, self).__init__(*args, **kwargs)
+    def __init__(self, new_user_list=None, *args, **kwargs):
 
-        self.mapped = False
+        super(Command, self).__init__(*args, **kwargs)
+
+        self.new_ithacash_users = new_user_list or []
         self.cyclos_field_list = []
-        self.new_ithacash_users = new_ithacash_users
-        self.csv_output = csv_output
+        self.csv_buffer = StringIO.StringIO()
+        self.mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
+        self.csv_output = csv.DictWriter(self.csv_buffer, fieldnames=self.cyclos_required_fieldnames)
 
-    def map_dict_to_cyclos_fields(self, new_ithacash_users=None):
+    def add_arguments(self, parser):
+        parser.add_argument('--user', action='append', help='Specify multiple users with additional --user arguments')
+
+    def handle(self, *args, **options):
+
+        if self.get_most_recent_signups():
+            self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
+            self.output_csv()
+            print self.email_csv(self.csv_buffer)
+
+        else:
+            print "%s: Nothing to send." % datetime.now()
+
+    def get_most_recent_signups(self):
+
+        yesterday = datetime.now() - timedelta(days=1)
+
+        if options['user']:
+            most_recent_account_signups = []
+            for user in options['user']:
+                print user
+                user_object = IthacashUser.objects.get(username=user)
+                most_recent_account_signups.append(user_object)
+        else:
+            yesterday = datetime.now() - timedelta(days=1)
+
+            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
+
+        if most_recent_account_signups:
+
+            for user_object in most_recent_account_signups:
+
+                # Get Emails child
+                emails = user_object.emails.all()[0].__dict__
+
+                # Get IthacashAccounts child
+                accounts = user_object.accounts.all()[0].__dict__
+
+                combined_user_dict = dict(emails, **accounts)
+                combined_user_dict.update(user_object.__dict__)
+
+                self.new_ithacash_users.append(combined_user_dict)
+
+        return self.new_ithacash_users
+
+    def map_cyclos_keys_to_ithacash_user_values(self, new_ithacash_users=None):
 
         new_ithacash_users = new_ithacash_users or self.new_ithacash_users
 
         for new_user in new_ithacash_users:
+
+            if new_user['account_type'] != 'Individual' and new_user['entity_name'] == '':
+                new_user['entity_name'] = new_user['full_name']
+                print new_user['entity_name']
 
             mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
 
@@ -133,16 +117,44 @@ class CyclosCsvWriter(object):
 
         return self.cyclos_field_list
 
-    def output_to_csv(self, csv_ouput=None):
+    def output_csv(self, csv_buffer=None):
 
         if not self.mapped:
-            raise AttributeError("You must run map_dict_to_cyclos_fields before you can write the CSV file.")
+            raise AttributeError("You must run map_cyclos_keys_to_ithacash_user_values before you can write the CSV file.")
 
-        csv_ouput = csv_ouput or self.csv_ouput
+        csv_buffer = csv_buffer or self.csv_buffer
 
-        writer = csv.DictWriter(csv_ouput, fieldnames=self.cyclos_required_fieldnames)
-
-        writer.writeheader()
+        self.csv_output.writeheader()
 
         for row in self.cyclos_field_list:
-            writer.writerow(row)
+            self.csv_output.writerow(row)
+
+        return self.csv_buffer
+
+    def email_csv(self, csv_buffer=None):
+
+        csv_buffer = csv_buffer or self.csv_buffer
+
+        try:
+            mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+            result = mandrill_client.messages.send(
+                {
+                    'to': [{'email': 'shane@ithacash.com'}],
+                    'text': 'Import this CSV into Cyclos',
+                    'from_name': 'Ithacash.com',
+                    'from_email': "it@ithacash.com",
+                    'subject': 'New user accounts',
+                    'attachments': [
+                        {
+                            'type': 'text/csv',
+                            'name': 'new_ithacash_users_2015_08_30',
+                            'content': b64encode(csv_buffer.getvalue())
+                        }
+                    ]
+                })
+
+            return "%s: %s" % (datetime.now(), result)
+
+        except Exception, e:
+            return "%s:  Error:\n%s" % (datetime.now(), e)

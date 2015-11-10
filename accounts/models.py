@@ -18,8 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
-    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')
-])
+    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')])
     full_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -106,7 +105,7 @@ class IthacashAccount(models.Model):
     owner = models.ForeignKey(IthacashUser, related_name="accounts")
 
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
-    entity_name = models.CharField(max_length=255)
+    entity_name = models.CharField(max_length=255, null=True, blank=True)
 
     billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
 
@@ -125,13 +124,6 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
-
-    def save(self, *args, **kwargs):
-
-        if self.entity_name == 'n/a':
-            self.entity_name = self.owner.full_name
-
-        return super(IthacashAccount, self).save(*args, **kwargs)
 
     def send_awaiting_verification_message(self):
 
