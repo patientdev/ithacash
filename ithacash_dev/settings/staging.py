@@ -27,3 +27,7 @@ PAYPAL_SETTINGS = {
         'Freelancer': "77D4TSU2PGL92",
     }
 }
+
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN,
+}
