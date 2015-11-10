@@ -1,0 +1,22 @@
+default: []
+
+build:
+  description: "Prep for production"
+  tasks:
+    - "uglify"
+    - "sass"
+    - "autoprefixer"
+    - "csslint"
+
+dev:
+  description: "Testing and serving"
+  tasks:
+    - "sass"
+    - "autoprefixer"
+    - "uglify"
+    - "watch"
+
+img:
+  description: "Optimize images"
+  tasks:
+    - "newer:imagemin"

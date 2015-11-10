@@ -1,0 +1,107 @@
+a
+{
+    color: $light-green;
+}
+
+sup {
+    line-height: 1em;
+}
+
+.logo
+{
+    width: 250px;
+}
+
+.mark-tiny
+{
+    width: 25px;
+}
+
+.mark-small
+{
+    width: 50px;
+}
+
+.mark-medium
+{
+    width: 100px;
+}
+
+.mark-large
+{
+    width: 200px;
+}
+
+.angled-cta-left,
+.angled-cta-right
+{
+    font-size: 14px;
+    line-height: 30px;
+
+    position: relative;
+
+    display: inline-block;
+
+    height: 30px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: $white;
+
+    &.bottom-right
+    {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.angled-cta-left
+{
+    padding: 0 20px 0 10px;
+
+    &::before
+    {
+        position: absolute;
+        left: -31px;
+
+        content: url('/static/img/cta_digonal_trans-darkgrn.png');
+    }
+}
+
+.angled-cta-right
+{
+    padding: 0 40px 0 20px;
+
+    &::before
+    {
+        position: absolute;
+        right: -31px;
+
+        content: url('/static/img/cta_digonal_grn-trans.png');
+    }
+}
+
+.cta-link
+{
+    position: relative;
+
+    padding-left: 20px;
+
+    text-decoration: none;
+
+    &::before
+    {
+        position: absolute;
+        left: 0;
+
+        content: '>';
+        transition: all .15s ease-out;
+    }
+
+    &:hover::before
+    {
+        left: 5px;
+    }
+}

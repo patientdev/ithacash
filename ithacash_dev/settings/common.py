@@ -19,7 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # Quick-start development settings - unsuitable for production
 # See https:/docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
 # Application definition
 
 SITE_ID = 1
@@ -50,7 +49,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
-
 
 ROOT_URLCONF = 'ithacash_dev.urls'
 

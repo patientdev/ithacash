@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+    <h1>Ithacash Styleguide</h1>
+{% endblock %}
+
+{% block content %}
+
+        <section>
+        <div class="container">
+            <p><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" class="logo" alt="Ithacash"></p>
+            <p><img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-tiny" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-small" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-medium" alt="Ithacash"> <img src="{% static 'img/IthaCash_icon_2color.png' %}" class="mark-large" alt="Ithacash"></p>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <div class="dark-green-background swatch"></div>
+            <div class="light-green-background swatch"></div>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <h2>h2. Header</h2>
+            <h3>h3. Header</h3>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+            <p><u>This line of text will render as underlined</u></p>
+            <p><small>This line of text is meant to be treated as fine print.</small></p>
+            <p><strong>This line rendered as bold text.</strong></p>
+            <p><em>This line rendered as italicized text.</em></p>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <blockquote>
+                <p>This is a quote that we can hightlight.</p>
+            </blockquote>
+
+            <ul>
+                <li>This is a list</li>
+                <li>There are a few items here</li>
+                <li>Oh look another</li>
+            </ul>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <p><a href="" class="angled-cta-right light-green-background">Call to action</a>
+            <a href="" class="angled-cta-left dark-green-background">Call to action</a></p>
+
+            <p><a href="" class="cta-link">A call&ndash;to&ndash;action link</a></p>
+            <p><a href="">This line rendered as a link.</a></p>
+        </div>
+        </section>
+
+        <section>
+        <div class="container">
+            <form>
+                <p><input type="text" placeholder="Text Input"><span class="helptext-wrapper"><span class="helptext">This gives the user information about the form input</span></span></p>
+                <p><button>Button</button><p>
+            </form>
+        </div>
+        </section>
+    </div>
+    <script src="//localhost:35729/livereload.js"></script>
+
+    {% endblock %}
