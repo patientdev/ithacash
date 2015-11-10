@@ -35,11 +35,12 @@ class SubPageForm(forms.ModelForm):
 
     class Meta:
         model = SubPage
-        fields = {'heading', 'meta_desc', 'meta_keywords'}
+        fields = {'heading', 'meta_desc', 'meta_keywords', 'meta_image'}
 
     heading = forms.CharField(help_text="e.g. Earning &amp; Spending", label="", widget=forms.TextInput(attrs={'placeholder': 'Page Heading'}))
     meta_desc = forms.CharField(help_text="Succinct Ithacash description", initial="Ithacash", label="", widget=forms.Textarea(attrs={'placeholder': 'Meta Description'}))
     meta_keywords = forms.CharField(help_text="e.g. ithaca, currency, local", initial="ithaca, local, currency", label="", widget=forms.TextInput(attrs={'placeholder': 'Meta Keywords'}))
+    meta_image = forms.CharField(initial="https://ithacash.com/static/img/ithacash_logo_rgb_325x124.png", label="", widget=forms.TextInput(attrs={'placeholder': 'Meta Image'}))
 
 
 class FileUploadForm(forms.ModelForm):
