@@ -1067,7 +1067,7 @@ form p {
 .info-card:first-of-type { display: block; }
 
 select {
-    width: 10em;
+    width: 7.4em;
     font-size: 2em;
 }
 
@@ -1081,7 +1081,7 @@ input[type=text], input[type=email] {
     border-radius: 8px;
     padding: 10px 15px;
     border: none;
-    width: 20em;
+    width: 15em;
     font-size: 1em;
     outline: none;
 }
@@ -1126,14 +1126,15 @@ input[type=checkbox] {
 }
 
 .help {
-    height: 25px; width: 25px;
+    height: 30px; width: 30px;
     top: 50%;
-    margin-top: -10px;
+    margin-top: -15px;
     background-color: rgb(92, 132, 65);
     color: white;
     position: relative;
     border-radius: 50%;
-    padding: 3px;
+    padding: 4px;
+    line-height: 1em;
 }
 
 .help:hover {
@@ -1181,7 +1182,7 @@ input[type=checkbox] {
 }
 
 #signature p {
-    width: 20em;
+    width: 15em;
     white-space: normal;
     margin: 20px auto;
     text-align: justify;
