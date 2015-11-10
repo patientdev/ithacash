@@ -1,5 +1,5 @@
 from common import *
-from secrets import SENTRY_DSN
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -20,10 +20,6 @@ PAYPAL_SETTINGS = {
         'Nonprofit': "AAAAAAAAAAAAA",
         'Freelancer': "AAAAAAAAAAAAA",
     }
-}
-
-RAVEN_CONFIG = {
-    'dsn': SENTRY_DSN,
 }
 
 try:
