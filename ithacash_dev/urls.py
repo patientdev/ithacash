@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from ithacash_dev.views import StaticViewSitemap, SubpagesSitemap
 
 '''
 Are you adding a new app?
@@ -25,12 +27,16 @@ See ops/ansible/playbooks/roles/caching/templates/etc__varnish__default.vcl
 def error_view(request):
     raise RuntimeError("This is a test Ithacash error.")
 
+
+sitemaps = {'front': StaticViewSitemap, 'subpages': SubpagesSitemap}
+
 urlpatterns = [
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'pages.views.front'),
+    url(r'^$', 'pages.views.front', name='front'),
     url(r'^robots.txt', 'ithacash_dev.views.robots_txt'),
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
-    url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
+    url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False), name='join'),
     url(r'^accounts/', include('accounts.urls')),
 
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
