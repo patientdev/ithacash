@@ -28,6 +28,7 @@ def error_view(request):
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'pages.views.front'),
+    url(r'^robots.txt', 'ithacash_dev.views.robots_txt'),
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
     url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
     url(r'^accounts/', include('accounts.urls')),
