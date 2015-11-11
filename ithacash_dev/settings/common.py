@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'payments',
     'pages',
     'raven.contrib.django.raven_compat',
+    'django.contrib.sitemaps',
 )
 
 MIDDLEWARE_CLASSES = (
