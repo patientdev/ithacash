@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
     url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False), name='join'),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^staff/', include('staff.urls')),
 
     url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
     url(r'^thanks/$', 'accounts.views.thanks'),

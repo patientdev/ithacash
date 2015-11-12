@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'pages',
     'raven.contrib.django.raven_compat',
     'django.contrib.sitemaps',
+    'staff',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,8 +57,8 @@ ROOT_URLCONF = 'ithacash_dev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
