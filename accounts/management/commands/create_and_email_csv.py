@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        if self.get_most_recent_signups():
+        if self.get_most_recent_signups(options):
             self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
             self.output_csv()
             print self.email_csv(self.csv_buffer)
@@ -51,7 +51,7 @@ class Command(BaseCommand):
         else:
             print "%s: Nothing to send." % datetime.now()
 
-    def get_most_recent_signups(self):
+    def get_most_recent_signups(self, options):
 
         yesterday = datetime.now() - timedelta(days=1)
 
