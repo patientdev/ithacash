@@ -56,11 +56,15 @@ class Command(BaseCommand):
         yesterday = datetime.now() - timedelta(days=1)
 
         if options['user']:
-            most_recent_account_signups = []
-            for user in options['user']:
-                print user
-                user_object = IthacashUser.objects.get(username=user)
-                most_recent_account_signups.append(user_object)
+            if 'all' in options['user']:
+                most_recent_account_signups = IthacashUser.objects.all()
+
+            else:
+                most_recent_account_signups = []
+                for user in options['user']:
+                    print user
+                    user_object = IthacashUser.objects.get(username=user)
+                    most_recent_account_signups.append(user_object)
         else:
             yesterday = datetime.now() - timedelta(days=1)
 
@@ -140,7 +144,7 @@ class Command(BaseCommand):
 
             result = mandrill_client.messages.send(
                 {
-                    'to': [{'email': 'shane@ithacash.com'}],
+                    'to': [{'email': 'shane@ithacash.com'}, {'email': 'scott@ithacash.com'}, {'email': 'beline@ithacash.com'}],
                     'text': 'Import this CSV into Cyclos',
                     'from_name': 'Ithacash.com',
                     'from_email': "it@ithacash.com",
