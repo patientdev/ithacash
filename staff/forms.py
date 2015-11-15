@@ -6,6 +6,7 @@ from django import forms
 class StaffLogin(AuthenticationForm):
     class Meta:
         model = IthacashStaff
+        fields = ['email', 'password']
 
 
 class StaffSignup(forms.ModelForm):
