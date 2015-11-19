@@ -1,4 +1,5 @@
 from common import *
+from secrets import SENTRY_DSN
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
