@@ -118,7 +118,7 @@ class CreateAccountTests(TestCase):
 
     def test_csv_export_and_email(self):
         print 'test_csv_export_and_email'
-        
+
         """
         Assert that the base64 encoding of the csv_output has reached mandrill
         """
