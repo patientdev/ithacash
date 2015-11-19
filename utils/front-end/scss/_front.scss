@@ -176,11 +176,11 @@ header .angled-box {
 }
 
 #intro {
-    background-image: url(../img/owner-cling.jpg);
-    background-size: cover;
     width: 100%;
     height: calc(100vh - 175px);
     position: relative;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #intro .container {
@@ -199,7 +199,24 @@ header .angled-box {
     line-height: 1em;
 }
 
-#intrinsically-local {
+#intro button {
+    display: none !important;
+}
+
+div.slick-list.draggable, div.slick-track {
+    height: 100%;
+}
+
+.banner {
+    background-image: url(../img/owner-cling.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    white-space: normal;
+}
+
+.box {
     position: absolute;
     width: 432px;
     margin-top: -175.5px;
@@ -207,7 +224,7 @@ header .angled-box {
     padding: 30px;
 }
 
-#intrinsically-local h2 {
+.box h2 {
     margin: 0;
     letter-spacing: 1px;
     color: white;
