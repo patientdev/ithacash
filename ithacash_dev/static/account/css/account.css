@@ -1252,6 +1252,9 @@ input[type=radio] {
     margin-left: 20px;
     position: absolute;
     line-height: 45px;
+    width: 300px;
+    text-align: left;
+    font-size: .8em;
 }
 
 .error-message::before {

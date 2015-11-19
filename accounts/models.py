@@ -38,7 +38,7 @@ class Email(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.most_recent_confirmation_key:
-            self.most_recent_confirmation_key = uuid.uuid4().hex
+            self.generate_new_confirmation_key()
 
         return super(Email, self).save(*args, **kwargs)
 
@@ -48,12 +48,14 @@ class Email(models.Model):
         except ValidationError as e:
             try:
                 if e.args[0].keys() == ['address'] and e.args[0]['address'][0].args[1] == 'unique':
-                    # In this scenario, the email is a repeat on a form.  It's OK.
                     return
                 else:
                     raise
             except:
                 raise
+
+    def generate_new_confirmation_key(self):
+        self.most_recent_confirmation_key = uuid.uuid4().hex
 
     def application_url(self):
         return reverse("account_application", kwargs={'email_key': self.most_recent_confirmation_key})
