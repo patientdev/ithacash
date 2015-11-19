@@ -26,6 +26,12 @@ $(function() {
         if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
     });
 
+    $('#intro').slick({
+        autoplay: true,
+        infinite: true,
+        autoplaySpeed: 3000,
+    });
+
     $('#more-arrow').click(function() {
         windowHeight = $(window).height();
         sectionHeight = $('#invigorating-our-economy').height();
