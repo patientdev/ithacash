@@ -41,3 +41,7 @@ mark {
 .dark-gray-background a {
     color: $light-gray;
 }
+
+.white-background h2 strong, .white-background h2 b {
+    color: inherit;
+}
