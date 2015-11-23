@@ -147,3 +147,10 @@ footer p a {
     flex-grow: 1;
     vertical-align: middle;
 }
+
+sidebar {
+    width: 30%;
+    float: right;
+    border-left: 2px solid rgb(240, 240, 240);
+    padding: 0 20px;
+}
