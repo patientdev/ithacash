@@ -25,16 +25,34 @@
 {% block content %}
 
 <div id="intro">
-<div class="container">
- <div id="intrinsically-local" class="light-green-background">
-     <h2>Why local money?</h2>
-     <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
-     <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
- </div>
 
-  <div id="more-arrow"><input type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
+<div class="banners">
+<div class="banner">
+    <div class="container">
+        <div class="box light-green-background left">
+            <h2>Why local money?</h2>
+            <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
+            <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
+        </div>
+    </div>
 </div>
-    <div style="position: absolute; left: 0; bottom: 0; color: black; font-style: italic; background-color: rgba(255, 255, 255, .4); font-size: .8em; padding: 3px 10px; border-radius: 4px 4px 0 0;">Photo by <a href="http://www.th-photo.com" style="color: black;" target="_blank">Tom Hoebbel</a></div>
+
+<div class="banner">
+    <div class="container">
+        <div class="box light-green-background right">
+            <h2>Why local money?</h2>
+            <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
+            <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container">
+<div id="intro-controls"><input id="more-arrow" type="image" alt="Scroll down" src="{% static 'img/arrow_down_50.png' %}"></input></div>
+</div>
+
+<div style="display: none; position: absolute; left: 0; bottom: 0; color: black; font-style: italic; background-color: rgba(255, 255, 255, .4); font-size: .8em; padding: 3px 10px; border-radius: 4px 4px 0 0;">Photo by <a href="http://www.th-photo.com" style="color: black;" target="_blank">Tom Hoebbel</a></div>
 </div>
 
 <section id="invigorating-our-economy" class="light-green-background">
@@ -214,8 +232,8 @@
         <h2>As Easy As Cash</h2>
         <p class="prominent-graph"><strong>Ithaca Dollars</strong> can be used anywhere they are accepted. You can pay via a simple text message, and send money via a free online account. Get an additional 25% Bonus when you purchase digital currency online or convert to paper currency at participating local stores (coming soon).</p>
 
-         <p><a href="" class="cta-link">How is it different from Ithaca Hours<sup>&copy;</sup>?</a></p>
-         <p><a href="" class="cta-link">Security</a></p>
+         <p><a href="/how-it-works/different-than-hours/" class="cta-link">How is it different from Ithaca Hours<sup>&copy;</sup>?</a></p>
+         <p><a href="/how-it-works/security/" class="cta-link">Security</a></p>
 
          <a href="/how-it-works/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
     </div>
@@ -224,8 +242,8 @@
         <h3>Paper Currency</h3>
         <p>In the coming months, hundreds of businesses will be accepting this new state&ndash;of&ndash;the&ndash;art paper currency, starting with the <b>i$1 and i$5</b>.</p>
 
-        <p><a href="" class="cta-link">Security</a></p>
-        <p><a href="" class="cta-link">Pre&ndash;order Ithaca Dollar bills</a></p>
+        <p><a href="/how-it-works/security/" class="cta-link">Security</a></p>
+        <p><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank" class="cta-link">Pre&ndash;order Ithaca Dollar bills</a></p>
 
         <h3>Online Accounts</h3>
         <p>Use our <b>secure digital currency</b> to make and take payments, just like any other third&ndash;party service. Using Ithacash means lower transacting fees, and automatically shows support for the local community.</p>
@@ -246,17 +264,13 @@
 <div class="angled-header">Who Uses It</div>
 <div class="container">
 
-<div class="left">
-<p class="header-graph">More than <strong>104</strong> <br>locations now accepting <br>Ithaca Dollars.</p>
-</div>
-
 <div class="right white-background">
 <h2>Marketplace Accepted</h2>
 <p class="prominent-graph">Many local businesses, nonprofits, and community members are already using <b>Ithaca Dollars (i$)</b> to get the things they want and need. Locations currently accepting i$ can be viewed on our Directory.</p>
 
 <p><img src="{% static 'img/img_window_cling.png' %}" style="float: left;"></p>
 
-<a href="https://communities.cyclos.org/Ithacash/#users.users.map-directory" class="angled-cta-left bottom-right dark-green-background" target="_blank">Directory</a>
+<a href="https://communities.cyclos.org/Ithacash/#users.users.search" class="angled-cta-left bottom-right dark-green-background" target="_blank">Directory</a>
 </div>
 </div>
 </section>

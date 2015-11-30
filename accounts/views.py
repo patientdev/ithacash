@@ -3,7 +3,7 @@ import sys
 from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
-from django import forms
+from accounts.forms import EmailForm, AccountForm, UserSignupForm
 
 from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
@@ -11,67 +11,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 
-class EmailForm(forms.ModelForm):
-
-    required_css_class = "required"
-    error_css_class = "error"
-
-    class Meta:
-        fields = ['address', 'wants_to_receive_updates']
-        model = Email
-        labels = {
-            'address': ''
-        }
-        widgets = {
-            'address': forms.EmailInput(attrs={'placeholder': 'Your email'}),
-        }
-
-
-class AccountForm(forms.ModelForm):
-
-    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
-
-    class Meta:
-        model = IthacashAccount
-        exclude = ['owner', 'billing_frequency']
-        widgets = {
-            'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
-            'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
-            'address_2': forms.TextInput(attrs={'placeholder': 'Address 2'}),
-            'city': forms.TextInput(attrs={'placeholder': 'City'}),
-            'state': forms.TextInput(attrs={'placeholder': 'State'}),
-            'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
-            'tin': forms.TextInput(attrs={'placeholder': 'Tax ID #'}),
-            'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
-            'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
-            'website': forms.TextInput(attrs={'placeholder': 'Website'}),
-            'electronic_signature': forms.TextInput(attrs={'placeholder': 'Your Full Name'})
-        }
-
-
-class UserSignupForm(forms.ModelForm):
-
-    class Meta:
-        model = IthacashUser
-        fields = ['username', 'full_name']
-        widgets = {
-            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
-            'username': forms.TextInput(attrs={'placeholder': 'Username'})
-        }
-
-
-class BillingFrequencyForm(forms.ModelForm):
-
-    class Meta:
-        model = IthacashAccount
-        fields = ['owner', 'billing_frequency']
-
-
-def getting_an_account(request):
-    return render(request, 'getting-an-account.html')
-
-
 def signup_phase_one(request):
+
     form = EmailForm(request.POST or None)
 
     if request.method == 'POST':
@@ -80,12 +21,7 @@ def signup_phase_one(request):
 
         if form.is_valid():
 
-            if Email.objects.filter(address=address).exists():
-                form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
-                return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
-
-            else:
-                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+            return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
         else:
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
@@ -95,16 +31,27 @@ def signup_phase_one(request):
 
 
 def await_confirmation(request):
+    '''
+    - Save the given email address in to the Email model
+    - If the address already exists, the user either forgot
+      that they signed up or otherwise need a new confirmation
+      link; so generate a new confirmation key
+    - Send a confirmation email to the user
+    '''
 
-    if request.method == 'POST':
+    form = EmailForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
 
         email_object, created = Email.objects.get_or_create(address=request.POST['address'])
 
-        if created:
+        if not created:
+            email_object.generate_new_confirmation_key()
+            email_object.save()
 
-            @crosstown_traffic()
-            def send_email_later():
-                email_object.send_confirmation_message()
+        @crosstown_traffic()
+        def send_email_later():
+            email_object.send_confirmation_message()
 
     return render(request, 'await-confirmation.html')
 
