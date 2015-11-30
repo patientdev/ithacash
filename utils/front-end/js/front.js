@@ -17,7 +17,8 @@ $(function() {
         infinite: true,
         autoplaySpeed: 3000,
         pauseOnHover: false,
-        dots: true
+        dots: true,
+        appendDots: "#intro-controls"
     });
 
     $('#more-arrow').click(function() {
