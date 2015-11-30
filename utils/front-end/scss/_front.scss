@@ -177,7 +177,7 @@ header .angled-box {
 ul.slick-dots {
     display: inline-block;
     position: absolute;
-    bottom: 0px;
+    bottom: 10px;
     left: 180px;
     margin: 0;
     padding: 0;
@@ -202,6 +202,7 @@ ul.slick-dots li button {
     color: white;
     transition: transform .3s ease-in-out;
     transform: rotate(0);
+    font-size: .1em;
 }
 
 ul.slick-dots li.slick-active button {
@@ -252,7 +253,7 @@ div.banners, div.slick-list.draggable, div.slick-track {
     position: absolute;
     width: 432px;
     margin-top: -175.5px;
-    top: 50%; left:0 ;
+    top: 45%; left:0 ;
     padding: 30px;
 }
 
@@ -260,7 +261,7 @@ div.banners, div.slick-list.draggable, div.slick-track {
     position: absolute;
     width: 432px;
     margin-top: -175.5px;
-    top: 50%; right:0 ;
+    top: 45%; right:0 ;
     padding: 30px;
 }
 
