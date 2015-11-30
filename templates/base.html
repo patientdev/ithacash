@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Money Made for Main St." />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{% block title %}Ithacash &mdash; Money Made for Main St.{% endblock %}</title>
 
@@ -73,7 +74,7 @@
                 <ul>
                     <li><a href="/why-ithacash/">Why Ithacash</a></li>
                     <li id="nav-how-it-works"><a href="/how-it-works/">How It Works</a></li>
-                    <li><a href="https://communities.cyclos.org/Ithacash/#users.users.map-directory" target="_blank">Directory</a></li>
+                    <li><a href="https://communities.cyclos.org/Ithacash/#users.users.search" target="_blank">Directory</a></li>
                     <li><a href="/about/">About Us</a></li>
                     <li><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank">Shop</a></li>
                     <li id="nav-login"><a href="https://comunities.cyclos.org/Ithacash/#login" target="_blank" class="green-button dark-green-button">Login</a></li>
@@ -93,14 +94,16 @@
             {% block footer %}
             <footer>
             <div class="angled-header clear">
-                <i>A regional benefit currency</i> 607&ndash;654&ndash;0807 <a href="/contact/">Contact Us</a>
+                <p>A regional benefit currency</p>
+                <p>607&ndash;391&ndash;2789</p>
+                <p><a href="/contact/">Contact Us</a></p>
             </div>
             <div class="container">
-                <ul>
+                <ul id="footer-nav">
                     <li><a href="/">Home</a></li>
                     <li><a href="/why-ithacash/">Why Ithacash</a></li>
                     <li><a href="/how-it-works/">How It Works</a></li>
-                    <li><a href="https://communities.cyclos.org/Ithacash/#users.users.map-directory" target="_blank">Directory</a></li>
+                    <li><a href="https://communities.cyclos.org/Ithacash/#users.users.search" target="_blank">Directory</a></li>
                     <li><a href="/about/">About Us</a></li>
                     <li><a href="https://squareup.com/market/ithacash/ithaca-dollars" target="_blank">Shop</a></li></li>
                     <li><a href="{% static 'docs/Ithacash_Privacy_Policy.pdf' %}">Privacy</a></li>
@@ -109,7 +112,7 @@
                 </ul>
 
                 <h3>Member Of</h3>
-                <p><a href="http://www.tompkinschamber.org/" target="_blank"><img src="{% static 'img/chamber-of-commerce.gif' %}" width="180px"></a><a href="http://www.localfirstithaca.org/" target="_blank"><img src="{% static 'img/local-first-ithaca.jpg' %}" width="105px"></a><a href="http://revithaca.com/" target="_blank"><img src="{% static 'img/rev.png' %}" width="180px"></a><a href="http://www.mutualaidnetwork.org/" target="_blank"><img src="{% static 'img/man-logo-sun-blue.jpg' %}"></a><a href="http://www.irta.com/" target="_blank"><img src="{% static 'img/IRTAmemberlogo.jpg' %}" width="155px"></a></p>
+                <p><a href="http://www.tompkinschamber.org/" target="_blank"><img src="{% static 'img/chamber-of-commerce.gif' %}" width="180px"></a><a href="http://www.localfirstithaca.org/" target="_blank"><img src="{% static 'img/local-first-ithaca.jpg' %}" width="105px"></a><a href="http://revithaca.com/" target="_blank"><img src="{% static 'img/rev.png' %}" width="180px"></a><a href="http://www.mutualaidnetwork.org/" target="_blank"><img src="{% static 'img/man-logo-sun-blue.jpg' %}"></a><a href="http://www.irta.com/" target="_blank"><img src="{% static 'img/IRTAmemberlogo.jpg' %}" width="155"></a></p>
 
                 <p>&copy; 2015 Ithacash &ndash; All Rights Reserved</p>
             </div>
