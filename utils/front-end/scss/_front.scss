@@ -163,28 +163,60 @@ header .angled-box {
     font-size: 2em;
 }
 
-#more-arrow {
+#intro-controls {
     position: absolute;
-    bottom: -45px;
-    width: 415px;
-    text-align: center;
+    bottom: -41px;
+    left: 100px;
     z-index: 100;
 }
 
-#more-arrow input:focus {
-    outline: none;
+#intro-controls input {
+    float: right;
+}
+
+ul.slick-dots {
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    left: 180px;
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+ul.slick-dots li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+ul.slick-dots li::before {
+    content: none;
+}
+
+ul.slick-dots li button {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 3px;
+    padding: 0;
+    color: white;
+    transition: transform .3s ease-in-out;
+    transform: rotate(0);
+    font-size: .1em;
+}
+
+ul.slick-dots li.slick-active button {
+    background-color: $light-green;
+    color: $light-green;
+    transition: transform .3s ease-in-out;
+    transform: rotate(45deg);
 }
 
 #intro {
-    background-image: url(../img/owner-cling.jpg);
-    background-size: cover;
     width: 100%;
     height: calc(100vh - 175px);
     position: relative;
-}
-
-#intro .container {
-    height: 100%;
+    white-space: nowrap;
 }
 
 #intro p.caption {
@@ -199,15 +231,39 @@ header .angled-box {
     line-height: 1em;
 }
 
-#intrinsically-local {
+div.banners, div.slick-list.draggable, div.slick-track, #intro .banners .container, div.slick-slide, div.slick-active {
+    height: 100%;
+    position: relative;
+    font-size: 0;
+    line-height: 0;
+}
+
+.banner {
+    background-image: url(../img/owner-cling.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    white-space: normal;
+}
+
+.box.left {
     position: absolute;
     width: 432px;
     margin-top: -175.5px;
-    top: 50%; left:0 ;
+    top: 45%; left:0 ;
     padding: 30px;
 }
 
-#intrinsically-local h2 {
+.box.right {
+    position: absolute;
+    width: 432px;
+    margin-top: -175.5px;
+    top: 45%; right:0 ;
+    padding: 30px;
+}
+
+.box h2 {
     margin: 0;
     letter-spacing: 1px;
     color: white;
@@ -228,4 +284,15 @@ header .angled-box {
     padding: 5px 8px;
     color: black;
     width: 100%;
+}
+
+footer .angled-header p {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+footer .angled-header a {
+    text-decoration: none;
+    font-weight: bold;
 }
