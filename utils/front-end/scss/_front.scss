@@ -166,7 +166,7 @@ header .angled-box {
 #intro-controls {
     position: absolute;
     bottom: -41px;
-    width: 200px;
+    left: 100px;
     z-index: 100;
 }
 
@@ -181,11 +181,12 @@ ul.slick-dots {
     left: 180px;
     margin: 0;
     padding: 0;
+    z-index: 100;
 }
 
 ul.slick-dots li {
     display: inline-block;
-    margin: 0 3px;
+    margin: 0 5px;
 }
 
 ul.slick-dots li::before {
@@ -193,21 +194,21 @@ ul.slick-dots li::before {
 }
 
 ul.slick-dots li button {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     background-color: white;
     border-radius: 3px;
     padding: 0;
     color: white;
     transition: transform .3s ease-in-out;
-    transform: scale(.8);
+    transform: rotate(0);
 }
 
 ul.slick-dots li.slick-active button {
     background-color: $light-green;
     color: $light-green;
     transition: transform .3s ease-in-out;
-    transform: scale(1);
+    transform: rotate(45deg);
 }
 
 #intro {
