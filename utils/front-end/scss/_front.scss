@@ -219,10 +219,6 @@ ul.slick-dots li.slick-active button {
     white-space: nowrap;
 }
 
-#intro .banners .container {
-    height: 100%;
-}
-
 #intro p.caption {
     position: absolute;
     bottom: 0;
@@ -235,9 +231,11 @@ ul.slick-dots li.slick-active button {
     line-height: 1em;
 }
 
-div.banners, div.slick-list.draggable, div.slick-track {
+div.banners, div.slick-list.draggable, div.slick-track, #intro .banners .container, div.slick-slide, div.slick-active {
     height: 100%;
     position: relative;
+    font-size: 0;
+    line-height: 0;
 }
 
 .banner {
