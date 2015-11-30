@@ -163,27 +163,57 @@ header .angled-box {
     font-size: 2em;
 }
 
-#more-arrow {
+#intro-controls {
     position: absolute;
-    bottom: -45px;
-    width: 415px;
-    text-align: center;
+    bottom: -41px;
+    width: 200px;
     z-index: 100;
 }
 
-#more-arrow input:focus {
-    outline: none;
+#intro-controls input {
+    float: right;
+}
+
+ul.slick-dots {
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    left: 180px;
+    margin: 0;
+    padding: 0;
+}
+
+ul.slick-dots li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+ul.slick-dots li::before {
+    content: none;
+}
+
+ul.slick-dots li button {
+    width: 17px;
+    height: 17px;
+    background-color: white;
+    border-radius: 3px;
+    padding: 0;
+    color: white;
+}
+
+ul.slick-dots li.slick-active button {
+    background-color: $light-green;
+    color: $light-green;
 }
 
 #intro {
     width: 100%;
     height: calc(100vh - 175px);
     position: relative;
-    overflow: hidden;
     white-space: nowrap;
 }
 
-#intro .container {
+#intro .banners .container {
     height: 100%;
 }
 
@@ -199,12 +229,9 @@ header .angled-box {
     line-height: 1em;
 }
 
-#intro button {
-    display: none !important;
-}
-
-div.slick-list.draggable, div.slick-track {
+div.banners, div.slick-list.draggable, div.slick-track {
     height: 100%;
+    position: relative;
 }
 
 .banner {
@@ -216,11 +243,19 @@ div.slick-list.draggable, div.slick-track {
     white-space: normal;
 }
 
-.box {
+.box.left {
     position: absolute;
     width: 432px;
     margin-top: -175.5px;
     top: 50%; left:0 ;
+    padding: 30px;
+}
+
+.box.right {
+    position: absolute;
+    width: 432px;
+    margin-top: -175.5px;
+    top: 50%; right:0 ;
     padding: 30px;
 }
 

@@ -26,10 +26,12 @@ $(function() {
         if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
     });
 
-    $('#intro').slick({
+    $('#intro .banners').slick({
         autoplay: true,
         infinite: true,
         autoplaySpeed: 3000,
+        pauseOnHover: false,
+        dots: true
     });
 
     $('#more-arrow').click(function() {
@@ -40,5 +42,5 @@ $(function() {
         $('html, body').animate({
             scrollTop: offset + 'px'
         });
-    })
-})
+    });
+});
