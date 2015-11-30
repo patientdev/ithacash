@@ -20,7 +20,8 @@ $(function() {
           autoplay: true,
           autoplaySpeed: 7000,
           prevArrow: $('#left-arrow button'),
-          nextArrow: $('#right-arrow button')
+          nextArrow: $('#right-arrow button'),
+          pauseOnHover: false
     }).on('afterChange', function() {
         var currentSlide = $(this).slick('slickCurrentSlide');
         if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
@@ -37,7 +38,7 @@ $(function() {
     $('#more-arrow').click(function() {
         windowHeight = $(window).height();
         sectionHeight = $('#invigorating-our-economy').height();
-        offset = $('#invigorating-our-economy').offset().top + 52 - ((windowHeight - sectionHeight)/2);
+        offset = $('#invigorating-our-economy').offset().top + 150 - ((windowHeight - sectionHeight)/2);
 
         $('html, body').animate({
             scrollTop: offset + 'px'

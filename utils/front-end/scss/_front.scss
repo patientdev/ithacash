@@ -185,7 +185,7 @@ ul.slick-dots {
 
 ul.slick-dots li {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 3px;
 }
 
 ul.slick-dots li::before {
@@ -193,17 +193,21 @@ ul.slick-dots li::before {
 }
 
 ul.slick-dots li button {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     background-color: white;
     border-radius: 3px;
     padding: 0;
     color: white;
+    transition: transform .3s ease-in-out;
+    transform: scale(.8);
 }
 
 ul.slick-dots li.slick-active button {
     background-color: $light-green;
     color: $light-green;
+    transition: transform .3s ease-in-out;
+    transform: scale(1);
 }
 
 #intro {
