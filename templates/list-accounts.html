@@ -1,21 +1,22 @@
 <style type="text/css">
 
-	table {
-		border-collapse: collapse;
-	}
+    table {
+        border-collapse: collapse;
+    }
 
     td {
-    	padding: 5px 10px;
+        padding: 5px 10px;
         border: 2px solid black;
     }
 </style>
 
 <table align="center">
 <thead>
-	<tr>
-		<th>Account Type</th>
-		<th>Full Name</th>
-		<th>Username</th>
+    <tr>
+        <th>Account Type</th>
+        <th>Full Name</th>
+        <th>Username</th>
+        <th>Created Date/Time</th>
 </thead>
 <tbody>
 {% for account in accounts %}
@@ -23,6 +24,7 @@
         <td>{{ account.account_type }}</td>
         <td>{{ account.owner.full_name }}</td>
         <td>{{ account.owner.username }}</td>
+        <td>{{ account.owner.created }}</td>
         {# TODO: the rest of the fields #}
     </tr>
 {% endfor %}
