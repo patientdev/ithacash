@@ -93,8 +93,8 @@
             <form id="account" method="POST" action="/accounts/account-information/" class="clear">
             {% csrf_token %}
 
-                <div id="account-type" class="field">
-                    {% if form.account_type.errors %}
+            <div id="account-type" class="field">
+                {% if form.account_type.errors %}
                     {% for error in form.account_type.errors %}
                         <p>{{ form.account_type }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
@@ -102,6 +102,8 @@
                     <p>{{ form.account_type }} <span class="helptext-wrapper">{{ form.account_type.help_text }}</span></span></p>
                 {% endif %}
             </div>
+
+            <input type="hidden" value="{{ account_id }}" name="account_id">
 
                 <p><button class="green-button">Next</button> <a href="{% static 'docs/Ithacash_Privacy_Policy.pdf' %}" class="cta-link" style="display: inline-block; margin-left: 20px;">Privacy Policy</a></p>
             </form>
