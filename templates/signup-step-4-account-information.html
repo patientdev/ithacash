@@ -89,10 +89,11 @@
     <div class="white-background">
         <h2><b>Step 3:</b> Account Information</h2>
 
-        <form>
+        <form id="account" method="POST" action="">
             {{ email_form.as_p }}
             {{ account_form.as_p }}
             {{ user_form.as_p }}
+            <button>Submit</button>
         </form>
 
 

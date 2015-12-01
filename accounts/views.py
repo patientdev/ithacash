@@ -117,12 +117,14 @@ def signup_step_3_select_account_type(request, email_key):
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
     email_object.confirm(email_key)
 
+    # Create the user and associated account if newly confirmed
     if email_object.owner is None:
         email_object.owner = IthacashUser.objects.create()
         email_object.save()
-        IthacashAccount.objects.create(owner=email_object.owner)
 
-    account_form = AccountSelectionForm(request.POST or None, instance=IthacashAccount.objects.get(owner=email_object.owner))
+    account, created = IthacashAccount.objects.get_or_create(owner=email_object.owner)
+
+    account_form = AccountSelectionForm(request.POST or None, instance=account)
 
     if request.method == 'POST':
 
@@ -133,18 +135,19 @@ def signup_step_3_select_account_type(request, email_key):
             return (JsonResponse(account_form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-step-3-select-account-type.html', {'form': account_form})
+        return render(request, 'signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
 
 
 def signup_step_4_account_information(request):
 
     if request.method == 'POST':
-        account_selection_form = AccountSelectionForm(request.POST)
-        account = account_selection_form.save(commit=False)
-        print account.id
+        account_id = request.POST.get('account_id')
+        account = IthacashAccount.objects.get(id=account_id)
+        account_selection_form = AccountSelectionForm(request.POST, instance=account)
+        account_selection_form.save()
         account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
         user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
-        email_form = EmailForm(instance=Email.objects.get(id=account.owner_id))
+        email_form = EmailForm(instance=Email.objects.get(owner=account.owner))
 
         return render(request, 'signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'email_form': email_form})
 
