@@ -58,13 +58,13 @@ class Email(models.Model):
         self.most_recent_confirmation_key = uuid.uuid4().hex
 
     def application_url(self):
-        return reverse("account_application", kwargs={'email_key': self.most_recent_confirmation_key})
+        return reverse("select_account_type", kwargs={'email_key': self.most_recent_confirmation_key})
 
     def send_confirmation_message(self):
         t = loader.get_template('emails/phase_one.txt')
         c = Context({
             'application_url': "https://%s%s" % (DOMAIN, self.application_url()),
-            'form_url': "https://%s%s" % (DOMAIN, reverse("signup_phase_one")),
+            'form_url': "https://%s%s" % (DOMAIN, reverse("signup_step_1_confirm_email")),
             'email_address': self.address,
         })
         message = t.render(c)
@@ -111,28 +111,21 @@ class IthacashAccount(models.Model):
 
     billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
 
-    address_1 = models.CharField(max_length=255)
+    address_1 = models.CharField(max_length=255, blank=True, null=True)
     address_2 = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    zip_code = models.CharField(max_length=255)
-    tin = EncryptedCharField(max_length=255)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    state = models.CharField(max_length=255, blank=True, null=True)
+    zip_code = models.CharField(max_length=255, blank=True, null=True)
+    tin = EncryptedCharField(max_length=255, blank=True, null=True)
     is_ssn = models.BooleanField(default=False)
     phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
     phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
     website = models.URLField(max_length=255, blank=True, null=True)
     txt2pay = models.BooleanField(default=False)
     txt2pay_phone = models.BooleanField(default=False)
-    electronic_signature = models.CharField(max_length=255)
+    electronic_signature = models.CharField(max_length=255, blank=True, null=True)
 
     created = models.DateTimeField(auto_now_add=True)
-
-    def save(self, *args, **kwargs):
-
-        if self.entity_name == 'n/a':
-            self.entity_name = self.owner.full_name
-
-        return super(IthacashAccount, self).save(*args, **kwargs)
 
     def send_awaiting_verification_message(self):
 
