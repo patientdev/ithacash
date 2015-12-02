@@ -51,24 +51,24 @@ class Command(BaseCommand):
         else:
             print "%s: Nothing to send." % datetime.now()
 
-    def get_most_recent_signups(self, options):
+    def get_most_recent_signups(self, options=None):
 
         yesterday = datetime.now() - timedelta(days=1)
 
-        if options['user']:
-            if 'all' in options['user']:
-                most_recent_account_signups = IthacashUser.objects.all()
+        if options:
+            if options['user']:
+                if 'all' in options['user']:
+                    most_recent_account_signups = IthacashUser.objects.all()
 
-            else:
-                most_recent_account_signups = []
-                for user in options['user']:
-                    print user
-                    user_object = IthacashUser.objects.get(username=user)
-                    most_recent_account_signups.append(user_object)
+                else:
+                    most_recent_account_signups = []
+                    for user in options['user']:
+                        user_object = IthacashUser.objects.get(username=user)
+                        most_recent_account_signups.append(user_object)
         else:
             yesterday = datetime.now() - timedelta(days=1)
 
-            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
+            most_recent_account_signups = IthacashUser.objects.filter(accounts__created__gt=yesterday)
 
         if most_recent_account_signups:
 

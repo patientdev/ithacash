@@ -128,18 +128,17 @@ class CreateAccountTests(TestCase):
         email = EmailFactory(owner=user)
         account = IthacashAccountFactory(owner=user)
 
-        combined_dict = dict(email.__dict__, **account.__dict__)
-        combined_dict.update(user.__dict__)
-
-        new_fake_ithacash_users = [combined_dict]
-
         with patch.object(mandrill.Messages, 'send') as mock_email_sender:
 
             csv_processor = create_and_email_csv.Command()
 
-            csv_processor.map_cyclos_keys_to_ithacash_user_values(new_fake_ithacash_users)
+            most_recent_fake_signups = csv_processor.get_most_recent_signups()
+
+            csv_processor.map_cyclos_keys_to_ithacash_user_values(most_recent_fake_signups)
             csv_output = csv_processor.output_csv().getvalue()
             csv_processor.email_csv()
+
+            print csv_output
 
             csv_attachment = mock_email_sender.call_args[0][0]['attachments'][0]['content']
             self.assertEqual(b64encode(csv_output), csv_attachment)
