@@ -141,15 +141,47 @@ def signup_step_3_select_account_type(request, email_key):
 def signup_step_4_account_information(request):
 
     if request.method == 'POST':
-        account_id = request.POST.get('account_id')
-        account = IthacashAccount.objects.get(id=account_id)
-        account_selection_form = AccountSelectionForm(request.POST, instance=account)
-        account_selection_form.save()
-        account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
-        user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
-        email_form = EmailForm(instance=Email.objects.get(owner=account.owner))
 
-        return render(request, 'signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'email_form': email_form})
+        # Submit account type
+        if request.POST.get('account_id'):
+            account_id = request.POST.get('account_id')
+            account = IthacashAccount.objects.get(id=account_id)
+
+            account_selection_form = AccountSelectionForm(request.POST, instance=account)
+            account_selection_form.save()
+
+            account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
+            user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
+
+            return render(request, 'signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
+
+        # Handle Step 4 validation
+        else:
+            user_id = request.POST.get('user_id')
+
+            user_object = IthacashUser.objects.get(id=user_id)
+            account_object = IthacashAccount.objects.get(owner=user_object)
+
+            account_form = AccountForm(request.POST, instance=account_object)
+            user_form = UserSignupForm(request.POST, instance=user_object)
+
+            if account_form.is_valid() and user_form.is_valid():
+
+                user = user_form.save()
+
+                account_form.save(commit=False)
+                account_form.owner = user
+                account_form.save()
+                account_form.save_m2m()
+
+                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+
+            else:
+                errors = {}
+                errors.update(account_form.errors)
+                errors.update(user_form.errors)
+
+                return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
 
 # def review(request):

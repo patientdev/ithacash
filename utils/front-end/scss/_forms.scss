@@ -4,8 +4,9 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   font-size: 1.2em;
-  border: 1px solid $medium-gray;
-  font-weight: 100;
+  border: 2px solid $light-gray;
+  font-weight: 400;
+  color: #444;
 
   &:focus {
     outline: 1px solid $light-green;
@@ -86,7 +87,7 @@ button {
 }
 
 .error-message::before {
-    content: "•";
+    content: "\00b7";
     color: red;
     margin-right: 10px;
     font-size: 1.4em;
