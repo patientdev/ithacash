@@ -65,6 +65,77 @@
         content: "✔";
         font-size: .9em;
     }
+
+    table {
+        text-align: left;
+        width: 60%;
+        border-collapse: collapse;
+        font-size: 1.1em;
+        line-height: 1em;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    thead th {
+        font-weight: normal;
+        font-size: 1.2em;
+    }
+
+    thead th:first-of-type {
+        color: green;
+    }
+
+    tbody tr td:last-of-type::after {
+        content: "\203A";
+        float: right;
+        font-size: 2em;
+        font-weight: 100;
+        margin-right: 10px;
+        color: #ccc;
+    }
+
+    tbody th {
+        color: #666;
+        font-weight: 800;
+    }
+
+    tr {
+        border-bottom: 2px solid #ccc;
+    }
+
+    tr.selected {
+        background-color: rgb(232, 240, 217);
+    }
+
+    tr.selected td:last-of-type::after {
+        color: rgb(140, 170, 69);
+    }
+
+    tbody tr:hover {
+        cursor: pointer;
+    }
+
+    td, th {
+        padding: 10px 0;
+    }
+
+    th input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    sidebar {
+        display: none;
+    }
+
+    article {
+        width: 100%;
+    }
+
+    form {
+        margin: 0;
+    }
 </style>
 {% endblock %}
 
@@ -88,19 +159,54 @@
     <section>
     <div class="white-background">
         <h2><b>Step 2:</b> Select an Account Type</h2>
+        <p><b>Get a free Individual account</b> or <b>choose a Paid account</b> below to receive vendor services that keep your business (and the community) humming.</p>
 
         <div id="forms">
             <form id="account" method="POST" action="/accounts/account-information/" class="clear">
             {% csrf_token %}
 
             <div id="account-type" class="field">
-                {% if form.account_type.errors %}
-                    {% for error in form.account_type.errors %}
-                        <p>{{ form.account_type }} <span class="error-message">{{ error|escape }}</span></p>
-                    {% endfor %}
-                {% else %}
-                    <p>{{ form.account_type }} <span class="helptext-wrapper">{{ form.account_type.help_text }}</span></span></p>
-                {% endif %}
+            <table>
+                <thead>
+                <tr>
+                    <th>Select an Account</th>
+                    <th colspan="2">monthly fees</th>
+                    <th>annual fee</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr id="row-individual">
+                        <th><input checked="checked" id="id_account_type_1" name="account_type" type="radio" value="Individual"> Individual</th>
+                        <td colspan="2">None</td>
+                        <td>None</td>
+                    </tr>
+                    <tr id="row-freelancer">
+                        <th><input id="id_account_type_2" name="account_type" type="radio" value="Freelancer"> Freelancer</th>
+                        <td>US$12</td>
+                        <td>+ i$5</td>
+                        <td>US$25</td>
+                    </tr>
+                    <tr id="row-standard">
+                        <th><input id="id_account_type_3" name="account_type" type="radio" value="Standard Business"> Business</th>
+                        <td>US$35</td>
+                        <td>+ i$15</td>
+                        <td>US$50</td>
+                    </tr>
+                    <tr id="row-premier">
+                        <th><input id="id_account_type_4" name="account_type" type="radio" value="Premier Business"> Premium</th>
+                        <td>US$60</td>
+                        <td>+ i$25</td>
+                        <td>US$100</td>
+                    </tr>
+                    <tr id="row-nonprofit">
+                        <th><input id="id_account_type_5" name="account_type" type="radio" value="Nonprofit"> Non&ndash;Profit</th>
+                        <td>US$35</td>
+                        <td>+ i$15</td>
+                        <td>US$50</td>
+                    </tr>
+                </tbody>
+
+            </table>
             </div>
 
             <input type="hidden" value="{{ account_id }}" name="account_id">
@@ -131,4 +237,16 @@
 
 {% block scripts %}
 <script src="{% static 'account/js/account.js' %}"></script>
+<script>
+    $(function() {
+        $('tbody tr').hover(function() {
+
+            $(this).addClass('selected');
+        }, function() {
+            $(this).removeClass('selected');
+        }).click(function() {
+            $(this).find('input').prop('checked', true);
+        })
+    });
+</script>
 {% endblock %}
