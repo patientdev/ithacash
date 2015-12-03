@@ -212,7 +212,7 @@
                 </thead>
                 <tbody>
                     <tr id="individual">
-                        <th><input checked="checked" id="id_account_type_1" name="account_type" type="radio" value="Individual"> Individual</th>
+                        <th><input id="id_account_type_1" name="account_type" type="radio" value="Individual"> Individual</th>
                         <td colspan="2">None</td>
                         <td>None</td>
                     </tr>
@@ -266,7 +266,7 @@
                 </ul>
             </div>
             <div id="freelancer-account-info">
-                <h3>Business Acccount</h3>
+                <h3>Freelancer Acccount</h3>
                 <ul>
                     <li>Access to Ithacash Online</li>
                     <li>Connect to a mobile phone via TXT2PAY</li>
@@ -343,14 +343,34 @@
 <script src="{% static 'account/js/account.js' %}"></script>
 <script>
     $(function() {
+
+        $("tbody tr").each(function() {
+            if ( $("input", this).val() == "{{ form.account_type.value }}" ) {
+                $("input", this).prop('checked', true);
+                $(this).addClass('selected');
+
+                info = "#" + $(this).attr("id") + "-account-info";
+
+                $(info).fadeIn();
+            }
+        });
+
         $('tbody tr').hover(function() {
             info = "#" + $(this).attr("id") + "-account-info";
 
+            $('#account-type-info > div').fadeOut();
             $(info).fadeIn();
         }, function() {
-            $("#account-type-info > div").fadeOut();
+
+            $('tbody tr').each(function() {
+                info = "#" + $(this).attr("id") + "-account-info";
+                if ( $(this).hasClass('selected') ) {
+                    $(info).show();
+                }
+                else { $(info).hide(); }
+            })
         }).click(function() {
-            $("#account-type-info > div").removeClass('selected');
+            $("tbody tr").removeClass('selected');
             $(this).addClass('selected');
             $(this).find('input').prop('checked', true);
         })
