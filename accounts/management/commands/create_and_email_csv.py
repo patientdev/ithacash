@@ -85,7 +85,10 @@ class Command(BaseCommand):
 
                 self.new_ithacash_users.append(combined_user_dict)
 
-        return self.new_ithacash_users
+            return self.new_ithacash_users
+
+        else:
+            return False
 
     def map_cyclos_keys_to_ithacash_user_values(self, new_ithacash_users=None):
 
