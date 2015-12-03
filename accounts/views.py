@@ -65,6 +65,7 @@ class AccountSelectionForm(forms.ModelForm):
     class Meta:
         model = IthacashAccount
         fields = ['account_type']
+        widgets = {'account_type': forms.RadioSelect}
 
 
 def getting_an_account(request):
