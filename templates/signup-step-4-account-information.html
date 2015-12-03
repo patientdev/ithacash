@@ -71,6 +71,10 @@
         width: 350px;
     }
 
+    input[type=checkbox] {
+        width: auto;
+    }
+
     article {
         width: 100%;
     }
@@ -106,6 +110,10 @@
         width: auto;
         margin: 0;
         vertical-align: middle;
+    }
+
+    #account-signature h3 {
+        margin-top: 40px;
     }
 </style>
 {% endblock %}
@@ -161,24 +169,6 @@
                         {% endfor %}
                     {% else %}
                         <p>{{ user_form.full_name }} <span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span></p>
-                    {% endif %}
-                </div>
-                <div id="account-tin" class="field">
-                    {% if account_form.tin.errors %}
-                        {% for error in account_form.tin.errors %}
-                            <p>{{ account_form.tin }} <span class="error-message">{{ error|escape }}</span></p>
-                        {% endfor %}
-                    {% else %}
-                        <p>{{ account_form.tin }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.tin.help_text }}</span></span></p>
-                    {% endif %}
-                </div>
-                <div id="account-is-ssn" class="field">
-                    {% if account_form.is_ssn.errors %}
-                        {% for error in account_form.is_ssn.errors %}
-                            <p>{{ account_form.is_ssn }} <span class="error-message">{{ error|escape }}</span></p>
-                        {% endfor %}
-                    {% else %}
-                        <p>{{ account_form.is_ssn }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span></p>
                     {% endif %}
                 </div>
                 <div id="account-address-1" class="field">
@@ -240,10 +230,10 @@
             <div id="account-txt2pay" class="field">
                 {% if account_form.txt2pay.errors %}
                     {% for error in account_form.txt2pay.errors %}
-                        <p>{{ account_form.txt2pay }} <span class="error-message">{{ error|escape }}</span></p>
+                        <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.txt2pay }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span></p>
+                    <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY <span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span></p>
                 {% endif %}
             </div>
             <div id="account-mobile" class="field">
@@ -255,7 +245,24 @@
                     <p>{{ account_form.phone_mobile }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span></p>
                 {% endif %}
             </div>
-
+            <div id="account-tin" class="field">
+                {% if account_form.tin.errors %}
+                    {% for error in account_form.tin.errors %}
+                        <p>{{ account_form.tin }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.tin }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.tin.help_text }}</span></span></p>
+                {% endif %}
+            </div>
+            <div id="account-is-ssn" class="field">
+                {% if account_form.is_ssn.errors %}
+                    {% for error in account_form.is_ssn.errors %}
+                        <p>{{ account_form.is_ssn }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.is_ssn }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span></p>
+                {% endif %}
+            </div>
             <div id="account-signature" class="field">
                 <h3>Signature</h3>
                 {% if account_form.electronic_signature.errors %}

@@ -66,9 +66,14 @@
         font-size: .9em;
     }
 
+    form {
+        width: 55%;
+        float: left;
+    }
+
     table {
         text-align: left;
-        width: 60%;
+        width: 100%;
         border-collapse: collapse;
         font-size: 1.1em;
         line-height: 1em;
@@ -77,11 +82,16 @@
 
     thead th {
         font-weight: normal;
-        font-size: 1.2em;
     }
 
     thead th:first-of-type {
-        color: green;
+        color: rgb(77, 116, 23);
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    tbody tr:hover {
+        background-color: rgb(232, 240, 217);
     }
 
     tbody tr td:last-of-type::after {
@@ -102,8 +112,9 @@
         border-bottom: 2px solid #ccc;
     }
 
-    tr.selected {
-        background-color: rgb(232, 240, 217);
+    tr.selected td, tr.selected th {
+        background-color: rgb(140, 170, 69);
+        color: white;
     }
 
     tr.selected td:last-of-type::after {
@@ -136,6 +147,32 @@
     form {
         margin: 0;
     }
+
+    #account-type-info {
+        width: 40%;
+        min-height: 300px;
+        float: right;
+        position: relative;
+    }
+
+    #account-type-info > div {
+        display: none;
+        background-color: rgb(232, 240, 217);
+        padding: 20px;
+        padding-bottom: 60px;
+        font-size: .9em;
+        position: absolute;
+    }
+
+    #account-type-info li {
+        margin: 3px 0;
+    }
+
+    #account-type-info li::before {
+        content: "•";
+        color: inherit;
+        font-size: .9em;
+    }
 </style>
 {% endblock %}
 
@@ -161,7 +198,6 @@
         <h2><b>Step 2:</b> Select an Account Type</h2>
         <p><b>Get a free Individual account</b> or <b>choose a Paid account</b> below to receive vendor services that keep your business (and the community) humming.</p>
 
-        <div id="forms">
             <form id="account" method="POST" action="/accounts/account-information/" class="clear">
             {% csrf_token %}
 
@@ -175,30 +211,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr id="row-individual">
+                    <tr id="individual">
                         <th><input checked="checked" id="id_account_type_1" name="account_type" type="radio" value="Individual"> Individual</th>
                         <td colspan="2">None</td>
                         <td>None</td>
                     </tr>
-                    <tr id="row-freelancer">
+                    <tr id="freelancer">
                         <th><input id="id_account_type_2" name="account_type" type="radio" value="Freelancer"> Freelancer</th>
                         <td>US$12</td>
                         <td>+ i$5</td>
                         <td>US$25</td>
                     </tr>
-                    <tr id="row-standard">
+                    <tr id="standard">
                         <th><input id="id_account_type_3" name="account_type" type="radio" value="Standard Business"> Business</th>
                         <td>US$35</td>
                         <td>+ i$15</td>
                         <td>US$50</td>
                     </tr>
-                    <tr id="row-premier">
+                    <tr id="premier">
                         <th><input id="id_account_type_4" name="account_type" type="radio" value="Premier Business"> Premium</th>
                         <td>US$60</td>
                         <td>+ i$25</td>
                         <td>US$100</td>
                     </tr>
-                    <tr id="row-nonprofit">
+                    <tr id="nonprofit">
                         <th><input id="id_account_type_5" name="account_type" type="radio" value="Nonprofit"> Non&ndash;Profit</th>
                         <td>US$35</td>
                         <td>+ i$15</td>
@@ -207,12 +243,80 @@
                 </tbody>
 
             </table>
+            <p>Hover over the above to view more info</p>
             </div>
 
             <input type="hidden" value="{{ account_id }}" name="account_id">
 
                 <p><button class="green-button">Next</button> <a href="{% static 'docs/Ithacash_Privacy_Policy.pdf' %}" class="cta-link" style="display: inline-block; margin-left: 20px;">Privacy Policy</a></p>
             </form>
+
+        <div id="account-type-info">
+            <div id="individual-account-info">
+                <h3>Individual Acccount</h3>
+                <ul>
+                    <li>Access to Ithacash Online</li>
+                    <li>Connect to a mobile phone via TXT2PAY</li>
+                    <li>Access to PAYITFWD</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Directory Listing</li>
+                    <li>Enhanced Visibility</li>
+                    <li>Priority Access to New Technology</li>
+                    <li>Higher PAYITFWD Limit</li>
+                </ul>
+            </div>
+            <div id="freelancer-account-info">
+                <h3>Business Acccount</h3>
+                <ul>
+                    <li>Access to Ithacash Online</li>
+                    <li>Connect to a mobile phone via TXT2PAY</li>
+                    <li>Access to PAYITFWD</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Directory Listing</li>
+                    <li>Enhanced Visibility</li>
+                    <li>Priority Access to New Technology</li>
+                    <li>Higher PAYITFWD Limit</li>
+                </ul>
+            </div>
+            <div id="standard-account-info">
+                <h3>Standard Business Acccount</h3>
+                <ul>
+                    <li>Access to Ithacash Online</li>
+                    <li>Connect to a mobile phone via TXT2PAY</li>
+                    <li>Access to PAYITFWD</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Directory Listing</li>
+                    <li>Enhanced Visibility</li>
+                    <li>Priority Access to New Technology</li>
+                    <li>Higher PAYITFWD Limit</li>
+                </ul>
+            </div>
+            <div id="premier-account-info">
+                <h3>Premier Business Acccount</h3>
+                <ul>
+                    <li>Access to Ithacash Online</li>
+                    <li>Connect to a mobile phone via TXT2PAY</li>
+                    <li>Access to PAYITFWD</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Directory Listing</li>
+                    <li>Enhanced Visibility</li>
+                    <li>Priority Access to New Technology</li>
+                    <li>Higher PAYITFWD Limit</li>
+                </ul>
+            </div>
+            <div id="nonprofit-account-info">
+                <h3>Non&ndash;Profit Acccount</h3>
+                <ul>
+                    <li>Access to Ithacash Online</li>
+                    <li>Connect to a mobile phone via TXT2PAY</li>
+                    <li>Access to PAYITFWD</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Directory Listing</li>
+                    <li>Enhanced Visibility</li>
+                    <li>Priority Access to New Technology</li>
+                    <li>Higher PAYITFWD Limit</li>
+                </ul>
+            </div>
         </div>
     </div>
     </section>
@@ -240,11 +344,14 @@
 <script>
     $(function() {
         $('tbody tr').hover(function() {
+            info = "#" + $(this).attr("id") + "-account-info";
 
-            $(this).addClass('selected');
+            $(info).fadeIn();
         }, function() {
-            $(this).removeClass('selected');
+            $("#account-type-info > div").fadeOut();
         }).click(function() {
+            $("#account-type-info > div").removeClass('selected');
+            $(this).addClass('selected');
             $(this).find('input').prop('checked', true);
         })
     });
