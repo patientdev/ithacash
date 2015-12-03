@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        if self.get_most_recent_signups(options):
+        if self.get_most_recent_signups():
             self.map_cyclos_keys_to_ithacash_user_values(self.new_ithacash_users)
             self.output_csv()
             print self.email_csv(self.csv_buffer)
@@ -51,24 +51,23 @@ class Command(BaseCommand):
         else:
             print "%s: Nothing to send." % datetime.now()
 
-    def get_most_recent_signups(self, options=None):
+    def get_most_recent_signups(self, **options):
 
         yesterday = datetime.now() - timedelta(days=1)
 
-        if options:
-            if options['user']:
-                if 'all' in options['user']:
-                    most_recent_account_signups = IthacashUser.objects.all()
+        if 'user' in options:
+            if 'all' in options['user']:
+                most_recent_account_signups = IthacashUser.objects.all()
 
-                else:
-                    most_recent_account_signups = []
-                    for user in options['user']:
-                        user_object = IthacashUser.objects.get(username=user)
-                        most_recent_account_signups.append(user_object)
+            else:
+                most_recent_account_signups = []
+                for user in options['user']:
+                    user_object = IthacashUser.objects.get(username=user)
+                    most_recent_account_signups.append(user_object)
         else:
-            yesterday = datetime.now() - timedelta(days=1)
-
             most_recent_account_signups = IthacashUser.objects.filter(accounts__created__gt=yesterday)
+
+        print most_recent_account_signups
 
         if most_recent_account_signups:
 
@@ -98,7 +97,6 @@ class Command(BaseCommand):
 
             if new_user['account_type'] != 'Individual' and new_user['entity_name'] == '':
                 new_user['entity_name'] = new_user['full_name']
-                print new_user['entity_name']
 
             mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
 
