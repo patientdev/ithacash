@@ -91,7 +91,6 @@ class Email(models.Model):
 class IthacashAccount(models.Model):
 
     ACCOUNT_TYPE_CHOICES = (
-        (None, 'Select Account Type'),
         ('Individual', 'Individual'),
         ('Freelancer', 'Freelancer'),
         ('Standard Business', 'Standard Business'),
