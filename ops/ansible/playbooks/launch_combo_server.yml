@@ -18,5 +18,5 @@
   roles:
   - database
   - app
-  - { role: caching, when: deployment_environment == 'production' }
+  - caching
   - { role: monitored, when: deployment_environment == 'production' }
