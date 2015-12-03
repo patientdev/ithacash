@@ -1,0 +1,109 @@
+{% extends 'subpage.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<style>
+
+    form {
+        margin-top: 30px;
+    }
+
+    form p {
+        margin: 20px 0;
+    }
+
+    #headline {
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    #sign-up-pathway {
+        width: 100%;
+        background-color: rgb(140, 170, 69);
+        color: white;
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+
+    #sign-up-pathway ul {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 1em;
+        line-height: 1em;
+    }
+
+    #sign-up-pathway ul li {
+        display: inline;
+        margin: 0 10px;
+        list-style-type: none;
+    }
+
+    #sign-up-pathway ul li:before {
+        height: 25px;
+        width: 25px;
+        display: inline-block;
+        background-color: #B3D377;
+        border-radius: 50%;
+        content: "•";
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 25px;
+    }
+
+    #sign-up-pathway ul li.selected:before {
+        background-color: rgb(77, 116, 23);
+    }
+</style>
+{% endblock %}
+
+{% block heading %}Get an Account{% endblock %}
+
+{% block subheadline %}
+<div id="sign-up-pathway">
+<div class="container">
+    <ul>
+        <li class="selected">Confirm</li>
+        <li>Select</li>
+        <li>Account Info</li>
+        <li>Review</li>
+    </ul>
+</div>
+</div>
+{% endblock %}
+
+{% block article %}
+
+    <section>
+    <div class="white-background">
+        <h2><b>Step 1:</b> Confirm your email address</h2>
+
+        <p style="text-align: center; margin-top: 60px;"><b>Please check your email</b><br>for a link to the Ithacash application.</p>
+    </div>
+    </section>
+{% endblock article %}
+
+{% block sidebar %}
+    <h3>Digital Accounts</h3>
+
+    <p><b>Sign up for a free Ithacash account</b> and start buying and selling with digital Ithaca Dollars (i$) anywhere they are accepted. (Physical Ithaca Dollars will be available soon)</p>
+
+    <p><a href="" class="cta-link">View Account Types</a></p>
+
+    <p>After you create your account, you can load it with Ithaca Dollars and start shopping. You&rsquo;ll even get more bang for your buck with our <b>25% buy&ndash;in bonus</b> on your US$ purchase.</p>
+
+    <p>Using Ithacash is easy! Each Ithaca Dollar is valued 1&ndash;to&ndash;1 with the US Dollar. Any change under i$1 can be made with US coins.</p>
+
+    <p><b>Link a cell phone number</b> with your account to make and take payments with simple text messages</p>
+
+    <p>All digital transactions are charged a flate rate of 2% to the seller.</p>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'account/js/account.js' %}"></script>
+{% endblock %}
