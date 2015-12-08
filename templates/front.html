@@ -19,6 +19,15 @@
     #who-uses-it {
         min-height: 600px;
     }
+
+    #why-local-money {
+        background-image: url({% static 'img/owner-cling.jpg' %});
+    }
+
+    #holiday-hunger-games {
+        background-image: url({% static 'img/hungergames-presents.jpg' %});
+        background-position: 0% 60%;
+    }
 </style>
 {% endblock %}
 
@@ -27,7 +36,16 @@
 <div id="intro">
 
 <div class="banners">
-<div class="banner">
+<div id="holiday-hunger-games" class="banner">
+    <div class="container">
+        <div class="box light-green-background right">
+            <h2 style="font-size: 35px;">Holiday Hunger Games</h2>
+            <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
+            <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
+        </div>
+    </div>
+</div>
+<div id="why-local-money" class="banner">
     <div class="container">
         <div class="box light-green-background left">
             <h2>Why local money?</h2>
@@ -37,15 +55,6 @@
     </div>
 </div>
 
-<div class="banner">
-    <div class="container">
-        <div class="box light-green-background right">
-            <h2>Why local money?</h2>
-            <p class="prominent-graph"><b>Ithacash</b> is a regional benefit currency for Ithaca and Tompkins County. Every <b>Ithaca Dollar</b> spent becomes an immediate buy&ndash;local success. There&rsquo;s no catch. It&rsquo;s money that stays in our region by design, strengthening our local economy and meeting our community&rsquo;s needs, period.</p>
-            <a href="/why-ithacash/" class="angled-cta-left bottom-right dark-green-background">Learn More</a>
-        </div>
-    </div>
-</div>
 </div>
 
 <div class="container">
