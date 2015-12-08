@@ -5,7 +5,9 @@
 <style>
 
     form {
-        margin-top: 30px;
+        width: 55%;
+        float: left;
+        margin-top: 20px;
     }
 
     form p {
@@ -66,11 +68,6 @@
         font-size: .9em;
     }
 
-    form {
-        width: 55%;
-        float: left;
-    }
-
     table {
         text-align: left;
         width: 100%;
@@ -100,12 +97,17 @@
         font-size: 2em;
         font-weight: 100;
         margin-right: 10px;
+        vertical-align: middle;
         color: #ccc;
+    }
+
+    tbody tr:hover td:last-of-type::after {
+        color: rgb(140, 170, 69);
     }
 
     tbody th {
         color: #666;
-        font-weight: 800;
+        font-weight: 700;
     }
 
     tr {
@@ -113,12 +115,11 @@
     }
 
     tr.selected td, tr.selected th {
-        background-color: rgb(140, 170, 69);
-        color: white;
+        background-color: rgb(232, 240, 217);
     }
 
     tr.selected td:last-of-type::after {
-        color: rgb(140, 170, 69);
+        color: white;
     }
 
     tbody tr:hover {
@@ -144,15 +145,12 @@
         width: 100%;
     }
 
-    form {
-        margin: 0;
-    }
-
     #account-type-info {
         width: 40%;
         min-height: 300px;
         float: right;
         position: relative;
+        margin-top: 20px;
     }
 
     #account-type-info > div {
@@ -344,6 +342,7 @@
 <script>
     $(function() {
 
+        // Select previously selected account type onLoad
         $("tbody tr").each(function() {
             if ( $("input", this).val() == "{{ form.account_type.value }}" ) {
                 $("input", this).prop('checked', true);
@@ -351,28 +350,40 @@
 
                 info = "#" + $(this).attr("id") + "-account-info";
 
-                $(info).fadeIn();
+                $(info).show();
             }
         });
 
+        // onHover, fadeOut all other account info divs, then fadeIn hovered account type info
         $('tbody tr').hover(function() {
             info = "#" + $(this).attr("id") + "-account-info";
+            selected_info = "#" + $("tr.selected").attr("id") + "-account-info";
 
-            $('#account-type-info > div').fadeOut();
+            $(selected_info).hide();
+            $("#account-type-info > div").fadeOut();
             $(info).fadeIn();
         }, function() {
 
-            $('tbody tr').each(function() {
+            $("tbody tr").each(function() {
                 info = "#" + $(this).attr("id") + "-account-info";
-                if ( $(this).hasClass('selected') ) {
-                    $(info).show();
+                if ( !$(this).hasClass('selected') ) {
+                    $(info).fadeOut();
                 }
-                else { $(info).hide(); }
-            })
+
+                else {
+                    $(info).hide();
+                }
+            });
         }).click(function() {
             $("tbody tr").removeClass('selected');
             $(this).addClass('selected');
             $(this).find('input').prop('checked', true);
+        })
+
+        $("table").on("mouseout", function() {
+            selected = $('tr.selected', this).attr('id');
+            console.log(selected);
+            $("#" + selected + "-account-info").show();
         })
     });
 </script>
