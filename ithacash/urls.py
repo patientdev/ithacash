@@ -4,7 +4,7 @@ from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
-from ithacash_dev.views import StaticViewSitemap, SubpagesSitemap
+from ithacash.views import StaticViewSitemap, SubpagesSitemap
 
 '''
 Are you adding a new app?
@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'pages.views.front', name='front'),
-    url(r'^robots.txt', 'ithacash_dev.views.robots_txt'),
+    url(r'^robots.txt', 'ithacash.views.robots_txt'),
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
     url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False), name='join'),
     url(r'^accounts/', include('accounts.urls')),

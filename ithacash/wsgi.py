@@ -1,5 +1,5 @@
 """
-WSGI config for ithacash_dev project.
+WSGI config for ithacash project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ithacash_dev.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ithacash.settings")
 
 application = get_wsgi_application()
