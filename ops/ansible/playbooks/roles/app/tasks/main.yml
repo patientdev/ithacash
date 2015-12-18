@@ -68,7 +68,7 @@
   sudo: yes
   sudo_user: "{{ app_user }}"
   django_manage:
-    settings: ithacash_dev.settings.{{ deployment_environment }}
+    settings: ithacash.settings.{{ deployment_environment }}
     command: migrate
     virtualenv: /ithacash/virtualenv
     app_path: /ithacash/{{ deployment_environment }}
@@ -91,4 +91,4 @@
     name: Send email with CSV of new Ithacash account signups for Cyclos import
     hour: 6
     minute: 0
-    job: /ithacash/virtualenv/bin/python /ithacash/{{ deployment_environment }}/manage.py create_and_email_csv --settings=ithacash_dev.settings.{{ deployment_environment }} >> /var/log/django_maintenance.log
+    job: /ithacash/virtualenv/bin/python /ithacash/{{ deployment_environment }}/manage.py create_and_email_csv --settings=ithacash.settings.{{ deployment_environment }} >> /var/log/django_maintenance.log

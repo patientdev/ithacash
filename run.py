@@ -11,6 +11,6 @@ ch.setFormatter(formatter)
 root.addHandler(ch)
 
 
-options = {'settings': 'ithacash_dev.settings.local', 'loud': True}
+options = {'settings': 'ithacash.settings.local', 'loud': True}
 deployer = HendrixDeploy(options=options)
 deployer.run()

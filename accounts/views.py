@@ -6,7 +6,7 @@ from hendrix.experience import crosstown_traffic
 from accounts.forms import EmailForm, AccountForm, UserSignupForm
 
 from accounts.models import Email, IthacashUser, IthacashAccount
-from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
+from ithacash.sayings import EMAIL_ALREADY_IN_SYSTEM
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 

@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 
     data: {
       django: {
-        static: "../../ithacash_dev/static"
+        static: "../../ithacash/static"
       }
     },
 

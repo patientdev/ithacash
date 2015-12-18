@@ -1,9 +1,9 @@
 *.pyc
 *.csv
 *.sqlite3
-*ithacash_dev/settings/ignore.py
-*ithacash_dev/settings/local.py
-ithacash_dev/settings/secrets/*
+*ithacash/settings/ignore.py
+*ithacash/settings/local.py
+ithacash/settings/secrets/*
 
 pages/media
 
