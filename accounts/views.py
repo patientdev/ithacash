@@ -178,16 +178,28 @@ def signup_step_4_account_information(request):
                 return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
 
-# def review(request):
-#
-#     user = user_form.save()
-#
-#     account_form.save(commit=False)
-#     account_form.owner = user
-#     account_form.save()
-#     account_form.save_m2m()
-#
-#
+def review(request):
+
+    if request.method == 'POST':
+
+        user_id = request.POST.get('user_id')
+
+        user_object = IthacashUser.objects.get(id=user_id)
+        account_object = IthacashAccount.objects.get(owner=user_object)
+
+        account_form = AccountForm(request.POST, instance=account_object)
+        user_form = UserSignupForm(request.POST, instance=user_object)
+
+        if account_form.is_valid() and user_form.is_valid():
+            user = user_form.save()
+
+            account_form.save(commit=False)
+            account_form.owner = user
+            account = account_form.save()
+            account_form.save_m2m()
+
+            return render(request, 'signup-step-5-review.html', {'user': user, 'account': account, 'email': Email.objects.get(owner=user)} )
+
 
 
 def thanks(request):

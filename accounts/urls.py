@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^purchase-ithaca-dollars/', 'accounts.views.purchase_ithaca_dollars'),
     url(r'^create_account/(?P<email_key>\w+)', 'accounts.views.signup_step_3_select_account_type', name="select_account_type"),
     url(r'^account-information/', 'accounts.views.signup_step_4_account_information'),
+    url(r'^review/$', 'accounts.views.review'),
     url(r'^list_accounts/$', 'accounts.views.list_accounts'),
 ]
