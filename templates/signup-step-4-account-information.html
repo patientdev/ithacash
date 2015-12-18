@@ -150,7 +150,7 @@
                             <p>{{ user_form.username }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ user_form.username }} <span class="helptext-wrapper"><span class="helptext">{{ user_form.username.help_text }}</span></span></p>
+                        <p>{{ user_form.username }} {% if user_form.username.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.username.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-type" class="field">
@@ -159,7 +159,7 @@
                             <p>{{ account_form.account_type }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.account_type }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.account_type.help_text }}</span></span></p>
+                        <p>{{ account_form.account_type }} {% if account_form.account_type.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.account_type.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="full-name" class="field">
@@ -168,7 +168,7 @@
                             <p>{{ user_form.full_name }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ user_form.full_name }} <span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span></p>
+                        <p>{{ user_form.full_name }} {% if user_form.full_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-address-1" class="field">
@@ -177,7 +177,7 @@
                             <p>{{ account_form.address_1 }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.address_1 }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.address_1.help_text }}</span></span></p>
+                        <p>{{ account_form.address_1 }} {% if account_form.address_1.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.address_1.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-address-2" class="field">
@@ -186,7 +186,7 @@
                             <p>{{ account_form.address_2 }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.address_2 }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.address_2.help_text }}</span></span></p>
+                        <p>{{ account_form.address_2 }} {% if account_form.address_2.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.address_2.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-city" class="field">
@@ -195,7 +195,7 @@
                             <p>{{ account_form.city }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.city }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.city.help_text }}</span></span></p>
+                        <p>{{ account_form.city }} {% if account_form.city.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.city.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-state" class="field">
@@ -204,7 +204,7 @@
                             <p>{{ account_form.state }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.state }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.state.help_text }}</span></span></p>
+                        <p>{{ account_form.state }} {% if account_form.state.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.state.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-zip" class="field">
@@ -213,7 +213,7 @@
                             <p>{{ account_form.zip_code }} <span class="error-message">{{ error|escape }}</span></p>
                         {% endfor %}
                     {% else %}
-                        <p>{{ account_form.zip_code }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.zip_code.help_text }}</span></span></p>
+                        <p>{{ account_form.zip_code }} {% if account_form.zip_code.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.zip_code.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
             </div>
@@ -224,7 +224,7 @@
                         <p>{{ account_form.phone_landline }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.phone_landline }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_landline.help_text }}</span></span></p>
+                    <p>{{ account_form.phone_landline }} {% if account_form.phone_landline.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_landline.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-txt2pay" class="field">
@@ -233,7 +233,7 @@
                         <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY <span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span></p>
+                    <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY {% if account_form.txt2pay.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-mobile" class="field">
@@ -242,7 +242,7 @@
                         <p>{{ account_form.phone_mobile }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.phone_mobile }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span></p>
+                    <p>{{ account_form.phone_mobile }} {% if account_form.phone_mobile.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-tin" class="field">
@@ -251,7 +251,7 @@
                         <p>{{ account_form.tin }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.tin }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.tin.help_text }}</span></span></p>
+                    <p>{{ account_form.tin }} {% if account_form.tin.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.tin.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-is-ssn" class="field">
@@ -260,7 +260,7 @@
                         <p>{{ account_form.is_ssn }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.is_ssn }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span></p>
+                    <p>{{ account_form.is_ssn }} {% if account_form.is_ssn.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-signature" class="field">
@@ -270,7 +270,7 @@
                         <p>{{ account_form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.electronic_signature }} <span class="helptext-wrapper"><span class="helptext">{{ account_form.electronic_signature.help_text }}</span></span></p>
+                    <p>{{ account_form.electronic_signature }} {% if account_form.electronic_signature.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.electronic_signature.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
 
