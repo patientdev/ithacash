@@ -166,6 +166,7 @@ def signup_step_4_account_information(request):
             account_form = AccountForm(request.POST, instance=account_object)
             user_form = UserSignupForm(request.POST, instance=user_object)
 
+            print account_form
             if account_form.is_valid() and user_form.is_valid():
 
                 user = user_form.save()
