@@ -140,7 +140,7 @@
         <h2><b>Step 3:</b> Account Information</h2>
         <p><strong>It&rsquo;s free</strong>, but it&rsquo;s still your money, so we need your real information to make your account payment as safe as possible.</p>
 
-        <form id="account" method="POST" action="" class="clear">
+        <form id="account" method="POST" action="/accounts/review/" class="clear">
             {% csrf_token %}
             <input type="hidden" value="{{ user_id }}" name="user_id">
             <div style="width: 45%; float: left;">

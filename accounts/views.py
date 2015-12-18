@@ -29,7 +29,7 @@ class EmailForm(forms.ModelForm):
 
 class AccountForm(forms.ModelForm):
 
-    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
+    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')), required=False)
 
     class Meta:
         model = IthacashAccount
@@ -166,15 +166,7 @@ def signup_step_4_account_information(request):
             account_form = AccountForm(request.POST, instance=account_object)
             user_form = UserSignupForm(request.POST, instance=user_object)
 
-            print account_form
             if account_form.is_valid() and user_form.is_valid():
-
-                user = user_form.save()
-
-                account_form.save(commit=False)
-                account_form.owner = user
-                account_form.save()
-                account_form.save_m2m()
 
                 return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
 
@@ -188,59 +180,14 @@ def signup_step_4_account_information(request):
 
 # def review(request):
 #
-#     if request.method == 'POST' and request.POST.get('billing_frequency') is None:
+#     user = user_form.save()
 #
-#         email_object = Email.objects.get(most_recent_confirmation_key=request.POST['most_recent_confirmation_key'])
+#     account_form.save(commit=False)
+#     account_form.owner = user
+#     account_form.save()
+#     account_form.save_m2m()
 #
-#         if email_object.owner is not None:
-#             user_form = UserSignupForm(request.POST or None, instance=IthacashUser.objects.get(username=email_object.owner))
-#             account_form = AccountForm(request.POST or None, instance=IthacashAccount.objects.get(owner=email_object.owner))
-#         else:
-#             user_form = UserSignupForm(request.POST or None)
-#             account_form = AccountForm(request.POST or None)
 #
-#         if user_form.is_valid() and account_form.is_valid():
-#
-#             user = user_form.save()
-#
-#             account_form.instance.owner = user
-#             account = account_form.save()
-#
-#             email_object.owner = user
-#             email_object.save()
-#
-#             last_4 = request.POST['tin'][-4:]
-#
-#             context = {
-#                 'user': user,
-#                 'account': account,
-#                 'email_object': email_object,
-#                 'last_4': last_4,
-#                 'paypal_form': settings.PAYPAL_SETTINGS,
-#                 'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account.account_type]
-#             }
-#
-#             return render(request, 'review.html', context)
-#
-#         else:
-#             # Combine form errors into one payload
-#             errors = {}
-#             errors.update(account_form.errors)
-#             errors.update(user_form.errors)
-#
-#             return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
-#
-#     elif request.POST.get('billing_frequency') is not None:
-#
-#         billing_form = BillingFrequencyForm(request.POST or None)
-#
-#         ithacash_user = IthacashUser.objects.get(username=request.POST.get('account_owner'))
-#         ithacash_user.ithacashaccount_set.update(billing_frequency=request.POST['billing_frequency'])
-#
-#         return JsonResponse({'success': True})
-#
-#     else:
-#         return HttpResponseRedirect('/accounts/signup/')
 
 
 def thanks(request):
