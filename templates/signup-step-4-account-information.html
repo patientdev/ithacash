@@ -245,6 +245,7 @@
                     <p>{{ account_form.phone_mobile }} {% if account_form.phone_mobile.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
+            {% if account_form.account_type.value != 'Individual' %}
             <div id="account-tin" class="field">
                 {% if account_form.tin.errors %}
                     {% for error in account_form.tin.errors %}
@@ -263,6 +264,7 @@
                     <p>{{ account_form.is_ssn }} {% if account_form.is_ssn.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
+            {% endif %}
             <div id="account-signature" class="field">
                 <h3>Signature</h3>
                 {% if account_form.electronic_signature.errors %}

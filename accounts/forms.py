@@ -20,8 +20,6 @@ class EmailForm(forms.ModelForm):
 
 class AccountForm(forms.ModelForm):
 
-    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
-
     class Meta:
         model = IthacashAccount
         exclude = ['owner', 'billing_frequency']
@@ -32,6 +30,7 @@ class AccountForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'state': forms.TextInput(attrs={'placeholder': 'State'}),
             'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
+            'is_ssn': forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN'))),
             'tin': forms.TextInput(attrs={'placeholder': 'Tax ID #'}),
             'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
             'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
