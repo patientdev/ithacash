@@ -28,6 +28,5 @@ PAYPAL_SETTINGS = {
     }
 }
 
-RAVEN_CONFIG = {
-    'dsn': SENTRY_DSN,
-}
+RAVEN_CONFIG['name'] = "Staging"
+RAVEN_CONFIG['site'] = 'staging.ithacash.com'
