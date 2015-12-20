@@ -118,7 +118,7 @@ class IthacashAccount(models.Model):
     tin = EncryptedCharField(max_length=255, blank=True)
     is_ssn = models.BooleanField(default=False, blank=True)
     phone_mobile = PhoneNumberField(max_length=255, blank=True)
-    phone_landline = PhoneNumberField(max_length=255, blank=True)
+    phone_landline = PhoneNumberField(max_length=255)
     website = models.URLField(max_length=255, blank=True)
     txt2pay = models.BooleanField(default=False)
     txt2pay_phone = models.BooleanField(default=False)
