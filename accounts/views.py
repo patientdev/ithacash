@@ -186,19 +186,25 @@ def review(request):
 
         user_object = IthacashUser.objects.get(id=user_id)
         account_object = IthacashAccount.objects.get(owner=user_object)
+        email_object = Email.objects.get(owner=user_object)
 
         account_form = AccountForm(request.POST, instance=account_object)
         user_form = UserSignupForm(request.POST, instance=user_object)
 
         if account_form.is_valid() and user_form.is_valid():
-            user = user_form.save()
 
-            account_form.save(commit=False)
-            account_form.owner = user
-            account = account_form.save()
-            account_form.save_m2m()
+            context = {
+                'user': user_object,
+                'account': account_object,
+                'email': email_object,
+                'paypal_form': settings.PAYPAL_SETTINGS,
+                'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type]
+            }
 
-            return render(request, 'signup-step-5-review.html', {'user': user, 'account': account, 'email': Email.objects.get(owner=user)} )
+            return render(request, 'signup-step-5-review.html', context)
+
+    else:
+        return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
 
 
 
