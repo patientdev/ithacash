@@ -9,7 +9,7 @@ https:/docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https:/docs.djangoproject.com/en/1.8/ref/settings/
 """
-from secrets import SECRET_KEY, MANDRILL_API_KEY, MAILCHIMP_API_KEY
+from secrets import SECRET_KEY, MANDRILL_API_KEY, MAILCHIMP_API_KEY, SENTRY_DSN
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,6 +100,12 @@ HENDRIX_CHILD_RESOURCES = (
     # uncomment if you would like to serve the django admin static files
     # 'hendrix.contrib.resources.static.DjangoAdminStaticResource',
 )
+
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN
+    # Need proper versioning for this
+    # 'release': raven.fetch_git_sha(os.path.dirname(__file__))
+}
 
 # django-encrypted-fields
 ENCRYPTED_FIELDS_KEYDIR = os.path.join(BASE_DIR, 'ithacash/settings/secrets/fieldkeys')

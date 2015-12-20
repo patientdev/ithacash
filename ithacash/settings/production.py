@@ -1,5 +1,5 @@
 from common import *
-from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
+from secrets import PRODUCTION_DATABASE_PASSWORD
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -35,6 +35,6 @@ PAYPAL_SETTINGS = {
     }
 }
 
-RAVEN_CONFIG = {
-    'dsn': SENTRY_DSN,
-}
+
+RAVEN_CONFIG['name'] = "Production"
+RAVEN_CONFIG['site'] = 'ithacash.com'
