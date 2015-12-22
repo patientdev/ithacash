@@ -1,5 +1,7 @@
+#!/usr/bin/env python
 from hendrix.deploy.base import HendrixDeploy
-import logging, sys
+import logging
+import sys
 
 root = logging.getLogger()
 root.setLevel(logging.DEBUG)

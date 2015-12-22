@@ -12,6 +12,11 @@
         font-size: 2em;
     }
 
+    #account-type {
+        font-size: 1.2em;
+        margin: 15px 0;
+    }
+
     h3 {
         margin-bottom: 10px;
     }
@@ -143,6 +148,7 @@
         <form id="account" method="POST" action="/accounts/review/" class="clear">
             {% csrf_token %}
             <input type="hidden" value="{{ user_id }}" name="user_id">
+            <input type="hidden" name="account_type" value="{{ account_form.account_type.value }}">
             <div style="width: 45%; float: left;">
                 <div id="username" class="field">
                     {% if user_form.username.errors %}
@@ -154,13 +160,7 @@
                     {% endif %}
                 </div>
                 <div id="account-type" class="field">
-                    {% if account_form.account_type.errors %}
-                        {% for error in account_form.account_type.errors %}
-                            <p>{{ account_form.account_type }} <span class="error-message">{{ error|escape }}</span></p>
-                        {% endfor %}
-                    {% else %}
-                        <p>{{ account_form.account_type }} {% if account_form.account_type.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.account_type.help_text }}</span></span>{% endif %}</p>
-                    {% endif %}
+                    <p><b>Account type:</b> <span data-account-type="{{ account_form.account_type.value }}">{{ account_form.account_type.value }}</span></p>
                 </div>
                 <div id="full-name" class="field">
                     {% if user_form.full_name.errors %}
@@ -169,6 +169,15 @@
                         {% endfor %}
                     {% else %}
                         <p>{{ user_form.full_name }} {% if user_form.full_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="entity-name" class="field">
+                    {% if account_form.entity_name.errors %}
+                        {% for error in account_form.entity_name.errors %}
+                            <p>{{ account_form.entity_name }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.entity_name }} {% if account_form.entity_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.entity_name.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
                 <div id="account-address-1" class="field">
@@ -230,19 +239,28 @@
             <div id="account-txt2pay" class="field">
                 {% if account_form.txt2pay.errors %}
                     {% for error in account_form.txt2pay.errors %}
-                        <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY <span class="error-message">{{ error|escape }}</span></p>
+                        <p><label>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY</label> <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY {% if account_form.txt2pay.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span>{% endif %}</p>
+                    <p><label>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY</label> {% if account_form.txt2pay.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            <div id="account-txt2pay-phone" class="field">
+                {% if account_form.txt2pay_phone.errors %}
+                    {% for error in account_form.txt2pay_phone.errors %}
+                        <p><label>{{ account_form.txt2pay_phone }} I&rsquo;d like to lease a TXT2PAY phone for $10/month</label> <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p><label>{{ account_form.txt2pay_phone }} I&rsquo;d like to lease a TXT2PAY phone for $10/month</label> {% if account_form.txt2pay_phone.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay_phone.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             <div id="account-mobile" class="field">
                 {% if account_form.phone_mobile.errors %}
                     {% for error in account_form.phone_mobile.errors %}
-                        <p>{{ account_form.phone_mobile }} <span class="error-message">{{ error|escape }}</span></p>
+                        <p>{{ account_form.phone_mobile }}<span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ account_form.phone_mobile }} {% if account_form.phone_mobile.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span>{% endif %}</p>
+                    <p>{{ account_form.phone_mobile }}{% if account_form.phone_mobile.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
             {% if account_form.account_type.value != 'Individual' %}
@@ -289,5 +307,5 @@
 
 
 {% block scripts %}
-<script src="{% static 'account/js/account.js' %}"></script>
+<script src="{% static 'accounts/js/accounts.js' %}"></script>
 {% endblock %}

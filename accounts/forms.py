@@ -22,7 +22,7 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = IthacashAccount
-        exclude = ['owner', 'billing_frequency']
+        exclude = ['owner', 'billing_frequency', 'account_type']
         widgets = {
             'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
             'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),

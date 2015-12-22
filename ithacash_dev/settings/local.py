@@ -1,4 +1,5 @@
 from common import *
+from accounts import *
 from secrets import SENTRY_DSN
 
 
@@ -21,6 +22,10 @@ PAYPAL_SETTINGS = {
         'Nonprofit': "AAAAAAAAAAAAA",
         'Freelancer': "AAAAAAAAAAAAA",
     }
+}
+
+RAVEN_CONFIG = {
+    'dsn': None
 }
 
 try:

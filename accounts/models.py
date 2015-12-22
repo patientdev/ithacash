@@ -110,11 +110,11 @@ class IthacashAccount(models.Model):
 
     billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
 
-    address_1 = models.CharField(max_length=255, blank=True)
+    address_1 = models.CharField(max_length=255,)
     address_2 = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=255, blank=True)
-    state = models.CharField(max_length=255, blank=True)
-    zip_code = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    zip_code = models.CharField(max_length=255)
     tin = EncryptedCharField(max_length=255, blank=True)
     is_ssn = models.BooleanField(default=False, blank=True)
     phone_mobile = PhoneNumberField(max_length=255, blank=True)
@@ -122,7 +122,7 @@ class IthacashAccount(models.Model):
     website = models.URLField(max_length=255, blank=True)
     txt2pay = models.BooleanField(default=False)
     txt2pay_phone = models.BooleanField(default=False)
-    electronic_signature = models.CharField(max_length=255, blank=True)
+    electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
 

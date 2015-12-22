@@ -92,7 +92,7 @@ def signup_step_1_confirm_email(request):
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-step-1-confirm-email.html', {'form': form})
+        return render(request, 'accounts/signup-step-1-confirm-email.html', {'form': form})
 
 
 def signup_step_2_await_confirmation(request):
@@ -107,7 +107,7 @@ def signup_step_2_await_confirmation(request):
             def send_email_later():
                 email_object.send_confirmation_message()
 
-            return render(request, 'signup-step-2-await-confirmation.html')
+            return render(request, 'accounts/signup-step-2-await-confirmation.html')
 
         else:
             return HttpResponseRedirect('/accounts/signup/')
@@ -136,7 +136,7 @@ def signup_step_3_select_account_type(request, email_key):
             return (JsonResponse(account_form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
+        return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
 
 
 def signup_step_4_account_information(request):
@@ -154,7 +154,7 @@ def signup_step_4_account_information(request):
             account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
             user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
 
-            return render(request, 'signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
+            return render(request, 'accounts/signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
 
         # Handle Step 4 validation
         else:
@@ -193,15 +193,20 @@ def review(request):
 
         if account_form.is_valid() and user_form.is_valid():
 
+            account_form.save()
+            user_form.save()
+
             context = {
                 'user': user_object,
                 'account': account_object,
                 'email': email_object,
                 'paypal_form': settings.PAYPAL_SETTINGS,
-                'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type]
+                'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type],
+                'annual_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['ANNUAL'],
+                'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY']
             }
 
-            return render(request, 'signup-step-5-review.html', context)
+            return render(request, 'accounts/signup-step-5-review.html', context)
 
     else:
         return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
