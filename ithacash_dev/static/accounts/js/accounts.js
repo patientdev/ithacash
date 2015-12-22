@@ -1,28 +1,25 @@
 $(function() {
+    console.log($('#account-type span').data('accountType'));
     if ( $('#id_account_type').val() != '' ) {
         $('#account-type-selection').css('display', 'block');
 
-        if ( $('#id_account_type').val()  == 'Individual' ) {
-            $('#id_entity_name').hide();
-            $('#txt2pay-phone').css('display', 'none');
+        if ( $('#account-type span').data('accountType')  === 'Individual' ) {
+            $('#id_entity_name, #txt2pay-phone').hide();
         }
     }
 
     $('#id_account_type').change(function() {
         account_type_selection = $(this).val();
 
-        $('.info-card').css('display', 'none');
-
         if ( account_type_selection  == 'Individual') {
-            $('#id_entity_name').val('n/a').hide();
+            $('#id_entity_name, #account-txt2pay').hide();
             $('#id_full_name').attr('placeholder', 'Your Name');
-            $('#txt2pay-phone').css('display', 'none');
             $('#individual-info').css('display', 'block');
         }
 
         else {
 
-            $('#txt2pay-phone').css('display', 'block');
+            $('#account-txt2pay').css('display', 'block');
 
             if ( account_type_selection == 'Standard Business' || account_type_selection == 'Premier Business' || account_type_selection == 'Freelancer') {
                    $('#id_entity_name').attr('placeholder', 'Business Name');
@@ -46,7 +43,7 @@ $(function() {
             }
 
             $('#id_full_name').attr('placeholder', 'Contact Name');
-            $('#id_entity_name').val('').show();
+            $('#id_entity_name').show();
 
         }
 
@@ -70,8 +67,8 @@ $(function() {
             method: 'POST',
             data: data
         })
-        .always(function( response ) {
-            console.log(response);
+        .always(function( response ){
+            console.log(response.responseText);
         })
         .fail(function( response ){
 
@@ -95,29 +92,16 @@ $(function() {
 
                     // If the name of the input equals the error field index
                     if ( $.inArray(input_name, error_indices) != -1 ) {
-                        error_message = errors[input_name][0];
 
-                        // Update error message if input is still invalid
-                        if ( $(this).next('.error-message').length > 0 ) {
-                            $(this).next('.error-message').text(error_message);
-                        }
+                        $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
 
-                        else {
-                            $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
-                        }
                     }
 
-                    // De-highlight iputs that are now valid
+                    // De-highlight inputs that are now valid
                     else {
                         $(this).removeClass('error');
-                        $(this).next('.error-message').remove();
                     }
                 })
-
-                    $('html, body').animate({
-                        scrollTop: $('.error-message').first().offset().top - 170
-                    })
-
 
                 return false;
             }
