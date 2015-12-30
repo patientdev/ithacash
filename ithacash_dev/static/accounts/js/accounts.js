@@ -67,7 +67,7 @@ $(function() {
             data: data,
         })
         .always(function( response ){
-            console.log(response);
+            console.log(response.responseText);
         })
         .fail(function( response ){
 
@@ -91,14 +91,24 @@ $(function() {
 
                     // If the name of the input equals the error field index
                     if ( $.inArray(input_name, error_indices) != -1 ) {
+                        error_message = errors[input_name][0];
 
-                        $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
+                        // Update error message if input is still invalid
+                        if ( $(this).siblings('.error-message').length > 0 ) {
+                            $(this).siblings('.error-message').text(error_message);
+                        }
+
+                        else {
+                            $(this).addClass('error');
+                            $(this).parent('p').append('<div class="error-message">' + error_message + '</div>');
+                        }
 
                     }
 
                     // De-highlight inputs that are now valid
                     else {
                         $(this).removeClass('error');
+                        $(this).siblings('br, .error-message').remove();
                     }
                 })
 
@@ -121,11 +131,7 @@ $(function() {
     })
 
     $('form#account input').focus(function() {
-        $(this).parent().siblings('.help-text').find('.text').css('opacity', '1');
-        $(this).siblings('.error-message').remove();
-    })
-    $('form#account input').blur(function() {
-        $(this).parent().siblings('.help-text').find('.text').css('opacity', '0');
+        $(this).removeClass('error').siblings('.error-message').remove();
     })
 
     $('form#account label').hover(function() {

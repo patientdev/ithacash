@@ -115,7 +115,7 @@ class IthacashAccount(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     zip_code = models.CharField(max_length=255)
-    tin = EncryptedCharField(max_length=255, null=True, help_text="This is a secure site. Your information will not be seen by anyone internally, distributed, or shared.", validators=[validators.MinLengthValidator(9), validators.MaxLengthValidator(9)])
+    tin = EncryptedCharField(max_length=255, null=True, help_text="This is a secure site. Your information will not be seen by anyone internally, distributed, or shared.", validators=[validators.MinLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)"), validators.MaxLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)")])
     is_ssn = models.BooleanField(default=False, blank=True)
     phone_mobile = PhoneNumberField(max_length=255, blank=True)
     phone_landline = PhoneNumberField(max_length=255)
