@@ -2,27 +2,23 @@ $(function() {
     if ( $('#id_account_type').val() != '' ) {
         $('#account-type-selection').css('display', 'block');
 
-        if ( $('#id_account_type').val()  == 'Individual' ) {
-            $('#id_entity_name').hide();
-            $('#txt2pay-phone').css('display', 'none');
+        if ( $('#account-type span').data('accountType')  === 'Individual' ) {
+            $('#id_entity_name, #txt2pay-phone').hide();
         }
     }
 
     $('#id_account_type').change(function() {
         account_type_selection = $(this).val();
 
-        $('.info-card').css('display', 'none');
-
         if ( account_type_selection  == 'Individual') {
-            $('#id_entity_name').val('n/a').hide();
+            $('#id_entity_name, #account-txt2pay').hide();
             $('#id_full_name').attr('placeholder', 'Your Name');
-            $('#txt2pay-phone').css('display', 'none');
             $('#individual-info').css('display', 'block');
         }
 
         else {
 
-            $('#txt2pay-phone').css('display', 'block');
+            $('#account-txt2pay').css('display', 'block');
 
             if ( account_type_selection == 'Standard Business' || account_type_selection == 'Premier Business' || account_type_selection == 'Freelancer') {
                    $('#id_entity_name').attr('placeholder', 'Business Name');
@@ -46,7 +42,7 @@ $(function() {
             }
 
             $('#id_full_name').attr('placeholder', 'Contact Name');
-            $('#id_entity_name').val('').show();
+            $('#id_entity_name').show();
 
         }
 
@@ -68,10 +64,10 @@ $(function() {
         $.ajax({
             url: validation_url,
             method: 'POST',
-            data: data
+            data: data,
         })
-        .always(function( response ) {
-            console.log(response);
+        .always(function( response ){
+            console.log(response.responseText);
         })
         .fail(function( response ){
 
@@ -98,26 +94,23 @@ $(function() {
                         error_message = errors[input_name][0];
 
                         // Update error message if input is still invalid
-                        if ( $(this).next('.error-message').length > 0 ) {
-                            $(this).next('.error-message').text(error_message);
+                        if ( $(this).siblings('.error-message').length > 0 ) {
+                            $(this).siblings('.error-message').text(error_message);
                         }
 
                         else {
-                            $(this).addClass('error').after('<span class="error-message">' + error_message + '</span>');
+                            $(this).addClass('error');
+                            $(this).parent('p').append('<div class="error-message">' + error_message + '</div>');
                         }
+
                     }
 
-                    // De-highlight iputs that are now valid
+                    // De-highlight inputs that are now valid
                     else {
                         $(this).removeClass('error');
-                        $(this).next('.error-message').remove();
+                        $(this).siblings('br, .error-message').remove();
                     }
                 })
-
-                    $('html, body').animate({
-                        scrollTop: $('.error-message').first().offset().top - 170
-                    })
-
 
                 return false;
             }
@@ -128,9 +121,7 @@ $(function() {
 
             else {
                 $('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
-                console.log(response.responseText);
             }
-
 
         })
         .success(function(){
@@ -140,11 +131,7 @@ $(function() {
     })
 
     $('form#account input').focus(function() {
-        $(this).parent().siblings('.help-text').find('.text').css('opacity', '1');
-        $(this).siblings('.error-message').remove();
-    })
-    $('form#account input').blur(function() {
-        $(this).parent().siblings('.help-text').find('.text').css('opacity', '0');
+        $(this).removeClass('error').siblings('.error-message').remove();
     })
 
     $('form#account label').hover(function() {

@@ -1,5 +1,6 @@
 from common import *
-from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
+from accounts import *
+from secrets import PRODUCTION_DATABASE_PASSWORD
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

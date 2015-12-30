@@ -20,7 +20,7 @@ class EmailForm(forms.ModelForm):
 
 class AccountForm(forms.ModelForm):
 
-    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
+    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')), required=False)
 
     class Meta:
         model = IthacashAccount
@@ -39,6 +39,29 @@ class AccountForm(forms.ModelForm):
             'electronic_signature': forms.TextInput(attrs={'placeholder': 'Your Full Name'})
         }
 
+    def __init__(self, *args, **kwargs):
+        super(AccountForm, self).__init__(*args, **kwargs)
+
+        if self.instance.account_type == 'Individual':
+            self.instance.tin = None
+            self.fields['tin'].required = False
+
+    def clean(self):
+        cleaned_data = super(AccountForm, self).clean()
+
+        tin = cleaned_data.get('tin')
+
+        try:
+            int(tin)
+
+        except ValueError:
+            raise forms.ValidationError({'tin': ["Please use only numbers", ]})
+
+        except TypeError:
+            pass
+
+        return cleaned_data
+
 
 class UserSignupForm(forms.ModelForm):
 
@@ -49,3 +72,11 @@ class UserSignupForm(forms.ModelForm):
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
             'username': forms.TextInput(attrs={'placeholder': 'Username'})
         }
+
+
+class AccountSelectionForm(forms.ModelForm):
+
+    class Meta:
+        model = IthacashAccount
+        fields = ['account_type']
+        widgets = {'account_type': forms.RadioSelect}
