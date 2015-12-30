@@ -49,16 +49,17 @@ class AccountForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(AccountForm, self).clean()
 
-        tin = cleaned_data.get('tin')
+        if self.fields['tin'].required:
+            tin = cleaned_data.get('tin')
 
-        try:
-            int(tin)
+            try:
+                int(tin)
 
-        except ValueError:
-            raise forms.ValidationError({'tin': ["Please use only numbers", ]})
+            except ValueError:
+                raise forms.ValidationError({'tin': ["Please use only numbers", ]})
 
-        except TypeError:
-            pass
+            except TypeError:
+                pass
 
         return cleaned_data
 
