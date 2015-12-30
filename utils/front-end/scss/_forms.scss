@@ -80,21 +80,8 @@ input.error {
 }
 
 .error-message {
-    margin-left: 60px;
-    position: absolute;
-    line-height: 45px;
-    width: 300px;
-
-    textarea + & + .helptext-wrapper {
-        vertical-align: top;
-    }
-}
-
-.error-message::before {
-    content: "\00b7";
-    color: red;
-    margin-right: 10px;
-    font-size: 1.4em;
+  color: red;
+  font-size: .9em;
 }
 
 .green-button {

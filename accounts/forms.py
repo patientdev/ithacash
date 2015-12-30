@@ -55,8 +55,10 @@ class AccountForm(forms.ModelForm):
             int(tin)
 
         except ValueError:
-            raise forms.ValidationError({'tin': ["Please use only numbers",]})
-            # cleaned_data['tin'] = filter(lambda x: x.isdigit(), tin)
+            raise forms.ValidationError({'tin': ["Please use only numbers", ]})
+
+        except TypeError:
+            pass
 
         return cleaned_data
 
