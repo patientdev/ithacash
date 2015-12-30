@@ -1,5 +1,4 @@
 $(function() {
-    console.log($('#account-type span').data('accountType'));
     if ( $('#id_account_type').val() != '' ) {
         $('#account-type-selection').css('display', 'block');
 
@@ -65,10 +64,10 @@ $(function() {
         $.ajax({
             url: validation_url,
             method: 'POST',
-            data: data
+            data: data,
         })
         .always(function( response ){
-            console.log(response.responseText);
+            console.log(response);
         })
         .fail(function( response ){
 
@@ -112,9 +111,7 @@ $(function() {
 
             else {
                 $('form#account').replaceWith('<p>An error occured. Please refresh the page and try again.</p>');
-                console.log(response.responseText);
             }
-
 
         })
         .success(function(){

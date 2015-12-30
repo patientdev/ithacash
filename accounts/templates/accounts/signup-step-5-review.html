@@ -206,10 +206,12 @@ sidebar {
             <td>Username:</td>
             <td>{{ user.username }}</td>
         </tr>
+        {% if account.tin %}
         <tr>
             <td>Tax ID Number:</td>
             <td>*****{{ account.tin|slice:"-4:" }} ({{ account.is_ssn|yesno:"SSN,EIN,None" }})</td>
         </tr>
+        {% endif %}
         <tr>
             <td>Sign up for TXT2PAY:</td>
             <td>{{ account.txt2pay|yesno:"Yes,No,None" }}</td>

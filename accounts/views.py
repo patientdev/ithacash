@@ -10,6 +10,8 @@ from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .forms import *
+from django.views.decorators.cache import never_cache, cache_control
+
 
 
 def getting_an_account(request):
@@ -56,7 +58,6 @@ def signup_step_2_await_confirmation(request):
         else:
             return HttpResponseRedirect('/accounts/signup/')
 
-
 def signup_step_3_select_account_type(request, email_key):
 
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
@@ -82,7 +83,7 @@ def signup_step_3_select_account_type(request, email_key):
     else:
         return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_4_account_information(request):
 
     if request.method == 'POST':
@@ -112,16 +113,16 @@ def signup_step_4_account_information(request):
 
             if account_form.is_valid() and user_form.is_valid():
 
-                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+                return JsonResponse({'success': True}, status=202, reason="OK: Form values accepted")
 
             else:
                 errors = {}
                 errors.update(account_form.errors)
                 errors.update(user_form.errors)
 
-                return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
+                return JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values")
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def review(request):
 
     if request.method == 'POST':
@@ -151,6 +152,9 @@ def review(request):
             }
 
             return render(request, 'accounts/signup-step-5-review.html', context)
+
+        else:
+            return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
 
     else:
         return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
