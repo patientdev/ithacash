@@ -9,63 +9,9 @@ from accounts.models import Email, IthacashUser, IthacashAccount
 from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from .forms import *
+from django.views.decorators.cache import never_cache, cache_control
 
-
-class EmailForm(forms.ModelForm):
-
-    required_css_class = "required"
-    error_css_class = "error"
-
-    class Meta:
-        fields = ['address', 'wants_to_receive_updates']
-        model = Email
-        labels = {
-            'address': ''
-        }
-        widgets = {
-            'address': forms.EmailInput(attrs={'placeholder': 'Your email'}),
-        }
-
-
-class AccountForm(forms.ModelForm):
-
-    is_ssn = forms.ChoiceField(widget=forms.RadioSelect, choices=((True, 'SSN'), (False, 'EIN')))
-
-    class Meta:
-        model = IthacashAccount
-        exclude = ['owner', 'billing_frequency']
-        widgets = {
-            'entity_name': forms.TextInput(attrs={'placeholder': 'Entity Name'}),
-            'address_1': forms.TextInput(attrs={'placeholder': 'Address 1'}),
-            'address_2': forms.TextInput(attrs={'placeholder': 'Address 2'}),
-            'city': forms.TextInput(attrs={'placeholder': 'City'}),
-            'state': forms.TextInput(attrs={'placeholder': 'State'}),
-            'zip_code': forms.TextInput(attrs={'placeholder': 'Zip code'}),
-            'tin': forms.TextInput(attrs={'placeholder': 'Tax ID #'}),
-            'phone_mobile': forms.TextInput(attrs={'placeholder': 'Mobile Phone'}),
-            'phone_landline': forms.TextInput(attrs={'placeholder': 'Contact Phone'}),
-            'website': forms.TextInput(attrs={'placeholder': 'Website'}),
-            'electronic_signature': forms.TextInput(attrs={'placeholder': 'Your Full Name'})
-        }
-
-
-class UserSignupForm(forms.ModelForm):
-
-    class Meta:
-        model = IthacashUser
-        fields = ['username', 'full_name']
-        widgets = {
-            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
-            'username': forms.TextInput(attrs={'placeholder': 'Username'})
-        }
-
-
-class AccountSelectionForm(forms.ModelForm):
-
-    class Meta:
-        model = IthacashAccount
-        fields = ['account_type']
-        widgets = {'account_type': forms.RadioSelect}
 
 
 def getting_an_account(request):
@@ -92,7 +38,7 @@ def signup_step_1_confirm_email(request):
             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-step-1-confirm-email.html', {'form': form})
+        return render(request, 'accounts/signup-step-1-confirm-email.html', {'form': form})
 
 
 def signup_step_2_await_confirmation(request):
@@ -107,12 +53,12 @@ def signup_step_2_await_confirmation(request):
             def send_email_later():
                 email_object.send_confirmation_message()
 
-            return render(request, 'signup-step-2-await-confirmation.html')
+            return render(request, 'accounts/signup-step-2-await-confirmation.html')
 
         else:
             return HttpResponseRedirect('/accounts/signup/')
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_3_select_account_type(request, email_key):
 
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
@@ -136,9 +82,9 @@ def signup_step_3_select_account_type(request, email_key):
             return (JsonResponse(account_form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
+        return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
 
-
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_4_account_information(request):
 
     if request.method == 'POST':
@@ -154,7 +100,7 @@ def signup_step_4_account_information(request):
             account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
             user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
 
-            return render(request, 'signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
+            return render(request, 'accounts/signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
 
         # Handle Step 4 validation
         else:
@@ -165,81 +111,55 @@ def signup_step_4_account_information(request):
 
             account_form = AccountForm(request.POST, instance=account_object)
             user_form = UserSignupForm(request.POST, instance=user_object)
+            
 
             if account_form.is_valid() and user_form.is_valid():
 
-                user = user_form.save()
-
-                account_form.save(commit=False)
-                account_form.owner = user
-                account_form.save()
-                account_form.save_m2m()
-
-                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+                return JsonResponse({'success': True}, status=202, reason="OK: Form values accepted")
 
             else:
                 errors = {}
                 errors.update(account_form.errors)
                 errors.update(user_form.errors)
 
-                return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
+                return JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values")
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
+def review(request):
 
-# def review(request):
-#
-#     if request.method == 'POST' and request.POST.get('billing_frequency') is None:
-#
-#         email_object = Email.objects.get(most_recent_confirmation_key=request.POST['most_recent_confirmation_key'])
-#
-#         if email_object.owner is not None:
-#             user_form = UserSignupForm(request.POST or None, instance=IthacashUser.objects.get(username=email_object.owner))
-#             account_form = AccountForm(request.POST or None, instance=IthacashAccount.objects.get(owner=email_object.owner))
-#         else:
-#             user_form = UserSignupForm(request.POST or None)
-#             account_form = AccountForm(request.POST or None)
-#
-#         if user_form.is_valid() and account_form.is_valid():
-#
-#             user = user_form.save()
-#
-#             account_form.instance.owner = user
-#             account = account_form.save()
-#
-#             email_object.owner = user
-#             email_object.save()
-#
-#             last_4 = request.POST['tin'][-4:]
-#
-#             context = {
-#                 'user': user,
-#                 'account': account,
-#                 'email_object': email_object,
-#                 'last_4': last_4,
-#                 'paypal_form': settings.PAYPAL_SETTINGS,
-#                 'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account.account_type]
-#             }
-#
-#             return render(request, 'review.html', context)
-#
-#         else:
-#             # Combine form errors into one payload
-#             errors = {}
-#             errors.update(account_form.errors)
-#             errors.update(user_form.errors)
-#
-#             return (JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values"))
-#
-#     elif request.POST.get('billing_frequency') is not None:
-#
-#         billing_form = BillingFrequencyForm(request.POST or None)
-#
-#         ithacash_user = IthacashUser.objects.get(username=request.POST.get('account_owner'))
-#         ithacash_user.ithacashaccount_set.update(billing_frequency=request.POST['billing_frequency'])
-#
-#         return JsonResponse({'success': True})
-#
-#     else:
-#         return HttpResponseRedirect('/accounts/signup/')
+    if request.method == 'POST':
+
+        user_id = request.POST.get('user_id')
+
+        user_object = IthacashUser.objects.get(id=user_id)
+        account_object = IthacashAccount.objects.get(owner=user_object)
+        email_object = Email.objects.get(owner=user_object)
+
+        account_form = AccountForm(request.POST, instance=account_object)
+        user_form = UserSignupForm(request.POST, instance=user_object)
+
+        if account_form.is_valid() and user_form.is_valid():
+
+            account_form.save()
+            user_form.save()
+
+            context = {
+                'user': user_object,
+                'account': account_object,
+                'email': email_object,
+                'paypal_form': settings.PAYPAL_SETTINGS,
+                'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type],
+                'annual_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['ANNUAL'],
+                'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY']
+            }
+
+            return render(request, 'accounts/signup-step-5-review.html', context)
+
+        else:
+            return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
+
+    else:
+        return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
 
 
 def thanks(request):

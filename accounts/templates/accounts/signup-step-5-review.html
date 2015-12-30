@@ -1,0 +1,266 @@
+{% extends 'subpage.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<style>
+
+article {
+    width: 100%;
+}
+
+sidebar {
+    width: 0;
+}
+
+    #headline {
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        margin-top: 30px;
+    }
+
+    h4 {
+        font-style: italic;
+        margin-bottom: 0;
+    }
+
+    h3, h4 {
+        margin-bottom: 0;
+    }
+
+    h3 + p, h4 + p {
+        margin-top: 0;
+    }
+
+    #sign-up-pathway {
+        width: 100%;
+        background-color: rgb(140, 170, 69);
+        color: white;
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+
+    #sign-up-pathway ul {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 1em;
+        line-height: 1em;
+    }
+
+    #sign-up-pathway ul li {
+        display: inline;
+        margin: 0 10px;
+        list-style-type: none;
+    }
+
+    #sign-up-pathway ul li::before {
+        height: 25px;
+        width: 25px;
+        display: inline-block;
+        background-color: #B3D377;
+        border-radius: 50%;
+        content: "•";
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 25px;
+    }
+
+    #sign-up-pathway ul li.selected::before {
+        background-color: rgb(77, 116, 23);
+    }
+
+
+    #sign-up-pathway ul li.completed::before {
+        background-color: rgb(77, 116, 23);
+        content: "✔";
+        font-size: .9em;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 0 auto 20px;
+        width: 45%;
+        color: #555;
+    }
+
+    tr {
+        border-bottom: 1px solid white;
+    }
+
+    th,
+    td {
+        padding: 5px 10px;
+        vertical-align: top;
+        border: none;
+    }
+
+    th {
+        padding-top: 20px;
+        padding-left: 5px;
+        text-align: left;
+    }
+
+    td:first-of-type {
+        text-align: right;
+    }
+
+    td {
+        text-align: left;
+        background-color: rgb(232, 240, 217);
+    }
+
+    form {
+        text-align: right;
+        margin-bottom: 60px;
+    }
+</style>
+{% endblock %}
+
+{% block heading %}Get an Account{% endblock %}
+
+{% block subheadline %}
+<div id="sign-up-pathway">
+<div class="container">
+    <ul>
+        <li class="completed">Confirm</li>
+        <li class="completed">Select</li>
+        <li class="completed">Account Info</li>
+        <li class="selected">Review</li>
+    </ul>
+</div>
+</div>
+{% endblock %}
+
+{% block article %}
+
+    <section>
+    <div class="white-background">
+        <h2><b>Step 4:</b> Review</h2>
+        <p><strong>Please review</strong> your information to verify that it is correct.</p>
+
+    <div class="clear">
+    <table style="float: left;">
+        <tbody>
+        <tr>
+            <th colspan="2">Contact Info</th>
+        </tr>
+        <tr>
+            <td>Contact name:</td>
+            <td>{{ user.full_name }}</td>
+        </tr>
+        {% if account.entity_name != user.full_name %}
+        <tr>
+            <td>{% if account.account_type == 'Nonprofit' %}Organization{% else %}Business{% endif %} name:</td>
+            <td>{{ account.entity_name }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>Email address:</td>
+            <td>{{ email.address }}</td>
+        </tr>
+        <tr>
+            <td>Contact phone:</td>
+            <td>{{ account.phone_landline }}</td>
+        </tr>
+        <tr>
+        </tbody>
+        <tbody>
+            <th colspan="2">Address</th>
+        </tr>
+        <tr>
+            <td>Street number:</td>
+            <td>{{ account.address_1 }}{% if account.address_2 %}<br>{{ account.address_2 }}{% endif %}</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td>{{ account.city }}</td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td>{{ account.state }}</td>
+        </tr>
+        <tr>
+            <td>Zip Code:</td>
+            <td>{{ account.zip_code }}</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <table style="float: right;">
+        <tbody>
+        <tr>
+            <th colspan="2">Account Info</th>
+        </tr>
+        <tr>
+            <td>Account type:</td>
+            <td>{{ account.account_type }}</td>
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        {% if account.tin %}
+        <tr>
+            <td>Tax ID Number:</td>
+            <td>*****{{ account.tin|slice:"-4:" }} ({{ account.is_ssn|yesno:"SSN,EIN,None" }})</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>Sign up for TXT2PAY:</td>
+            <td>{{ account.txt2pay|yesno:"Yes,No,None" }}</td>
+        </tr>
+        {% if account.txt2pay %}
+        <tr>
+            <td>TXT2PAY phone:</td>
+            <td>{{ account.phone_mobile }}</td>
+        </tr>
+        <tr>
+            <td>Lease TXT2PAY phone:</td>
+            <td>{{ account.txt2pay_phone|yesno:"Yes,No,None" }}</td>
+        </tr>
+        {% endif %}
+        </tbody>
+        <tbody>
+            <th colspan="2">Subtotal</th>
+        </tr>
+        <tr>
+            <td>Due Monthly:</td>
+            <td>{{ monthly_cost }}</td>
+        </tr>
+        <tr>
+            <td>Due Today:</td>
+            <td>{{ annual_cost }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+    {% if account.account_type != 'Individual' %}
+        <form action="{{ paypal_form.url }}" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="custom" value="account_{{ account.id }}"/>
+                                Checkout with <button type="submit" name="hosted_button_id" value="{{ paypal_button_id }}" class="green-button">PayPal</button>
+        </form>
+    {% else %}
+    <a href="/thanks/" class="green-button">Submit</a>
+    {% endif %}
+    </div>
+</div>
+
+
+    </div>
+    </section>
+{% endblock article %}
+
+{% block sidebar %}{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'accounts/js/accounts.js' %}"></script>
+{% endblock %}
