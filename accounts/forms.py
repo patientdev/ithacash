@@ -43,20 +43,16 @@ class AccountForm(forms.ModelForm):
         account_type = cleaned_data.get('account_type')
         entity_name = cleaned_data.get('entity_name')
         tin = cleaned_data.get('tin')
-        is_ssn = cleaned_data.get('is_ssn')
         txt2pay = cleaned_data.get('txt2pay')
         txt2pay_phone = cleaned_data.get('txt2pay_phone')
         phone_mobile = cleaned_data.get('phone_mobile')
 
-        if account_type != 'Individual' and (not entity_name or not tin or not is_ssn):
+        if account_type != 'Individual' and (not entity_name or not tin):
             if not entity_name:
                 self.add_error('entity_name', "This field is required.")
 
             if not tin:
                 self.add_error('tin', "This field is required.")
-
-            if not is_ssn:
-                self.add_error('is_ssn', "This field is required.")
 
         if txt2pay and not phone_mobile and not txt2pay_phone:
             self.add_error('phone_mobile', "This field is required to use TXT2PAY")

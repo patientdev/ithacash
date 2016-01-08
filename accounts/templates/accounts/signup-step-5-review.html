@@ -247,8 +247,9 @@ sidebar {
     {% if account.account_type != 'Individual' %}
         <form action="{{ paypal_form.url }}" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="user_id" value="{{ user.id }}"/>
-                                Checkout with <button type="submit" name="hosted_button_id" value="{{ paypal_button_id }}" class="green-button">PayPal</button>
+                                <input type="hidden" name="custom" value="{{ user.id }}"/>
+                                <input type="hidden" name="hosted_button_id" value="{{ paypal_button_id }}">
+                                Checkout with <button type="submit" class="green-button">PayPal</button>
         </form>
     {% else %}
     <form action="/accounts/api/register_account/" method="POST">

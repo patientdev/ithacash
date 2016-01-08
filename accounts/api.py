@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 def register_account(request):
 
-    user_id = request.POST.get('user_id')
+    user_id = request.POST.get('custom')
 
     try:
         account = IthacashAccount.objects.get(owner_id=user_id)
@@ -17,5 +17,5 @@ def register_account(request):
         # return render(request, 'thanks.html')
         return HttpResponse('Success!')
 
-    except IthacashUser.DoesNotExist:
+    except IthacashAccount.DoesNotExist:
         return HttpResponse('Whoops!')
