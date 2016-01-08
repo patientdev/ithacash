@@ -8,6 +8,7 @@
     app_db_user: "ithacash_db_user"
     app_db_password: "{{ lookup('file', '../../../ithacash_dev/settings/secrets/PRODUCTION_DB_PASSWORD') }}"
 
+    local_path: /Users/patientdev/Dev/ithacash
     manage_path: /ithacash/{{ deployment_environment }}
     venv_path: /ithacash/virtualenv
     settings_dot_path: ithacash_dev.settings.{{ deployment_environment }}

@@ -29,11 +29,13 @@
     - postgresql-client
     - postgresql-9.3
     - cron
+    - rsync
 
 - name: slurp public key to use on gitlab
   slurp: src="~/.ssh/id_rsa.pub"
   register: appserver_ssh_key
   sudo_user: "{{ app_user }}"
+  when: deployment_environment == 'production'
 
 - name: Activate SSH key for gitlab 'appserver' user
   uri:
@@ -44,6 +46,7 @@
     body_format: raw
     body: "id=1&key={{appserver_ssh_key.content|b64decode|urlencode}}&title=Staging%20server%20key"
     status_code: 201
+  when: deployment_environment == 'production'
 
 - name: Checkout branch from gitlab
   sudo: yes
@@ -55,6 +58,17 @@
     accept_hostkey: yes
     depth: 1
     force: yes
+  when: deployment_environment == 'production'
+
+- name: Synchronize local repo
+  sudo: yes
+  sudo_user: "{{ app_user }}"
+  synchronize:
+      src: "{{ local_path }}"
+      dest: "{{ manage_path }}/.."
+      rsync_opts:
+        - "--exclude={{ local_path }}/.git"
+  when: deployment_environment == 'staging'
 
 - name: Install Project reqs
   sudo: yes
