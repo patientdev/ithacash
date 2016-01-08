@@ -1,6 +1,6 @@
 import json
 import sys
-from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
@@ -11,8 +11,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 from django.views.decorators.cache import never_cache, cache_control
-
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.template import RequestContext
 
 def getting_an_account(request):
     return render(request, 'getting-an-account.html')
@@ -69,9 +69,11 @@ def signup_step_3_select_account_type(request, email_key):
         email_object.owner = IthacashUser.objects.create()
         email_object.save()
 
-    account, created = IthacashAccount.objects.get_or_create(owner=email_object.owner)
-
-    account_form = AccountSelectionForm(request.POST or None, instance=account)
+    try:
+        account = IthacashAccount.objects.get(owner_id=email_object.owner_id)
+        account_form = AccountSelectionForm(request.POST or None, instance=account)
+    except IthacashAccount.DoesNotExist:
+        account_form = AccountSelectionForm(request.POST or None)
 
     if request.method == 'POST':
 
@@ -82,7 +84,7 @@ def signup_step_3_select_account_type(request, email_key):
             return (JsonResponse(account_form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
 
     else:
-        return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'account_id': account.id})
+        return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'user_id': email_object.owner_id})
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_4_account_information(request):
@@ -90,28 +92,40 @@ def signup_step_4_account_information(request):
     if request.method == 'POST':
 
         # Submit account type
-        if request.POST.get('account_id'):
-            account_id = request.POST.get('account_id')
-            account = IthacashAccount.objects.get(id=account_id)
+        if "validate" not in request.POST:
+            user_id = request.POST.get('user_id')
 
-            account_selection_form = AccountSelectionForm(request.POST, instance=account)
-            account_selection_form.save()
+            try:
+                account = IthacashAccount.objects.get(owner_id=user_id)
+                account_selection_form = AccountSelectionForm(request.POST or None, instance=account)
+                account_form = AccountForm(instance=account)
+            except ObjectDoesNotExist:
+                account_selection_form = AccountSelectionForm(request.POST or None)
+                account_form = AccountForm(initial={'account_type': request.POST.get('account_type')})
 
-            account_form = AccountForm(instance=IthacashAccount.objects.get(id=account.id))
-            user_form = UserSignupForm(instance=IthacashUser.objects.get(id=account.owner_id))
+            user_form = UserSignupForm(instance=IthacashUser.objects.get(id=user_id))
 
-            return render(request, 'accounts/signup-step-4-account-information.html', {'account_form': account_form, 'user_form': user_form, 'user_id': account.owner_id})
+            context = {
+                'account_form': account_form,
+                'user_form': user_form,
+                'user_id': user_id
+            }
+
+            return render(request, 'accounts/signup-step-4-account-information.html', context)
 
         # Handle Step 4 validation
         else:
             user_id = request.POST.get('user_id')
 
             user_object = IthacashUser.objects.get(id=user_id)
-            account_object = IthacashAccount.objects.get(owner=user_object)
 
-            account_form = AccountForm(request.POST, instance=account_object)
+            try:
+                account = IthacashAccount.objects.get(owner_id=user_id)
+                account_form = AccountForm(request.POST, instance=account)
+            except ObjectDoesNotExist:
+                account_form = AccountForm(request.POST)
+
             user_form = UserSignupForm(request.POST, instance=user_object)
-            
 
             if account_form.is_valid() and user_form.is_valid():
 
@@ -124,6 +138,7 @@ def signup_step_4_account_information(request):
 
                 return JsonResponse(errors, status=400, reason="BAD REQUEST: Invalid form values")
 
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def review(request):
 
@@ -132,15 +147,26 @@ def review(request):
         user_id = request.POST.get('user_id')
 
         user_object = IthacashUser.objects.get(id=user_id)
-        account_object = IthacashAccount.objects.get(owner=user_object)
         email_object = Email.objects.get(owner=user_object)
 
-        account_form = AccountForm(request.POST, instance=account_object)
+        try:
+            account_object = IthacashAccount.objects.get(owner=user_object)
+            account_form = AccountForm(request.POST, instance=account_object)
+        except ObjectDoesNotExist:
+            account_form = AccountForm(request.POST)
+
         user_form = UserSignupForm(request.POST, instance=user_object)
 
         if account_form.is_valid() and user_form.is_valid():
 
-            account_form.save()
+            try:
+                account_object = account_form.save(commit=False)
+                account_object.owner = user_object
+                account_object.save()
+                account_form.save_m2m()
+            except:
+                account_form.save()
+
             user_form.save()
 
             context = {
@@ -150,13 +176,14 @@ def review(request):
                 'paypal_form': settings.PAYPAL_SETTINGS,
                 'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type],
                 'annual_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['ANNUAL'],
-                'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY']
+                'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY'],
+                'txt2pay_phone_cost': settings.ACCOUNT_PROPERTIES['TXT2PAY_PHONE']
             }
 
             return render(request, 'accounts/signup-step-5-review.html', context)
 
         else:
-            return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
+            return HttpResponseServerError()
 
     else:
         return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")

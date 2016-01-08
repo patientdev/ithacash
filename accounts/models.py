@@ -106,7 +106,7 @@ class IthacashAccount(models.Model):
     owner = models.ForeignKey(IthacashUser, related_name="accounts")
 
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
-    entity_name = models.CharField(max_length=255, null=True, blank=True)
+    entity_name = models.CharField(max_length=255, blank=True)
 
     billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
 
@@ -115,8 +115,8 @@ class IthacashAccount(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     zip_code = models.CharField(max_length=255)
-    tin = EncryptedCharField(max_length=255, null=True, help_text="This is a secure site. Your information will not be seen by anyone internally, distributed, or shared.", validators=[validators.MinLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)"), validators.MaxLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)")])
-    is_ssn = models.BooleanField(default=False, blank=True)
+    tin = EncryptedCharField(max_length=255, blank=True, help_text="This is a secure site. Your Tax ID # will not be seen by anyone internally, distributed, or shared.", validators=[validators.MinLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)"), validators.MaxLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)")])
+    is_ssn = models.BooleanField(default=True, blank=True, choices=((True, 'SSN'), (False, 'EIN')))
     phone_mobile = PhoneNumberField(max_length=255, blank=True)
     phone_landline = PhoneNumberField(max_length=255)
     website = models.URLField(max_length=255, blank=True)
@@ -125,6 +125,7 @@ class IthacashAccount(models.Model):
     electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
+    registration_complete = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
 
