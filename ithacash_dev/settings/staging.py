@@ -19,10 +19,10 @@ DATABASES = {
 }
 
 PAYPAL_SETTINGS = {
-    'url': 'https://www.paypal.com/cgi-bin/webscr',
+    'url': 'https://www.sandbox.paypal.com/cgi-bin/webscr',
     'button_ids': {
         'Individual': None,
-        'Standard Business': "NVJ455UBSLFH8",
+        'Standard Business': "KT959QR33959U",
         'Premier Business': "4M72KKRAMTXPL",
         'Nonprofit': "SKU9BAQ3ZJUVU",
         'Freelancer': "77D4TSU2PGL92",
