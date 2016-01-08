@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^account-information/', 'accounts.views.signup_step_4_account_information'),
     url(r'^review/$', 'accounts.views.review'),
     url(r'^list_accounts/$', 'accounts.views.list_accounts'),
+
+    url(r'^api/register_account/$', 'accounts.api.register_account'),
 ]

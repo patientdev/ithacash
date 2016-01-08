@@ -155,7 +155,7 @@ sidebar {
             <td>Contact name:</td>
             <td>{{ user.full_name }}</td>
         </tr>
-        {% if account.entity_name != user.full_name %}
+        {% if account.entity_name.value != user.full_name.value %}
         <tr>
             <td>{% if account.account_type == 'Nonprofit' %}Organization{% else %}Business{% endif %} name:</td>
             <td>{{ account.entity_name }}</td>
@@ -208,7 +208,7 @@ sidebar {
         </tr>
         {% if account.tin %}
         <tr>
-            <td>Tax ID Number:</td>
+            <td>Tax ID #:</td>
             <td>*****{{ account.tin|slice:"-4:" }} ({{ account.is_ssn|yesno:"SSN,EIN,None" }})</td>
         </tr>
         {% endif %}
@@ -217,10 +217,6 @@ sidebar {
             <td>{{ account.txt2pay|yesno:"Yes,No,None" }}</td>
         </tr>
         {% if account.txt2pay %}
-        <tr>
-            <td>TXT2PAY phone:</td>
-            <td>{{ account.phone_mobile }}</td>
-        </tr>
         <tr>
             <td>Lease TXT2PAY phone:</td>
             <td>{{ account.txt2pay_phone|yesno:"Yes,No,None" }}</td>
@@ -232,11 +228,18 @@ sidebar {
         </tr>
         <tr>
             <td>Due Monthly:</td>
-            <td>{{ monthly_cost }}</td>
+            <td>
+            {% if account.txt2pay_phone %}
+            ${{ monthly_cost.us|add:txt2pay_phone_cost|stringformat:"d" }}
+            {% else %}
+            ${{ monthly_cost.us|stringformat:"d" }}
+            {% endif %}
+             + i${{ monthly_cost.i }}
+        </td>
         </tr>
         <tr>
             <td>Due Today:</td>
-            <td>{{ annual_cost }}</td>
+            <td>${{ annual_cost.us }}</td>
         </tr>
     </tbody>
     </table>
@@ -244,11 +247,15 @@ sidebar {
     {% if account.account_type != 'Individual' %}
         <form action="{{ paypal_form.url }}" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="custom" value="account_{{ account.id }}"/>
+                                <input type="hidden" name="user_id" value="{{ user.id }}"/>
                                 Checkout with <button type="submit" name="hosted_button_id" value="{{ paypal_button_id }}" class="green-button">PayPal</button>
         </form>
     {% else %}
-    <p style="text-align: right;"><a href="/thanks/" class="green-button">Submit</a></p>
+    <form action="/accounts/api/register_account/" method="POST">
+        {% csrf_token %}
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+    <p style="text-align: right;"><button class="green-button">Submit</button></p>
+    </form>
     {% endif %}
     </div>
 </div>

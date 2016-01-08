@@ -148,8 +148,8 @@
 
         <form id="account" method="POST" action="/accounts/review/" class="clear">
             {% csrf_token %}
+            <input type="hidden" value="True" name="validate">
             <input type="hidden" value="{{ user_id }}" name="user_id">
-            <input type="hidden" name="account_type" value="{{ account_form.account_type.value }}">
             <div style="width: 45%; float: left;">
                 <div id="username" class="field">
                     {% if user_form.username.errors %}
@@ -161,6 +161,7 @@
                     {% endif %}
                 </div>
                 <div id="account-type" class="field">
+                    <input type="hidden" name="account_type" id="id_account_type" value="{{ account_form.account_type.value }}">
                     <p><b>Account type:</b> {{ account_form.account_type.value }}</p>
                 </div>
                 <div id="full-name" class="field">
@@ -172,6 +173,7 @@
                         <p>{{ user_form.full_name }} {% if user_form.full_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
+                {% if account_form.account_type.value != 'Individual' %}
                 <div id="entity-name" class="field">
                     {% if account_form.entity_name.errors %}
                         {% for error in account_form.entity_name.errors %}
@@ -181,6 +183,7 @@
                         <p>{{ account_form.entity_name }} {% if account_form.entity_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.entity_name.help_text }}</span></span>{% endif %}</p>
                     {% endif %}
                 </div>
+                {% endif %}
                 <div id="account-address-1" class="field">
                     {% if account_form.address_1.errors %}
                         {% for error in account_form.address_1.errors %}
