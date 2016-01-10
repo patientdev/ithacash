@@ -64,8 +64,8 @@
   sudo: yes
   sudo_user: "{{ app_user }}"
   synchronize:
-      src: "{{ local_path }}"
-      dest: "{{ manage_path }}/.."
+      src: "{{ local_path }}/"
+      dest: "{{ manage_path }}/../staging"
       rsync_opts:
         - "--exclude={{ local_path }}/.git"
   when: deployment_environment == 'staging'
