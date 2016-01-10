@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from accounts.models import IthacashAccount
 from payments.models import SignUpPayment
 from payments.utils import PaypalValidator
-import requests
 
 
 @csrf_exempt
@@ -22,6 +21,6 @@ def paypal_ipn_endpoint(request):
 
         payment = SignUpPayment.objects.create(account=account, amount=request.POST['payment_gross'])
 
-        r = requests.patch('/accounts/api/register_account', {'id': account.id})
+        account.send_awaiting_verification_message()
 
     return HttpResponse("PROCESSED.")
