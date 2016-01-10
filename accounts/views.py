@@ -123,7 +123,6 @@ def signup_step_4_account_information(request):
             try:
                 account = IthacashAccount.objects.get(owner_id=user_id)
                 account_form = AccountForm(request.POST, instance=account)
-                print account_form
             except ObjectDoesNotExist:
                 account_form = AccountForm(request.POST)
 

@@ -228,14 +228,11 @@ sidebar {
         </tr>
         <tr>
             <td>Due Monthly:</td>
-            <td>
-            {% if account.txt2pay_phone %}
-            ${{ monthly_cost.us|add:txt2pay_phone_cost|stringformat:"d" }}
-            {% else %}
-            ${{ monthly_cost.us|stringformat:"d" }}
-            {% endif %}
-             + i${{ monthly_cost.i }}
-        </td>
+            <td>${{ monthly_cost.us|stringformat:"d" }} + i${{ monthly_cost.i }}</td>
+        </tr>
+        <tr>
+            <td>Due Annually:</td>
+            <td>${{ annual_cost.us|stringformat:"d" }}</td>
         </tr>
         <tr>
             <td>Due Today:</td>
