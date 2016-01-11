@@ -1,11 +1,15 @@
 from django.http.response import JsonResponse, HttpResponse, HttpResponseNotFound, HttpResponseServerError
 from .models import IthacashAccount
 from django.shortcuts import render, redirect
+from exceptions import AttributeError
 
 
 def register_account(request):
 
-    user_id = request.POST.get('id') or request.GET.get('id')
+    try:
+        user_id = request.POST.get('id')
+    except AttributeError:
+        user_id = request.GET.get('id')
 
     try:
         account = IthacashAccount.objects.get(owner_id=user_id)
