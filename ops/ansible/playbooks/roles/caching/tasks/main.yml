@@ -36,7 +36,11 @@
   sudo: yes
 
 - name: Copy SSL creds
+<<<<<<< HEAD
   synchronize: src=../../../ithacash/settings/secrets/ssl dest=/ithacash
+=======
+  synchronize: src=../../../ithacash_dev/settings/secrets/ssl dest=/ithacash
+>>>>>>> refs/remotes/origin/master
 
 - name: Remove nginx default config
   file: path=/etc/nginx/sites-enabled/default state=absent
