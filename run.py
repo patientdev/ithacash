@@ -1,5 +1,7 @@
+#!/usr/bin/env python
 from hendrix.deploy.base import HendrixDeploy
-import logging, sys
+import logging
+import sys
 
 root = logging.getLogger()
 root.setLevel(logging.DEBUG)
@@ -19,4 +21,7 @@ deployer.run()
 options = {'settings': 'ithacash_dev.settings.local', 'loud': True}
 deployer = HendrixDeploy(options=options)
 deployer.run()
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> develop

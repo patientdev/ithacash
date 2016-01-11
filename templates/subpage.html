@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="headline">
+    <div class="container">
+        <h1>{% block heading %}{% endblock %}</h1>
+    </div>
+    </div>
+
+
+    {% block subheadline %}{% endblock subheadline %}
+
+<div class="container">
+    <article>
+        {% block article %}{% endblock %}
+    </article>
+
+    <sidebar>
+        {% block sidebar %}{% endblock %}
+    </sidebar>
+</div>
+
+{% endblock content %}

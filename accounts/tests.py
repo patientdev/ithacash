@@ -5,8 +5,9 @@ from accounts.models import Email, IthacashAccount
 from mock import patch
 import requests
 import mandrill
-from accounts.views import review
+from accounts.views import signup_step_1_confirm_email, signup_step_3_select_account_type, review
 from accounts.factories import IthacashUserFactory, EmailFactory, IthacashAccountFactory
+from accounts.api import register_account
 
 from accounts.management.commands import create_and_email_csv
 from base64 import b64encode
@@ -90,14 +91,30 @@ class CreateAccountTests(TestCase):
         r.POST = {'most_recent_confirmation_key': email.most_recent_confirmation_key}
         r.META = {}
 
-        response = review(r)
+        response = signup_step_1_confirm_email(r)
         self.assertIsNotNone(response)
 
     def test_create_account_with_valid_data(self):
         print 'test_create_account_with_valid_data'
 
         email = Email.objects.create(address="nobody@nothing.com")
-        self.account_post_data['most_recent_confirmation_key'] = email.most_recent_confirmation_key
+
+        r = RequestFactory().get('/accounts/create_account/%s' % email.most_recent_confirmation_key)
+
+        response = signup_step_3_select_account_type(r, email.most_recent_confirmation_key)
+
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_create_account_with_valid_data_results_in_account_objects(self):
+        print 'test_create_account_with_valid_data_results_in_account_objects'
+
+        self.assertFalse(IthacashAccount.objects.exists())
+
+        user = IthacashUserFactory()
+        email = EmailFactory(owner=user)
+
+        self.account_post_data['user_id'] = user.id
 
         r = RequestFactory()
         r.method = "POST"
@@ -105,16 +122,10 @@ class CreateAccountTests(TestCase):
         r.META = {}
 
         response = review(r)
-        self.assertEqual(response.status_code, 200)
-
-    def test_create_account_with_valid_data_results_in_account_objects(self):
-        print 'test_create_account_with_valid_data_results_in_account_objects'
-
-        self.assertFalse(IthacashAccount.objects.exists())
-
-        response = self.test_create_account_with_valid_data()
 
         self.assertTrue(IthacashAccount.objects.exists())
+
+        return IthacashAccount.objects.get(owner_id=user.id)
 
     def test_csv_export_and_email(self):
         print 'test_csv_export_and_email'
@@ -142,3 +153,18 @@ class CreateAccountTests(TestCase):
 
             csv_attachment = mock_email_sender.call_args[0][0]['attachments'][0]['content']
             self.assertEqual(b64encode(csv_output), csv_attachment)
+
+
+class APITests(TestCase):
+    def test_api_register_account(self):
+
+        account = IthacashAccountFactory()
+
+        r = RequestFactory()
+        r.GET = {'id': account.id}
+        r.META = {}
+
+        with patch.object(IthacashAccount, 'send_awaiting_verification_message', return_value=None) as mock_email_sender:
+            response = register_account(r)
+
+            self.assertEqual(mock_email_sender.call_count, 1)
