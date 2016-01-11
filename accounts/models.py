@@ -7,7 +7,11 @@ import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
+<<<<<<< HEAD
 from ithacash.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
+=======
+from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
+>>>>>>> refs/remotes/origin/master
 from django.template import Context, loader
 from django.conf import settings
 from django.core import validators

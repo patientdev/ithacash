@@ -11,6 +11,12 @@ ch.setFormatter(formatter)
 root.addHandler(ch)
 
 
+<<<<<<< HEAD
 options = {'settings': 'ithacash.settings.local', 'loud': True}
 deployer = HendrixDeploy(options=options)
 deployer.run()
+=======
+options = {'settings': 'ithacash_dev.settings.local', 'loud': True}
+deployer = HendrixDeploy(options=options)
+deployer.run()
+>>>>>>> refs/remotes/origin/master
