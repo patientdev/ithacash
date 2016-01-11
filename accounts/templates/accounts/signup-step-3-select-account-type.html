@@ -147,7 +147,7 @@
 
     #account-type-info {
         width: 40%;
-        min-height: 300px;
+        min-height: 335px;
         float: right;
         position: relative;
         margin-top: 20px;
@@ -157,9 +157,14 @@
         display: none;
         background-color: rgb(232, 240, 217);
         padding: 20px;
-        padding-bottom: 60px;
         font-size: .9em;
         position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    #account-type-info h3 {
+        margin-top: 0;
     }
 
     #account-type-info li {
@@ -204,39 +209,35 @@
                 <thead>
                 <tr>
                     <th>Select an Account</th>
-                    <th colspan="2">monthly fees</th>
-                    <th>annual fee</th>
+                    <th>monthly fees</th>
+                    <th>signup fee</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr id="individual">
                         <th><input id="id_account_type_1" name="account_type" type="radio" value="Individual"> Individual</th>
-                        <td colspan="2">None</td>
+                        <td>None</td>
                         <td>None</td>
                     </tr>
                     <tr id="freelancer">
                         <th><input id="id_account_type_2" name="account_type" type="radio" value="Freelancer"> Freelancer</th>
-                        <td>US$12</td>
-                        <td>+ i$5</td>
-                        <td>US$25</td>
+                        <td>US$10 + i$10</td>
+                        <td>US$120</td>
                     </tr>
                     <tr id="standard">
                         <th><input id="id_account_type_3" name="account_type" type="radio" value="Standard Business"> Business</th>
-                        <td>US$35</td>
-                        <td>+ i$15</td>
-                        <td>US$50</td>
+                        <td>US$20 + i$20</td>
+                        <td>US$240</td>
                     </tr>
                     <tr id="premier">
                         <th><input id="id_account_type_4" name="account_type" type="radio" value="Premier Business"> Premium</th>
-                        <td>US$60</td>
-                        <td>+ i$25</td>
-                        <td>US$100</td>
+                        <td>US$30 + i$30
+                        <td>US$360</td>
                     </tr>
                     <tr id="nonprofit">
                         <th><input id="id_account_type_5" name="account_type" type="radio" value="Nonprofit"> Non&ndash;Profit</th>
-                        <td>US$35</td>
-                        <td>+ i$15</td>
-                        <td>US$50</td>
+                        <td>US$20 + i$20</td>
+                        <td>US$240</td>
                     </tr>
                 </tbody>
 
@@ -255,12 +256,6 @@
                 <ul>
                     <li>Access to Ithacash Online</li>
                     <li>Connect to a mobile phone via TXT2PAY</li>
-                    <li>Access to PAYITFWD</li>
-                    <li>Dedicated Account Manager</li>
-                    <li>Directory Listing</li>
-                    <li>Enhanced Visibility</li>
-                    <li>Priority Access to New Technology</li>
-                    <li>Higher PAYITFWD Limit</li>
                 </ul>
             </div>
             <div id="freelancer-account-info">
@@ -268,12 +263,8 @@
                 <ul>
                     <li>Access to Ithacash Online</li>
                     <li>Connect to a mobile phone via TXT2PAY</li>
-                    <li>Access to PAYITFWD</li>
                     <li>Dedicated Account Manager</li>
                     <li>Directory Listing</li>
-                    <li>Enhanced Visibility</li>
-                    <li>Priority Access to New Technology</li>
-                    <li>Higher PAYITFWD Limit</li>
                 </ul>
             </div>
             <div id="standard-account-info">
@@ -281,12 +272,8 @@
                 <ul>
                     <li>Access to Ithacash Online</li>
                     <li>Connect to a mobile phone via TXT2PAY</li>
-                    <li>Access to PAYITFWD</li>
                     <li>Dedicated Account Manager</li>
                     <li>Directory Listing</li>
-                    <li>Enhanced Visibility</li>
-                    <li>Priority Access to New Technology</li>
-                    <li>Higher PAYITFWD Limit</li>
                 </ul>
             </div>
             <div id="premier-account-info">
@@ -300,6 +287,7 @@
                     <li>Enhanced Visibility</li>
                     <li>Priority Access to New Technology</li>
                     <li>Higher PAYITFWD Limit</li>
+                    <li>Need&ndash;based scholarships available</li>
                 </ul>
             </div>
             <div id="nonprofit-account-info">
@@ -307,14 +295,11 @@
                 <ul>
                     <li>Access to Ithacash Online</li>
                     <li>Connect to a mobile phone via TXT2PAY</li>
-                    <li>Access to PAYITFWD</li>
                     <li>Dedicated Account Manager</li>
                     <li>Directory Listing</li>
-                    <li>Enhanced Visibility</li>
-                    <li>Priority Access to New Technology</li>
-                    <li>Higher PAYITFWD Limit</li>
                 </ul>
             </div>
+            <span class="angled-cta-left bottom-right"></span>
         </div>
     </div>
     </section>

@@ -176,7 +176,7 @@ def review(request):
                 'email': email_object,
                 'paypal_form': settings.PAYPAL_SETTINGS,
                 'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type],
-                'annual_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['ANNUAL'],
+                'sign_up_fee': settings.ACCOUNT_PROPERTIES[account_object.account_type]['SIGN_UP_FEE'],
                 'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY'],
                 'txt2pay_phone_cost': settings.ACCOUNT_PROPERTIES['TXT2PAY_PHONE']
             }
