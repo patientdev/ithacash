@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 def register_account(request):
 
-    user_id = request.GET.get('id')
+    user_id = request.POST.get('id')
 
     try:
         account = IthacashAccount.objects.get(owner_id=user_id)
@@ -16,11 +16,10 @@ def register_account(request):
             # Send welcome email
             account.send_awaiting_verification_message()
 
-            # return render(request, 'thanks.html')
-            return HttpResponse('Success!')
+            return redirect('/thanks/')
 
         else:
             return HttpResponse('Already set!')
 
-    except IthacashAccount.DoesNotExist:
-        return HttpResponse('Whoops!')
+    except IthacashAccount.DoesNotExist as e:
+        return redirect('/whoops/', {'error': e})
