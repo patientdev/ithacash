@@ -1,29 +1,18 @@
-{% extends 'head-foot.html' %}
+{% extends 'subpage.html' %}
 {% load staticfiles %}
 
-{% block head %}
-<link rel="stylesheet" href="{% static 'account/css/account.css' %}">
-<style>
-p {
-	width: 400px;
-	margin: 20px auto;
-	text-align: left;
-	line-height: 1.4em;
-	white-space: normal;
-}
-</style>
-{% endblock %}
+{% block headline %}Success!{% endblock %}
 
-{% block content %}
-<div id="content">
+{% block subheadline %}Welcome to Ithacash!{% endblock subheadline %}
 
-	<h2>Welcome to Ithacash</h2>
-	<p>Great work! Your application has been submitted successfully and will be reviewed shortly. You should be online and using TXT2PAY in no time!</p>
+{% block article %}
 
-	<p>We’ll be in touch as soon as possible.</p>
+    <p>Great work! Your application has been submitted successfully and will be reviewed shortly. You should be online and using TXT2PAY in no time!</p>
 
-	<p>Can&rsquo;t wait to hear how things go! If there&rsquo;s anything in the meantime we can help with, please don&rsquo;t hesitate to reach out.</p>
+    <p>We’ll be in touch as soon as possible.</p>
 
-	<p><a href="mailto:support@ithacash.com">support@ithacash.com</a><br>607.654.0807.</p>
+    <p>Can&rsquo;t wait to hear how things go! If there&rsquo;s anything in the meantime we can help with, please don&rsquo;t hesitate to reach out.</p>
+
+    <p><a href="mailto:support@ithacash.com">support@ithacash.com</a><br>607&ndash;391&ndash;2789.</p>
 </div>
-{% endblock %}
+{% endblock article %}

@@ -190,10 +190,6 @@ def review(request):
         return HttpResponse("Please click the back button to return to the previous page or click the link in your confirmation email and try again.")
 
 
-def thanks(request):
-    return render(request, 'thanks.html')
-
-
 def whoops(request):
     return render(request, 'whoops.html')
 
