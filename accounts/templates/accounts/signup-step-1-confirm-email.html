@@ -93,7 +93,7 @@
                         <p>{{ form.address }} <span class="error-message">{{ error|escape }}</span></p>
                     {% endfor %}
                 {% else %}
-                    <p>{{ form.address }} <span class="helptext-wrapper">{{ form.help_text }}</span></span></p>
+                    <p>{{ form.address }} {% if form.address.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ form.address.help_text }}</span></span>{% endif %}</p>
                 {% endif %}
             </div>
 
