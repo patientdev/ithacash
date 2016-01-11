@@ -58,6 +58,7 @@ def signup_step_2_await_confirmation(request):
         else:
             return HttpResponseRedirect('/accounts/signup/')
 
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_3_select_account_type(request, email_key):
 
