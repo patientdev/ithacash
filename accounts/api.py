@@ -1,11 +1,11 @@
-from django.http.response import JsonResponse, HttpResponse
+from django.http.response import JsonResponse, HttpResponse, HttpResponseNotFound, HttpResponseServerError
 from .models import IthacashAccount
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def register_account(request):
 
-    user_id = request.POST.get('id')
+    user_id = request.POST.get('id') or request.GET.get('id')
 
     try:
         account = IthacashAccount.objects.get(owner_id=user_id)
@@ -19,7 +19,10 @@ def register_account(request):
             return redirect('/thanks/')
 
         else:
-            return HttpResponse('Already set!')
+            return redirect('/thanks/')
 
     except IthacashAccount.DoesNotExist as e:
-        return redirect('/whoops/', {'error': e})
+        return HttpResponseNotFound(e)
+
+    except:
+        return HttpResponseServerError("Unexpected error: %s" % sys.exc_info()[0])

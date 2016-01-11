@@ -70,6 +70,8 @@ class Email(models.Model):
         message = t.render(c)
 
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+        logger.info("Sending confirmation email to %s" % self.address, self)
         mandrill_client.messages.send(
             {
                 'to': [{'email': self.address}],
@@ -137,7 +139,7 @@ class IthacashAccount(models.Model):
     def send_awaiting_verification_message(self):
 
         account_email = self.owner.emails.all()[0].address
-        
+
         t = loader.get_template('emails/please_wait_while_we_verify.txt')
         c = Context({})
         message = t.render(c)
