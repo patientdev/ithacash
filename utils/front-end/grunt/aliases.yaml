@@ -6,7 +6,7 @@ build:
     - "uglify"
     - "sass"
     - "autoprefixer"
-    - "csslint"
+    - "imagemin"
 
 dev:
   description: "Testing and serving"
@@ -19,4 +19,4 @@ dev:
 img:
   description: "Optimize images"
   tasks:
-    - "newer:imagemin"
+    - "imagemin"

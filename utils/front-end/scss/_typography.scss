@@ -15,7 +15,7 @@
 
 body {
   color: $medium-gray;
-  font: 400 16px/1.4em "Maven Pro", Helvetica, Arial, sans-serif;
+  font: 400 16px/1.4em $mavenpro;
   letter-spacing: .5px;
 }
 
@@ -45,7 +45,16 @@ h3 {
   margin-top: 40px;
 }
 
-h3:first-child { margin-top: 0; }
+h3 + * { margin-top: 0; }
+
+h4 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+h4 + * {
+  margin-top: 0;
+}
 
 blockquote {
   border-left: 3px solid $light-green;

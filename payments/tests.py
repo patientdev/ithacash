@@ -19,8 +19,13 @@ SAMPLE_PAYPAL_IPN_PAYLOAD = {
 
 class PaypalTests(TestCase):
 
+<<<<<<< HEAD
     def test_ipn_endpoint_new_account(self):
         print 'test_ipn_endpoint_new_account'
+=======
+    def test_ipn_endpoint(self):
+        print 'test_ipn_endpoint'
+>>>>>>> develop
 
         r = RequestFactory()
         r.method = "POST"
@@ -35,6 +40,7 @@ class PaypalTests(TestCase):
         payment_amount = 80.00
         r.POST['custom'] = "account_%s" % account.id
         r.POST['payment_gross'] = payment_amount
+        r.POST['payment_status'] = 'Completed'
 
         with patch.object(PaypalValidator, 'validate_paypal_ipn', return_value=True) as mock_paypal_ipn:
             with patch.object(IthacashAccount, 'send_awaiting_verification_message', return_value=None) as mock_email_sender:
@@ -45,6 +51,7 @@ class PaypalTests(TestCase):
                 self.assertEqual(payment.signuppayment.amount, payment_amount)
 
                 self.assertEqual(mock_paypal_ipn.call_count, 1)
+<<<<<<< HEAD
                 self.assertEqual(mock_email_sender.call_count, 1)
 
     def test_ipn_endpoint_direct_transation(self):
@@ -63,3 +70,5 @@ class PaypalTests(TestCase):
         with patch.object(PaypalValidator, 'validate_paypal_ipn', return_value=True) as mock_paypal_ipn:
             response = paypal_ipn_endpoint(r)
             self.assertEqual('PROCESSED.', response.content)
+=======
+>>>>>>> develop
