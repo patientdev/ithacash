@@ -137,7 +137,7 @@ class IthacashAccount(models.Model):
     def send_awaiting_verification_message(self):
 
         account_email = self.owner.emails.all()[0].address
-
+        
         t = loader.get_template('emails/please_wait_while_we_verify.txt')
         c = Context({})
         message = t.render(c)
@@ -145,7 +145,7 @@ class IthacashAccount(models.Model):
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
 
         logger.info("Sending verification email to %s for account %s" % (account_email, self))
-        mandrill_client.messages.send(
+        message = mandrill_client.messages.send(
             {
                 'to': [{'email': account_email}],  # Right now, users aren't allowed to have more than one email address.
                 'text': message,

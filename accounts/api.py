@@ -14,6 +14,7 @@ def register_account(request):
             account.save()
 
             # Send welcome email
+            account.send_awaiting_verification_message()
 
             # return render(request, 'thanks.html')
             return HttpResponse('Success!')
