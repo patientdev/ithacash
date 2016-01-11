@@ -168,6 +168,4 @@ class APITests(TestCase):
         with patch.object(IthacashAccount, 'send_awaiting_verification_message', return_value=None) as mock_email_sender:
             response = register_account(r)
 
-            print response
-
             self.assertEqual(mock_email_sender.call_count, 1)
