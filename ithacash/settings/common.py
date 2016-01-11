@@ -89,15 +89,10 @@ USE_TZ = True
 # https:/docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD:ithacash/settings/common.py
 STATIC_ROOT = 'ithacash/static'
 STATICFILES_DIRS = (BASE_DIR, 'ithacash/static')
-=======
-STATIC_ROOT = 'ithacash_dev/static'
 STATIFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
  "django.contrib.staticfiles.finders.AppDirectoriesFinder"]
-
->>>>>>> develop:ithacash_dev/settings/common.py
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'pages/media'

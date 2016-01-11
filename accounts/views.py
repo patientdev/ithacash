@@ -6,11 +6,8 @@ from hendrix.experience import crosstown_traffic
 from django import forms
 
 from accounts.models import Email, IthacashUser, IthacashAccount
-<<<<<<< HEAD
 from ithacash.sayings import EMAIL_ALREADY_IN_SYSTEM
-=======
-from ithacash_dev.sayings import EMAIL_ALREADY_IN_SYSTEM
->>>>>>> refs/remotes/origin/master
+from accounts.properties import ACCOUNT_PROPERTIES
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .forms import *
@@ -181,9 +178,9 @@ def review(request):
                 'email': email_object,
                 'paypal_form': settings.PAYPAL_SETTINGS,
                 'paypal_button_id': settings.PAYPAL_SETTINGS['button_ids'][account_object.account_type],
-                'sign_up_fee': settings.ACCOUNT_PROPERTIES[account_object.account_type]['SIGN_UP_FEE'],
-                'monthly_cost': settings.ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY'],
-                'txt2pay_phone_cost': settings.ACCOUNT_PROPERTIES['TXT2PAY_PHONE']
+                'sign_up_fee': ACCOUNT_PROPERTIES[account_object.account_type]['SIGN_UP_FEE'],
+                'monthly_cost': ACCOUNT_PROPERTIES[account_object.account_type]['MONTHLY'],
+                'txt2pay_phone_cost': ACCOUNT_PROPERTIES['TXT2PAY_PHONE']
             }
 
             return render(request, 'accounts/signup-step-5-review.html', context)

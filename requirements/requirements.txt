@@ -1,4 +1,4 @@
-Django==1.8.3
+Django==1.8.8
 https://github.com/hendrix/hendrix/archive/master.zip
 django-encrypted-fields==1.1.1
 django-phonenumber-field

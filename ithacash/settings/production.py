@@ -1,10 +1,5 @@
 from common import *
-<<<<<<< HEAD:ithacash/settings/production.py
 from secrets import PRODUCTION_DATABASE_PASSWORD
-=======
-from accounts import *
-from secrets import PRODUCTION_DATABASE_PASSWORD, SENTRY_DSN
->>>>>>> develop:ithacash_dev/settings/production.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
