@@ -149,8 +149,6 @@ class CreateAccountTests(TestCase):
             csv_output = csv_processor.output_csv().getvalue()
             csv_processor.email_csv()
 
-            print csv_output
-
             csv_attachment = mock_email_sender.call_args[0][0]['attachments'][0]['content']
             self.assertEqual(b64encode(csv_output), csv_attachment)
 

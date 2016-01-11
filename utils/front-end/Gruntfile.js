@@ -14,11 +14,7 @@ module.exports = function(grunt) {
 
     data: {
       django: {
-<<<<<<< HEAD
         static: "../../ithacash/static"
-=======
-        static: "../../ithacash_dev/static"
->>>>>>> refs/remotes/origin/master
       }
     },
 
