@@ -231,7 +231,7 @@ ul.slick-dots li.slick-active button {
     line-height: 1em;
 }
 
-div.banners, div.slick-list.draggable, div.slick-track, #intro .banners .container, div.slick-slide, div.slick-active {
+#intro div.banners, #intro div.slick-list.draggable, #intro div.slick-track, #intro .banners .container, #intro div.slick-slide, #intro div.slick-active {
     height: 100%;
     position: relative;
     font-size: 0;
@@ -239,7 +239,6 @@ div.banners, div.slick-list.draggable, div.slick-track, #intro .banners .contain
 }
 
 .banner {
-    background-image: url(../img/owner-cling.jpg);
     background-size: cover;
     width: 100%;
     height: 100%;
