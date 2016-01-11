@@ -1,5 +1,6 @@
 ACCOUNT_PROPERTIES = {
     "Individual": {
+        "SIGN_UP_FEE": 0,
         "ANNUAL": {
             "i": 0,
             "us": 0
@@ -10,43 +11,31 @@ ACCOUNT_PROPERTIES = {
         }
     },
     "Freelancer": {
-        "ANNUAL": {
-            "i": 0,
-            "us": 25
-        },
+        "SIGN_UP_FEE": 120,
         "MONTHLY": {
-            "i": 5,
-            "us": 12
+            "i": 10,
+            "us": 10
         }
     },
     "Standard Business": {
-        "ANNUAL": {
-            "i": 0,
-            "us": 50
-        },
+        "SIGN_UP_FEE": 240,
         "MONTHLY": {
-            "i": 15,
-            "us": 25
+            "i": 20,
+            "us": 20
         }
     },
     "Premier Business": {
-        "ANNUAL": {
-            "i": 0,
-            "us": 100
-        },
+        "SIGN_UP_FEE": 360,
         "MONTHLY": {
-            "i": 60,
-            "us": 25
+            "i": 30,
+            "us": 30
         }
     },
     "Nonprofit": {
-        "ANNUAL": {
-            "i": 0,
-            "us": 50
-        },
+        "SIGN_UP_FEE": 240,
         "MONTHLY": {
-            "i": 15,
-            "us": 35
+            "i": 20,
+            "us": 20
         }
     },
     "TXT2PAY_PHONE": 10

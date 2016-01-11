@@ -231,12 +231,12 @@ sidebar {
             <td>${{ monthly_cost.us|stringformat:"d" }} + i${{ monthly_cost.i }}</td>
         </tr>
         <tr>
-            <td>Due Annually:</td>
-            <td>${{ annual_cost.us|stringformat:"d" }}</td>
+            <td>One&ndash;time Signup Fee:</td>
+            <td>${{ sign_up_fee|stringformat:"d" }}</td>
         </tr>
         <tr>
             <td>Due Today:</td>
-            <td>${{ annual_cost.us }}</td>
+            <td>${{ sign_up_fee }}</td>
         </tr>
     </tbody>
     </table>
