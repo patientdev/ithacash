@@ -51,20 +51,23 @@ class Command(BaseCommand):
         else:
             print "%s: Nothing to send." % datetime.now()
 
-    def get_most_recent_signups(self):
+    def get_most_recent_signups(self, **options):
 
         yesterday = datetime.now() - timedelta(days=1)
 
-        if options['user']:
-            most_recent_account_signups = []
-            for user in options['user']:
-                print user
-                user_object = IthacashUser.objects.get(username=user)
-                most_recent_account_signups.append(user_object)
-        else:
-            yesterday = datetime.now() - timedelta(days=1)
+        if 'user' in options:
+            if 'all' in options['user']:
+                most_recent_account_signups = IthacashUser.objects.all()
 
-            most_recent_account_signups = IthacashUser.objects.filter(emails__created__gt=yesterday, accounts__created__gt=yesterday)
+            else:
+                most_recent_account_signups = []
+                for user in options['user']:
+                    user_object = IthacashUser.objects.get(username=user)
+                    most_recent_account_signups.append(user_object)
+        else:
+            most_recent_account_signups = IthacashUser.objects.filter(accounts__created__gt=yesterday)
+
+        print most_recent_account_signups
 
         if most_recent_account_signups:
 
@@ -81,7 +84,10 @@ class Command(BaseCommand):
 
                 self.new_ithacash_users.append(combined_user_dict)
 
-        return self.new_ithacash_users
+            return self.new_ithacash_users
+
+        else:
+            return False
 
     def map_cyclos_keys_to_ithacash_user_values(self, new_ithacash_users=None):
 
@@ -91,7 +97,6 @@ class Command(BaseCommand):
 
             if new_user['account_type'] != 'Individual' and new_user['entity_name'] == '':
                 new_user['entity_name'] = new_user['full_name']
-                print new_user['entity_name']
 
             mapped_dict = dict.fromkeys(self.cyclos_required_fieldnames)
 
@@ -140,7 +145,7 @@ class Command(BaseCommand):
 
             result = mandrill_client.messages.send(
                 {
-                    'to': [{'email': 'shane@ithacash.com'}],
+                    'to': [{'email': 'shane@ithacash.com'}, {'email': 'scott@ithacash.com'}, {'email': 'beline@ithacash.com'}],
                     'text': 'Import this CSV into Cyclos',
                     'from_name': 'Ithacash.com',
                     'from_email': "it@ithacash.com",
@@ -148,7 +153,7 @@ class Command(BaseCommand):
                     'attachments': [
                         {
                             'type': 'text/csv',
-                            'name': 'new_ithacash_users_2015_08_30',
+                            'name': 'new_ithacash_users_%s' % datetime.now().strftime('%Y_%m_%d'),
                             'content': b64encode(csv_buffer.getvalue())
                         }
                     ]

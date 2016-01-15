@@ -6,6 +6,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 p {
@@ -146,4 +147,11 @@ footer p a {
     display: inline-block;
     flex-grow: 1;
     vertical-align: middle;
+}
+
+sidebar {
+    width: 30%;
+    float: right;
+    border-left: 2px solid rgb(240, 240, 240);
+    padding: 0 20px;
 }

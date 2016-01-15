@@ -9,7 +9,7 @@
   apt: pkg=newrelic-sysmond update_cache=yes state=latest
 
 - name: Apply New Relic license key
-  command: nrsysmond-config --set license_key="{{ lookup('file', '../../../ithacash_dev/settings/secrets/NEWRELIC_KEY') }}"
+  command: nrsysmond-config --set license_key="{{ lookup('file', '../../../ithacash/settings/secrets/NEWRELIC_KEY') }}"
 
 - name: Restart varnish
   service: name=newrelic-sysmond state=started

@@ -7,7 +7,7 @@ import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
-from ithacash_dev.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
+from ithacash.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
 from django.template import Context, loader
 from django.conf import settings
 from django.core import validators
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
-    username = models.CharField(max_length=120, unique=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')])
+    username = models.CharField(max_length=120, unique=True, null=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')])
     full_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -38,7 +38,7 @@ class Email(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.most_recent_confirmation_key:
-            self.most_recent_confirmation_key = uuid.uuid4().hex
+            self.generate_new_confirmation_key()
 
         return super(Email, self).save(*args, **kwargs)
 
@@ -48,26 +48,30 @@ class Email(models.Model):
         except ValidationError as e:
             try:
                 if e.args[0].keys() == ['address'] and e.args[0]['address'][0].args[1] == 'unique':
-                    # In this scenario, the email is a repeat on a form.  It's OK.
                     return
                 else:
                     raise
             except:
                 raise
 
+    def generate_new_confirmation_key(self):
+        self.most_recent_confirmation_key = uuid.uuid4().hex
+
     def application_url(self):
-        return reverse("account_application", kwargs={'email_key': self.most_recent_confirmation_key})
+        return reverse("select_account_type", kwargs={'email_key': self.most_recent_confirmation_key})
 
     def send_confirmation_message(self):
         t = loader.get_template('emails/phase_one.txt')
         c = Context({
             'application_url': "https://%s%s" % (DOMAIN, self.application_url()),
-            'form_url': "https://%s%s" % (DOMAIN, reverse("signup_phase_one")),
+            'form_url': "https://%s%s" % (DOMAIN, reverse("signup_step_1_confirm_email")),
             'email_address': self.address,
         })
         message = t.render(c)
 
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+        logger.info("Sending confirmation email to %s" % self.address, self)
         mandrill_client.messages.send(
             {
                 'to': [{'email': self.address}],
@@ -89,7 +93,6 @@ class Email(models.Model):
 class IthacashAccount(models.Model):
 
     ACCOUNT_TYPE_CHOICES = (
-        (None, 'Select Account Type'),
         ('Individual', 'Individual'),
         ('Freelancer', 'Freelancer'),
         ('Standard Business', 'Standard Business'),
@@ -105,25 +108,33 @@ class IthacashAccount(models.Model):
     owner = models.ForeignKey(IthacashUser, related_name="accounts")
 
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES)
-    entity_name = models.CharField(max_length=255, null=True, blank=True)
+    entity_name = models.CharField(max_length=255, blank=True)
 
     billing_frequency = models.CharField(max_length=11, choices=BILLING_FREQUENCY_CHOICES, default='Monthly')
 
-    address_1 = models.CharField(max_length=255)
-    address_2 = models.CharField(max_length=255, blank=True, null=True)
+    address_1 = models.CharField(max_length=255,)
+    address_2 = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     zip_code = models.CharField(max_length=255)
-    tin = EncryptedCharField(max_length=255)
-    is_ssn = models.BooleanField(default=False)
-    phone_mobile = PhoneNumberField(max_length=255, blank=True, null=True)
-    phone_landline = PhoneNumberField(max_length=255, blank=True, null=True)
-    website = models.URLField(max_length=255, blank=True, null=True)
+    tin = EncryptedCharField(max_length=255, blank=True, help_text="This is a secure site. Your Tax ID # will not be seen by anyone internally, distributed, or shared.", validators=[validators.MinLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)"), validators.MaxLengthValidator(9, "This should be exactly 9 numbers. (It has %(show_value)d)")])
+    is_ssn = models.BooleanField(default=True, blank=True, choices=((True, 'SSN'), (False, 'EIN')))
+    phone_mobile = PhoneNumberField(max_length=255, blank=True)
+    phone_landline = PhoneNumberField(max_length=255)
+    website = models.URLField(max_length=255, blank=True)
     txt2pay = models.BooleanField(default=False)
     txt2pay_phone = models.BooleanField(default=False)
     electronic_signature = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
+    registration_complete = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+
+        if self.entity_name == '':
+            self.entity_name = self.owner.full_name
+
+        return super(IthacashAccount, self).save(*args, **kwargs)
 
     def send_awaiting_verification_message(self):
 
@@ -136,7 +147,7 @@ class IthacashAccount(models.Model):
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
 
         logger.info("Sending verification email to %s for account %s" % (account_email, self))
-        mandrill_client.messages.send(
+        message = mandrill_client.messages.send(
             {
                 'to': [{'email': account_email}],  # Right now, users aren't allowed to have more than one email address.
                 'text': message,

@@ -1,0 +1,316 @@
+{% extends 'subpage.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<style>
+
+    #headline {
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    #account-type {
+        font-size: 1.2em;
+        margin: 15px 0;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    h3 + p {
+        margin-top: 0;
+    }
+
+    #sign-up-pathway {
+        width: 100%;
+        background-color: rgb(140, 170, 69);
+        color: white;
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+
+    #sign-up-pathway ul {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 1em;
+        line-height: 1em;
+    }
+
+    #sign-up-pathway ul li {
+        display: inline;
+        margin: 0 10px;
+        list-style-type: none;
+    }
+
+    #sign-up-pathway ul li::before {
+        height: 25px;
+        width: 25px;
+        display: inline-block;
+        background-color: #B3D377;
+        border-radius: 50%;
+        content: "•";
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 25px;
+    }
+
+    #sign-up-pathway ul li.selected::before {
+        background-color: rgb(77, 116, 23);
+    }
+
+
+    #sign-up-pathway ul li.completed::before {
+        background-color: rgb(77, 116, 23);
+        content: "✔";
+        font-size: .9em;
+    }
+
+    input, select {
+        margin-top: 10px;
+        margin-bottom: 0;
+        width: 350px;
+    }
+
+    input[type=checkbox] {
+        width: auto;
+    }
+
+    article {
+        width: 100%;
+    }
+
+    sidebar {
+        display: none;
+    }
+
+    body {
+        padding-bottom: 60px;
+    }
+
+    #id_is_ssn {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        width: 350px;
+        font-size: 1.4em;
+        display: inline-block;
+    }
+
+    #id_is_ssn li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    #id_is_ssn li::before {
+        content: none;
+        margin: 0;
+    }
+
+    #id_is_ssn input {
+        width: auto;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    #account-signature h3 {
+        margin-top: 40px;
+    }
+</style>
+{% endblock %}
+
+{% block heading %}Get an Account{% endblock %}
+
+{% block subheadline %}
+<div id="sign-up-pathway">
+<div class="container">
+    <ul>
+        <li class="completed">Confirm</li>
+        <li class="completed">Select</li>
+        <li class="selected">Account Info</li>
+        <li>Review</li>
+    </ul>
+</div>
+</div>
+{% endblock %}
+
+{% block article %}
+
+    <section>
+    <div class="white-background">
+        <h2><b>Step 3:</b> Account Information</h2>
+        <p><strong>It&rsquo;s free</strong>, but it&rsquo;s still your money, so we need your real information to make your account payment as safe as possible.</p>
+
+        <form id="account" method="POST" action="/accounts/review/" class="clear">
+            {% csrf_token %}
+            <input type="hidden" value="True" name="validate">
+            <input type="hidden" value="{{ user_id }}" name="user_id">
+            <div style="width: 45%; float: left;">
+                <div id="username" class="field">
+                    {% if user_form.username.errors %}
+                        {% for error in user_form.username.errors %}
+                            <p>{{ user_form.username }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ user_form.username }} {% if user_form.username.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.username.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="account-type" class="field">
+                    <input type="hidden" name="account_type" id="id_account_type" value="{{ account_form.account_type.value }}">
+                    <p><b>Account type:</b> {{ account_form.account_type.value }}</p>
+                </div>
+                <div id="full-name" class="field">
+                    {% if user_form.full_name.errors %}
+                        {% for error in user_form.full_name.errors %}
+                            <p>{{ user_form.full_name }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ user_form.full_name }} {% if user_form.full_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ user_form.full_name.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                {% if account_form.account_type.value != 'Individual' %}
+                <div id="entity-name" class="field">
+                    {% if account_form.entity_name.errors %}
+                        {% for error in account_form.entity_name.errors %}
+                            <p>{{ account_form.entity_name }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.entity_name }} {% if account_form.entity_name.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.entity_name.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div id="account-address-1" class="field">
+                    {% if account_form.address_1.errors %}
+                        {% for error in account_form.address_1.errors %}
+                            <p>{{ account_form.address_1 }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.address_1 }} {% if account_form.address_1.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.address_1.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="account-address-2" class="field">
+                    {% if account_form.address_2.errors %}
+                        {% for error in account_form.address_2.errors %}
+                            <p>{{ account_form.address_2 }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.address_2 }} {% if account_form.address_2.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.address_2.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="account-city" class="field">
+                    {% if account_form.city.errors %}
+                        {% for error in account_form.city.errors %}
+                            <p>{{ account_form.city }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.city }} {% if account_form.city.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.city.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="account-state" class="field">
+                    {% if account_form.state.errors %}
+                        {% for error in account_form.state.errors %}
+                            <p>{{ account_form.state }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.state }} {% if account_form.state.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.state.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+                <div id="account-zip" class="field">
+                    {% if account_form.zip_code.errors %}
+                        {% for error in account_form.zip_code.errors %}
+                            <p>{{ account_form.zip_code }} <span class="error-message">{{ error|escape }}</span></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ account_form.zip_code }} {% if account_form.zip_code.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.zip_code.help_text }}</span></span>{% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="width: 45%; float: right;">
+            <div id="account-landline" class="field">
+                {% if account_form.phone_landline.errors %}
+                    {% for error in account_form.phone_landline.errors %}
+                        <p>{{ account_form.phone_landline }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.phone_landline }} {% if account_form.phone_landline.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_landline.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            <div id="account-txt2pay" class="field">
+                {% if account_form.txt2pay.errors %}
+                    {% for error in account_form.txt2pay.errors %}
+                        <p><label>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY</label> <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p><label>{{ account_form.txt2pay }} I&rsquo;d like to use TXT2PAY</label> {% if account_form.txt2pay.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            <div id="account-txt2pay-phone" class="field">
+                {% if account_form.txt2pay_phone.errors %}
+                    {% for error in account_form.txt2pay_phone.errors %}
+                        <p><label>{{ account_form.txt2pay_phone }} I&rsquo;d like to lease a TXT2PAY phone for $10/month</label> <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p><label>{{ account_form.txt2pay_phone }} I&rsquo;d like to lease a TXT2PAY phone for $10/month</label> {% if account_form.txt2pay_phone.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.txt2pay_phone.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            <div id="account-mobile" class="field">
+                {% if account_form.phone_mobile.errors %}
+                    {% for error in account_form.phone_mobile.errors %}
+                        <p>{{ account_form.phone_mobile }}<span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.phone_mobile }}{% if account_form.phone_mobile.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.phone_mobile.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            {% if account_form.account_type.value != 'Individual' %}
+            <h3>Tax Information</h3>
+            <div id="account-tin" class="field">
+                {% if account_form.tin.errors %}
+                    {% for error in account_form.tin.errors %}
+                        <p>{{ account_form.tin }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.tin }} {% if account_form.tin.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.tin.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            <div id="account-is-ssn" class="field">
+                {% if account_form.is_ssn.errors %}
+                    {% for error in account_form.is_ssn.errors %}
+                        <p>{{ account_form.is_ssn }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.is_ssn }} {% if account_form.is_ssn.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.is_ssn.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div id="account-signature" class="field">
+                <h3>Signature</h3>
+                {% if account_form.electronic_signature.errors %}
+                    {% for error in account_form.electronic_signature.errors %}
+                        <p>{{ account_form.electronic_signature }} <span class="error-message">{{ error|escape }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ account_form.electronic_signature }} {% if account_form.electronic_signature.help_text %}<span class="helptext-wrapper"><span class="helptext">{{ account_form.electronic_signature.help_text }}</span></span>{% endif %}</p>
+                {% endif %}
+            </div>
+
+                <p><button name="user_id" value="{{ user_id }}">Next</button></p>
+            </div>
+        </form>
+
+
+    </div>
+    </section>
+{% endblock article %}
+
+{% block sidebar %}{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'accounts/js/accounts.js' %}"></script>
+{% endblock %}
