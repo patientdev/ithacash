@@ -48,7 +48,7 @@ class IthacashAccountFactory(factory.DjangoModelFactory):
     is_ssn = True
     phone_mobile = "+16072222222"
     phone_landline = "+16072222222"
-    website = None
+    website = ""
     txt2pay = True
     txt2pay_phone = False
     electronic_signature = "X"

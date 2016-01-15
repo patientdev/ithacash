@@ -10,7 +10,7 @@ def dump_and_encrypt():
     db_port = '5432'
     db_host = 'localhost'
     db_user = 'ithacash_db_user'
-    db_pass = open('/ithacash/production/ithacash_dev/settings/secrets/PRODUCTION_DB_PASSWORD', 'r').read()
+    db_pass = open('/ithacash/production/ithacash/settings/secrets/PRODUCTION_DB_PASSWORD', 'r').read()
 
     today = datetime.datetime.now().strftime('%Y_%m_%d')
 

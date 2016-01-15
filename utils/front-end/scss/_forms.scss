@@ -4,8 +4,9 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   font-size: 1.2em;
-  border: 1px solid $medium-gray;
-  font-weight: 100;
+  border: 2px solid $light-gray;
+  font-weight: 400;
+  color: #444;
 
   &:focus {
     outline: 1px solid $light-green;
@@ -18,6 +19,7 @@ textarea {
 
 .helptext {
   display: none;
+  opacity: 0;
   z-index: 10;
 }
 
@@ -48,7 +50,6 @@ textarea {
     display: block;
     position: absolute;
     min-width: 200px;
-    width: 300px;
     padding: 10px;
     background-color: $medium-gray;
     color: $white;
@@ -74,21 +75,13 @@ button {
   }
 }
 
-.error-message {
-    margin-left: 60px;
-    position: absolute;
-    line-height: 45px;
-
-    textarea + & + .helptext-wrapper {
-        vertical-align: top;
-    }
+input.error {
+    border: 2px solid red;
 }
 
-.error-message::before {
-    content: "•";
-    color: red;
-    margin-right: 10px;
-    font-size: 1.4em;
+.error-message {
+  color: red;
+  font-size: .9em;
 }
 
 .green-button {
