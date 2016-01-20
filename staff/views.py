@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
 from .forms import StaffLogin, StaffSignup
-from django.http.response import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -55,3 +54,6 @@ def dashboard(request, staff_id):
             return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
 
         return render(request, 'dashboard.html', {'ithacash_users': IthacashUser.objects.all()})
+
+    else:
+        HttpResponseRedirect('/')
