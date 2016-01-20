@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class IthacashUser(AbstractBaseUser):
-    username = models.CharField(max_length=120, unique=True, null=True, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')])
+    username = models.CharField(max_length=120, unique=True, null=True, default=None, help_text=USERNAME_DESCRIPTION, validators=[validators.MinLengthValidator(5), validators.RegexValidator(r'^[0-9a-zA-Z]*$', 'Only letters and numbers are allowed')])
     full_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
 
