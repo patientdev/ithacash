@@ -4,7 +4,15 @@ from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
+import pages, ithacash, accounts
 from ithacash.views import StaticViewSitemap, SubpagesSitemap
+
+from ithacash import views as main_views
+from pages import views as subpage_views
+from accounts import views as account_views
+from payments import views as payment_views
+from django import views as django_views
+
 
 '''
 Are you adding a new app?
@@ -32,19 +40,18 @@ sitemaps = {'front': StaticViewSitemap, 'subpages': SubpagesSitemap}
 
 urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'pages.views.front', name='front'),
-    url(r'^robots.txt', 'ithacash.views.robots_txt'),
+    url(r'^$', subpage_views.front, name='front'),
+    url(r'^robots.txt', main_views.robots_txt),
     url(r'^apply/$', RedirectView.as_view(url='/accounts/signup/', permanent=False)),
     url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False), name='join'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^staff/', include('staff.urls')),
 
-    url(r'^paypal_ipn_endpoint/', 'payments.views.paypal_ipn_endpoint', name="paypal_ipn_endpoint"),
-    url(r'^whoops/$', 'accounts.views.whoops'),
+    url(r'^paypal_ipn_endpoint/', payment_views.paypal_ipn_endpoint, name="paypal_ipn_endpoint"),
+    url(r'^whoops/$', account_views.whoops),
     url(r'^test_utils/error_test/$', error_view),
-    url(r'^page-creator/$', 'pages.views.page_creator'),
-    url(r'^page-creator/files/$', 'pages.views.files'),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    url(r'^page-creator/$', subpage_views.page_creator),
+    url(r'^page-creator/files/$', subpage_views.files),
+    url(r'^media/(?P<path>.*)$', django_views.static.serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('django.contrib.flatpages.urls')),
 ]
