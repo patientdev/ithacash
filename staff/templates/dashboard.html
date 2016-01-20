@@ -1,51 +1,224 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Ithacash Staff Dashboard</title>
+
+        <link href='//fonts.googleapis.com/css?family=Maven+Pro:400,500,400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
+
         <style>
-            table {
-                border: 1px solid black;
-                border-collapse: collapse;
+
+            header {
+                margin-bottom: 40px;
             }
 
-            th, td {
-                border: 1px solid black;
-                padding: 10px;
+            h1 {
+                margin: 40px 0;
             }
+
+            article {
+                width: 75%;
+                float: left;
+            }
+
+            aside {
+                width: 25%;
+                float: right;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            td, th {
+                padding: 10px;
+                text-align: center;
+            }
+
+            thead tr {
+                background-color: #88b147;
+                color: white;
+            }
+
+            tbody tr:nth-of-type(2n) {
+                background-color: #e8f0d9;
+                color: #666;
+            }
+
+            #search {
+                width: 100%;
+                position: relative;
+                line-height: 1em;
+            }
+
+            #search input {
+                display: block;
+            }
+
+            #results {
+                display: none;
+            }
+
+            #results > table {
+                width: 100%;
+                background: white;
+                font-size: .9em;
+            }
+
+            #results > table tbody tr:hover, #results tbody tr:hover:nth-of-type(2n) {
+                background-color: #547c42;
+                color: white;
+            }
+
+            #results > table > tr td, #results > table > tr th {
+                padding: 5px;
+            }
+
+            #results > table tbody tr:nth-of-type(2n) {
+                background-color: #e8f0d9;
+            }
+
+            #recent-signups li {
+                margin: 10px 0;
+            }
+
+            #recent-signups li::before {
+                content: none;
+            }
+
+            .tin {
+                display: none;
+            }
+
+            .show_tin, .show_all_tins {
+                font-size: .8em;
+                cursor: pointer;
+            }
+
+            .time_left { display: none; }
         </style>
     </head>
     <body>
+            <div class="container">
+                <header>
+            <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
 
-    <h1>Dashboard</h1>
-    <p>{{ request.user.email }}</p>
+            <h2>Dashboard</h2>
+            <p>{{ request.user.email }}</p>
+            </header>
 
-    <h2>Recent signups</h2>
-    <table class="recent-signups">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Account Type</th>
-            <th>Created Date</th>
-        </tr>
-    </thead>
-    <tbody>
+    <article>
+
+
+        <div id="search">
+            <input type="text" name="q" id="user_search" autocomplete="off" placeholder="Search Users">
+            <span style="font-size: .7em; position: relative; top: -5px; padding: 0 5px; display: inline-block;">Search usernames, emails, and full names</span>
+
+            <div id="results">
+                <p style="text-align: right; margin: 0;"><button type="button" class="show_all_tins">Show All</button><span class="time_left"></span></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Org Name</th>
+                        <th>Email Address</th>
+                        <th>Account Type</th>
+                        <th>TIN</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+    </article>
+
+    <aside><h3>Recent Signups</h3>
+        <ul id="recent-signups">
     {% for user in ithacash_users|dictsortreversed:"created" %}
-        <tr>
-            <td>{{ user.full_name }}</td>
-                {% for email in user.emails.all %}
-                    <td>{{ email.address }}</td>
-                {% endfor %}
-            <td>{{ user.username }}</td>
-                {% for account in user.accounts.all %}
-                    <td>{{ account.account_type }}</td>
-                {% endfor %}
-            <td>{{ user.created }}</td>
-        </tr>
+            <li>
+                <b>{{ user.full_name|default:"undefined full_name"}}</b><br>
+                <i>{% for account in user.accounts.all %}{{ account.account_type }} {% empty %}undefined account_type{% endfor %}</i><br>
+                <i>{{ user.created|date:"M d" }}</i>
+            </li>
     {% endfor %}
-    </tbody>
-    </table>
+</ul>
+    </aside>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
+    </script>
+
+    <script>
+        $(function() {
+
+            $('#user_search').keyup(function() {
+
+                if ($(this).val() == '') { $('#results').html(); }
+                $.ajax({
+                    url: '/staff/api/search-users/',
+                    data: {'q': $('#user_search').val()},
+                    statusCode: {
+                        200: function(data) {
+
+                            results = JSON.parse(data.results);
+                            console.log(results);
+                            tins = data.tins;
+                            list = '';
+                            $(results).each(function(index) {
+                                full_name = $(this)[0].full_name || '';
+                                email_address = $(this)[0].emails__address || '';
+                                account_type = $(this)[0].accounts__account_type || '';
+                                user_id = $(this)[0].id || '';
+                                entity_name = $(this)[0].accounts__entity_name || '';
+                                tin = tins[user_id];
+                                if (tin) {
+                                    is_ssn = ($(this)[0].accounts__is_ssn) ? ' (SSN)' : ' (EIN)';
+                                }
+                                else { is_ssn = ''; }
+                                tin_button = (tin) ? '<button type="button" class="show_tin">Show</button>' : '';
+
+                                list += '<tr data-id=' + user_id + '><td>' + full_name + '</td><td>' + entity_name + '</td><td>' + email_address + '</td><td>' + account_type + '</td><td><span class="tin">' + tin + is_ssn + '</span>' + tin_button + '</td></tr>';
+                            });
+
+                            $('#results tbody').html(list);
+                            $('#results').slideDown(200);
+
+                            $('.show_tin').click(function() {
+                                $this = $(this);
+                                $this.hide();
+                                $this.siblings('.tin').show();
+                                setTimeout(function() {
+                                    $this.show();
+                                    $this.siblings('.tin').hide();
+                                }, 10000);
+                            });
+
+                            $('.show_all_tins').click(function() {
+                                $('.show_tin').hide();
+                                $('.tin').show();
+                                $(this).hide();
+
+                                setTimeout(function() {
+                                    $('.time_left').hide();
+                                    $('.show_tin').show();
+                                    $('.show_all_tins').show();
+                                }, 30000);
+                            });
+                        },
+                        204: function() { $('#results').slideUp(200); }
+                    }
+                })
+            });
+        });
+    </script>
     </body>
 </html>

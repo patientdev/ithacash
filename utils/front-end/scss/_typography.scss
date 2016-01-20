@@ -45,6 +45,8 @@ h3 {
   margin-top: 40px;
 }
 
+h3:first-child { margin-top: 0;}
+
 h3 + * { margin-top: 0; }
 
 h4 {
