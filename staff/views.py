@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import IthacashUser
 from staff.models import IthacashStaff
 
+from datetime import datetime, timedelta
+
 
 def login_staff(request):
     form = StaffLogin(request.POST or None)
@@ -53,7 +55,10 @@ def dashboard(request, staff_id):
         if int(staff_id) != request.user.id:
             return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
 
-        return render(request, 'dashboard.html', {'ithacash_users': IthacashUser.objects.all()})
+
+        last_week = datetime.now() - timedelta(days=7)
+
+        return render(request, 'dashboard.html', {'ithacash_users': IthacashUser.objects.filter(accounts__created__gt=last_week)})
 
     else:
         HttpResponseRedirect('/')
