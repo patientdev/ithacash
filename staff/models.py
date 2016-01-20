@@ -1,6 +1,14 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.db import models
+import mandrill
+import uuid
+from django.template import Context, loader
+from django.utils import timezone
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class IthacashStaffManager(BaseUserManager):
@@ -15,6 +23,7 @@ class IthacashStaffManager(BaseUserManager):
         user.set_password(password)
         user.is_staff = True
         user.save(using=self._db)
+
         return user
 
     def create_superuser(self, email, password):
@@ -39,6 +48,9 @@ class IthacashStaff(AbstractBaseUser):
     is_staff = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    confirmed = models.DateTimeField(blank=True, null=True)
+    most_recent_confirmation_key = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
 
@@ -64,3 +76,41 @@ class IthacashStaff(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+    def save(self, *args, **kwargs):
+        if not self.most_recent_confirmation_key:
+            self.generate_new_confirmation_key()
+
+        return super(IthacashStaff, self).save(*args, **kwargs)
+
+    def generate_new_confirmation_key(self):
+        self.most_recent_confirmation_key = uuid.uuid4().hex
+
+    def send_confirmation_message(self):
+        t = loader.get_template('emails/phase_one.txt')
+        c = Context({
+            'application_url': "https://ithacash.com/staff/confirm-staff/{}".format(self.most_recent_confirmation_key),
+            'form_url': "https://ithacash.com/staff/confirm-staff/{}".format(self.most_recent_confirmation_key),
+            'email_address': self.email,
+        })
+        message = t.render(c)
+
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+
+        logger.info("Sending confirmation email to %s" % self.email, self)
+        mandrill_client.messages.send(
+            {
+                'to': [{'email': self.email}],
+                'text': message,
+                'from_name': 'Ithacash Support',
+                'from_email': 'support@ithacash.com',
+                'subject': 'Confirm your Ithacash Staff account',
+            })
+
+    def confirm(self, key):
+        if key == self.most_recent_confirmation_key:
+            self.confirmed = timezone.now()
+            self.save()
+            return True
+        else:
+            return False
