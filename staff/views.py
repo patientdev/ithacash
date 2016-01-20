@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
 from .forms import StaffLogin, StaffSignup
 from django.http.response import JsonResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+
+from staff.models import IthacashStaff
 
 
-def login(request):
+def login_staff(request):
     form = StaffLogin(request.POST or None)
 
     if request.method == 'POST':
@@ -15,7 +19,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return JsonResponse({'success': True}, status=202, reason="OK: Form values accepted")
+                return HttpResponseRedirect('/staff/%d/' % user.id)
 
             else:
                 return JsonResponse({'fail': True}, status=400)
@@ -40,3 +44,10 @@ def signup(request):
             return JsonResponse(form.errors, status=400)
 
     return render(request, 'signup.html', {'form': form})
+
+
+def dashboard(request, staff_id):
+
+    if request.user.is_authenticated():
+
+        return HttpResponse(request.user.email)
