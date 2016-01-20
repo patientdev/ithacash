@@ -1,5 +1,6 @@
 from accounts.models import IthacashUser, IthacashAccount
-from django.http.response import JsonResponse
+from .models import IthacashStaff
+from django.http.response import JsonResponse, HttpResponseRedirect
 from django.core import serializers
 from itertools import chain
 from django.db.models import Q
@@ -8,6 +9,18 @@ import json
 
 def get_tin(user_list):
     tins = IthacashAccount.objects.get()
+
+
+def confirm_staff(request, confirmation_key):
+
+    try:
+        staff = IthacashStaff.objects.get(most_recent_confirmation_key=confirmation_key)
+        staff.confirm(confirmation_key)
+
+        return HttpResponseRedirect('/staff/login/')
+
+    except IthacashStaff.DoesNotExist:
+        return HttpResponse("That user wasn't found", status=404)
 
 
 def search_users(request):

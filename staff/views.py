@@ -29,7 +29,7 @@ def login_staff(request):
             return JsonResponse({'fail': True}, status=404, reason="BAD REQUEST: User does not exist")
 
     else:
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'staff/login.html', {'form': form})
 
 
 def signup(request):
@@ -39,13 +39,14 @@ def signup(request):
         if form.is_valid():
 
             user = form.save()
+            user.send_confirmation_message()
 
             return JsonResponse({'success': True}, status=202, reason="OK: Form values accepted")
 
         else:
             return JsonResponse(form.errors, status=400)
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'staff/signup.html', {'form': form})
 
 
 def dashboard(request, staff_id):
@@ -58,7 +59,7 @@ def dashboard(request, staff_id):
 
         last_week = datetime.now() - timedelta(days=7)
 
-        return render(request, 'dashboard.html', {'ithacash_users': IthacashUser.objects.filter(accounts__created__gt=last_week)})
+        return render(request, 'staff/dashboard.html', {'ithacash_users': IthacashUser.objects.filter(accounts__created__gt=last_week)})
 
     else:
         HttpResponseRedirect('/')
