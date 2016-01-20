@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ithacash Staff Dashboard</title>
+        <style>
+            table {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+    <h1>Dashboard</h1>
+    <p>{{ request.user.email }}</p>
+
+    <h2>Recent signups</h2>
+    <table class="recent-signups">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Account Type</th>
+            <th>Created Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in ithacash_users|dictsortreversed:"created" %}
+        <tr>
+            <td>{{ user.full_name }}</td>
+                {% for email in user.emails.all %}
+                    <td>{{ email.address }}</td>
+                {% endfor %}
+            <td>{{ user.username }}</td>
+                {% for account in user.accounts.all %}
+                    <td>{{ account.account_type }}</td>
+                {% endfor %}
+            <td>{{ user.created }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </body>
+</html>

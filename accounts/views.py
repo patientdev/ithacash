@@ -198,8 +198,3 @@ def whoops(request):
 
 def purchase_ithaca_dollars(request):
     return render(request, 'purchase-ithaca-dollars.html')
-
-
-# TODO: PERMISSIONS!
-def list_accounts(request):
-    return render(request, 'list-accounts.html', {'accounts': IthacashAccount.objects.all()})

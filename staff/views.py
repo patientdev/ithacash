@@ -5,6 +5,7 @@ from django.http.response import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
+from accounts.models import IthacashUser
 from staff.models import IthacashStaff
 
 
@@ -19,7 +20,7 @@ def login_staff(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/staff/%d/' % user.id)
+                return HttpResponseRedirect('/staff/{:d}/'.format(user.id))
 
             else:
                 return JsonResponse({'fail': True}, status=400)
@@ -50,4 +51,7 @@ def dashboard(request, staff_id):
 
     if request.user.is_authenticated():
 
-        return HttpResponse(request.user.email)
+        if int(staff_id) != request.user.id:
+            return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
+
+        return render(request, 'dashboard.html', {'ithacash_users': IthacashUser.objects.all()})
