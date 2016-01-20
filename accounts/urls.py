@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from . import views
+from . import views, api
 
 urlpatterns = [
     url(r'^signup/', views.signup_step_1_confirm_email, name="signup_step_1_confirm_email"),
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^create_account/(?P<email_key>\w+)', views.signup_step_3_select_account_type, name="select_account_type"),
     url(r'^account-information/', views.signup_step_4_account_information),
     url(r'^review/$', views.review),
+    url(r'^api/register_account/$', api.register_account)
 ]
