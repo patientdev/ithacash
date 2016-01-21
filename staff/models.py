@@ -91,8 +91,8 @@ class IthacashStaff(AbstractBaseUser):
     def send_confirmation_message(self):
         t = loader.get_template('emails/phase_one.txt')
         c = Context({
-            'application_url': "https://ithacash.com/staff/confirm-staff/{}".format(self.most_recent_confirmation_key),
-            'form_url': "https://ithacash.com/staff/confirm-staff/{}".format(self.most_recent_confirmation_key),
+            'application_url': "https://ithacash.com/staff/api/confirm-staff/{}".format(self.most_recent_confirmation_key),
+            'form_url': "https://ithacash.com/staff/api/confirm-staff/{}".format(self.most_recent_confirmation_key),
             'email_address': self.email,
         })
         message = t.render(c)
