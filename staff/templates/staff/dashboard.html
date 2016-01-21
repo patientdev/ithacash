@@ -80,7 +80,7 @@
                 padding: 5px;
             }
 
-            #results > table tbody tr:nth-of-type(2n) {
+            #results > table tbody tr:nth-of-type(2n), .tin-cell:nth-of-type(even):hover {
                 background-color: #e8f0d9;
             }
 
@@ -115,6 +115,14 @@
 
             .tin-cell:hover {
                 cursor: pointer;
+            }
+
+            #results > table tbody tr:nth-of-type(even) .tin-cell:hover {
+                background-color: #e8f0d9;
+                color: #8c8c8c;
+            }
+
+            #results > table tbody tr:nth-of-type(odd) .tin-cell:hover {
                 background-color: white;
                 color: #8c8c8c;
             }
@@ -135,6 +143,7 @@
                 background: white;
                 color: #8c8c8c;
             }
+
             .tin-cell.show-tin .tin, .tin-cell.show-tin .is_ssn {
                 display: inline;
             }
@@ -200,20 +209,6 @@
 
     <script>
         $(function() {
-
-            $(document).on('click', '.show-tin', function() {
-                $(this).removeClass('show-tin').addClass('hide-tin');
-
-                $this = $(this);
-
-                setTimeout(function() {
-                    $this.removeClass('hide-tin').addClass('show-tin');
-                }, 30000);
-            });
-
-            $(document).on('click', '.hide-tin', function() {
-                $(this).removeClass('hide-tin').addClass('show-tin');
-            });
 
             $('#user_search').on('keyup mouseup', function() {
 
