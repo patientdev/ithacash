@@ -10,6 +10,15 @@ from staff.models import IthacashStaff
 from datetime import datetime, timedelta
 
 
+def staff_front(request):
+
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
+
+    else:
+        return HttpResponseRedirect('/staff/login/')
+
+
 def login_staff(request):
     form = StaffLogin(request.POST or None)
 
@@ -55,7 +64,6 @@ def dashboard(request, staff_id):
 
         if int(staff_id) != request.user.id:
             return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
-
 
         last_week = datetime.now() - timedelta(days=7)
 
