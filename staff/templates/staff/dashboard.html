@@ -71,10 +71,10 @@
                 font-size: .9em;
             }
 
-            #results > table tbody tr:hover, #results tbody tr:hover:nth-of-type(2n) {
+            /*#results > table tbody tr:hover, #results tbody tr:hover:nth-of-type(2n) {
                 background-color: #547c42;
                 color: white;
-            }
+            }*/
 
             #results > table > tr td, #results > table > tr th {
                 padding: 5px;
@@ -92,16 +92,57 @@
                 content: none;
             }
 
-            .tin {
+            .hide_all_tins {
                 display: none;
             }
 
-            .show_tin, .show_all_tins {
+            .show_all_tins, .hide_all_tins {
                 font-size: .8em;
                 cursor: pointer;
+                width: 150px;
             }
 
-            .time_left { display: none; }
+            .tin-cell {
+                position: relative;
+                width: 150px;
+                background: #88b147;
+                color: white;
+            }
+
+            .tin-cell .tin, .tin-cell .is_ssn {
+                display: none;
+            }
+
+            .tin-cell:hover {
+                cursor: pointer;
+                background-color: white;
+                color: #8c8c8c;
+            }
+
+            .tin-cell:hover .tin, .tin-cell:hover .is_ssn {
+                display: inline;
+            }
+
+            .tin-cell::after {
+                content: "Hover to reveal";
+            }
+
+            .tin-cell:hover::after {
+                display: none;
+            }
+
+            .tin-cell.show-tin {
+                background: white;
+                color: #8c8c8c;
+            }
+            .tin-cell.show-tin .tin, .tin-cell.show-tin .is_ssn {
+                display: inline;
+            }
+
+            .tin-cell.show-tin::after {
+                content: none;
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -121,7 +162,7 @@
             <span style="font-size: .7em; position: relative; top: -5px; padding: 0 5px; display: inline-block;">Search usernames, emails, and full names</span>
 
             <div id="results">
-                <p style="text-align: right; margin: 0;"><button type="button" class="show_all_tins">Show All</button><span class="time_left"></span></p>
+                <p style="text-align: right; margin: 0;"><button type="button" class="show_all_tins">Show All</button><button type="button" class="hide_all_tins">Hide All</button><span class="time_left"></span></p>
             <table>
                 <thead>
                     <tr>
@@ -160,6 +201,20 @@
     <script>
         $(function() {
 
+            $(document).on('click', '.show-tin', function() {
+                $(this).removeClass('show-tin').addClass('hide-tin');
+
+                $this = $(this);
+
+                setTimeout(function() {
+                    $this.removeClass('hide-tin').addClass('show-tin');
+                }, 30000);
+            });
+
+            $(document).on('click', '.hide-tin', function() {
+                $(this).removeClass('hide-tin').addClass('show-tin');
+            });
+
             $('#user_search').keyup(function() {
 
                 if ($(this).val() == '') { $('#results').html(); }
@@ -170,7 +225,6 @@
                         200: function(data) {
 
                             results = JSON.parse(data.results);
-                            console.log(results);
                             tins = data.tins;
                             list = '';
                             $(results).each(function(index) {
@@ -179,39 +233,35 @@
                                 account_type = $(this)[0].accounts__account_type || '';
                                 user_id = $(this)[0].id || '';
                                 entity_name = $(this)[0].accounts__entity_name || '';
-                                tin = tins[user_id];
-                                if (tin) {
+                                if (tins[user_id]) {
                                     is_ssn = ($(this)[0].accounts__is_ssn) ? ' (SSN)' : ' (EIN)';
                                 }
                                 else { is_ssn = ''; }
-                                tin_button = (tin) ? '<button type="button" class="show_tin">Show</button>' : '';
+                                tin = (tins[user_id]) ? '<td class="tin-cell"><span class="tin">' + tins[user_id] + '</span> <span class="is_ssn">' + is_ssn + '</span></td>' : '<td><i>undefined</i></td>';
 
-                                list += '<tr data-id=' + user_id + '><td>' + full_name + '</td><td>' + entity_name + '</td><td>' + email_address + '</td><td>' + account_type + '</td><td><span class="tin">' + tin + is_ssn + '</span>' + tin_button + '</td></tr>';
+                                list += '<tr data-id=' + user_id + '><td>' + full_name + '</td><td>' + entity_name + '</td><td>' + email_address + '</td><td>' + account_type + '</td>' + tin + '</tr>';
                             });
 
                             $('#results tbody').html(list);
                             $('#results').slideDown(200);
 
-                            $('.show_tin').click(function() {
-                                $this = $(this);
-                                $this.hide();
-                                $this.siblings('.tin').show();
-                                setTimeout(function() {
-                                    $this.show();
-                                    $this.siblings('.tin').hide();
-                                }, 10000);
-                            });
 
                             $('.show_all_tins').click(function() {
-                                $('.show_tin').hide();
-                                $('.tin').show();
+                                $('.hide_all_tins').show();
                                 $(this).hide();
+                                $('.tin-cell').addClass('show-tin');
+
 
                                 setTimeout(function() {
-                                    $('.time_left').hide();
-                                    $('.show_tin').show();
-                                    $('.show_all_tins').show();
-                                }, 30000);
+                                    $('.hide_all_tins').show();
+                                    $('.tin-cell').removeClass('show-tin');
+                                }, 300000);
+                            });
+
+                            $('.hide_all_tins').click(function() {
+                                $(this).hide();
+                                $('.tin-cell').removeClass('show-tin');
+                                $('.show_all_tins').show();
                             });
                         },
                         204: function() { $('#results').slideUp(200); }

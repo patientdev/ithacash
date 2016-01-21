@@ -41,13 +41,10 @@ def search_users(request):
                 except:
                     pass
 
-            print tins
-
             if search_results.exists():
                 return JsonResponse({'results': json.dumps(list(search_results)), 'tins': tins}, safe=False, status=200)
 
             else:
-                print search_results
                 return JsonResponse(json.dumps(list({''})), safe=False, status=204)
 
         else:
