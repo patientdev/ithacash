@@ -50,7 +50,7 @@ class StaffSignup(forms.ModelForm):
         email_domain = email.split('@')[1]
 
         if email_domain != 'ithacash.com':
-            raise ValidationError('You must use an ithacash.com email address. Please contact support@ithacash.com if you require one.')
+            raise ValidationError('You must use an ithacash.com email address.')
 
         return email
 
