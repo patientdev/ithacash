@@ -1,5 +1,49 @@
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Login</button>
-</form>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ithacash Staff Dashboard</title>
+
+        <link href='//fonts.googleapis.com/css?family=Maven+Pro:400,500,400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static 'css/ithacash.css' %}">
+
+        <style>
+
+            header {
+                margin-bottom: 40px;
+            }
+
+            h1 {
+                margin: 40px 0;
+            }
+        </style>
+    </head>
+    <body>
+            <div class="container">
+                <header>
+            <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
+
+            <h2>Staff Signup</h2>
+            <p>{{ request.user.email }}</p>
+            </header>
+
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Login</button>
+    </form>
+
+    <p><a href="/staff/signup/">Sign up Here</a></p>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
+    </script>
+    </body>
+</html>

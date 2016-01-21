@@ -16,6 +16,8 @@ class IthacashStaffManager(BaseUserManager):
     def create_user(self, email, password):
         email_domain = email.split('@')[1]
 
+        print email_domain
+
         if email_domain != 'ithacash.com':
             raise ValueError('You must use an ithacash.com email address. Please contact support@ithacash if you require one.')
 
