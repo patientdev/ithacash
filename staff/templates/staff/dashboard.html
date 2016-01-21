@@ -215,7 +215,7 @@
                 $(this).removeClass('hide-tin').addClass('show-tin');
             });
 
-            $('#user_search').keyup(function() {
+            $('#user_search').on('keyup mouseup', function() {
 
                 if ($(this).val() == '') { $('#results').html(); }
                 $.ajax({

@@ -31,7 +31,7 @@ def search_users(request):
 
         if q:
 
-            search_results = IthacashUser.objects.select_related().filter(Q(full_name__contains=q) | Q(username__contains=q) | Q(emails__address__contains=q)).values('emails__address', 'username', 'full_name', 'id', 'accounts__account_type', 'accounts__entity_name', 'accounts__is_ssn', 'accounts')
+            search_results = IthacashUser.objects.select_related().filter(Q(full_name__icontains=q) | Q(username__icontains=q) | Q(emails__address__icontains=q)).values('emails__address', 'username', 'full_name', 'id', 'accounts__account_type', 'accounts__entity_name', 'accounts__is_ssn', 'accounts')
 
             tins = {}
             for user in search_results:

@@ -63,7 +63,7 @@ ROOT_URLCONF = 'ithacash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\','/')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
         'APP_DIRS': True,
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
@@ -98,8 +98,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'ithacash/static'
 STATICFILES_DIRS = (BASE_DIR, 'ithacash/static')
-STATIFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
- "django.contrib.staticfiles.finders.AppDirectoriesFinder"]
+STATIFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'pages/media'
