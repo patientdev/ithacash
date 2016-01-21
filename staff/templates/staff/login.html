@@ -21,6 +21,10 @@
             h1 {
                 margin: 40px 0;
             }
+
+            .error-message {
+                padding: 0 5px;
+            }
         </style>
     </head>
     <body>
@@ -34,7 +38,7 @@
 
 
 
-    <form action="" method="POST">
+    <form id="account" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button>Login</button>
@@ -45,5 +49,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
     </script>
+    <script src="{% static 'accounts/js/accounts.js' %}"></script>
     </body>
 </html>

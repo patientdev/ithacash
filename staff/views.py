@@ -20,13 +20,14 @@ def staff_front(request):
 
 
 def login_staff(request):
-    form = StaffLogin(request.POST or None)
+    form = StaffLogin(data=request.POST or None)
 
     if request.method == 'POST':
+
         email = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=email, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -35,7 +36,8 @@ def login_staff(request):
             else:
                 return JsonResponse({'fail': True}, status=400)
         else:
-            return JsonResponse({'fail': True}, status=404, reason="BAD REQUEST: User does not exist")
+
+            return JsonResponse(form.errors, status=404, reason="BAD REQUEST: User does not exist")
 
     else:
         return render(request, 'staff/login.html', {'form': form})

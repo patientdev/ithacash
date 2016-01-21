@@ -19,7 +19,7 @@ class IthacashStaffManager(BaseUserManager):
         print email_domain
 
         if email_domain != 'ithacash.com':
-            raise ValueError('You must use an ithacash.com email address. Please contact support@ithacash if you require one.')
+            raise ValueError('You must use an ithacash.com email address.')
 
         user = self.model(email=self.normalize_email(email))
         user.set_password(password)
@@ -32,7 +32,7 @@ class IthacashStaffManager(BaseUserManager):
         email_domain = email.split('@')[1]
 
         if email_domain != 'ithacash.com':
-            raise ValueError('You must use an ithacash.com email address. Please contact support@ithacash if you require one.')
+            raise ValueError('You must use an ithacash.com email address.')
 
         user = self.create_user(email=email, password=password)
         user.is_admin = True
@@ -41,6 +41,9 @@ class IthacashStaffManager(BaseUserManager):
         return user
 
     def get_by_natural_key(self, email):
+        return self.get(email=email)
+
+    def natural_key(self, email):
         return self.get(email=email)
 
 
