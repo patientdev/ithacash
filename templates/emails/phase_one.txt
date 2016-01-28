@@ -1,8 +1,6 @@
-Sweet! You've finished the first step of creating an Ithacash account. Now help us get to know you a little better.
+Sweet! You've finished the first step of creating an Ithacash account. Now please confirm your email address so we know where to reach you. Click on the following to do so:
 
-We're ready when you are, just click here:
-
-{{ application_url }}
+{{ confirmation_url }}
 
 Your new friends at Ithacash
 
