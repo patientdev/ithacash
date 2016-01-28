@@ -15,6 +15,7 @@ from django.views.decorators.cache import never_cache, cache_control
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 
+
 def getting_an_account(request):
     return render(request, 'getting-an-account.html')
 
@@ -54,7 +55,7 @@ def signup_step_2_await_confirmation(request):
             def send_email_later():
                 email_object.send_confirmation_message()
 
-            return render(request, 'accounts/signup-step-2-await-confirmation.html')
+            return HttpResponseRedirect('/accounts/create_account/{}'.format(email_object.most_recent_confirmation_key))
 
         else:
             return HttpResponseRedirect('/accounts/signup/')
@@ -64,7 +65,6 @@ def signup_step_2_await_confirmation(request):
 def signup_step_3_select_account_type(request, email_key):
 
     email_object = get_object_or_404(Email, most_recent_confirmation_key=email_key)
-    email_object.confirm(email_key)
 
     # Create the user and associated account if newly confirmed
     if email_object.owner is None:
@@ -88,13 +88,15 @@ def signup_step_3_select_account_type(request, email_key):
     else:
         return render(request, 'accounts/signup-step-3-select-account-type.html', {'form': account_form, 'user_id': email_object.owner_id})
 
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def signup_step_4_account_information(request):
 
     if request.method == 'POST':
 
+
         # Submit account type
-        if "validate" not in request.POST:
+        if "validate" not in request.POST and 'user_id' in request.POST:
             user_id = request.POST.get('user_id')
 
             try:

@@ -1,5 +1,5 @@
-from django.http.response import JsonResponse, HttpResponse, HttpResponseNotFound, HttpResponseServerError
-from .models import IthacashAccount
+from django.http.response import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseNotFound, HttpResponseServerError
+from .models import IthacashAccount, Email
 from django.shortcuts import render, redirect
 from exceptions import AttributeError
 
@@ -30,3 +30,20 @@ def register_account(request):
 
     except:
         return HttpResponseServerError("Unexpected error: %s" % sys.exc_info()[0])
+
+
+def confirm_email(request, email_key):
+
+    try:
+        email_object = Email.objects.get(most_recent_confirmation_key=email_key)
+
+        email_object.confirm(email_key)
+
+        return HttpResponseRedirect('/accounts/create_account/{}'.format(email_key))
+
+    except Email.DoesNotExist:
+        return HttpResponseServerError('This email was not recognized')
+
+    except Exception, e:
+        print e
+        return HttpResponseServerError("There was an error and it's our fault, not yours. We've been notified.")

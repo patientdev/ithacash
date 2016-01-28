@@ -7,7 +7,7 @@ import uuid
 from encrypted_fields.fields import EncryptedCharField
 import mandrill
 from phonenumber_field.modelfields import PhoneNumberField
-from ithacash.sayings import USERNAME_DESCRIPTION, DOMAIN, APPLICATION_SUBJECT, VERIFICATION_SUBJECT_LINE
+from ithacash.sayings import USERNAME_DESCRIPTION, DOMAIN, EMAIL_CONFIMATION_SUBJECT_LINE, VERIFICATION_SUBJECT_LINE
 from django.template import Context, loader
 from django.conf import settings
 from django.core import validators
@@ -57,13 +57,13 @@ class Email(models.Model):
     def generate_new_confirmation_key(self):
         self.most_recent_confirmation_key = uuid.uuid4().hex
 
-    def application_url(self):
-        return reverse("select_account_type", kwargs={'email_key': self.most_recent_confirmation_key})
+    def confirmation_url(self):
+        return reverse("api_confirm_email", kwargs={'email_key': self.most_recent_confirmation_key})
 
     def send_confirmation_message(self):
         t = loader.get_template('emails/phase_one.txt')
         c = Context({
-            'application_url': "https://%s%s" % (DOMAIN, self.application_url()),
+            'confirmation_url': "https://%s%s" % (DOMAIN, self.confirmation_url()),
             'form_url': "https://%s%s" % (DOMAIN, reverse("signup_step_1_confirm_email")),
             'email_address': self.address,
         })
@@ -78,7 +78,7 @@ class Email(models.Model):
                 'text': message,
                 'from_name': 'Ithacash Support',
                 'from_email': 'support@ithacash.com',
-                'subject': APPLICATION_SUBJECT,
+                'subject': EMAIL_CONFIMATION_SUBJECT_LINE,
             })
 
     def confirm(self, key):
