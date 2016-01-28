@@ -33,7 +33,6 @@
 
 - name: Restart varnish
   service: name=varnish state=restarted
-  sudo: yes
 
 - name: Copy SSL creds
   synchronize: src=../../../ithacash/settings/secrets/ssl dest=/ithacash
@@ -46,4 +45,3 @@
 
 - name: Restart nginx
   service: name=nginx state=restarted
-  sudo: yes

@@ -13,4 +13,3 @@
 
 - name: Restart varnish
   service: name=newrelic-sysmond state=started
-  sudo: yes
