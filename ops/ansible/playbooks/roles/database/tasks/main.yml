@@ -1,6 +1,5 @@
 - name: apt-get install postgres
   apt: pkg={{item}} state=installed update_cache=yes
-  sudo: yes
   with_items:
       - build-essential
       - postgresql
@@ -15,17 +14,12 @@
 
 - name: create postgres user
   user: name=postgres comment="postgres user"
-  sudo: yes
 
 - name: create database {{app_db_name}}
   postgresql_db: name={{app_db_name}}
-  sudo: yes
-  sudo_user: postgres
 
 - name: ensure user has access to database
   postgresql_user: db={{app_db_name}} name={{app_db_user}} password={{app_db_password}} priv=ALL
-  sudo: yes
-  sudo_user: postgres
 
 - name: Add database backup script to cron
   cron:
