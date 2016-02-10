@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 def staff_front(request):
 
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
+        return HttpResponseRedirect('/staff/dashboard/'.format(request.user.id))
 
     else:
         return HttpResponseRedirect('/staff/login/')
@@ -24,20 +24,26 @@ def login_staff(request):
 
     if request.method == 'POST':
 
-        email = request.POST['username']
+        username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(username=email, password=password)
+        try:
+            user = authenticate(username=username, password=password)
+        except:
+            user = None
+
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/staff/{:d}/'.format(user.id))
+                return HttpResponseRedirect('/staff/dashboard/')
 
             else:
-                return JsonResponse({'fail': True}, status=400)
+                return render(request, 'staff/login.html', {'form': form})
         else:
+            return render(request, 'staff/login.html', {'form': form})
 
-            return JsonResponse(form.errors, status=404, reason="BAD REQUEST: User does not exist")
+    elif request.user.is_authenticated():
+        return HttpResponseRedirect('/staff/dashboard/')
 
     else:
         return render(request, 'staff/login.html', {'form': form})
@@ -57,19 +63,20 @@ def signup(request):
         else:
             return JsonResponse(form.errors, status=400)
 
-    return render(request, 'staff/signup.html', {'form': form})
+    elif request.user.is_authenticated():
+        return HttpResponseRedirect('/staff/dashboard/')
+
+    else:
+        return render(request, 'staff/signup.html', {'form': form})
 
 
-def dashboard(request, staff_id):
+def dashboard(request):
 
     if request.user.is_authenticated():
-
-        if int(staff_id) != request.user.id:
-            return HttpResponseRedirect('/staff/{:d}/'.format(request.user.id))
 
         last_week = datetime.now() - timedelta(days=7)
 
         return render(request, 'staff/dashboard.html', {'ithacash_users': IthacashUser.objects.filter(accounts__created__gt=last_week)})
 
     else:
-        HttpResponseRedirect('/')
+        return HttpResponseRedirect('/staff/login/')

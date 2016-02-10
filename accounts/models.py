@@ -1,5 +1,6 @@
 from datetime import datetime
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import UserManager
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -23,6 +24,8 @@ class IthacashUser(AbstractBaseUser):
     created = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'username'
+
+    objects = UserManager()
 
 
 class Email(models.Model):
