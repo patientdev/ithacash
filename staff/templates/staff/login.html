@@ -32,13 +32,13 @@
                 <header>
             <h1><a href="/"><img src="{% static 'img/ithacash_logo_rgb_325x124.png' %}" alt="ithacash"></a></h1>
 
-            <h2>Staff Signup</h2>
+            <h2>Staff Login</h2>
             <p>{{ request.user.email }}</p>
             </header>
 
 
 
-    <form id="account" action="" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button>Login</button>
@@ -46,9 +46,5 @@
 
     <p><a href="/staff/signup/" class="cta-link">Sign up Here</a></p>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>if (!window.jQuery) { document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>'); }
-    </script>
-    <script src="{% static 'accounts/js/accounts.js' %}"></script>
     </body>
 </html>

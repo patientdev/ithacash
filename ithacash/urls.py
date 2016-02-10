@@ -46,12 +46,11 @@ urlpatterns = [
     url(r'^join/$', RedirectView.as_view(url='/accounts/signup/', permanent=False), name='join'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^staff/', include('staff.urls')),
+    url(r'^pages/', include('pages.urls')),
 
     url(r'^paypal_ipn_endpoint/', payment_views.paypal_ipn_endpoint, name="paypal_ipn_endpoint"),
     url(r'^whoops/$', account_views.whoops),
     url(r'^test_utils/error_test/$', error_view),
-    url(r'^page-creator/$', subpage_views.page_creator),
-    url(r'^page-creator/files/$', subpage_views.files),
     url(r'^media/(?P<path>.*)$', django_views.static.serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('django.contrib.flatpages.urls')),
 ]

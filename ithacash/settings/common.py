@@ -54,8 +54,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = [
-    'staff.auth.IthacashStaffBackend',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
+    'staff.auth.IthacashStaffBackend'
 ]
 
 ROOT_URLCONF = 'ithacash.urls'

@@ -63,11 +63,18 @@ $(function() {
         // Have AJAX handle the validation
         $.ajax({
             url: validation_url,
+            beforeSend: function(xhr, settings) {
+
+                var csrftoken = getCookie('csrftoken');
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            },
             method: 'POST',
             data: data,
         })
         .always(function( response ){
-            console.log(response.responseText);
+            console.log(response);
         })
         .fail(function( response ){
 
@@ -89,8 +96,14 @@ $(function() {
                 $.each(inputs, function() {
                     input_name = $(this).attr('name');
 
+                    if ( $.inArray('__all__'), error_indices) {
+                        error_message = errors['__all__'][0];
+
+                        $('form#account').prepend('<p class="error-message">' + error_message + '</p>');
+                    }
+
                     // If the name of the input equals the error field index
-                    if ( $.inArray(input_name, error_indices) != -1 ) {
+                    else if ( $.inArray(input_name, error_indices) != -1 ) {
                         error_message = errors[input_name][0];
 
                         // Update error message if input is still invalid
@@ -161,4 +174,25 @@ function mapInputsToReview(div) {
             else { $('#review-' + name).html('&#10008;'); }
         }
     })
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }

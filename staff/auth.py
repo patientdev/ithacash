@@ -13,7 +13,7 @@ class IthacashStaffBackend(object):
                 return user
 
         except:
-            raise PermissionDenied
+            return None
 
     def get_user(self, id):
         try:

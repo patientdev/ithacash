@@ -6,6 +6,7 @@ import mandrill
 import requests
 import json
 import bleach
+import staff.settings as staff_settings
 from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
@@ -15,6 +16,7 @@ from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 from os.path import basename
+from django.contrib.auth.decorators import login_required
 
 
 @csrf_exempt
@@ -97,6 +99,7 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
+@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def page_creator(request):
 
     flatpage_form = FlatPageForm(initial={'sites': ('1',)})
@@ -157,31 +160,32 @@ def page_creator(request):
                 subpage.flatpage = flatpage
                 subpage.save()
 
-                return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
+                return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
 
             else:
 
-                return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+                return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        return render(request, 'flatpages/list-pages.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+        return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
 
 def template(request):
     return render(request, 'flatpages/template.html')
 
 
+@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def files(request):
     files = UploadedFiles.objects.all().order_by('id').reverse()
 
     upload_form = FileUploadForm(request.POST or None, request.FILES or None)
 
     if request.method == 'GET' and 'json' in request.GET:
-        return render(request, 'files_json.html', {'files': files}, content_type="application/json")
+        return render(request, 'pages/files_json.json', {'files': files}, content_type="application/json")
 
     elif request.method == 'GET' and 'json' not in request.GET:
 
-        return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+        return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
 
     elif request.method == 'POST':
 
@@ -189,7 +193,7 @@ def files(request):
             uploaded_file = upload_form.save(commit=False)
             uploaded_file.title = basename(uploaded_file.file.path)
             uploaded_file.save()
-            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+            return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
 
         else:
-            return render(request, 'files.html', {'files': files, 'upload_form': upload_form})
+            return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
