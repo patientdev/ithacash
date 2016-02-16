@@ -67,8 +67,6 @@ class Command(BaseCommand):
         else:
             most_recent_account_signups = IthacashUser.objects.filter(accounts__created__gt=yesterday)
 
-        print most_recent_account_signups
-
         if most_recent_account_signups:
 
             for user_object in most_recent_account_signups:

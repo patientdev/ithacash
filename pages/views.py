@@ -16,7 +16,7 @@ from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 from os.path import basename
-from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 @csrf_exempt
@@ -99,7 +99,7 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
-@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
+@staff_member_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def page_creator(request):
 
     flatpage_form = FlatPageForm(initial={'sites': ('1',)})
@@ -174,7 +174,7 @@ def template(request):
     return render(request, 'flatpages/template.html')
 
 
-@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
+@staff_member_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def files(request):
     files = UploadedFiles.objects.all().order_by('id').reverse()
 
