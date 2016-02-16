@@ -16,7 +16,7 @@ from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 from os.path import basename
-from django.contrib.admin.views.decorators import staff_member_required
+from django.http.response import HttpResponseRedirect
 
 
 @csrf_exempt
@@ -99,101 +99,110 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
-@staff_member_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def page_creator(request):
 
-    flatpage_form = FlatPageForm(initial={'sites': ('1',)})
-    subpage_form = SubPageForm()
+    if request.user.is_authenticated():
 
-    if request.method == 'POST':
+        flatpage_form = FlatPageForm(initial={'sites': ('1',)})
+        subpage_form = SubPageForm()
 
-        if request.POST.get('action') == 'edit':
+        if request.method == 'POST':
 
-            page_id = request.POST.get('id')
+            if request.POST.get('action') == 'edit':
 
-            flatpage = FlatPage.objects.get(id=page_id)
-            flatpage_dict = model_to_dict(flatpage)
-            subpage = SubPage.objects.get(flatpage=page_id)
-            subpage_dict = model_to_dict(subpage)
+                page_id = request.POST.get('id')
 
-            return JsonResponse({'flatpage': flatpage_dict, 'subpage': subpage_dict})
-
-        elif request.POST.get('action') == 'del':
-
-            page_id = request.POST.get('id')
-
-            try:
                 flatpage = FlatPage.objects.get(id=page_id)
+                flatpage_dict = model_to_dict(flatpage)
                 subpage = SubPage.objects.get(flatpage=page_id)
-            except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
-                pass
+                subpage_dict = model_to_dict(subpage)
 
-            flatpage.delete()
-            subpage.delete()
+                return JsonResponse({'flatpage': flatpage_dict, 'subpage': subpage_dict})
 
-            return JsonResponse({'page_id': page_id})
+            elif request.POST.get('action') == 'del':
 
-        else:
+                page_id = request.POST.get('id')
 
-            try:
-                flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
-                subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
-            except (FlatPage.DoesNotExist, SubPage.DoesNotExist, ValueError):
-                flatpage_instance = None
-                subpage_instance = None
+                try:
+                    flatpage = FlatPage.objects.get(id=page_id)
+                    subpage = SubPage.objects.get(flatpage=page_id)
+                except (FlatPage.DoesNotExist, SubPage.DoesNotExist):
+                    pass
 
-            flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
-            subpage_form = SubPageForm(request.POST, instance=subpage_instance)
+                flatpage.delete()
+                subpage.delete()
 
-            if flatpage_form.is_valid() and subpage_form.is_valid():
-
-                # Let's whitelist tags for POSTed content
-                flatpage = flatpage_form.save(commit=False)
-                bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
-                bleach.ALLOWED_ATTRIBUTES['a'].extend(['class', 'target'])
-                bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
-                flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
-                flatpage.save()
-                flatpage_form.save_m2m()
-
-                subpage = subpage_form.save(commit=False)
-                subpage.flatpage = flatpage
-                subpage.save()
-
-                return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
+                return JsonResponse({'page_id': page_id})
 
             else:
 
-                return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+                try:
+                    flatpage_instance = FlatPage.objects.get(id=request.POST.get('id'))
+                    subpage_instance = SubPage.objects.get(flatpage=flatpage_instance)
+                except (FlatPage.DoesNotExist, SubPage.DoesNotExist, ValueError):
+                    flatpage_instance = None
+                    subpage_instance = None
+
+                flatpage_form = FlatPageForm(request.POST, instance=flatpage_instance)
+                subpage_form = SubPageForm(request.POST, instance=subpage_instance)
+
+                if flatpage_form.is_valid() and subpage_form.is_valid():
+
+                    # Let's whitelist tags for POSTed content
+                    flatpage = flatpage_form.save(commit=False)
+                    bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
+                    bleach.ALLOWED_ATTRIBUTES['a'].extend(['class', 'target'])
+                    bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
+                    flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
+                    flatpage.save()
+                    flatpage_form.save_m2m()
+
+                    subpage = subpage_form.save(commit=False)
+                    subpage.flatpage = flatpage
+                    subpage.save()
+
+                    return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': FlatPageForm(initial={'sites': ('1',)}), 'subpage_form': SubPageForm()})
+
+                else:
+
+                    return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+
+        else:
+            return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
 
     else:
-        return render(request, 'pages/page-creator.html', {'pages': FlatPage.objects.all(), 'flatpage_form': flatpage_form, 'subpage_form': subpage_form})
+        return HttpResponseRedirect('/staff/login/')
 
 
 def template(request):
     return render(request, 'flatpages/template.html')
 
 
-@staff_member_required(login_url=staff_settings.STAFF_LOGIN_URL)
 def files(request):
-    files = UploadedFiles.objects.all().order_by('id').reverse()
 
-    upload_form = FileUploadForm(request.POST or None, request.FILES or None)
+    if request.user.is_authenticated():
 
-    if request.method == 'GET' and 'json' in request.GET:
-        return render(request, 'pages/files_json.json', {'files': files}, content_type="application/json")
+        files = UploadedFiles.objects.all().order_by('id').reverse()
 
-    elif request.method == 'GET' and 'json' not in request.GET:
+        upload_form = FileUploadForm(request.POST or None, request.FILES or None)
 
-        return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
+        if request.method == 'GET' and 'json' in request.GET:
+            return render(request, 'pages/files_json.json', {'files': files}, content_type="application/json")
 
-    elif request.method == 'POST':
+        elif request.method == 'GET' and 'json' not in request.GET:
 
-        if upload_form.is_valid():
-            uploaded_file = upload_form.save(commit=False)
-            uploaded_file.title = basename(uploaded_file.file.path)
-            uploaded_file.save()
             return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
 
-        else:
-            return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
+        elif request.method == 'POST':
+
+            if upload_form.is_valid():
+                uploaded_file = upload_form.save(commit=False)
+                uploaded_file.title = basename(uploaded_file.file.path)
+                uploaded_file.save()
+                return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
+
+            else:
+                return render(request, 'pages/files.html', {'files': files, 'upload_form': upload_form})
+
+    else:
+        return HttpResponseRedirect('/staff/login/')
