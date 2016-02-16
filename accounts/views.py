@@ -94,7 +94,6 @@ def signup_step_4_account_information(request):
 
     if request.method == 'POST':
 
-
         # Submit account type
         if "validate" not in request.POST and 'user_id' in request.POST:
             user_id = request.POST.get('user_id')
