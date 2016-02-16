@@ -5,7 +5,7 @@ Sweet! You've finished the first step of creating an Ithacash account. Now pleas
 Your new friends at Ithacash
 
 support@ithacash.com
-(607) 391-2789
+(888) 645&ndash;2409
 
 This email is being sent because the form at {{ form_url }} was submitted with ({{ email_address }}) as the contact.
 If you have received this email in error, please just ignore it and/or let us know so we don't send you any further emails without your permission.
