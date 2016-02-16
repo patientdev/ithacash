@@ -13,17 +13,16 @@ def register_account(request):
 
     try:
         account = IthacashAccount.objects.get(owner_id=user_id)
-        if not account.registration_complete:
-            account.registration_complete = True
-            account.save()
 
-            # Send welcome email
-            account.send_awaiting_verification_message()
+        redirect_url = '/thanks/' if account.account_type == 'Individual' else '/thank-you/'
 
-            return redirect('/thanks/')
+        account.registration_complete = True
+        account.save()
 
-        else:
-            return redirect('/thanks/')
+        # Send welcome email
+        account.send_awaiting_verification_message()
+
+        return redirect(redirect_url)
 
     except IthacashAccount.DoesNotExist as e:
         return HttpResponseNotFound(e)
