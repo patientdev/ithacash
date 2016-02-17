@@ -16,7 +16,11 @@ from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
 from os.path import basename
+<<<<<<< HEAD
 from django.http.response import HttpResponseRedirect
+=======
+from django.contrib.auth.decorators import login_required
+>>>>>>> parent of ca8040a... Send submitted paid accounts to /thank-you/ rather than PayPal
 
 
 @csrf_exempt
@@ -99,6 +103,10 @@ def style_guide(request):
     return render(request, 'style-guide.html')
 
 
+<<<<<<< HEAD
+=======
+@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
+>>>>>>> parent of ca8040a... Send submitted paid accounts to /thank-you/ rather than PayPal
 def page_creator(request):
 
     if request.user.is_authenticated():
@@ -178,6 +186,10 @@ def template(request):
     return render(request, 'flatpages/template.html')
 
 
+<<<<<<< HEAD
+=======
+@login_required(login_url=staff_settings.STAFF_LOGIN_URL)
+>>>>>>> parent of ca8040a... Send submitted paid accounts to /thank-you/ rather than PayPal
 def files(request):
 
     if request.user.is_authenticated():
