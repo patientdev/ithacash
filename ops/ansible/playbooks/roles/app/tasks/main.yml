@@ -34,6 +34,7 @@
 - name: slurp public key to use on gitlab
   slurp: src="~/.ssh/id_rsa.pub"
   register: appserver_ssh_key
+  become: true
   become_user: "{{ app_user }}"
   when: deployment_environment == 'production'
 
@@ -49,6 +50,7 @@
   when: deployment_environment == 'production'
 
 - name: Checkout branch from gitlab
+  become: true
   become_user: "{{ app_user }}"
   git:
     repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
@@ -75,6 +77,7 @@
     state: latest
 
 - name: Migrations
+  become: true
   become_user: "{{ app_user }}"
   django_manage:
     settings: ithacash.settings.{{ deployment_environment }}
@@ -85,12 +88,14 @@
 
 - name: Apply hendrix upstart template
   template: src=hendrix-upstart.j2 dest=/etc/init/hendrix.conf mode=0751
+  become: true
   become_user: root
 
 - name: Start hendrix
   service:
     name="hendrix"
     state=restarted
+  become: true
   become_user: root
 
 - name: Add Django management scripts to cron
