@@ -1,5 +1,5 @@
 Django==1.9.1
-https://github.com/hendrix/hendrix/archive/master.zip
+https://github.com/hendrix/hendrix/archive/2.0.0.zip
 django-encrypted-fields==1.1.2
 django-phonenumber-field
 factory_boy
