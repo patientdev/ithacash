@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
 from .forms import StaffLogin, StaffSignup
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
 
 from accounts.models import IthacashUser
 from staff.models import IthacashStaff
@@ -13,7 +12,7 @@ from datetime import datetime, timedelta
 def staff_front(request):
 
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/staff/dashboard/'.format(request.user.id))
+        return HttpResponseRedirect('/staff/dashboard/')
 
     else:
         return HttpResponseRedirect('/staff/login/')
