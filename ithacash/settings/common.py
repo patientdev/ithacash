@@ -126,3 +126,8 @@ AUTH_USER_MODEL = 'accounts.IthacashUser'
 # django-phonenumberfield
 PHONENUMBER_DEFAULT_REGION = 'US'
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
+
+import warnings
+warnings.filterwarnings(
+        'error', r"DateTimeField .* received a naive datetime",
+        RuntimeWarning, r'django\.db\.models\.fields')

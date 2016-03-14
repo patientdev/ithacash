@@ -65,11 +65,11 @@ class Email(models.Model):
 
     def send_confirmation_message(self):
         t = loader.get_template('emails/phase_one.txt')
-        c = Context({
+        c = {
             'confirmation_url': "https://%s%s" % (DOMAIN, self.confirmation_url()),
             'form_url': "https://%s%s" % (DOMAIN, reverse("signup_step_1_confirm_email")),
             'email_address': self.address,
-        })
+        }
         message = t.render(c)
 
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)

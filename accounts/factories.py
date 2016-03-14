@@ -11,7 +11,6 @@ class IthacashUserFactory(factory.DjangoModelFactory):
 
     username = "faker"
     full_name = "Fakey McGee"
-    created = now()
 
 
 class EmailFactory(factory.DjangoModelFactory):
@@ -21,7 +20,6 @@ class EmailFactory(factory.DjangoModelFactory):
 
     address = "fakes@faker.co"
     owner = factory.SubFactory(IthacashUserFactory)
-    created = now()
     confirmed = now()
     most_recent_confirmation_key = "91358ec2820b417a9a8999da44d2432f"
     wants_to_receive_updates = True
@@ -52,5 +50,3 @@ class IthacashAccountFactory(factory.DjangoModelFactory):
     txt2pay = True
     txt2pay_phone = False
     electronic_signature = "X"
-
-    created = now()

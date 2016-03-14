@@ -8,6 +8,7 @@ import sys
 import mandrill
 from base64 import b64encode
 from django.conf import settings
+from django.utils.timezone import now
 
 
 class Command(BaseCommand):
@@ -53,7 +54,7 @@ class Command(BaseCommand):
 
     def get_most_recent_signups(self, **options):
 
-        yesterday = datetime.now() - timedelta(days=1)
+        yesterday = now() - timedelta(days=1)
 
         if 'user' in options:
             if 'all' in options['user']:
@@ -66,8 +67,6 @@ class Command(BaseCommand):
                     most_recent_account_signups.append(user_object)
         else:
             most_recent_account_signups = IthacashUser.objects.filter(accounts__created__gt=yesterday)
-
-        print most_recent_account_signups
 
         if most_recent_account_signups:
 

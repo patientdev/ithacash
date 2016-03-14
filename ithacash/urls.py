@@ -41,16 +41,16 @@ def error_view(request):
 # Serve errors using a template so it looks nice and is somewhat helpful
 def handler404(request):
     t = loader.get_template('404.html')
-    return HttpResponseNotFound(t.render(Context({
+    return HttpResponseNotFound(t.render({
         'request': request,
-    })))
+    }))
 
 
 def handler500(request):
     t = loader.get_template('500.html')
-    return HttpResponseServerError(t.render(Context({
+    return HttpResponseServerError(t.render({
         'request': request,
-    })))
+    }))
 
 
 sitemaps = {'front': StaticViewSitemap, 'subpages': SubpagesSitemap}
