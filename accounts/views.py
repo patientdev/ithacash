@@ -1,6 +1,7 @@
 import json
 import sys
 from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
+from django.template.response import SimpleTemplateResponse
 from django.shortcuts import render, get_object_or_404
 from hendrix.experience import crosstown_traffic
 from django import forms
@@ -59,6 +60,9 @@ def signup_step_2_await_confirmation(request):
 
         else:
             return HttpResponseRedirect('/accounts/signup/')
+
+    else:
+        return HttpResponseRedirect('/accounts/signup/')
 
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
