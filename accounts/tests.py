@@ -16,12 +16,11 @@ from base64 import b64encode
 class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 
     def test_first_stage_give_email(self):
-        print 'test_first_stage_give_email'
+
         address = 'dingo@dingo.com'
         self.assertFalse(Email.objects.filter(address=address).exists())
 
     def test_confirm_email(self):
-        print 'test_confirm_email'
 
         address = 'test@test.com'
 
@@ -50,7 +49,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
         self.assertIsNotNone(email_object.confirmed)
 
     def test_confirm_email_view(self):
-        print 'test_confirm_email_view'
+
         email_object = Email.objects.create(address="test@test.com")
         key = email_object.most_recent_confirmation_key
         response = self.client.get('/accounts/create_account/%s' % key)
@@ -82,7 +81,6 @@ class CreateAccountTests(TestCase):
     }
 
     def test_create_account_with_invalid_data(self):
-        print 'test_create_account_with_invalid_data'
 
         email = Email.objects.create(address="nobody@nothing.com")
 
@@ -95,7 +93,6 @@ class CreateAccountTests(TestCase):
         self.assertIsNotNone(response)
 
     def test_create_account_with_valid_data(self):
-        print 'test_create_account_with_valid_data'
 
         email = Email.objects.create(address="nobody@nothing.com")
 
@@ -105,9 +102,7 @@ class CreateAccountTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-
     def test_create_account_with_valid_data_results_in_account_objects(self):
-        print 'test_create_account_with_valid_data_results_in_account_objects'
 
         self.assertFalse(IthacashAccount.objects.exists())
 
@@ -128,7 +123,6 @@ class CreateAccountTests(TestCase):
         return IthacashAccount.objects.get(owner_id=user.id)
 
     def test_csv_export_and_email(self):
-        print 'test_csv_export_and_email'
 
         """
         Assert that the base64 encoding of the csv_output has reached mandrill

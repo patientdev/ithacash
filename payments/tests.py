@@ -20,7 +20,6 @@ SAMPLE_PAYPAL_IPN_PAYLOAD = {
 class PaypalTests(TestCase):
 
     def test_ipn_endpoint_new_account(self):
-        print 'test_ipn_endpoint_new_account'
 
         r = RequestFactory()
         r.method = "POST"
@@ -48,7 +47,6 @@ class PaypalTests(TestCase):
                 self.assertEqual(mock_paypal_ipn.call_count, 1)
 
     def test_ipn_endpoint_direct_transation(self):
-        print 'test_ipn_endpoint_direct_transation'
 
         '''For PayPal transactions initiated directly through PayPal rather than at the end of our signup form'''
 

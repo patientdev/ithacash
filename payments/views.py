@@ -4,6 +4,8 @@ from accounts.models import IthacashAccount
 from payments.models import SignUpPayment
 from payments.utils import PaypalValidator
 
+from accounts.api import register_account as api_register_account
+
 from django.shortcuts import redirect
 
 from exceptions import KeyError
@@ -21,7 +23,7 @@ def paypal_ipn_endpoint(request):
 
             payment = SignUpPayment.objects.create(account=account, amount=request.POST['payment_gross'])
 
-            return redirect('accounts.api.register_account', id=account.id)
+            return redirect(api_register_account, id=account.id)
 
         except KeyError:
             pass
