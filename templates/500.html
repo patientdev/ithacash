@@ -1,1 +1,10 @@
-500 Server Error
+{% extends 'subpage.html' %}
+
+{% block heading %}There was an error!{% endblock heading %}
+
+{% block article %}
+<h2>There was a problem on our end!</h2>
+<p>We have automatically been notified of this issue. To reach out to us direcly, please call (888) 645–2409 or email <a href="mailto:support@ithacash.com">support@ithacash.com</a>.</p>
+
+<p style="font-size: small; font-style: italic;">Error reference number: {{ request.sentry.id }}</p>
+{% endblock article %}

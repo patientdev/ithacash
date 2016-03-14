@@ -12,6 +12,8 @@ from pages import views as subpage_views
 from accounts import views as account_views
 from payments import views as payment_views
 from django import views as django_views
+from django.template import Context, loader
+from django.http import HttpResponseServerError
 
 
 '''
@@ -34,6 +36,13 @@ See ops/ansible/playbooks/roles/caching/templates/etc__varnish__default.vcl
 
 def error_view(request):
     raise RuntimeError("This is a test Ithacash error.")
+
+
+def handler500(request):
+    t = loader.get_template('500.html')
+    return HttpResponseServerError(t.render(Context({
+        'request': request,
+    })))
 
 
 sitemaps = {'front': StaticViewSitemap, 'subpages': SubpagesSitemap}
