@@ -37,6 +37,7 @@ See ops/ansible/playbooks/roles/caching/templates/etc__varnish__default.vcl
 def error_view(request):
     raise RuntimeError("This is a test Ithacash error.")
 
+
 # Serve errors using a template so it looks nice and is somewhat helpful
 def handler404(request):
     t = loader.get_template('404.html')
