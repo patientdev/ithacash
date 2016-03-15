@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^api/confirm_email/(?P<email_key>\w+)', api.confirm_email, name="api_confirm_email"),
     url(r'^account-information/', views.signup_step_4_account_information),
     url(r'^review/$', views.review),
-    url(r'^api/register_account/$', api.register_account)
+    url(r'^api/register_account/$', api.register_account, name="api_register_account")
 ]
