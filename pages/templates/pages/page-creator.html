@@ -43,6 +43,10 @@
         padding: 10px;
     }
 
+    .word-class {
+        word-break: break-all;
+    }
+
     #mceu_9 {
         width: calc(100% - 45px);
         display: inline-block;
@@ -92,7 +96,7 @@
         {% for page in pages %}
             <tr>
                 <td>{{ page.title }}</td>
-                <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
+                <td class="url"><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
                 <td>{{ page.subpage.heading }}</td>
                 <td><button name="page_id" value="{{ page.id }}" class="edit">Edit</button> <!-- <button name="page_id" value="{{ page.id }}" class="del">Delete</button> --></td>
             </tr>
