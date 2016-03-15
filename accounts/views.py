@@ -22,26 +22,29 @@ def getting_an_account(request):
 
 
 def signup_step_1_confirm_email(request):
-    form = EmailForm(request.POST or None)
 
-    if request.method == 'POST':
+    return HttpResponseRedirect('/accounts/signup/temporarily-closed/')
 
-        address = request.POST.get('address')
-
-        if form.is_valid():
-
-            if Email.objects.filter(address=address).exists():
-                form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
-                return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
-
-            else:
-                return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
-
-        else:
-            return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
-
-    else:
-        return render(request, 'accounts/signup-step-1-confirm-email.html', {'form': form})
+    # form = EmailForm(request.POST or None)
+    #
+    # if request.method == 'POST':
+    #
+    #     address = request.POST.get('address')
+    #
+    #     if form.is_valid():
+    #
+    #         if Email.objects.filter(address=address).exists():
+    #             form.add_error('address', EMAIL_ALREADY_IN_SYSTEM)
+    #             return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
+    #
+    #         else:
+    #             return (JsonResponse({'success': True}, status=202, reason="OK: Form values accepted"))
+    #
+    #     else:
+    #         return (JsonResponse(form.errors, status=400, reason="BAD REQUEST: Invalid form values"))
+    #
+    # else:
+    #     return render(request, 'accounts/signup-step-1-confirm-email.html', {'form': form})
 
 
 def signup_step_2_await_confirmation(request):
