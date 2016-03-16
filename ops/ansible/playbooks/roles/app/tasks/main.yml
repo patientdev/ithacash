@@ -36,7 +36,6 @@
   register: appserver_ssh_key
   become: true
   become_user: "{{ app_user }}"
-  when: deployment_environment == 'production'
 
 - name: Activate SSH key for gitlab 'appserver' user
   uri:
@@ -47,7 +46,6 @@
     body_format: raw
     body: "id=1&key={{appserver_ssh_key.content|b64decode|urlencode}}&title=Staging%20server%20key"
     status_code: 201
-  when: deployment_environment == 'production'
 
 - name: Checkout branch from gitlab
   become: true
@@ -59,15 +57,6 @@
     accept_hostkey: yes
     depth: 1
     force: yes
-  when: deployment_environment == 'production'
-
-- name: Synchronize local repo
-  synchronize:
-      src: "{{ local_path }}/"
-      dest: "{{ manage_path }}/../staging"
-      rsync_opts:
-        - "--exclude={{ local_path }}/.git"
-  when: deployment_environment == 'staging'
 
 - name: Install Project reqs
   become: true
