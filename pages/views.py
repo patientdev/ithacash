@@ -11,7 +11,7 @@ from requests.auth import HTTPBasicAuth
 from django.template import Context, loader
 from django.conf import settings
 from pages.forms import *
-from pages.utils import *
+from pages.utils import PageCreatorBleaching
 from pages.models import UploadedFiles
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.forms import FlatpageForm
@@ -149,10 +149,10 @@ def page_creator(request):
 
                     # Let's whitelist tags for POSTed content
                     flatpage = flatpage_form.save(commit=False)
-                    bleach.ALLOWED_TAGS.extend(['p', 'mark', 'h3', 'h4', 'br', 'img'])
-                    bleach.ALLOWED_ATTRIBUTES['a'].extend(['class', 'target'])
-                    bleach.ALLOWED_ATTRIBUTES['img'] = ['src', 'height', 'width']
-                    flatpage.content = bleach.clean(flatpage.content, tags=bleach.ALLOWED_TAGS, attributes=bleach.ALLOWED_ATTRIBUTES, strip=True)
+
+                    # Sanitize incoming content using bleach
+                    flatpage.content = PageCreatorBleaching(flatpage.content)
+
                     flatpage.save()
                     flatpage_form.save_m2m()
 
