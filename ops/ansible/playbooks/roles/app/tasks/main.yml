@@ -51,7 +51,7 @@
 
 - name: Checkout branch from gitlab
   become: true
-  become_user: "{{ app_user }}"
+  become_user: "root"
   git:
     repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
     version: "{{ branch }}"
