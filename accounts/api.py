@@ -33,16 +33,21 @@ def register_account(request):
 
 def confirm_email(request, email_key):
 
-    try:
-        email_object = Email.objects.get(most_recent_confirmation_key=email_key)
+    if request.method == 'GET':
 
-        email_object.confirm(email_key)
+        try:
+            email_object = Email.objects.get(most_recent_confirmation_key=email_key)
 
-        return HttpResponseRedirect('/accounts/create_account/{}'.format(email_key))
+            email_object.confirm(email_key)
 
-    except Email.DoesNotExist:
-        return HttpResponseServerError('This email was not recognized')
+            return HttpResponseRedirect('/accounts/create_account/{}'.format(email_key))
 
-    except Exception, e:
-        print e
-        return HttpResponseServerError("There was an error and it's our fault, not yours. We've been notified.")
+        except Email.DoesNotExist:
+            return HttpResponseServerError('This email was not recognized')
+
+        except Exception, e:
+            print e
+            return HttpResponseServerError("There was an error and it's our fault, not yours. We've been notified.")
+
+    else:
+        return HttpResponseRedirect('/accounts/signup/')
