@@ -95,8 +95,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https:/docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'ithacash/static'
+STATIC_URL = '/static'
+STATIC_ROOT = 'ithacash/static/'
 STATICFILES_DIRS = (BASE_DIR, 'ithacash/static')
 STATIFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
