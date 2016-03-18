@@ -21,69 +21,7 @@ from os.path import basename
 @csrf_exempt
 def front(request):
 
-    newsletter_form = newsletter_subscription_form(None)
-    message_form = send_message_form(None)
-
-    if request.method == 'POST':
-
-        which_form = request.POST.get('form')
-
-        if which_form == 'newsletter_form':
-
-            form = newsletter_subscription_form(request.POST)
-
-            if form.is_valid():
-                payload = {
-                    'email_address': request.POST.get('subscriber_email_address'),
-                    'status': 'subscribed'
-                }
-
-                try:
-                    r = requests.post('https://us9.api.mailchimp.com/3.0/lists/ec92ed377f/members/', auth=HTTPBasicAuth('', settings.MAILCHIMP_API_KEY), json=payload)
-
-                    if r.status_code == 200:
-                        return JsonResponse({'success': True}, status=200)
-
-                    elif r.status_code == 400:
-                        return JsonResponse({'errors': 'already exists'}, status=400)
-
-                    else:
-                        return JsonResponse({'errors': r.json()}, status=500)
-
-                except requests.exceptions.RequestException as e:
-                    return JsonResponse({'errors': str(e)}, status=500)
-
-            else:
-                return JsonResponse({'errors': form.errors}, status=400)
-
-        elif which_form == 'message_form':
-
-            form = send_message_form(request.POST)
-
-            if form.is_valid():
-
-                mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
-
-                try:
-                    result = mandrill_client.messages.send(
-                        {
-                            'to': [{'email': 'support@ithacash.com'}],
-                            'text': request.POST.get('message'),
-                            'from_name': 'Ithacash.com',
-                            'from_email': request.POST.get('message_from'),
-                            'subject': 'Message from ithacash.com',
-                        })
-
-                    return (JsonResponse({'success': result}))
-
-                except Exception, e:
-                    return (JsonResponse({'errors': str(e)}, status=500))
-
-            else:
-                return (JsonResponse({'errors': form.errors}, status=400))
-
-    else:
-        return render(request, 'front.html', {'newsletter_form': newsletter_form, 'message_form': message_form})
+    return render(request, 'front.html')
 
 
 def getting_an_account(request):
