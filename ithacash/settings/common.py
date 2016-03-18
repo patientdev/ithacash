@@ -97,7 +97,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'ithacash/static/'
-STATICFILES_DIRS = (BASE_DIR, 'ithacash/static')
 STATIFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder"

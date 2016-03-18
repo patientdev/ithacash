@@ -61,6 +61,8 @@
     force: yes
 
 - name: Install Project reqs
+  become: true
+  become_user: '{{ app_user}} '
   pip:
     requirements: /ithacash/{{ deployment_environment }}/requirements/requirements.txt
     virtualenv: /ithacash/virtualenv
