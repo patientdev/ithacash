@@ -4,11 +4,12 @@ from pages.models import *
 from django.contrib.flatpages.models import FlatPage
 
 
-class newsletter_subscription_form(forms.Form):
+class add_to_mailing_list_form(forms.Form):
 
     auto_id = False
 
-    subscriber_email_address = forms.EmailField(max_length=255, label='', widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    email_address = forms.EmailField(max_length=255)
+    mailing_list_id = forms.HiddenInput()
 
 
 class send_message_form(forms.Form):
