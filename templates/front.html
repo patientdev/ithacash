@@ -288,4 +288,27 @@
 {% block scripts %}
 {{ block.super }}
 <script src="{% static 'js/slick/slick.js' %}"></script>
+<script>
+    $('#panels').slick({
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 7000,
+          prevArrow: $('#left-arrow button'),
+          nextArrow: $('#right-arrow button'),
+          pauseOnHover: false
+    }).on('afterChange', function() {
+        var currentSlide = $(this).slick('slickCurrentSlide');
+        if ( currentSlide === 0 ) { $(this).slick('slickPlay'); }
+    });
+
+    $('#more-arrow').click(function() {
+        windowHeight = $(window).height();
+        sectionHeight = $('#invigorating-our-economy').height();
+        offset = $('#invigorating-our-economy').offset().top + 150 - ((windowHeight - sectionHeight)/2);
+
+        $('html, body').animate({
+            scrollTop: offset + 'px'
+        });
+    });
+</script>
 {% endblock %}
