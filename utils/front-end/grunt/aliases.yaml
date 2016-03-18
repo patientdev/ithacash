@@ -6,7 +6,6 @@ build:
     - "uglify"
     - "sass"
     - "autoprefixer"
-    - "imagemin"
 
 dev:
   description: "Testing and serving"
