@@ -36,22 +36,22 @@
   register: appserver_ssh_key
   become: true
   become_user: "{{ app_user }}"
-  when: deployment_environment == 'production'
+  become_method: "sudo"
 
 - name: Activate SSH key for gitlab 'appserver' user
   uri:
     url: https://gitlab.ithacash.com/api/v3/projects/1/keys
     method: POST
     HEADER_PRIVATE-TOKEN: '_utsQYTsABFiuheoCw9P'
-    validate_certs: no
+    validate_certs: yes
     body_format: raw
     body: "id=1&key={{appserver_ssh_key.content|b64decode|urlencode}}&title=Staging%20server%20key"
     status_code: 201
-  when: deployment_environment == 'production'
 
 - name: Checkout branch from gitlab
   become: true
-  become_user: "root"
+  become_user: "{{ app_user }}"
+  become_method: "sudo"
   git:
     repo: 'git@gitlab.ithacash.com:ithacash/ithacash.git'
     version: "{{ branch }}"
@@ -59,19 +59,10 @@
     accept_hostkey: yes
     depth: 1
     force: yes
-  when: deployment_environment == 'production'
-
-- name: Synchronize local repo
-  synchronize:
-      src: "{{ local_path }}/"
-      dest: "{{ manage_path }}/../staging"
-      rsync_opts:
-        - "--exclude={{ local_path }}/.git"
-  when: deployment_environment == 'staging'
 
 - name: Install Project reqs
   become: true
-  become_user: "{{ app_user }}"
+  become_user: '{{ app_user}} '
   pip:
     requirements: /ithacash/{{ deployment_environment }}/requirements/requirements.txt
     virtualenv: /ithacash/virtualenv
@@ -80,6 +71,7 @@
 - name: Migrations
   become: true
   become_user: "{{ app_user }}"
+  become_method: "sudo"
   django_manage:
     settings: ithacash.settings.{{ deployment_environment }}
     command: migrate
