@@ -6,7 +6,8 @@ from django.contrib.auth import login, authenticate
 from accounts.models import IthacashUser
 from staff.models import IthacashStaff
 
-from datetime import datetime, timedelta
+from django.utils.timezone import now
+from datetime import timedelta
 
 
 def staff_front(request):
@@ -73,7 +74,7 @@ def dashboard(request):
 
     if request.user.is_authenticated():
 
-        last_week = datetime.now() - timedelta(days=7)
+        last_week = now() - timedelta(days=7)
 
         return render(request, 'staff/dashboard.html', {'ithacash_users': IthacashUser.objects.filter(accounts__created__gt=last_week)})
 
