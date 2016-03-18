@@ -146,10 +146,10 @@
 
     // TinyMCE
     tinymce.init({
-        plugins: "link, fullscreen, image, imagetools, textcolor, code",
+        plugins: "link, fullscreen, image, imagetools, textcolor, code, template",
         selector: "#id_content",
         convert_urls: false,
-        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | code | fullscreen",
+        toolbar: "undo redo | styleselect | bold italic link forecolor | bullist | blockquote | removeformat image | template | code | fullscreen",
         content_css: "{% static 'css/page-creator.css' %}",
         elementpath: false,
         menubar: false,
@@ -187,6 +187,9 @@
             "8caa45", "Light green",
             "dd1800", "Red",
             "777777", "Bold gray"
+        ],
+        templates: [
+            {title: "Email signup form", description: "A form with an email input field and a hidden mailing list id field. Please use the code button (<>) in the toolbar to add the MailChimp mailing list id to the hidden field.", url: "{% static 'pages/tinymce-templates/email-signup-form.html' %}"}
         ]
     });
 
