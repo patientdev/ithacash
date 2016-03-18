@@ -96,7 +96,7 @@ $(function() {
                 $.each(inputs, function() {
                     input_name = $(this).attr('name');
 
-                    if ( $.inArray('__all__'), error_indices) {
+                    if ( $.inArray('__all__', error_indices) != -1 ) {
                         error_message = errors['__all__'][0];
 
                         $('form#account').prepend('<p class="error-message">' + error_message + '</p>');
