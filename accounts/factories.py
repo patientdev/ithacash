@@ -20,9 +20,6 @@ class EmailFactory(factory.DjangoModelFactory):
 
     address = "fakes@faker.co"
     owner = factory.SubFactory(IthacashUserFactory)
-    confirmed = now()
-    most_recent_confirmation_key = "91358ec2820b417a9a8999da44d2432f"
-    wants_to_receive_updates = True
 
 
 class IthacashAccountFactory(factory.DjangoModelFactory):

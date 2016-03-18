@@ -7,7 +7,7 @@ import requests
 import mandrill
 from accounts.views import signup_step_1_confirm_email, signup_step_3_select_account_type, review
 from accounts.factories import IthacashUserFactory, EmailFactory, IthacashAccountFactory
-from accounts.api import register_account
+from accounts.api import *
 
 from accounts.management.commands import create_and_email_csv
 from base64 import b64encode
@@ -20,7 +20,7 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
         address = 'dingo@dingo.com'
         self.assertFalse(Email.objects.filter(address=address).exists())
 
-    def test_confirm_email(self):
+    def test_confirm_email_send(self):
 
         address = 'test@test.com'
 
@@ -45,9 +45,6 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
             email_sent_to = mock_email_sender.call_args[0][0]['to'][0]['email']
             self.assertEqual(email_sent_to, address)
 
-        email_object.confirm(key)
-        self.assertIsNotNone(email_object.confirmed)
-
     def test_confirm_email_view(self):
 
         email_object = Email.objects.create(address="test@test.com")
@@ -58,7 +55,6 @@ class SignupPhaseOneTests(AsyncTestMixin, TestCase):
 
         same_email_object = Email.objects.get(most_recent_confirmation_key=email_object.most_recent_confirmation_key)
         self.assertEqual(email_object, same_email_object)
-        self.assertTrue(same_email_object.confirmed)
 
 
 class CreateAccountTests(TestCase):
@@ -148,6 +144,7 @@ class CreateAccountTests(TestCase):
 
 
 class APITests(TestCase):
+
     def test_api_register_account(self):
 
         account = IthacashAccountFactory()
@@ -160,3 +157,16 @@ class APITests(TestCase):
             response = register_account(r)
 
             self.assertEqual(mock_email_sender.call_count, 1)
+
+    def test_api_confirm_email(self):
+
+        email_object = EmailFactory()
+        key = email_object.most_recent_confirmation_key
+
+        r = RequestFactory()
+        r.method = 'GET'
+
+        with patch.object(Email, 'confirm', return_value=None) as confirming_email:
+            response = confirm_email(r, key)
+
+            self.assertIsNotNone(confirming_email.confirmed)
