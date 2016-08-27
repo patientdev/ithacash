@@ -2,7 +2,6 @@
 *.csv
 *.sqlite3
 *ithacash/settings/ignore.py
-*ithacash/settings/local.py
 ithacash/settings/secrets/*
 
 pages/media
